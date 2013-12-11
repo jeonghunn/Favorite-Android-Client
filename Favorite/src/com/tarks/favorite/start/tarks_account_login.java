@@ -52,6 +52,8 @@ public class tarks_account_login extends SherlockActivity {
 	Button bt;
 	Button bt2;
     String myId, myPWord, myTitle, mySubject, myResult; 
+    EditText edit1, edit2;
+    String s1, s2;
     
     private class Downloader extends AsyncTask<String, Void, Bitmap> {
 
@@ -64,13 +66,13 @@ public class tarks_account_login extends SherlockActivity {
 
 		@Override
 		protected void onPreExecute() {
-			Log.i("Async-Example", "onPreExecute Called");
+		//	Log.i("Async-Example", "onPreExecute Called");
 			//set Progressbar
 			   setSupportProgressBarIndeterminateVisibility(true);
 		}
 
 		protected void onPostExecute(Bitmap result) {
-			Log.i("Async-Example", "onPostExecute Called");
+			//Log.i("Async-Example", "onPostExecute Called");
 			//no more progress
 			//set Progressbar
 			   setSupportProgressBarIndeterminateVisibility(false);
@@ -100,10 +102,10 @@ public class tarks_account_login extends SherlockActivity {
 
 
     				//import EditText
-    				EditText edit1 = (EditText) findViewById(R.id.editText1);
+    				edit1 = (EditText) findViewById(R.id.editText1);
     				String s1 = edit1.getText().toString();
 
-    				EditText edit2 = (EditText) findViewById(R.id.editText2);
+    				edit2 = (EditText) findViewById(R.id.editText2);
     				String s2 = edit2.getText().toString();
     				
     				//md5 password value
@@ -138,14 +140,14 @@ public class tarks_account_login extends SherlockActivity {
     				buffer.append("password").append("=").append(enc);
 
     				OutputStreamWriter outStream = new OutputStreamWriter(
-    						http.getOutputStream(), "EUC-KR");
+    						http.getOutputStream(), "UTF-8");
     				PrintWriter writer = new PrintWriter(outStream);
     				writer.write(buffer.toString());
     				writer.flush();
     				// --------------------------
     				// 서버에서 전송받기
     				// --------------------------
-    				 InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "EUC-KR");  
+    				 InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "UTF-8");  
     	              BufferedReader reader = new BufferedReader(tmp); 
     	              StringBuilder builder = new StringBuilder(); 
     	              String str; 
@@ -215,16 +217,16 @@ public class tarks_account_login extends SherlockActivity {
 		case R.id.yes:
 			
 			
+			 edit1 = (EditText) findViewById(R.id.editText1);
+			 s1 = edit1.getText().toString();
 
 		
 				//no err
 			try{	
 			//import EditText
-			EditText edit1 = (EditText) findViewById(R.id.editText1);
-			String s1 = edit1.getText().toString();
 
-			EditText edit2 = (EditText) findViewById(R.id.editText2);
-			String s2 = edit2.getText().toString();
+//			 edit2 = (EditText) findViewById(R.id.editText2);
+//			String s2 = edit2.getText().toString();
 			
 			if(s1.matches("")){
 				AlertDialog.Builder builder = new AlertDialog.Builder(tarks_account_login.this);
@@ -236,7 +238,8 @@ public class tarks_account_login extends SherlockActivity {
 							.execute();
 			}
 			} catch (Exception e){
-			
+				Log.i("ERROR", "App has been error");
+			//	System.out.println();
 				// Not Connected To Internet
 				AlertDialog.Builder builder = new AlertDialog.Builder(tarks_account_login.this);
 				builder.setMessage(getString(R.string.networkerrord))
