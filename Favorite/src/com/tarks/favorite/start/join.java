@@ -32,6 +32,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.Global;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.R.string;
@@ -438,20 +439,15 @@ if(!id.matches("")){
 					builder.show();
 				} else {
 					//dont make error
+					
+			
 					try{
-					Toast.makeText(join.this, getString(R.string.registering),
-							0).show();
-					// Google Clound Message Registartion
-					GCMRegistrar.checkDevice(this);
-					GCMRegistrar.checkManifest(this);
-					final String regId = GCMRegistrar.getRegistrationId(this);
-					if ("".equals(regId)) // 구글 가이드에는 regId.equals("")로 되어 있는데
-											// Exception을 피하기 위해 수정
-						GCMRegistrar.register(this, "743824910564");
-
-					Log.d("==============", regId);
-
-					reg_id = regId.toString();
+					
+				//Show Registering toast
+						Global.toast(getString(R.string.registering));
+					
+				//Register GCM
+					reg_id = Global.GCMReg();
 				
 
 					// Connection Start
