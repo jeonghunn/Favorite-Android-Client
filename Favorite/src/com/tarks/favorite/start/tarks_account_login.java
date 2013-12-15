@@ -46,6 +46,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
+import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
 
 public class tarks_account_login extends SherlockActivity {
@@ -87,9 +88,12 @@ public class tarks_account_login extends SherlockActivity {
  			SharedPreferences edit = getSharedPreferences("temp",
  					MODE_PRIVATE);
  			SharedPreferences.Editor editor = edit.edit();
- 			editor.putString("temp_id", myResult);															
+ 			editor.putString("temp_id",  edit1.getText().toString());			
+ 			editor.putString("temp_id_auth",  myResult);			
  			editor.commit();
+ 			//Intent
              Intent intent = new Intent(tarks_account_login.this, join.class);
+             
 	 	    	 startActivity(intent); 
 	 	    	 finish();
               }
@@ -110,7 +114,7 @@ public class tarks_account_login extends SherlockActivity {
     				
     				//md5 password value
     				String src = s2;
-    				String enc = getMD5Hash(src);
+    				String enc = Global.getMD5Hash(src);
     				// --------------------------
     				// URL 설정하고 접속하기
     				// --------------------------
@@ -229,23 +233,18 @@ public class tarks_account_login extends SherlockActivity {
 //			String s2 = edit2.getText().toString();
 			
 			if(s1.matches("")){
-				AlertDialog.Builder builder = new AlertDialog.Builder(tarks_account_login.this);
-				builder.setMessage(getString(R.string.type_id)).setPositiveButton(getString(R.string.yes), null).setTitle(getString(R.string.notification));				
-				builder.show();
+				//Show type id noti
+				Global.Infoalert(this ,getString(R.string.notification), getString(R.string.type_id), getString(R.string.yes));
 			}else{
 				// TODO Auto-generated method stub
 					new Downloader()
 							.execute();
 			}
 			} catch (Exception e){
-				Log.i("ERROR", "App has been error");
+			//	Log.i("ERROR", "App has been error");
 			//	System.out.println();
 				// Not Connected To Internet
-				AlertDialog.Builder builder = new AlertDialog.Builder(tarks_account_login.this);
-				builder.setMessage(getString(R.string.networkerrord))
-						.setPositiveButton(getString(R.string.yes), null)
-						.setTitle(getString(R.string.networkerror));
-				builder.show();
+				Global.Infoalert(this ,getString(R.string.networkerror), getString(R.string.networkerrord), getString(R.string.yes));
 				
 			}
 			return true;
@@ -255,20 +254,5 @@ public class tarks_account_login extends SherlockActivity {
 		}
 	}
 
-	// md5 encrypt 암호화
-	public static String getMD5Hash(String s) {
-		MessageDigest m = null;
-		String hash = null;
-
-		try {
-			m = MessageDigest.getInstance("MD5");
-			m.update(s.getBytes(), 0, s.length());
-			hash = new BigInteger(1, m.digest()).toString(16);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
-		return hash;
-	}
 
 }

@@ -57,11 +57,11 @@ public class join extends SherlockActivity {
 
 		@Override
 		protected void onPreExecute() {
-			Log.i("Async-Example", "onPreExecute Called");
+			//Log.i("Async-Example", "onPreExecute Called");
 		}
 
 		protected void onPostExecute(Bitmap result) {
-			Log.i("Async-Example", "onPostExecute Called");
+		//	Log.i("Async-Example", "onPostExecute Called");
 			// import EditText
 			EditText edit1 = (EditText) findViewById(R.id.editText1);
 			String s1 = edit1.getText().toString();
@@ -357,9 +357,14 @@ public class join extends SherlockActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// get ID
+		
+		 Intent intent = getIntent();//인텐트  받아오고
+
+
 
 		SharedPreferences prefs = getSharedPreferences("temp", MODE_PRIVATE);
 		String id = prefs.getString("temp_id", "");
+		String id_auth = prefs.getString("temp_id_auth", "");
 
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
@@ -394,7 +399,8 @@ if(!id.matches("")){
 	 			SharedPreferences edit = getSharedPreferences("temp",
 	 					MODE_PRIVATE);
 	 			SharedPreferences.Editor editor = edit.edit();
-	 			editor.remove("temp_id");															
+	 			editor.remove("temp_id");		
+	 			editor.remove("temp_id_auth");	
 	 			editor.commit();
 	 			//Go Back
 				Intent intent = new Intent(join.this, tarks_account_login.class);
@@ -431,12 +437,13 @@ if(!id.matches("")){
 				// no value on name
 				if (s1.matches("") || s2.matches("")) {
 					// No Value
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							join.this);
-					builder.setMessage(getString(R.string.noname))
-							.setPositiveButton(getString(R.string.yes), null)
-							.setTitle(getString(R.string.error));
-					builder.show();
+//					AlertDialog.Builder builder = new AlertDialog.Builder(
+//							join.this);
+//					builder.setMessage(getString(R.string.noname))
+//							.setPositiveButton(getString(R.string.yes), null)
+//							.setTitle(getString(R.string.error));
+//					builder.show();
+					Global.Infoalert(this ,getString(R.string.error), getString(R.string.noname), getString(R.string.yes));
 				} else {
 					//dont make error
 					
@@ -454,12 +461,9 @@ if(!id.matches("")){
 					new Downloader().execute();
 					
 					}catch (Exception e){
-						// Not Connected To Internet
-						AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
-						builder.setMessage(getString(R.string.networkerrord))
-								.setPositiveButton(getString(R.string.yes), null)
-								.setTitle(getString(R.string.networkerror));
-						builder.show();
+				//Show network error
+						Global.Infoalert(this ,getString(R.string.networkerror), getString(R.string.networkerrord), getString(R.string.yes));
+					
 					}
 				}
 			

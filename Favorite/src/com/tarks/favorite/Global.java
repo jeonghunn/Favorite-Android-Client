@@ -1,6 +1,7 @@
 package com.tarks.favorite;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,14 +11,19 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.start.join;
 
 
 public final class Global {
@@ -32,10 +38,25 @@ public final class Global {
 		
 	}
 	
-	public static void alert(String str,boolean length){
-		
-		
+
+	
+	
+	// md5 encrypt 암호화
+	public static String getMD5Hash(String s) {
+		MessageDigest m = null;
+		String hash = null;
+
+		try {
+			m = MessageDigest.getInstance("MD5");
+			m.update(s.getBytes(), 0, s.length());
+			hash = new BigInteger(1, m.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+
+		return hash;
 	}
+
 	
 	// Google Clound Message Registartion
 	public static String GCMReg(){
@@ -51,12 +72,22 @@ public final class Global {
 	}
 	
 	public static void toast(String str,boolean length){
-		Log.i("ACCESS", "I can access to toast");
+		//Log.i("ACCESS", "I can access to toast");
 		Toast.makeText(ModApplication.getInstance(), str, (length ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT)).show();
 	}
 	
 	public static void toast(String str){
 		toast(str,false);
+	}
+	
+	//Show Information alert
+	public static void Infoalert(Context context, String title, String message, String button){
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setMessage(message)
+				.setPositiveButton(button, null)
+				.setTitle(title);
+		builder.show();
+		
 	}
 	
 	
