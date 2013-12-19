@@ -21,6 +21,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,11 +39,16 @@ import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.R.string;
 
-public class join extends SherlockActivity {
+public class join extends SherlockActivity implements OnCheckedChangeListener {
 
+	// RadioGroup
+
+	RadioGroup rg1;
 	// name
 	String first_name;
 	String last_name;
+	String name_1, name_2;
+	int gender = 1; // Default gender is male
 
 	private class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
@@ -75,8 +82,9 @@ public class join extends SherlockActivity {
 				// Cut Result Value
 				StringTokenizer st = new StringTokenizer(infoResult, "/LINE/.");
 				String user_srl = st.nextToken();
-				String name_1 = st.nextToken();
-				String name_2 = st.nextToken();
+				name_1 = st.nextToken();
+				name_2 = st.nextToken();
+				gender = Integer.parseInt(st.nextToken());
 
 				// Set EditText
 				// Country
@@ -86,6 +94,10 @@ public class join extends SherlockActivity {
 				} else {
 					edit1.setText(name_2);
 					edit2.setText(name_1);
+				}
+				// If female check second
+				if (gender == 2) {
+					rg1.check(R.id.radio1);
 				}
 				// edit3.setText(phone_number);
 
@@ -108,7 +120,7 @@ public class join extends SherlockActivity {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app//favorite/member/get_member_info.php"); // URL
+						"http://tarks.net/app//favorite/member/tarks_get_member_info.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -299,6 +311,7 @@ public class join extends SherlockActivity {
 						.append("&");
 				buffer.append("name_2").append("=").append(last_name)
 						.append("&");
+				buffer.append("gender").append("=").append(gender).append("&");
 				buffer.append("reg_id").append("=").append(reg_id);
 
 				OutputStreamWriter outStream = new OutputStreamWriter(
@@ -362,6 +375,10 @@ public class join extends SherlockActivity {
 		id = prefs.getString("temp_id", "");
 		id_auth = prefs.getString("temp_id_auth", "null");
 
+		// RadioButton
+		rg1 = (RadioGroup) findViewById(R.id.radioGroup1);
+		rg1.setOnCheckedChangeListener(this);
+
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
 		ids.setText(id);
@@ -380,6 +397,24 @@ public class join extends SherlockActivity {
 			}
 		}
 
+	}
+
+	@Override
+	public void onCheckedChanged(RadioGroup arg0, int arg1) {
+		// TODO Auto-generated method stub
+
+		switch (arg1) {
+
+		case R.id.radio0:
+			gender = 1;
+
+			break;
+
+		case R.id.radio1:
+			gender = 2;
+			break;
+
+		}
 	}
 
 	public void deletetemp() {
