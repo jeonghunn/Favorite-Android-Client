@@ -135,7 +135,7 @@ public class MainActivity extends SherlockActivity {
 //				String favorite =  String.valueOf(st.nextToken());
 				
 				String[] array = infoResult.split("/LINE/.");
-				    dumpArray(array);
+				    Global.dumpArray(array);
 
 					String tarks_account = array[0];
 					String name_1 = array[1];
@@ -237,6 +237,7 @@ public class MainActivity extends SherlockActivity {
 				SharedPreferences prefs = getSharedPreferences("setting",
 						MODE_PRIVATE);
 				String user_srl = prefs.getString("user_srl", "");
+				String user_srl_auth = prefs.getString("user_srl_auth", "");
 
 				// --------------------------
 				// URL 설정하고 접속하기
@@ -266,7 +267,9 @@ public class MainActivity extends SherlockActivity {
 						.append("&"); // php 변수에 값 대입
 				buffer.append("lang").append("=").append(getString(R.string.lang))
 				.append("&"); // php 변수에 값 대입
-				buffer.append("user_srl").append("=").append(user_srl);
+				buffer.append("user_srl").append("=").append(user_srl)
+				.append("&"); // php 변수에 값 대입
+				buffer.append("user_srl_auth").append("=").append(user_srl_auth);
 
 				OutputStreamWriter outStream = new OutputStreamWriter(
 						http.getOutputStream(), "utf-8");
@@ -366,12 +369,7 @@ public class MainActivity extends SherlockActivity {
 
 	}
 
-	 // 배열을 화면에, 요소별로 알기 쉽게 출력
-	  public static void dumpArray(String[] array) {
-	    for (int i = 0; i < array.length; i++)
-	      System.out.format("array[%d] = %s%n", i, array[i]);
-	  }
-
+	
 	  
 	  
 	public static boolean isStringDouble(String s) {

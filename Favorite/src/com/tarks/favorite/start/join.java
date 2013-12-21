@@ -120,7 +120,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app//favorite/member/tarks_get_member_info.php"); // URL
+						"http://tarks.net/app/favorite/member/tarks_get_member_info.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -223,12 +223,16 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			} else {
 				// Go to Next Step
 
+				String[] array = myResult.split("//");
+			    Global.dumpArray(array);
+			    
 				// Setting Editor
 				SharedPreferences edit = getSharedPreferences("setting",
 						MODE_PRIVATE);
 				SharedPreferences.Editor editor = edit.edit();
 				editor.putString("frist_use_app", "false"); // Ű��,
-				editor.putString("user_srl", myResult);
+				editor.putString("user_srl", array[0]);
+				editor.putString("user_srl_auth", array[1]);
 				editor.putString("name_1", s1);
 				editor.putString("name_2", s2);
 				editor.commit();

@@ -90,6 +90,13 @@ public final class Global {
 		
 	}
 	
+	 // 배열을 화면에, 요소별로 알기 쉽게 출력
+	  public static void dumpArray(String[] array) {
+	    for (int i = 0; i < array.length; i++)
+	      System.out.format("array[%d] = %s%n", i, array[i]);
+	  }
+
+	
 	
 	
 }
