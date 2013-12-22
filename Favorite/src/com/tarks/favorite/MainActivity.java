@@ -133,9 +133,10 @@ public class MainActivity extends SherlockActivity {
 //				String key = st.nextToken();
 //				String like_me =  String.valueOf(st.nextToken());
 //				String favorite =  String.valueOf(st.nextToken());
-				
+			    Log.i("Result value",infoResult);
 				String[] array = infoResult.split("/LINE/.");
 				    Global.dumpArray(array);
+
 
 					String tarks_account = array[0];
 					String name_1 = array[1];
@@ -269,7 +270,9 @@ public class MainActivity extends SherlockActivity {
 				.append("&"); // php 변수에 값 대입
 				buffer.append("user_srl").append("=").append(user_srl)
 				.append("&"); // php 변수에 값 대입
-				buffer.append("user_srl_auth").append("=").append(user_srl_auth);
+				buffer.append("user_srl_auth").append("=").append(user_srl_auth)
+				.append("&"); // php 변수에 값 대입
+				buffer.append("member_info").append("=").append("tarks_account//name_1//name_2//permission//reg_id//key//like_me//favorite");
 
 				OutputStreamWriter outStream = new OutputStreamWriter(
 						http.getOutputStream(), "utf-8");
