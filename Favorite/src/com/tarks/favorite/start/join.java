@@ -49,6 +49,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	String last_name;
 	String name_1, name_2;
 	int gender = 1; // Default gender is male
+	boolean okbutton = true;
 
 	private class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
@@ -224,8 +225,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// Go to Next Step
 
 				String[] array = myResult.split("//");
-			    Global.dumpArray(array);
-			    
+				Global.dumpArray(array);
+
 				// Setting Editor
 				SharedPreferences edit = getSharedPreferences("setting",
 						MODE_PRIVATE);
@@ -243,6 +244,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				finish();
 
 			}
+			//Set ok button enable
 		}
 
 		private Bitmap downloadBitmap(String url) {
@@ -445,6 +447,29 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			finish();
 		}
 	}
+	
+	public boolean ButtonEnable(final int s){
+		 new Thread(new Runnable() {           
+	            public void run() {       
+	                int i = 0;
+	                while (true) {
+	                    if(i> s){
+	                    	okbutton = true;
+	                        break;
+	                    }else{
+	                    	  try {
+	  	                        Thread.sleep(1000);                       
+	  	                        i+=1;
+	  	                    } catch (InterruptedException ie) {
+	  	                        ie.printStackTrace();
+	  	                    }
+	                    }                   
+	                  
+	                }
+	            }
+	        }).start();
+		return okbutton;       
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -463,44 +488,50 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			onBackPressed();
 			return true;
 		case R.id.yes:
+			if (okbutton == true) {
+				//Set ok button disable
+				okbutton = false;
+				ButtonEnable(1);
+				
+				// import EditText
+				EditText edit1 = (EditText) findViewById(R.id.editText1);
+				String s1 = edit1.getText().toString();
+				EditText edit2 = (EditText) findViewById(R.id.editText2);
+				String s2 = edit2.getText().toString();
 
-			// import EditText
-			EditText edit1 = (EditText) findViewById(R.id.editText1);
-			String s1 = edit1.getText().toString();
-			EditText edit2 = (EditText) findViewById(R.id.editText2);
-			String s2 = edit2.getText().toString();
+				// no value on name
+				if (s1.matches("") || s2.matches("")) {
+					// No Value
+					// AlertDialog.Builder builder = new AlertDialog.Builder(
+					// join.this);
+					// builder.setMessage(getString(R.string.noname))
+					// .setPositiveButton(getString(R.string.yes), null)
+					// .setTitle(getString(R.string.error));
+					// builder.show();
+					Global.Infoalert(this, getString(R.string.error),
+							getString(R.string.noname), getString(R.string.yes));
+				} else {
+					// dont make error
 
-			// no value on name
-			if (s1.matches("") || s2.matches("")) {
-				// No Value
-				// AlertDialog.Builder builder = new AlertDialog.Builder(
-				// join.this);
-				// builder.setMessage(getString(R.string.noname))
-				// .setPositiveButton(getString(R.string.yes), null)
-				// .setTitle(getString(R.string.error));
-				// builder.show();
-				Global.Infoalert(this, getString(R.string.error),
-						getString(R.string.noname), getString(R.string.yes));
-			} else {
-				// dont make error
+					try {
 
-				try {
+						// Show Registering toast
+						Global.toast(getString(R.string.registering));
 
-					// Show Registering toast
-					Global.toast(getString(R.string.registering));
+						// Register GCM
+						reg_id = Global.GCMReg();
 
-					// Register GCM
-					reg_id = Global.GCMReg();
+						// Connection Start
+						new Downloader().execute();
 
-					// Connection Start
-					new Downloader().execute();
+					} catch (Exception e) {
+						// Show network error
+						Global.Infoalert(this,
+								getString(R.string.networkerror),
+								getString(R.string.networkerrord),
+								getString(R.string.yes));
 
-				} catch (Exception e) {
-					// Show network error
-					Global.Infoalert(this, getString(R.string.networkerror),
-							getString(R.string.networkerrord),
-							getString(R.string.yes));
-
+					}
 				}
 			}
 

@@ -33,6 +33,7 @@ public final class Global {
 //	public static boolean isFirst = true;
 //	public static boolean isFirstRuned = true;
 //	public static boolean isFirstMain = true;
+
 	
 	private Global(){
 		
@@ -95,6 +96,8 @@ public final class Global {
 	    for (int i = 0; i < array.length; i++)
 	      System.out.format("array[%d] = %s%n", i, array[i]);
 	  }
+	  
+	 
 
 	
 	

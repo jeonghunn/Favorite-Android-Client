@@ -55,6 +55,7 @@ public class tarks_account_login extends SherlockActivity {
     String myId, myPWord, myTitle, mySubject, myResult; 
     EditText edit1, edit2;
     String s1, s2;
+    boolean okbutton = true;
     
     private class Downloader extends AsyncTask<String, Void, Bitmap> {
 
@@ -204,6 +205,29 @@ public class tarks_account_login extends SherlockActivity {
 			}
 		});
 	}
+	
+	public boolean ButtonEnable(final int s){
+		 new Thread(new Runnable() {           
+	            public void run() {       
+	                int i = 0;
+	                while (true) {
+	                    if(i> s){
+	                    	okbutton = true;
+	                        break;
+	                    }else{
+	                    	  try {
+	  	                        Thread.sleep(1000);                       
+	  	                        i+=1;
+	  	                    } catch (InterruptedException ie) {
+	  	                        ie.printStackTrace();
+	  	                    }
+	                    }                   
+	                  
+	                }
+	            }
+	        }).start();
+		return okbutton;       
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -219,8 +243,10 @@ public class tarks_account_login extends SherlockActivity {
 
 		switch (item.getItemId()) {
 		case R.id.yes:
-			
-			
+			//Check okbutton 
+			if(okbutton == true){
+				okbutton = false;
+				ButtonEnable(1);
 			 edit1 = (EditText) findViewById(R.id.editText1);
 			 s1 = edit1.getText().toString();
 
@@ -246,6 +272,7 @@ public class tarks_account_login extends SherlockActivity {
 				// Not Connected To Internet
 				Global.Infoalert(this ,getString(R.string.networkerror), getString(R.string.networkerrord), getString(R.string.yes));
 				
+			}
 			}
 			return true;
 
