@@ -244,7 +244,7 @@ public class MainActivity extends SherlockActivity {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app/favorite/member/member_info.php"); // URL
+						"http://tarks.net/app/favorite/load.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -387,16 +387,10 @@ public class MainActivity extends SherlockActivity {
 	public void ConnectionError(){
 		// If No Network Connection
 		// Check Internet Connection
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo ni = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		boolean isWifiAvail = ni.isAvailable();
-		boolean isWifiConn = ni.isConnected();
-		ni = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		boolean isMobileAvail = ni.isAvailable();
-		boolean isMobileConn = ni.isConnected();
+	
 
 		// Check Network Connection
-		if (isWifiConn == true || isMobileConn == true) {
+		if (Global.InternetConnection(1) == true || Global.InternetConnection(0) == true) {
 			//Show Alert
 			AlertDialog.Builder alert = new AlertDialog.Builder(
 					MainActivity.this);
