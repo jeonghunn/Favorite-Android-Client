@@ -57,18 +57,17 @@
                 android:gravity="center" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/profile_image"
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_alignParentLeft="true"
-                    android:background="@drawable/profile"
                     android:scaleType="centerCrop" />
 
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/imageView1"
+                    android:layout_toRightOf="@+id/profile_image"
                     android:ems="8"
                     android:hint="@string/name_1"
                     android:singleLine="true" >

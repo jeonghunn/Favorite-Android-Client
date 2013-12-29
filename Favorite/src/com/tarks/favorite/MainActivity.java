@@ -135,7 +135,7 @@ public class MainActivity extends SherlockActivity {
 //				String favorite =  String.valueOf(st.nextToken());
 			    Log.i("Result value",infoResult);
 				String[] array = infoResult.split("/LINE/.");
-				    Global.dumpArray(array);
+				//    Global.dumpArray(array);
 
 
 					String tarks_account = array[0];
