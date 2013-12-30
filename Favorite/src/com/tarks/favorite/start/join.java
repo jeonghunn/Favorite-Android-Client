@@ -132,7 +132,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app/favorite/member/tarks_get_member_info.php"); // URL
+						getString(R.string.server_path) + "member/tarks_get_member_info.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -300,7 +300,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app/favorite/member/join.php"); // URL
+						getString(R.string.server_path) + "member/join.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -480,7 +480,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			// Connection Start
 			try {
 				new InfoDown().execute();
-				new ImageDownloader().execute("http://tarks.net/app/favorite/files/profile/" + id_auth + ".png");
+				new ImageDownloader().execute(getString(R.string.server_path) + "files/profile/" + id_auth + ".png");
 			} catch (Exception e) {
 				// Not Connected To Internet
 				AlertDialog.Builder builder = new AlertDialog.Builder(join.this);

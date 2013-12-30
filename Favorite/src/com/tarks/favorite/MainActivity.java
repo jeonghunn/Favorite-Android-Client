@@ -244,7 +244,7 @@ public class MainActivity extends SherlockActivity {
 				// URL 설정하고 접속하기
 				// --------------------------
 				URL url1 = new URL(
-						"http://tarks.net/app/favorite/load.php"); // URL
+						getString(R.string.server_path) + "load.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
