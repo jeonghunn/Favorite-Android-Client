@@ -109,14 +109,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="남자" />
+                        android:text="@string/male" />
 
                     <RadioButton
                         android:id="@+id/radio1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/radio0"
-                        android:text="여자" />
+                        android:text="@string/female" />
                 </RadioGroup>
             </RelativeLayout>
         </TableRow>

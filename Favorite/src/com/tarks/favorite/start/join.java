@@ -17,6 +17,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -43,13 +46,14 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.CropManager;
 import com.tarks.favorite.Global;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.R.string;
 
 public class join extends SherlockActivity implements OnCheckedChangeListener {
-	//Imageview
+	// Imageview
 	ImageView profile;
 
 	// RadioGroup
@@ -59,8 +63,12 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	String first_name;
 	String last_name;
 	String name_1, name_2;
+	// User Auth key
+	String auth_key;
 	int gender = 1; // Default gender is male
 	boolean okbutton = true;
+	// Profile pick
+	int REQ_CODE_PICK_PICTURE;
 
 	private class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
@@ -92,21 +100,23 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			// Check Tarks Account Exist
 			if (!infoResult.matches("null")) {
 				// Cut Result Value
-				StringTokenizer st = new StringTokenizer(infoResult, "/LINE/.");
-				String user_srl = st.nextToken();
-				name_1 = st.nextToken();
-				name_2 = st.nextToken();
-				gender = Integer.parseInt(st.nextToken());
-
+				String[] array = infoResult.split("/LINE/.");
+				Global.dumpArray(array);
+				String user_srl = array[0];
+				auth_key = array[1];
+				name_1 = array[2];
+				name_2 = array[3];
+				gender = Integer.parseInt(array[4]);
+				// Download Profile image
+				new ImageDownloader().execute(getString(R.string.server_path)
+						+ "files/profile/" + auth_key + ".png");
 				// Set EditText
 				// Country
-				if (getString(R.string.lang).matches("ko")) {
-					edit1.setText(name_1);
-					edit2.setText(name_2);
-				} else {
-					edit1.setText(name_2);
-					edit2.setText(name_1);
-				}
+
+				String[] name = Global.NameBuilder(name_1, name_2);
+				edit1.setText(name[0]);
+				edit2.setText(name[1]);
+
 				// If female check second
 				if (gender == 2) {
 					rg1.check(R.id.radio1);
@@ -131,8 +141,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// --------------------------
 				// URL 설정하고 접속하기
 				// --------------------------
-				URL url1 = new URL(
-						getString(R.string.server_path) + "member/tarks_get_member_info.php"); // URL
+				URL url1 = new URL(getString(R.string.server_path)
+						+ "member/tarks_get_member_info.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -283,13 +293,10 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// String s3 = edit3.getText().toString();
 
 				// Make name
-				if (getString(R.string.lang).matches("ko")) {
-					first_name = s1;
-					last_name = s2;
-				} else {
-					first_name = s2;
-					last_name = s1;
-				}
+				String[] name = Global.NameBuilder(s1, s2);
+
+				first_name = name[0];
+				last_name = name[1];
 
 				// Reg id null
 				if (reg_id.matches("")) {
@@ -299,8 +306,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// --------------------------
 				// URL 설정하고 접속하기
 				// --------------------------
-				URL url1 = new URL(
-						getString(R.string.server_path) + "member/join.php"); // URL
+				URL url1 = new URL(getString(R.string.server_path)
+						+ "member/join.php"); // URL
 				// 설정
 				HttpURLConnection http = (HttpURLConnection) url1
 						.openConnection(); // 접속
@@ -468,9 +475,25 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		// RadioButton
 		rg1 = (RadioGroup) findViewById(R.id.radioGroup1);
 		rg1.setOnCheckedChangeListener(this);
-		
-		//Define profile imageview
+
+		// Define profile imageview
 		profile = (ImageView) findViewById(R.id.profile_image);
+
+		profile.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(Intent.ACTION_PICK);
+				i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+				i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
+																							// on
+																							// the
+																							// SD
+																							// card.
+
+				// 결과를 리턴하는 Activity 호출
+				startActivityForResult(i, REQ_CODE_PICK_PICTURE);
+			}
+		});
 
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
@@ -480,7 +503,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			// Connection Start
 			try {
 				new InfoDown().execute();
-				new ImageDownloader().execute(getString(R.string.server_path) + "files/profile/" + id_auth + ".png");
 			} catch (Exception e) {
 				// Not Connected To Internet
 				AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
@@ -491,6 +513,19 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			}
 		}
 
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQ_CODE_PICK_PICTURE) {
+			if (resultCode == Activity.RESULT_OK) {
+				Intent intent = new Intent(join.this, CropManager.class);
+				startActivity(intent);
+
+				profile.setImageURI(data.getData()); // 사진 선택한 사진URI로 연결하기
+
+			}
+		}
 	}
 
 	@Override

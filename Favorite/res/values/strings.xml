@@ -92,6 +92,9 @@
       <string name="blank_error">No value on textfield.</string>
           <string name="server_connection_error_des">Server connection has been error. Maybe checking or server problem. More details click \'Service status\'.</string>
     <string name="check_service_status">Service status</string>
+       <string name="male">Male</string>
+        <string name="female">Felmale</string>
+          <string name="cut_image">Cut Image</string>
       
 
 </resources>
