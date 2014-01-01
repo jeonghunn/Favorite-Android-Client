@@ -26,6 +26,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -519,10 +520,10 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQ_CODE_PICK_PICTURE) {
 			if (resultCode == Activity.RESULT_OK) {
+			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				Intent intent = new Intent(join.this, CropManager.class);
+				   intent.putExtra("uri", data.getData());
 				startActivity(intent);
-
-				profile.setImageURI(data.getData()); // 사진 선택한 사진URI로 연결하기
 
 			}
 		}

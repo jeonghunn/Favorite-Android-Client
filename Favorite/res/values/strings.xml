@@ -7,7 +7,7 @@
     <string name="verkind">Beta 2</string>
     <string name="copyright">Copyrightⓒ. 2013. TarksTeam.</string>
     <string name="lang">en</string>
-     <string name="server_path">http://tarks.net/favorite/</string>
+    <string name="server_path">http://tarks.net/favorite/</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="statistics_des">%1$s Users are favorite \n%2$s people.\nThat someone may be you.</string>
@@ -89,12 +89,12 @@
     <string name="peek">Peek</string>
     <string name="peek_des">Peeking the last name that people like me.</string>
     <string name="contact_pick_error">Contact is not available.</string>
-      <string name="blank_error">No value on textfield.</string>
-          <string name="server_connection_error_des">Server connection has been error. Maybe checking or server problem. More details click \'Service status\'.</string>
+    <string name="blank_error">No value on textfield.</string>
+    <string name="server_connection_error_des">Server connection has been error. Maybe checking or server problem. More details click \'Service status\'.</string>
     <string name="check_service_status">Service status</string>
-       <string name="male">Male</string>
-        <string name="female">Felmale</string>
-          <string name="cut_image">Cut Image</string>
-      
+    <string name="male">Male</string>
+    <string name="female">Felmale</string>
+    <string name="cut_image">Cut Image</string>
+    <string name="rotate">Rotate</string>
 
 </resources>
