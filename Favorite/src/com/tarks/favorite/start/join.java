@@ -69,7 +69,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	int gender = 1; // Default gender is male
 	boolean okbutton = true;
 	// Profile pick
-	int REQ_CODE_PICK_PICTURE;
+	int REQ_CODE_PICK_PICTURE = 0;
+	int IMAGE_EDIT = 1;
 
 	private class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
@@ -523,7 +524,19 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				Intent intent = new Intent(join.this, CropManager.class);
 				   intent.putExtra("uri", data.getData());
-				startActivity(intent);
+				   startActivityForResult(intent, IMAGE_EDIT);
+
+			}
+		}
+		
+		if (requestCode == IMAGE_EDIT) {
+			Log.i("Imageresult", "itsok");
+			if (resultCode == Activity.RESULT_OK) {
+				byte[] b = data.getByteArrayExtra("image");
+				Bitmap bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
+			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
+				profile.setImageBitmap(bitmap); // 사진 선택한 사진URI로 연결하기
+
 
 			}
 		}

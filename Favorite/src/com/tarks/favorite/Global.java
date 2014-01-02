@@ -2,15 +2,18 @@ package com.tarks.favorite;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -129,6 +132,50 @@ public final class Global {
 		return name;
 	}
 	
+	
+	public static int[] getIMGSize(ContentResolver cr, Uri uri) throws FileNotFoundException{
+		Bitmap bm;
+		int[] size = new int[2];
+		
+		  InputStream in = cr.openInputStream(uri);
+			BitmapFactory.Options option = new BitmapFactory.Options();
+			option.inPurgeable = true;
+			 option.inJustDecodeBounds = true;
+			//  BitmapFactory.decodeStream(in, null, option);
+			bm = BitmapFactory.decodeStream(in,null, option);
+			//1is height
+			size[1] = option.outHeight;
+			 size[0] = option.outWidth;
+			 
+			
+			   
+			   return size;
+
+		}
+	
+	
+	public static InputStream editIMGSize(ContentResolver cr, Uri uri) throws FileNotFoundException{
+		int[] size = new int[2];
+		Bitmap bm;
+		  InputStream in = cr.openInputStream(uri);
+			BitmapFactory.Options option = new BitmapFactory.Options();
+			option.inPurgeable = true;
+			 option.inJustDecodeBounds = true;
+			//  BitmapFactory.decodeStream(in, null, option);
+			bm = BitmapFactory.decodeStream(in,null, option);
+			//1is height
+			size[1] = option.outHeight;
+			 size[0] = option.outWidth;
+//			 
+//			 if(editsize == true){
+					if(size[1] > 4000)	option.inSampleSize = 8;
+					if(size[1] > 1024)	option.inSampleSize = 4;
+//			 }
+//			   
+			   return in;
+
+		}
+	
 //	public static Bitmap getCroppedBitmap(Bitmap bitmap) {
 //	    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
 //	            bitmap.getHeight(), Config.ARGB_8888);
@@ -151,4 +198,5 @@ public final class Global {
 //	    return output;
 //	}
 
+	
 }

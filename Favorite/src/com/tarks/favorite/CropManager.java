@@ -1,5 +1,6 @@
 package com.tarks.favorite;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -51,9 +53,12 @@ public class CropManager extends SherlockActivity {
 	private int mAspectRatioX = DEFAULT_ASPECT_RATIO_VALUES;
 	private int mAspectRatioY = DEFAULT_ASPECT_RATIO_VALUES;
 
-	Bitmap croppedImage;
+	//Bitmap croppedImage;
 	CropImageView cropImageView;
 	Bitmap bm;
+	
+	//bitmap
+    Bitmap croppedImage;
 
 	// Saves the state upon rotating the screen/restarting the activity
 	@Override
@@ -94,22 +99,26 @@ public class CropManager extends SherlockActivity {
 		// Initialize components of the app
 		cropImageView = (CropImageView) findViewById(R.id.CropImageView);
 		Bitmap firstbm;
-		Bitmap bm;
+
 		ContentResolver cr = getContentResolver();
-		
+	
 		try {
-			firstbm = Media.getBitmap(getContentResolver(), image_uri);
-			int height = firstbm.getHeight();
-			int width = firstbm.getWidth();
-			
+			// image size
+		     int[] imagesize = Global.getIMGSize(cr, image_uri);
+
 			  InputStream in = cr.openInputStream(image_uri);
 				BitmapFactory.Options option = new BitmapFactory.Options();
 				option.inPurgeable = true;
 				
-			if(height > 1024)	option.inSampleSize = 4;
-			if(height > 4000)	option.inSampleSize = 8;
+				if (imagesize[1]> 1024)	option.inSampleSize = 4;
+				if(imagesize[1] > 4000)	option.inSampleSize = 8;
+				//  BitmapFactory.decodeStream(in, null, option);
+				bm = BitmapFactory.decodeStream(in,null, option);
+
 				
-			bm = BitmapFactory.decodeStream(in,null, option);
+	
+				
+		
 	
 			cropImageView.setImageBitmap(bm);
 		
@@ -124,55 +133,10 @@ public class CropManager extends SherlockActivity {
 	
 			
 
-		// final SeekBar aspectRatioXSeek = (SeekBar)
-		// findViewById(R.id.aspectRatioXSeek);
-		// final SeekBar aspectRatioYSeek = (SeekBar)
-		// findViewById(R.id.aspectRatioYSeek);
-		// final ToggleButton fixedAspectRatioToggle = (ToggleButton)
-		// findViewById(R.id.fixedAspectRatioToggle);
-		// Spinner showGuidelinesSpin = (Spinner)
-		// findViewById(R.id.showGuidelinesSpin);
-
-		// Sets sliders to be disabled until fixedAspectRatio is set
-		// aspectRatioXSeek.setEnabled(false);
-		// aspectRatioYSeek.setEnabled(false);
-
-		// Set initial spinner value
-		// showGuidelinesSpin.setSelection(ON_TOUCH);
-
-		// Sets the rotate button
-		// final Button rotateButton = (Button)
-		// findViewById(R.id.Button_rotate);
-		// rotateButton.setOnClickListener(new View.OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// cropImageView.rotateImage(ROTATE_NINETY_DEGREES);
-		// }
-		// });
-
-		// Sets fixedAspectRatio
-		// fixedAspectRatioToggle.setOnCheckedChangeListener(new
-		// OnCheckedChangeListener() {
-		//
-		// @Override
-		// public void onCheckedChanged(CompoundButton buttonView, boolean
-		// isChecked) {
-		// cropImageView.setFixedAspectRatio(isChecked);
-		// if (isChecked) {
-		// aspectRatioXSeek.setEnabled(true);
-		// aspectRatioYSeek.setEnabled(true);
-		// }
-		// else {
-		// aspectRatioXSeek.setEnabled(false);
-		// aspectRatioYSeek.setEnabled(false);
-		// }
-		// }
-		// });
-
-		// Sets initial aspect ratio to 10/10, for demonstration purposes
-		cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
-				DEFAULT_ASPECT_RATIO_VALUES);
+//		cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
+//				DEFAULT_ASPECT_RATIO_VALUES);
+		
+	
 
 		// Sets aspectRatioX
 		// final TextView aspectRatioX = (TextView)
@@ -244,7 +208,7 @@ public class CropManager extends SherlockActivity {
 		//
 		// @Override
 		// public void onClick(View v) {
-		// croppedImage = cropImageView.getCroppedImage();
+ 
 		// ImageView croppedImageView = (ImageView)
 		// findViewById(R.id.croppedImageView);
 		// croppedImageView.setImageBitmap(croppedImage);
@@ -258,18 +222,18 @@ public class CropManager extends SherlockActivity {
 	 * all inner ViewGroups as well. Just add a check for any other views you
 	 * want to set as well (EditText, etc.)
 	 */
-	public void setFont(ViewGroup group, Typeface font) {
-		int count = group.getChildCount();
-		View v;
-		for (int i = 0; i < count; i++) {
-			v = group.getChildAt(i);
-			if (v instanceof TextView || v instanceof EditText
-					|| v instanceof Button) {
-				((TextView) v).setTypeface(font);
-			} else if (v instanceof ViewGroup)
-				setFont((ViewGroup) v, font);
-		}
-	}
+//	public void setFont(ViewGroup group, Typeface font) {
+//		int count = group.getChildCount();
+//		View v;
+//		for (int i = 0; i < count; i++) {
+//			v = group.getChildAt(i);
+//			if (v instanceof TextView || v instanceof EditText
+//					|| v instanceof Button) {
+//				((TextView) v).setTypeface(font);
+//			} else if (v instanceof ViewGroup)
+//				setFont((ViewGroup) v, font);
+//		}
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -288,7 +252,20 @@ public class CropManager extends SherlockActivity {
 			onBackPressed();
 			return true;
 		case R.id.yes:
+			//result
+			 croppedImage = cropImageView.getCroppedImage();
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			croppedImage.compress(CompressFormat.JPEG, 100, stream); 
+			byte[] b = stream.toByteArray();
 
+			  // Intent 생성
+			   Intent intent = new Intent();
+			   // 생성한 Intent에 데이터 입력
+			   intent.putExtra("image", b);
+			   // 결과값 설정(결과 코드, 인텐트)
+			   this.setResult(RESULT_OK,intent);
+			   // 본 Activity 종료
+			   finish();
 			return true;
 		case R.id.rotate:
 			cropImageView.rotateImage(ROTATE_NINETY_DEGREES);
