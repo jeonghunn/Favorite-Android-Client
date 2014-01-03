@@ -176,6 +176,8 @@ public final class Global {
 
 		}
 	
+	
+	
 //	public static Bitmap getCroppedBitmap(Bitmap bitmap) {
 //	    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
 //	            bitmap.getHeight(), Config.ARGB_8888);
