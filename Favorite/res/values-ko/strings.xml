@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="app_name">좋아하는 사람</string>
     <string name="lang">ko</string>
     <string name="statistics_des">%1$s명의 사용자가\n%2$s명을 좋아하고 있습니다.\n그 누군가가 당신일지도 모릅니다."</string>
     <string name="menu_settings">설정</string>

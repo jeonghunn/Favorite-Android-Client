@@ -121,7 +121,7 @@ public class CropManager extends SherlockActivity {
 		
 	
 			cropImageView.setImageBitmap(bm);
-		
+	
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -132,9 +132,9 @@ public class CropManager extends SherlockActivity {
 		
 	
 			
+		cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
+				DEFAULT_ASPECT_RATIO_VALUES);
 
-//		cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
-//				DEFAULT_ASPECT_RATIO_VALUES);
 		
 	
 

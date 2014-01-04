@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,10 +17,13 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -40,6 +44,13 @@ public final class Global {
 	// public static boolean isFirstRuned = true;
 	// public static boolean isFirstMain = true;
 
+	//Upload
+	private static FileInputStream mFileInputStream = null;
+	private static URL connectUrl = null;
+	//private EditText mEdityEntry; 
+	
+
+	
 	private Global() {
 
 	}
@@ -176,6 +187,122 @@ public final class Global {
 
 		}
 	
+	public static void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath, String filename) {
+        
+		File file = new File(strFilePath);
+		
+		//If no folders
+		 if( !file.exists() ) {
+			 file.mkdirs();
+	        //	Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+	        }
+	 
+		 
+        File fileCacheItem = new File(strFilePath + filename);
+        OutputStream out = null;
+        
+       
+        try
+        {
+            fileCacheItem.createNewFile();
+            out = new FileOutputStream(fileCacheItem);
+ 
+            bitmap.compress(CompressFormat.JPEG, 100, out);
+        }
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                out.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+  }
+	
+	
+	public static void DoFileUpload(String file) throws IOException {
+		Log.i("upload", "upload start");
+		Log.d("Test" , "file path = " + file);		
+		HttpFileUpload(ModApplication.getInstance().getString(R.string.server_path) + "upload.php", "", file);	
+	}
+	
+	private static void HttpFileUpload(String urlString, String params, String fileName) {
+		
+		String lineEnd = "\r\n";
+		String twoHyphens = "--";
+		String boundary = "*****";	
+		
+		try {
+			
+			mFileInputStream = new FileInputStream(fileName);			
+			connectUrl = new URL(urlString);
+			Log.d("Test", "mFileInputStream  is " + mFileInputStream);
+			
+			// open connection 
+			HttpURLConnection conn = (HttpURLConnection)connectUrl.openConnection();			
+			conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Connection", "Keep-Alive");
+			conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+			
+			// write data
+			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+			dos.writeBytes(twoHyphens + boundary + lineEnd);
+			dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" + fileName+"\"" + lineEnd);
+			dos.writeBytes(lineEnd);
+			
+			int bytesAvailable = mFileInputStream.available();
+			int maxBufferSize = 1024;
+			int bufferSize = Math.min(bytesAvailable, maxBufferSize);
+			
+			byte[] buffer = new byte[bufferSize];
+			int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
+			
+			Log.d("Test", "image byte is " + bytesRead);
+			
+			// read image
+			while (bytesRead > 0) {
+				dos.write(buffer, 0, bufferSize);
+				bytesAvailable = mFileInputStream.available();
+				bufferSize = Math.min(bytesAvailable, maxBufferSize);
+				bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
+			}	
+			
+			dos.writeBytes(lineEnd);
+			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+			
+			// close streams
+			Log.e("Test" , "File is written");
+			mFileInputStream.close();
+			dos.flush(); // finish upload...			
+			
+			// get response
+			int ch;
+			InputStream is = conn.getInputStream();
+			StringBuffer b =new StringBuffer();
+			while( ( ch = is.read() ) != -1 ){
+				b.append( (char)ch );
+			}
+			String s=b.toString(); 
+			Log.e("Test", "result = " + s);
+			dos.close();	
+			
+			
+			
+		} catch (Exception e) {
+			Log.d("Test", "exception " + e.getMessage());
+			// TODO: handle exception
+		}		
+	}
 	
 	
 //	public static Bitmap getCroppedBitmap(Bitmap bitmap) {

@@ -24,6 +24,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -31,6 +32,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,7 +60,8 @@ import com.tarks.favorite.R.string;
 public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Imageview
 	ImageView profile;
-
+//bitmap
+Bitmap profile_bitmap;
 	// RadioGroup
 
 	RadioGroup rg1;
@@ -454,76 +457,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		}
 
 	}
-	private void DoFileUpload(Byte[] file) throws IOException {
-		Log.i("upload", "upload start");
-		Log.d("Test" , "file path = " + file);		
-		HttpFileUpload(getString(R.string.server_path) + "upload.php", "", "profile");	
-	}
 	
-	private void HttpFileUpload(String urlString, String params, String fileName) {
-		try {
-			
-			mFileInputStream = new FileInputStream(fileName);			
-			connectUrl = new URL(urlString);
-			Log.d("Test", "mFileInputStream  is " + mFileInputStream);
-			
-			// open connection 
-			HttpURLConnection conn = (HttpURLConnection)connectUrl.openConnection();			
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setUseCaches(false);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Connection", "Keep-Alive");
-			conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-			
-			// write data
-			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-			dos.writeBytes(twoHyphens + boundary + lineEnd);
-			dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" + fileName+"\"" + lineEnd);
-			dos.writeBytes(lineEnd);
-			
-			int bytesAvailable = mFileInputStream.available();
-			int maxBufferSize = 1024;
-			int bufferSize = Math.min(bytesAvailable, maxBufferSize);
-			
-			byte[] buffer = new byte[bufferSize];
-			int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
-			
-			Log.d("Test", "image byte is " + bytesRead);
-			
-			// read image
-			while (bytesRead > 0) {
-				dos.write(buffer, 0, bufferSize);
-				bytesAvailable = mFileInputStream.available();
-				bufferSize = Math.min(bytesAvailable, maxBufferSize);
-				bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
-			}	
-			
-			dos.writeBytes(lineEnd);
-			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-			
-			// close streams
-			Log.e("Test" , "File is written");
-			mFileInputStream.close();
-			dos.flush(); // finish upload...			
-			
-			// get response
-			int ch;
-			InputStream is = conn.getInputStream();
-			StringBuffer b =new StringBuffer();
-			while( ( ch = is.read() ) != -1 ){
-				b.append( (char)ch );
-			}
-			String s=b.toString(); 
-			Log.e("Test", "result = " + s);
-			mEdityEntry.setText(s);
-			dos.close();			
-			
-		} catch (Exception e) {
-			Log.d("Test", "exception " + e.getMessage());
-			// TODO: handle exception
-		}		
-	}
 
 	
 
@@ -616,9 +550,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			Log.i("Imageresult", "itsok");
 			if (resultCode == Activity.RESULT_OK) {
 				byte[] b = data.getByteArrayExtra("image");
-				Bitmap bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
+				profile_bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
 			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
-				profile.setImageBitmap(bitmap); // 사진 선택한 사진URI로 연결하기
+				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
 
 
 			}
@@ -740,8 +674,10 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						// Register GCM
 						reg_id = Global.GCMReg();
+						Global.SaveBitmapToFileCache(profile_bitmap, "sdcard/favorite/temp/", "profile.jpg");
+						Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
 						
-					//	DoFileUpload(profile.toString());
+						
 
 						// Connection Start
 						new Downloader().execute();
