@@ -230,10 +230,10 @@ public final class Global {
 	public static void DoFileUpload(String file) throws IOException {
 		Log.i("upload", "upload start");
 		Log.d("Test" , "file path = " + file);		
-		HttpFileUpload(ModApplication.getInstance().getString(R.string.server_path) + "upload.php", "", file);	
+		HttpFileUpload(ModApplication.getInstance().getString(R.string.server_path) + "upload.php", "profile", file);	
 	}
 	
-	private static void HttpFileUpload(String urlString, String params, String fileName) {
+	private static void HttpFileUpload(String urlString, String category, String fileName) {
 		
 		String lineEnd = "\r\n";
 		String twoHyphens = "--";
@@ -256,6 +256,16 @@ public final class Global {
 			
 			// write data
 			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+		    dos.writeBytes(twoHyphens + boundary + lineEnd); //필드 구분자 시작
+		    dos.writeBytes("Content-Disposition: form-data; name=\"authcode\""+ lineEnd);
+		    dos.writeBytes(lineEnd);
+		    dos.writeBytes("642979");
+		    dos.writeBytes(lineEnd);
+		    dos.writeBytes("Content-Disposition: form-data; name=\"category\""+ lineEnd);
+		    dos.writeBytes(lineEnd);
+		    dos.writeBytes(category);
+		    dos.writeBytes(lineEnd);
+			
 			dos.writeBytes(twoHyphens + boundary + lineEnd);
 			dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" + fileName+"\"" + lineEnd);
 			dos.writeBytes(lineEnd);
@@ -294,6 +304,7 @@ public final class Global {
 			}
 			String s=b.toString(); 
 			Log.e("Test", "result = " + s);
+		
 			dos.close();	
 			
 			
