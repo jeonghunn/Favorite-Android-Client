@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -86,9 +87,9 @@ Bitmap profile_bitmap;
 	String twoHyphens = "--";
 	String boundary = "*****";	
 
-	private class InfoDown extends AsyncTask<String, Void, Bitmap> {
+	public class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
-		protected Bitmap doInBackground(String... param) {
+	public Bitmap doInBackground(String... param) {
 			// TODO Auto-generated method stub
 
 			// Check This Tarks Account Already Have Buldang Account
@@ -97,11 +98,11 @@ Bitmap profile_bitmap;
 		}
 
 		@Override
-		protected void onPreExecute() {
+		public void onPreExecute() {
 			// Log.i("Async-Example", "onPreExecute Called");
 		}
 
-		protected void onPostExecute(Bitmap result) {
+		public void onPostExecute(Bitmap result) {
 			// Log.i("Async-Example", "onPostExecute Called");
 			// import EditText
 			EditText edit1 = (EditText) findViewById(R.id.editText1);
@@ -145,7 +146,7 @@ Bitmap profile_bitmap;
 
 		}
 
-		private Bitmap downloadBitmap(String url) {
+		public Bitmap downloadBitmap(String url) {
 			try {
 
 				// get ID
@@ -459,7 +460,31 @@ Bitmap profile_bitmap;
 	}
 	
 
-	
+	private void processEntity(HttpResponse rtnResult)
+	{
+	HttpEntity entity = rtnResult.getEntity();
+			
+	BufferedReader br;
+	String line, result = "";
+			
+	try 
+	{
+	br = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"));
+	while((line = br.readLine()) != null) 
+	{
+	result += line;
+	}
+				
+	Log.i("TEST"," 결과 == " + result);
+				
+	} catch (UnsupportedEncodingException e) {
+	e.printStackTrace();
+	} catch (IllegalStateException e) {
+	e.printStackTrace();
+	} catch (IOException e) {
+	e.printStackTrace();
+	}
+	}
 
 	String user_srl, name, number, phone_number;
 	String regId;
@@ -484,7 +509,10 @@ Bitmap profile_bitmap;
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// get ID
-
+		
+		HttpResponse result = null;
+		
+	
 		// Intent intent = getIntent();// 인텐트 받아오고
 
 		SharedPreferences prefs = getSharedPreferences("temp", MODE_PRIVATE);
@@ -677,7 +705,7 @@ Bitmap profile_bitmap;
 						Global.SaveBitmapToFileCache(profile_bitmap, "sdcard/favorite/temp/", "profile.jpg");
 						Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
 						
-						
+					
 
 						// Connection Start
 						new Downloader().execute();

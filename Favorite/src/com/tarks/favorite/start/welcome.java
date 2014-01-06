@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.StringTokenizer;
+import java.util.concurrent.Callable;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -32,7 +33,9 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
+import com.tarks.favorite.connect.AsyncHttpTask;
 
 
 
@@ -41,6 +44,7 @@ public class welcome extends SherlockActivity {
 	Button bt;
     String myId, myResult;
 	Message msg;
+	String ToonDataList;
 	
 	 private class Downloader extends AsyncTask<String, Void, Bitmap> {
 
@@ -137,7 +141,11 @@ public class welcome extends SherlockActivity {
 	
 				new Downloader()
 						.execute();
-		
+				
+				new Global.AsyncHttpTask(mHandler);
+//				
+//				new AsyncHttpTask.execute("","","");
+
 		} catch (Exception e){
 		
 			// Not Connected To Internet
@@ -162,7 +170,8 @@ public class welcome extends SherlockActivity {
 		});
    
     }
-
+    
+ 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			if (msg.what == 0) {
@@ -186,6 +195,11 @@ public class welcome extends SherlockActivity {
 				text.setText(value);
 				return;
 			}
+			
+			if (msg.what == 3) {
+				Log.i("Success", "Congratulation you can sleep keke");
+			}
+			
 		}
 	};
 	
