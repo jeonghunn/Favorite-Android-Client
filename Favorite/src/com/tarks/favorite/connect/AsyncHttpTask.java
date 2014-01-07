@@ -15,6 +15,7 @@ import com.tarks.favorite.R;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Handler handler;

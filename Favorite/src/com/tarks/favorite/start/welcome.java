@@ -137,25 +137,25 @@ public class welcome extends SherlockActivity {
         setContentView(R.layout.welcome);
         
     	//no error
-		try{	
+	//	try{	
 	
-				new Downloader()
-						.execute();
+			//	new Downloader()
+		//				.execute();
 				
-				new Global.AsyncHttpTask(mHandler);
+				new Global.AsyncHttpTask(this, mHandler);
 //				
 //				new AsyncHttpTask.execute("","","");
-
-		} catch (Exception e){
+//
+	//	} catch (Exception e){
 		
 			// Not Connected To Internet
-			AlertDialog.Builder builder = new AlertDialog.Builder(welcome.this);
-			builder.setMessage(getString(R.string.networkerrord))
-					.setPositiveButton(getString(R.string.yes), null)
-					.setTitle(getString(R.string.networkerror));
-			builder.show();
+//			AlertDialog.Builder builder = new AlertDialog.Builder(welcome.this);
+//			builder.setMessage(getString(R.string.networkerrord))
+//					.setPositiveButton(getString(R.string.yes), null)
+//					.setTitle(getString(R.string.networkerror));
+//			builder.show();
 			
-		}
+	//	}
         
         //Let's Start!
     	bt = (Button) findViewById(R.id.button1);
@@ -195,6 +195,7 @@ public class welcome extends SherlockActivity {
 				text.setText(value);
 				return;
 			}
+			
 			
 			if (msg.what == 3) {
 				Log.i("Success", "Congratulation you can sleep keke");

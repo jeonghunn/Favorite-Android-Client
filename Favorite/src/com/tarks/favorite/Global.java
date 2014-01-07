@@ -53,8 +53,9 @@ public final class Global {
 	//Upload
 	private static FileInputStream mFileInputStream = null;
 	private static URL connectUrl = null;
-	//private EditText mEdityEntry; 
-	
+	 //private EditText mEdityEntry; 
+	//ModApplication
+	static ModApplication mod = ModApplication.getInstance();
 
 	
 	private Global() {
@@ -79,13 +80,13 @@ public final class Global {
 
 	// Google Clound Message Registartion
 	public static String GCMReg() {
-		GCMRegistrar.checkDevice(ModApplication.getInstance());
-		GCMRegistrar.checkManifest(ModApplication.getInstance());
+		GCMRegistrar.checkDevice(mod);
+		GCMRegistrar.checkManifest(mod);
 		final String regId = GCMRegistrar.getRegistrationId(ModApplication
 				.getInstance());
 		if ("".equals(regId)) // 구글 가이드에는 regId.equals("")로 되어 있는데
 								// Exception을 피하기 위해 수정
-			GCMRegistrar.register(ModApplication.getInstance(), "743824910564");
+			GCMRegistrar.register(mod, "743824910564");
 
 		return regId;
 
@@ -93,7 +94,7 @@ public final class Global {
 
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");
-		Toast.makeText(ModApplication.getInstance(), str,
+		Toast.makeText(mod, str,
 				(length ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT)).show();
 	}
 
@@ -139,7 +140,7 @@ public final class Global {
 	//Make name
 	public static String[] NameBuilder(String name_1, String name_2){
 		String[] name = new String[2];
-		if(ModApplication.getInstance().getString(R.string.lang).matches("ko")){
+		if(mod.getString(R.string.lang).matches("ko")){
 			 name[0] = name_1;
 			 name[1] = name_2;
 		}else{
@@ -236,7 +237,7 @@ public final class Global {
 	public static void DoFileUpload(String file) throws IOException {
 		Log.i("upload", "upload start");
 		Log.d("Test" , "file path = " + file);		
-		HttpFileUpload(ModApplication.getInstance().getString(R.string.server_path) + "upload.php", "profile", file);	
+		HttpFileUpload(mod.getString(R.string.server_path) + "upload.php", "profile", file);	
 	}
 	
 	private static void HttpFileUpload(String urlString, String category, String fileName) {
@@ -330,10 +331,14 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Exception exception;
 	String responseData;
 	String myId, myPWord, myTitle, mySubject, myResult;
+	Context context;
 
-	public AsyncHttpTask(Handler handler) {
+	public AsyncHttpTask(Context cx, Handler handler) {
 		Log.i("Test", "asyc callec");
+		//Set handler
 		this.handler = handler;
+		//Set context
+		context = cx;
 		doInBackground("");
 	}
 
@@ -351,22 +356,24 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	
 	@Override
 	public void onPreExecute() {
-		Log.i("Test", "onPreExecute Called on global");
+	//	Log.i("Test", "onPreExecute Called on global");
 
 	}
 	
 	protected void onPostExecute(String responseData) {
-		Log.i("Message", "Post");
+	//	Log.i("Message", "Post");
 		if (exception != null) {
-			Message msg = handler.obtainMessage();
-			msg.what = -1;
-			msg.obj = exception;
-			handler.sendMessage(msg);
+//			Message msg = handler.obtainMessage();
+//			msg.what = -1;
+//			msg.obj = exception;
+//			handler.sendMessage(msg);
+			Infoalert(context, mod.getString(R.string.error),
+					mod.getString(R.string.error_des), mod.getString(R.string.yes));
 			return;
 		} else {
-			Log.i("Message", "3");
+		//	Log.i("Message", "1");
 			Message msg = handler.obtainMessage();
-			msg.what = 3;
+			msg.what = 1;
 			msg.obj = responseData;
 			handler.sendMessage(msg);
 		}
@@ -379,7 +386,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			// --------------------------
 			// URL 설정하고 접속하기
 			// --------------------------
-			URL url1 = new URL(ModApplication.getInstance().getString(R.string.server_path)
+			URL url1 = new URL(mod.getString(R.string.server_path)
 					+ "member/tarks_get_member_info.php"); // URL
 			// 설정
 			HttpURLConnection http = (HttpURLConnection) url1
@@ -427,6 +434,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			}
 			myResult = builder.toString(); // 전송결과를 전역 변수에 저장
 			Log.i("TEST", myResult);
+			onPostExecute(myResult);
 		} catch (MalformedURLException e) {
 			//
 		} catch (IOException e) {
