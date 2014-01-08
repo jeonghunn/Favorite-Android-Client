@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.concurrent.Callable;
 
@@ -141,8 +142,15 @@ public class welcome extends SherlockActivity {
 	
 			//	new Downloader()
 		//				.execute();
+        ArrayList<String> Paramname = new ArrayList<String>();
+        Paramname.add("authcode");
+        Paramname.add("tarks_account");
+        
+        ArrayList<String> Paramvalue = new ArrayList<String>();
+        Paramvalue.add("642979");
+        Paramvalue.add("jeonghunn");
 				
-				new Global.AsyncHttpTask(this, mHandler);
+				new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null);
 //				
 //				new AsyncHttpTask.execute("","","");
 //
