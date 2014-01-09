@@ -257,12 +257,13 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Exception exception;
 	String responseData;
 	String fileName;
-	String url, myPWord, myTitle, mySubject, myResult;
+	String url, myResult;
 	Context context;
 	ArrayList paramNames, paramValues, files;
+	int handlernum = 1;
 	//String[] files;
 
-	public AsyncHttpTask(Context cx, String urls, Handler handler, ArrayList pNames, ArrayList pValues, ArrayList fe) {
+	public AsyncHttpTask(Context cx, String urls, Handler handler, ArrayList pNames, ArrayList pValues, ArrayList fe, int hnum) {
 		Log.i("Test", "asyc callec");
 		//Set handler
 		this.handler = handler;
@@ -274,6 +275,8 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		paramNames = pNames;
 		paramValues =  pValues;
 		files = fe;
+		//set hanler return number
+		handlernum = hnum;
 		doInBackground("");
 	}
 
@@ -296,7 +299,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	}
 	
 	protected void onPostExecute(String responseData) {
-	//	Log.i("Message", "Post");
+		Log.i("Message", "Post");
 		if (exception != null) {
 //			Message msg = handler.obtainMessage();
 //			msg.what = -1;
@@ -307,8 +310,9 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			return;
 		} else {
 		//	Log.i("Message", "1");
+			Log.i("hey", responseData);
 			Message msg = handler.obtainMessage();
-			msg.what = 1;
+			msg.what = handlernum;
 			msg.obj = responseData;
 			handler.sendMessage(msg);
 		}
@@ -350,7 +354,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			}
 			
 			if(files != null){
-				Log.i("Access", "We can access to files");
+			//	Log.i("Access", "We can access to files");
 		    for(int i =0; i<files.size();i++){
 		        //======================start   
 //		        fis  = new FileInputStream(files.get(files.size()-1));
@@ -367,7 +371,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 				byte[] buffer = new byte[bufferSize];
 				int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
 				
-				Log.d("Test", "image byte is " + bytesRead);
+			//	Log.d("Test", "image byte is " + bytesRead);
 				
 				// read image
 				while (bytesRead > 0) {
@@ -388,7 +392,7 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 				mFileInputStream.close();
 			}
 			// close streams
-			Log.e("Test" , "File is written");
+			//Log.e("Test" , "File is written");
 			
 			dos.flush(); // finish upload...			
 			
@@ -399,11 +403,11 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			while( ( ch = is.read() ) != -1 ){
 				b.append( (char)ch );
 			}
-			String s=b.toString(); 
-			Log.e("Test", "result = " + s);
+			myResult =b.toString(); 
+		//	Log.e("Test", "result = " + s);
 		
 			dos.close();	
-			
+			onPostExecute(myResult);
 			
 			
 		} catch (Exception e) {

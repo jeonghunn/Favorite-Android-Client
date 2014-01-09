@@ -12,6 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,6 +27,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -31,12 +35,15 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -57,123 +64,6 @@ public class tarks_account_login extends SherlockActivity {
     String s1, s2;
     boolean okbutton = true;
     
-    private class Downloader extends AsyncTask<String, Void, Bitmap> {
-
-		protected Bitmap doInBackground(String... param) {
-			// TODO Auto-generated method stub
-			  //Error Login
-			
-			return downloadBitmap(myId);
-		}
-
-		@Override
-		protected void onPreExecute() {
-		//	Log.i("Async-Example", "onPreExecute Called");
-			//set Progressbar
-			   setSupportProgressBarIndeterminateVisibility(true);
-		}
-
-		protected void onPostExecute(Bitmap result) {
-			//Log.i("Async-Example", "onPostExecute Called");
-			//no more progress
-			//set Progressbar
-			   setSupportProgressBarIndeterminateVisibility(false);
-			  if(myResult.matches("")){
-            	  //Error Login
-            	  AlertDialog.Builder builder1 = new AlertDialog.Builder(tarks_account_login.this);
-  				builder1.setMessage(getString(R.string.error_login)).setPositiveButton(getString(R.string.yes), null).setTitle(getString(R.string.error));				
-  				builder1.show();
-              }else{
-            	  //Save auth key to temp
-           //Setting Editor
- 			SharedPreferences edit = getSharedPreferences("temp",
- 					MODE_PRIVATE);
- 			SharedPreferences.Editor editor = edit.edit();
- 			editor.putString("temp_id",  edit1.getText().toString());			
- 			editor.putString("temp_id_auth",  myResult);			
- 			editor.commit();
- 			//Intent
-             Intent intent = new Intent(tarks_account_login.this, join.class);
-             
-	 	    	 startActivity(intent); 
-	 	    	 finish();
-              }
-			  
-
-		}
-
-		private Bitmap downloadBitmap(String url ) {
-			try {
-
-
-    				//import EditText
-    				edit1 = (EditText) findViewById(R.id.editText1);
-    				String s1 = edit1.getText().toString();
-
-    				edit2 = (EditText) findViewById(R.id.editText2);
-    				String s2 = edit2.getText().toString();
-    				
-    				//md5 password value
-    				String src = s2;
-    				String enc = Global.getMD5Hash(src);
-    				// --------------------------
-    				// URL 설정하고 접속하기
-    				// --------------------------
-    				URL url1 = new URL(
-    						getString(R.string.server_path) + "member/tarks_account_check.php"); // URL
-    																				// 설정
-    				HttpURLConnection http = (HttpURLConnection) url1
-    						.openConnection(); // 접속
-    				// --------------------------
-    				// 전송 모드 설정 - 기본적인 설정이다
-    				// --------------------------
-    				http.setDefaultUseCaches(false);
-    				http.setDoInput(true); // 서버에서 읽기 모드 지정
-    				http.setDoOutput(true); // 서버로 쓰기 모드 지정
-    				http.setRequestMethod("POST"); // 전송 방식은 POST
-
-    				// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
-    				http.setRequestProperty("content-type",
-    						"application/x-www-form-urlencoded");
-    				// --------------------------
-    				// 서버로 값 전송
-    				// --------------------------
-    				StringBuffer buffer = new StringBuffer();
-    				buffer.append("authcode").append("=").append("642979")
-    						.append("&"); // php 변수에 값 대입
-    				buffer.append("id").append("=").append(s1).append("&");
-    				buffer.append("password").append("=").append(enc);
-
-    				OutputStreamWriter outStream = new OutputStreamWriter(
-    						http.getOutputStream(), "UTF-8");
-    				PrintWriter writer = new PrintWriter(outStream);
-    				writer.write(buffer.toString());
-    				writer.flush();
-    				// --------------------------
-    				// 서버에서 전송받기
-    				// --------------------------
-    				 InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "UTF-8");  
-    	              BufferedReader reader = new BufferedReader(tmp); 
-    	              StringBuilder builder = new StringBuilder(); 
-    	              String str; 
-    	              
-    	              while ((str = reader.readLine()) != null) {       // 서버에서 라인단위로 보내줄 것이므로 라인단위로 읽는다 
-    	                   builder.append(str);  //구분자 추가 안함
-    	                  // builder.append(str + "\n"); 
-    	                   // View에 표시하기 위해 라인 구분자 추가 
-    	              } 
-    	              myResult = builder.toString();                       // 전송결과를 전역 변수에 저장
-    		
-    			} catch (MalformedURLException e) { 
-    	                // 
-    	         } catch (IOException e) { 
-    	                //  
-    	         }
-
-			return null;
-		}
-
-    }
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -182,6 +72,10 @@ public class tarks_account_login extends SherlockActivity {
 		 requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.tarks_account);
 		  setSupportProgressBarIndeterminateVisibility(false);
+		  
+		  //define edittext
+			edit1 = (EditText) findViewById(R.id.editText1);
+			edit2 = (EditText) findViewById(R.id.editText2);
 		
 		bt = (Button) findViewById(R.id.button1);
 		bt.setOnClickListener(new OnClickListener() {
@@ -206,6 +100,40 @@ public class tarks_account_login extends SherlockActivity {
 		});
 	}
 	
+	protected Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+		
+			
+			
+			if (msg.what == 1) {
+				myResult = msg.obj.toString();
+				   setSupportProgressBarIndeterminateVisibility(false);
+					  if(myResult.matches("")){
+		            	  //Error Login
+		            	  AlertDialog.Builder builder1 = new AlertDialog.Builder(tarks_account_login.this);
+		  				builder1.setMessage(getString(R.string.error_login)).setPositiveButton(getString(R.string.yes), null).setTitle(getString(R.string.error));				
+		  				builder1.show();
+		              }else{
+		            	  //Save auth key to temp
+		           //Setting Editor
+		 			SharedPreferences edit = getSharedPreferences("temp",
+		 					MODE_PRIVATE);
+		 			SharedPreferences.Editor editor = edit.edit();
+		 			editor.putString("temp_id",  edit1.getText().toString());			
+		 			editor.putString("temp_id_auth",  myResult);			
+		 			editor.commit();
+		 			//Intent
+		             Intent intent = new Intent(tarks_account_login.this, join.class);
+		             
+			 	    	 startActivity(intent); 
+			 	    	 finish();
+		              }
+					  
+			}
+			
+		}
+	};
+	
 	public boolean ButtonEnable(final int s){
 		 new Thread(new Runnable() {           
 	            public void run() {       
@@ -227,6 +155,33 @@ public class tarks_account_login extends SherlockActivity {
 	            }
 	        }).start();
 		return okbutton;       
+	}
+	
+	public void TarksAccountLogin(){
+		//Set Progress
+		   setSupportProgressBarIndeterminateVisibility(true);
+		   
+		//import EditText string
+
+		String s1 = edit1.getText().toString();
+		String s2 = edit2.getText().toString();
+		
+		//md5 password value
+		String src = s2;
+		String enc = Global.getMD5Hash(src);
+		
+        ArrayList<String> Paramname = new ArrayList<String>();
+        Paramname.add("authcode");
+        Paramname.add("id");
+        Paramname.add("password");
+        
+        ArrayList<String> Paramvalue = new ArrayList<String>();
+        Paramvalue.add("642979");
+        Paramvalue.add(s1);
+        Paramvalue.add(enc);
+				
+		
+		new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null, 1);
 	}
 
 	@Override
@@ -263,8 +218,7 @@ public class tarks_account_login extends SherlockActivity {
 				Global.Infoalert(this ,getString(R.string.notification), getString(R.string.type_id), getString(R.string.yes));
 			}else{
 				// TODO Auto-generated method stub
-					new Downloader()
-							.execute();
+			TarksAccountLogin();
 			}
 			} catch (Exception e){
 			//	Log.i("ERROR", "App has been error");

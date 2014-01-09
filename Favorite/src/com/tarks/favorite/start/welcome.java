@@ -139,18 +139,19 @@ public class welcome extends SherlockActivity {
         
     	//no error
 	//	try{	
-	
+	Log.i("Cache folder", getCacheDir().toString());
 			//	new Downloader()
 		//				.execute();
-        ArrayList<String> Paramname = new ArrayList<String>();
-        Paramname.add("authcode");
-        Paramname.add("tarks_account");
-        
-        ArrayList<String> Paramvalue = new ArrayList<String>();
-        Paramvalue.add("642979");
-        Paramvalue.add("jeonghunn");
-				
-				new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null);
+//        ArrayList<String> Paramname = new ArrayList<String>();
+//        Paramname.add("authcode");
+//        Paramname.add("tarks_account");
+//        
+//        ArrayList<String> Paramvalue = new ArrayList<String>();
+//        Paramvalue.add("642979");
+//        Paramvalue.add("jeonghunn");
+//				
+//        
+//				new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null, 1);
 //				
 //				new AsyncHttpTask.execute("","","");
 //
@@ -205,8 +206,9 @@ public class welcome extends SherlockActivity {
 			}
 			
 			
-			if (msg.what == 3) {
+			if (msg.what == 1) {
 				Log.i("Success", "Congratulation you can sleep keke");
+				Log.i("Success", msg.obj.toString());
 			}
 			
 		}
