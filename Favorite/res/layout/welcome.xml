@@ -6,13 +6,14 @@
 
     <Button
         android:id="@+id/button1"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/black_button"
-        style="@style/ButtonText"
+        android:ems="5"
         android:text="@string/start" />
 
     <TextView
@@ -37,5 +38,17 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
         android:textSize="64px" />
+
+    <Button
+        android:id="@+id/Button01"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/black_button"
+        android:ems="5"
+        android:text="Tarks 계정으로 시작" />
 
 </RelativeLayout>

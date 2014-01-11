@@ -494,9 +494,11 @@ int drawable tab_unselected_favorite 0x7f0200ae
 int drawable tab_unselected_focused_favorite 0x7f0200af
 int drawable tab_unselected_pressed_favorite 0x7f0200b0
 int drawable tabs_pattern 0x7f0200b1
-int drawable twitter 0x7f0200b2
-int drawable welcome_background 0x7f0200b3
-int drawable yellow_button 0x7f0200b4
+int drawable tarks_white 0x7f0200b2
+int drawable twitter 0x7f0200b3
+int drawable welcome_background 0x7f0200b4
+int drawable yellow_button 0x7f0200b5
+int id Button01 0x7f040069
 int id CropImageView 0x7f040042
 int id CropOverlayView 0x7f04003f
 int id ImageView_image 0x7f04003e
@@ -540,7 +542,7 @@ int id abs__submit_area 0x7f040032
 int id abs__textButton 0x7f040016
 int id abs__title 0x7f04001e
 int id abs__up 0x7f04000e
-int id action_settings 0x7f04006b
+int id action_settings 0x7f04006c
 int id button1 0x7f040046
 int id button2 0x7f040067
 int id cardContent 0x7f04004d
@@ -565,7 +567,7 @@ int id listMode 0x7f040005
 int id listView 0x7f04003a
 int id listView1 0x7f040060
 int id listview_drawer 0x7f040063
-int id menu_item_share_action_provider_action_bar 0x7f04006c
+int id menu_item_share_action_provider_action_bar 0x7f04006d
 int id mylayout 0x7f040041
 int id normal 0x7f040004
 int id off 0x7f040002
@@ -578,7 +580,7 @@ int id profile_image 0x7f040053
 int id radio0 0x7f040058
 int id radio1 0x7f040059
 int id radioGroup1 0x7f040057
-int id rotate 0x7f04006a
+int id rotate 0x7f04006b
 int id scrollview 0x7f040040
 int id showCustom 0x7f04000b
 int id showHome 0x7f040008
@@ -605,7 +607,7 @@ int id title 0x7f040037
 int id titre 0x7f04005f
 int id useLogo 0x7f040007
 int id wrap_content 0x7f040003
-int id yes 0x7f040069
+int id yes 0x7f04006a
 int integer abs__max_action_buttons 0x7f0a0000
 int layout abs__action_bar_home 0x7f030000
 int layout abs__action_bar_tab 0x7f030001

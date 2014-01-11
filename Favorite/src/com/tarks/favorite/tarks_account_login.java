@@ -1,4 +1,4 @@
-package com.tarks.favorite.start;
+package com.tarks.favorite;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,8 +53,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
+import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.start.join;
 
 public class tarks_account_login extends SherlockActivity {
 	Button bt;
@@ -181,7 +182,7 @@ public class tarks_account_login extends SherlockActivity {
         Paramvalue.add(enc);
 				
 		
-		new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null, 1);
+		new AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null, 1);
 	}
 
 	@Override

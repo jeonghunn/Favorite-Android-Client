@@ -36,6 +36,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
+import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.connect.AsyncHttpTask;
 
 
@@ -47,91 +48,91 @@ public class welcome extends SherlockActivity {
 	Message msg;
 	String ToonDataList;
 	
-	 private class Downloader extends AsyncTask<String, Void, Bitmap> {
-
-			protected Bitmap doInBackground(String... param) {
-				// TODO Auto-generated method stub
-				  //Error Login
-				
-				return downloadBitmap(myId);
-			}
-
-			@Override
-			protected void onPreExecute() {
-				Log.i("Async-Example", "onPreExecute Called");
-
-			}
-
-			protected void onPostExecute(Bitmap result) {
-				Log.i("Async-Example", "onPostExecute Called");
-				
-				
-				msg = Message.obtain();
-				msg.what = 0;
-				mHandler.sendMessage(msg);
-				
-			}
-
-			private Bitmap downloadBitmap(String url ) {
-				try {
-
-
-	    			
-	    				// --------------------------
-	    				// URL 설정하고 접속하기
-	    				// --------------------------
-	    				URL url1 = new URL(
-	    						getString(R.string.server_path) + "statistics.php"); // URL
-	    																				// 설정
-	    				HttpURLConnection http = (HttpURLConnection) url1
-	    						.openConnection(); // 접속
-	    				// --------------------------
-	    				// 전송 모드 설정 - 기본적인 설정이다
-	    				// --------------------------
-	    				http.setDefaultUseCaches(false);
-	    				http.setDoInput(true); // 서버에서 읽기 모드 지정
-	    				http.setDoOutput(true); // 서버로 쓰기 모드 지정
-	    				http.setRequestMethod("POST"); // 전송 방식은 POST
-
-	    				// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
-	    				http.setRequestProperty("content-type",
-	    						"application/x-www-form-urlencoded");
-	    				// --------------------------
-	    				// 서버로 값 전송
-	    				// --------------------------
-	    				StringBuffer buffer = new StringBuffer();
-	    				buffer.append("authcode").append("=").append("642979");
-
-	    				OutputStreamWriter outStream = new OutputStreamWriter(
-	    						http.getOutputStream(), "EUC-KR");
-	    				PrintWriter writer = new PrintWriter(outStream);
-	    				writer.write(buffer.toString());
-	    				writer.flush();
-	    				// --------------------------
-	    				// 서버에서 전송받기
-	    				// --------------------------
-	    				 InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "EUC-KR");  
-	    	              BufferedReader reader = new BufferedReader(tmp); 
-	    	              StringBuilder builder = new StringBuilder(); 
-	    	              String str; 
-	    	              
-	    	              while ((str = reader.readLine()) != null) {       // 서버에서 라인단위로 보내줄 것이므로 라인단위로 읽는다 
-	    	                   builder.append(str);  //구분자 추가 안함
-	    	                  // builder.append(str + "\n"); 
-	    	                   // View에 표시하기 위해 라인 구분자 추가 
-	    	              } 
-	    	              myResult = builder.toString();                       // 전송결과를 전역 변수에 저장
-	    	//	Log.i("dfd", myResult);
-	    			} catch (MalformedURLException e) { 
-	    	                // 
-	    	         } catch (IOException e) { 
-	    	                //  
-	    	         }
-
-				return null;
-			}
-
-	    }
+//	 private class Downloader extends AsyncTask<String, Void, Bitmap> {
+//
+//			protected Bitmap doInBackground(String... param) {
+//				// TODO Auto-generated method stub
+//				  //Error Login
+//				
+//				return downloadBitmap(myId);
+//			}
+//
+//			@Override
+//			protected void onPreExecute() {
+//				Log.i("Async-Example", "onPreExecute Called");
+//
+//			}
+//
+//			protected void onPostExecute(Bitmap result) {
+//				Log.i("Async-Example", "onPostExecute Called");
+//				
+//				
+//				msg = Message.obtain();
+//				msg.what = 0;
+//				mHandler.sendMessage(msg);
+//				
+//			}
+//
+//			private Bitmap downloadBitmap(String url ) {
+//				try {
+//
+//
+//	    			
+//	    				// --------------------------
+//	    				// URL 설정하고 접속하기
+//	    				// --------------------------
+//	    				URL url1 = new URL(
+//	    						getString(R.string.server_path) + "statistics.php"); // URL
+//	    																				// 설정
+//	    				HttpURLConnection http = (HttpURLConnection) url1
+//	    						.openConnection(); // 접속
+//	    				// --------------------------
+//	    				// 전송 모드 설정 - 기본적인 설정이다
+//	    				// --------------------------
+//	    				http.setDefaultUseCaches(false);
+//	    				http.setDoInput(true); // 서버에서 읽기 모드 지정
+//	    				http.setDoOutput(true); // 서버로 쓰기 모드 지정
+//	    				http.setRequestMethod("POST"); // 전송 방식은 POST
+//
+//	    				// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
+//	    				http.setRequestProperty("content-type",
+//	    						"application/x-www-form-urlencoded");
+//	    				// --------------------------
+//	    				// 서버로 값 전송
+//	    				// --------------------------
+//	    				StringBuffer buffer = new StringBuffer();
+//	    				buffer.append("authcode").append("=").append("642979");
+//
+//	    				OutputStreamWriter outStream = new OutputStreamWriter(
+//	    						http.getOutputStream(), "EUC-KR");
+//	    				PrintWriter writer = new PrintWriter(outStream);
+//	    				writer.write(buffer.toString());
+//	    				writer.flush();
+//	    				// --------------------------
+//	    				// 서버에서 전송받기
+//	    				// --------------------------
+//	    				 InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "EUC-KR");  
+//	    	              BufferedReader reader = new BufferedReader(tmp); 
+//	    	              StringBuilder builder = new StringBuilder(); 
+//	    	              String str; 
+//	    	              
+//	    	              while ((str = reader.readLine()) != null) {       // 서버에서 라인단위로 보내줄 것이므로 라인단위로 읽는다 
+//	    	                   builder.append(str);  //구분자 추가 안함
+//	    	                  // builder.append(str + "\n"); 
+//	    	                   // View에 표시하기 위해 라인 구분자 추가 
+//	    	              } 
+//	    	              myResult = builder.toString();                       // 전송결과를 전역 변수에 저장
+//	    	//	Log.i("dfd", myResult);
+//	    			} catch (MalformedURLException e) { 
+//	    	                // 
+//	    	         } catch (IOException e) { 
+//	    	                //  
+//	    	         }
+//
+//				return null;
+//			}
+//
+//	    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -283,7 +283,9 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... urls) {
 		try {
-			Log.i("Test", "background call");
+		//	Log.i("Test", "background call");
+			
+			
 			// urls[0]의 URL부터 데이터를 읽어와 String으로 리턴
 			return Task(url);
 		} catch(Exception ex) {
@@ -298,8 +300,9 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 	}
 	
+	@Override
 	protected void onPostExecute(String responseData) {
-		Log.i("Message", "Post");
+	//	Log.i("Message", "Post");
 		if (exception != null) {
 //			Message msg = handler.obtainMessage();
 //			msg.what = -1;
@@ -398,12 +401,12 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			
 			// get response
 			int ch;
-			InputStream is = conn.getInputStream();
-			StringBuffer b =new StringBuffer();
-			while( ( ch = is.read() ) != -1 ){
-				b.append( (char)ch );
-			}
-			myResult =b.toString(); 
+			InputStreamReader tmp = new InputStreamReader(
+					conn.getInputStream(), "UTF-8");
+			BufferedReader reader = new BufferedReader(tmp);
+			StringBuilder builder = new StringBuilder();
+			String str;
+			myResult =builder.toString(); // 전송결과를 전역 변수에 저장
 		//	Log.e("Test", "result = " + s);
 		
 			dos.close();	
@@ -413,6 +416,8 @@ public static class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		} catch (Exception e) {
 			Log.d("Test", "exception " + e.getMessage());
 			// TODO: handle exception
+//			Infoalert(context, mod.getString(R.string.error),
+//					mod.getString(R.string.error_des), mod.getString(R.string.yes));
 		}		
 
 		return null;

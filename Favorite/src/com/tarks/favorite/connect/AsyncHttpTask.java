@@ -1,6 +1,8 @@
 package com.tarks.favorite.connect;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -8,10 +10,13 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
+import com.tarks.favorite.Global;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
@@ -21,105 +26,183 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Handler handler;
 	private Exception exception;
 	String responseData;
-	String myId, myPWord, myTitle, mySubject, myResult;
+	String fileName;
+	String url, myResult;
+	Context context;
+	ArrayList paramNames, paramValues, files;
+	int handlernum = 1;
+	//String[] files;
+	
+	//ModApplication
+	static ModApplication mod = ModApplication.getInstance();
+	
+	//Upload
+	private static FileInputStream mFileInputStream = null;
+	private static URL connectUrl = null;
+	
 
-	public AsyncHttpTask(Handler handler) {
+	public AsyncHttpTask(Context cx, String urls, Handler handler, ArrayList pNames, ArrayList pValues, ArrayList fe, int hnum) {
+		Log.i("Test", "asyc callec");
+		//Set handler
 		this.handler = handler;
+		//Set context
+		context = cx;
+		//set url
+		url = urls;
+		//Arraylists
+		paramNames = pNames;
+		paramValues =  pValues;
+		files = fe;
+		//set hanler return number
+		handlernum = hnum;
+		doInBackground("");
 	}
+
 
 	@Override
 	protected String doInBackground(String... urls) {
 		try {
+		//	Log.i("Test", "background call");
+			
+			
 			// urls[0]의 URL부터 데이터를 읽어와 String으로 리턴
-			return Task(myId);
+			return Task(url);
 		} catch(Exception ex) {
 			this.exception = ex;
 			return null;
 		}
 	}
 	
-	public String Task(String url) {
-		try {
+	@Override
+	public void onPreExecute() {
+		Log.i("Test", "onPreExecute Called on global");
 
-
-			// --------------------------
-			// URL 설정하고 접속하기
-			// --------------------------
-			URL url1 = new URL(ModApplication.getInstance().getString(R.string.server_path)
-					+ "member/tarks_get_member_info.php"); // URL
-			// 설정
-			HttpURLConnection http = (HttpURLConnection) url1
-					.openConnection(); // 접속
-
-			// --------------------------
-			// 전송 모드 설정 - 기본적인 설정이다
-			// --------------------------
-			
-			http.setDefaultUseCaches(false);
-			http.setDoInput(true); // 서버에서 읽기 모드 지정
-			http.setDoOutput(true); // 서버로 쓰기 모드 지정
-			http.setRequestMethod("POST"); // 전송 방식은 POST
-
-			// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
-			http.setRequestProperty("content-type",
-					"application/x-www-form-urlencoded");
-			// --------------------------
-			// 서버로 값 전송
-			// --------------------------
-			StringBuffer buffer = new StringBuffer();
-			buffer.append("authcode").append("=").append("642979")
-					.append("&"); // php 변수에 값 대입
-			buffer.append("tarks_account").append("=").append("jeonghunn");
-
-			OutputStreamWriter outStream = new OutputStreamWriter(
-					http.getOutputStream(), "utf-8");
-			PrintWriter writer = new PrintWriter(outStream);
-			writer.write(buffer.toString());
-			writer.flush();
-			// --------------------------
-			// 서버에서 전송받기
-			// --------------------------
-			InputStreamReader tmp = new InputStreamReader(
-					http.getInputStream(), "utf-8");
-			BufferedReader reader = new BufferedReader(tmp);
-			StringBuilder builder = new StringBuilder();
-			String str;
-
-			while ((str = reader.readLine()) != null) { // 서버에서 라인단위로
-														// 보내줄
-				builder.append(str); // 것이므로 라인단위로 읽는다
-				// builder.append(str + "\n"); // View에 표시하기 위해 라인 구분자
-				// 추가
-			}
-			myResult = builder.toString(); // 전송결과를 전역 변수에 저장
-
-		} catch (MalformedURLException e) {
-			//
-		} catch (IOException e) {
-			//
-		}
-
-		return null;
 	}
 	
-
 	@Override
 	protected void onPostExecute(String responseData) {
+	//	Log.i("Message", "Post");
 		if (exception != null) {
-			Message msg = handler.obtainMessage();
-			msg.what = -1;
-			msg.obj = exception;
-			handler.sendMessage(msg);
+//			Message msg = handler.obtainMessage();
+//			msg.what = -1;
+//			msg.obj = exception;
+//			handler.sendMessage(msg);
+			Global.Infoalert(context, mod.getString(R.string.error),
+					mod.getString(R.string.error_des), mod.getString(R.string.yes));
 			return;
 		} else {
+		//	Log.i("Message", "1");
+			Log.i("hey", responseData);
 			Message msg = handler.obtainMessage();
-			msg.what = 3;
+			msg.what = handlernum;
 			msg.obj = responseData;
 			handler.sendMessage(msg);
 		}
 	}
 	
+	public String Task(String url) {
 
+		String lineEnd = "\r\n";
+		String twoHyphens = "--";
+		String boundary = "*****";	
+		
+		try {
+			
+			
+			connectUrl = new URL(url);
+	
+			
+			// open connection 
+			HttpURLConnection conn = (HttpURLConnection)connectUrl.openConnection();			
+			conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Connection", "Keep-Alive");
+			conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+			
+			// write data
+			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+	
+			//Check it is null
+			if(paramNames != null && paramValues != null) {
+		    for(int i =0; i< paramNames.size();i++){
+		        dos.writeBytes(twoHyphens + boundary + lineEnd); //필드 구분자 시작
+		        dos.writeBytes("Content-Disposition: form-data; name=\""+paramNames.get(i)+"\""+ lineEnd);
+		        dos.writeBytes(lineEnd);
+		        dos.writeBytes(paramValues.get(i).toString());
+		        dos.writeBytes(lineEnd);
+		        }
+			}
+			
+			if(files != null){
+			//	Log.i("Access", "We can access to files");
+		    for(int i =0; i<files.size();i++){
+		        //======================start   
+//		        fis  = new FileInputStream(files.get(files.size()-1));
+		    	mFileInputStream = new FileInputStream(files.get(i).toString());	
+				Log.d("Test", "mFileInputStream  is " + mFileInputStream);
+		        dos.writeBytes(twoHyphens + boundary + lineEnd);
+		        dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" +  files.get(i).toString() +"\""+ lineEnd);
+		        dos.writeBytes(lineEnd);
+		        
+		    	int bytesAvailable = mFileInputStream.available();
+				int maxBufferSize = 1024;
+				int bufferSize = Math.min(bytesAvailable, maxBufferSize);
+				
+				byte[] buffer = new byte[bufferSize];
+				int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
+				
+			//	Log.d("Test", "image byte is " + bytesRead);
+				
+				// read image
+				while (bytesRead > 0) {
+					dos.write(buffer, 0, bufferSize);
+					bytesAvailable = mFileInputStream.available();
+					bufferSize = Math.min(bytesAvailable, maxBufferSize);
+					bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
+				}	
+				
+				dos.writeBytes(lineEnd);
+		        //======================end
+		        }
+			}
+		
+			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+			
+			if(files != null){
+				mFileInputStream.close();
+			}
+			// close streams
+			//Log.e("Test" , "File is written");
+			
+			dos.flush(); // finish upload...			
+			
+			// get response
+			int ch;
+			InputStreamReader tmp = new InputStreamReader(
+					conn.getInputStream(), "UTF-8");
+			BufferedReader reader = new BufferedReader(tmp);
+			StringBuilder builder = new StringBuilder();
+			String str;
+			myResult = builder.toString(); // 전송결과를 전역 변수에 저장
+		//	Log.e("Test", "result = " + s);
+		
+			dos.close();	
+		//	onPostExecute(myResult);
+			
+			
+		} catch (Exception e) {
+			Log.d("Test", "exception " + e.getMessage());
+			// TODO: handle exception
+//			Infoalert(context, mod.getString(R.string.error),
+//					mod.getString(R.string.error_des), mod.getString(R.string.yes));
+		}		
+
+		return null;
+	
+
+	}
 	
 }
-
+	

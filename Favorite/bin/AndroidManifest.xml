@@ -3,14 +3,13 @@
     package="com.tarks.favorite"
     android:versionCode="1"
     android:versionName="@string/ver" >
-    
-    
-        <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
-    
-      <!-- GCM 관련 퍼미션 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- GCM 관련 퍼미션 -->
     <permission
         android:name="com.tarks.favorite.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -24,21 +23,20 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" >
     </uses-permission>
-    
-    
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
     <application
-             android:name="com.tarks.favorite.ModApplication"
+        android:name="com.tarks.favorite.ModApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-              android:launchMode="singleTask" 
-          android:theme="@style/Theme.Favorite" >
-             <!-- 알림 서비스(시작) -->
+        android:launchMode="singleTask"
+        android:theme="@style/Theme.Favorite" >
+
+        <!-- 알림 서비스(시작) -->
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -54,61 +52,50 @@
         <!-- 알림 서비스(끝) -->
         <activity
             android:name="com.tarks.favorite.MainActivity"
-            android:theme="@style/Theme.Sherlock.NoActionBar"
-            android:label="@string/app_name" >
-              
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Sherlock.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name=".main"
-             android:icon="@drawable/ic_launcher_simple"
-            android:screenOrientation="portrait"
-      
-             />
-         <activity
+            android:icon="@drawable/ic_launcher_simple"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".result"
-               android:icon="@drawable/ic_launcher_simple"
-      android:label="@string/check_result"
-             />
-            <activity
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/check_result" />
+        <activity
             android:name=".result_view"
-               android:icon="@drawable/ic_launcher_simple"
-      android:label="@string/check_result"
-             />
-          <activity
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/check_result" />
+        <activity
             android:name=".start.welcome"
-              android:theme="@style/Theme.Sherlock.NoActionBar"
-      
-             />
-          
-      <activity
-            android:name=".start.tarks_account_login"
-               android:icon="@drawable/ic_launcher_simple"
-            android:label="@string/tarks_account" />
+            android:theme="@style/Theme.Sherlock.NoActionBar" />
+        <activity
+            android:name="com.tarks.favorite.tarks_account_login"
+            android:icon="@drawable/tarks_white"
+            android:label="@string/tarks_account"
+            android:theme="@style/Theme.Sherlock" />
         <activity
             android:name=".start.join"
-               android:icon="@drawable/ic_launcher_simple"
+            android:icon="@drawable/ic_launcher_simple"
             android:label="@string/sign_up" />
-        
         <activity
             android:name=".register.phone_number_reg"
-               android:icon="@drawable/ic_launcher_simple"
+            android:icon="@drawable/ic_launcher_simple"
             android:label="@string/register_favorite" />
         <activity
             android:name=".test.phone_number"
-               android:icon="@drawable/ic_launcher_simple"
-            android:label="@string/phone_number"
-      
-             />
-         <activity
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/phone_number" />
+        <activity
             android:name=".CropManager"
-               android:icon="@drawable/ic_launcher_simple"
-                  android:label="@string/cut_image"
-             />
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/cut_image" />
     </application>
 
 </manifest>

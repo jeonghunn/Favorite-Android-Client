@@ -56,6 +56,7 @@ import com.tarks.favorite.CropManager;
 import com.tarks.favorite.Global;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
+import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.R.string;
 
 public class join extends SherlockActivity implements OnCheckedChangeListener {

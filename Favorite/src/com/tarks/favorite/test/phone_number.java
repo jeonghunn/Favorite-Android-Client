@@ -38,9 +38,9 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.R;
 import com.tarks.favorite.result;
+import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.register.phone_number_reg;
 import com.tarks.favorite.start.join;
-import com.tarks.favorite.start.tarks_account_login;
 import com.tarks.favorite.start.welcome;
 
 public class phone_number extends SherlockActivity {
