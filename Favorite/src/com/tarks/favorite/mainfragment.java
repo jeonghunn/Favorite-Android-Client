@@ -67,15 +67,13 @@ public class mainfragment extends SherlockFragment implements
 				mCardView.addCard(header);
 			
 				MyPlayCard notice_banner = (new MyPlayCard(
-						getString(R.string.notice), "하하 저를 눌러보고 싶지 않아요?d", "#33b6ea", "#33b6ea",
-						false, true));
+						getString(R.string.notice), "하하 저를 눌러보고 싶지 않아요?d",  "#33b6ea" ));
 				
 				mCardView.addCard(notice_banner);
 				
 				
 				MyPlayCard qw1 = new MyPlayCard(
-						"누구를 좋아하나요?", "좋아하는사람을 추가해보세요.d", "#FFBB00", "#FFBB00",
-						false, true);
+						"누구를 좋아하나요?", "좋아하는사람을 추가해보세요.d",  "#FFBB00");
 				
 			mCardView.addCard(qw1);
 				

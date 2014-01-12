@@ -89,4 +89,6 @@
         <string name="female">여자</string>
                   <string name="cut_image">이미지 자르기</string>
     <string name="rotate">회전</string>
+     <string name="find_account_info">ID/PW 찾기</string>
+    
 </resources>

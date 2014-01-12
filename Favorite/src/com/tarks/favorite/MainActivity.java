@@ -55,6 +55,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.start.welcome;
 
 public class MainActivity extends SherlockActivity {
@@ -146,7 +147,7 @@ public class MainActivity extends SherlockActivity {
       Paramvalue.add("tarks_account//name_1//name_2//permission//reg_id//key//like_me//favorite");
 				
       
-				new Global.AsyncHttpTask(this, getString(R.string.server_path) + "load.php", mHandler, Paramname, Paramvalue, null, 1);
+				new AsyncHttpTask(this, getString(R.string.server_path) + "load.php", mHandler, Paramname, Paramvalue, null, 1);
 				
 			
 	}
@@ -212,9 +213,14 @@ public class MainActivity extends SherlockActivity {
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			
+			if (msg.what == -1) {
+				ConnectionError();
+			}
+			
 			if (msg.what == 1) {
-				infoResult = msg.obj.toString();
+
 				try{
+					infoResult = msg.obj.toString();
 					if (infoResult.startsWith("/LINE/.")) {
 						//Account Changed
 						// Alert
@@ -349,7 +355,7 @@ public class MainActivity extends SherlockActivity {
 					
 					}
 					}catch (Exception e){
-					ConnectionError();
+				//	ConnectionError();
 					}
 
 			}

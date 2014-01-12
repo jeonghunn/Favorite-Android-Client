@@ -704,7 +704,7 @@ Bitmap profile_bitmap;
 						// Register GCM
 						reg_id = Global.GCMReg();
 						Global.SaveBitmapToFileCache(profile_bitmap, "sdcard/favorite/temp/", "profile.jpg");
-						Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
+				//		Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
 						
 					
 

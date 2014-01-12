@@ -96,5 +96,6 @@
     <string name="female">Felmale</string>
     <string name="cut_image">Cut Image</string>
     <string name="rotate">Rotate</string>
+         <string name="find_account_info">Find Account Info</string>
 
 </resources>

@@ -46,7 +46,7 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/black_button"
             android:ems="9"
-            android:text="아이디/비밀번호 찾기"
+            android:text="@string/find_account_info"
             android:textColor="#FFFFFF" />
 
         <Button

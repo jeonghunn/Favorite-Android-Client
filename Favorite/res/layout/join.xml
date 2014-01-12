@@ -61,6 +61,7 @@
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_alignParentLeft="true"
+                    android:src="@drawable/black_button"
                     android:scaleType="centerCrop" />
 
                 <EditText

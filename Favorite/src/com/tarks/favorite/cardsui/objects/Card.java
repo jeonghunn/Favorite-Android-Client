@@ -27,7 +27,7 @@ public abstract class Card extends AbstractCard {
 	public Card(String title) {
 		this.title = title;
 	}
-	
+
 	public Card(String title, String desc) {
 		this.title = title;
 		this.desc = desc;
@@ -37,36 +37,32 @@ public abstract class Card extends AbstractCard {
 		this.title = title;
 		this.image = image;
 	}
-	
-	
-	public Card(String titlePlay, String description, String color,
-			String titleColor, Boolean hasOverflow, Boolean isClickable, int image) {
+
+	public Card(String titlePlay, String description, String titleColor,
+			Boolean hasOverflow, Boolean isClickable, int image) {
 		this.titlePlay = titlePlay;
 		this.description = description;
-		this.color = color;
 		this.titleColor = titleColor;
 		this.hasOverflow = hasOverflow;
 		this.isClickable = isClickable;
 		this.image = image;
 	}
 
-	public Card(String titlePlay, String description, String color,
-			String titleColor, Boolean hasOverflow, Boolean isClickable) {
+	public Card(String titlePlay, String description, String titleColor) {
 
 		this.titlePlay = titlePlay;
 		this.description = description;
-		this.color = color;
+	//	this.color = color;
 		this.titleColor = titleColor;
-		this.hasOverflow = hasOverflow;
-		this.isClickable = isClickable;
+	//	this.hasOverflow = hasOverflow;
+	//	this.isClickable = isClickable;
 	}
-	
+
 	public Card(String like_me, String favorite, Boolean isClickable) {
 		this.like_me = like_me;
 		this.favorite = favorite;
 		this.isClickable = isClickable;
 	}
-
 
 	@Override
 	public View getView(Context context, boolean swipable) {
