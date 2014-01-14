@@ -24,11 +24,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:text="@string/no_info"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="@string/welcome"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
 
     <Button
-        android:id="@+id/Button01"
+        android:id="@+id/tarks_login"
         style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

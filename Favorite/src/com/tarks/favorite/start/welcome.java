@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.concurrent.Callable;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +36,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.CropManager;
 import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
@@ -166,20 +169,56 @@ public class welcome extends SherlockActivity {
 //			builder.show();
 			
 	//	}
-        
+	 //Let's Start!
+	Button bt2 = (Button) findViewById(R.id.tarks_login);
+	bt2.setOnClickListener(new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(welcome.this, tarks_account_login.class); 
+			 startActivityForResult(intent, 1);
+		}
+	});    
+	
         //Let's Start!
     	bt = (Button) findViewById(R.id.button1);
 		bt.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(welcome.this, tarks_account_login.class); 
+				Intent intent = new Intent(welcome.this, join.class); 
 				startActivity(intent);
 				finish();
 			}
 		});
    
     }
+    
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			if (resultCode == Activity.RESULT_OK) {
+		     	  //Save auth key to temp
+		           //Setting Editor
+		 			SharedPreferences edit = getSharedPreferences("temp",
+		 					MODE_PRIVATE);
+		 			SharedPreferences.Editor editor = edit.edit();
+		 			editor.putString("temp_id",  data.getStringExtra("id"));			
+		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));			
+		 			editor.commit();
+		 			
+		 			Intent intent = new Intent(welcome.this, join.class); 
+					startActivity(intent);
+					finish();
+					
+					
+			}
+		}
+		
+		
+	}
+
     
  
 	protected Handler mHandler = new Handler() {

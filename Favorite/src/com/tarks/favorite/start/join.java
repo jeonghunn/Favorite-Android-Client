@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import org.apache.http.HttpEntity;
@@ -33,6 +34,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -58,12 +61,13 @@ import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.R.string;
+import com.tarks.favorite.connect.AsyncHttpTask;
 
 public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Imageview
 	ImageView profile;
-//bitmap
-Bitmap profile_bitmap;
+	// bitmap
+	Bitmap profile_bitmap;
 	// RadioGroup
 
 	RadioGroup rg1;
@@ -78,19 +82,19 @@ Bitmap profile_bitmap;
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
-	
-	//Upload
+
+	// Upload
 	private FileInputStream mFileInputStream = null;
 	private URL connectUrl = null;
-	private EditText mEdityEntry; 
-	
+	private EditText mEdityEntry;
+
 	String lineEnd = "\r\n";
 	String twoHyphens = "--";
-	String boundary = "*****";	
+	String boundary = "*****";
 
 	public class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
-	public Bitmap doInBackground(String... param) {
+		public Bitmap doInBackground(String... param) {
 			// TODO Auto-generated method stub
 
 			// Check This Tarks Account Already Have Buldang Account
@@ -127,7 +131,7 @@ Bitmap profile_bitmap;
 				gender = Integer.parseInt(array[4]);
 				// Download Profile image
 				new ImageDownloader().execute(getString(R.string.server_path)
-						+ "files/profile/" + auth_key + ".png");
+						+ "files/profile/" + auth_key + ".jpg");
 				// Set EditText
 				// Country
 
@@ -459,32 +463,29 @@ Bitmap profile_bitmap;
 		}
 
 	}
-	
 
-	private void processEntity(HttpResponse rtnResult)
-	{
-	HttpEntity entity = rtnResult.getEntity();
-			
-	BufferedReader br;
-	String line, result = "";
-			
-	try 
-	{
-	br = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"));
-	while((line = br.readLine()) != null) 
-	{
-	result += line;
-	}
-				
-	Log.i("TEST"," 결과 == " + result);
-				
-	} catch (UnsupportedEncodingException e) {
-	e.printStackTrace();
-	} catch (IllegalStateException e) {
-	e.printStackTrace();
-	} catch (IOException e) {
-	e.printStackTrace();
-	}
+	private void processEntity(HttpResponse rtnResult) {
+		HttpEntity entity = rtnResult.getEntity();
+
+		BufferedReader br;
+		String line, result = "";
+
+		try {
+			br = new BufferedReader(new InputStreamReader(entity.getContent(),
+					"UTF-8"));
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+
+			Log.i("TEST", " 결과 == " + result);
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	String user_srl, name, number, phone_number;
@@ -510,10 +511,9 @@ Bitmap profile_bitmap;
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// get ID
-		
+
 		HttpResponse result = null;
-		
-	
+
 		// Intent intent = getIntent();// 인텐트 받아오고
 
 		SharedPreferences prefs = getSharedPreferences("temp", MODE_PRIVATE);
@@ -567,22 +567,21 @@ Bitmap profile_bitmap;
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQ_CODE_PICK_PICTURE) {
 			if (resultCode == Activity.RESULT_OK) {
-			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
+				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				Intent intent = new Intent(join.this, CropManager.class);
-				   intent.putExtra("uri", data.getData());
-				   startActivityForResult(intent, IMAGE_EDIT);
+				intent.putExtra("uri", data.getData());
+				startActivityForResult(intent, IMAGE_EDIT);
 
 			}
 		}
-		
+
 		if (requestCode == IMAGE_EDIT) {
-			Log.i("Imageresult", "itsok");
+			// Log.i("Imageresult", "itsok");
 			if (resultCode == Activity.RESULT_OK) {
 				byte[] b = data.getByteArrayExtra("image");
-				profile_bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
-			//	Log.i("datasetdata", data.getData().toString() + "ssdsd");
+				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
-
 
 			}
 		}
@@ -625,7 +624,7 @@ Bitmap profile_bitmap;
 			// Setting Editor
 			deletetemp();
 			// Go Back
-			Intent intent = new Intent(join.this, tarks_account_login.class);
+			Intent intent = new Intent(join.this, welcome.class);
 			startActivity(intent);
 			finish();
 		}
@@ -653,6 +652,67 @@ Bitmap profile_bitmap;
 		}).start();
 		return okbutton;
 	}
+
+	public void joinAct() {
+		// set Progressbar
+		setSupportProgressBarIndeterminateVisibility(false);
+		// import EditText
+		EditText edit1 = (EditText) findViewById(R.id.editText1);
+		String s1 = edit1.getText().toString();
+
+		EditText edit2 = (EditText) findViewById(R.id.editText2);
+		String s2 = edit2.getText().toString();
+
+		// EditText edit3 = (EditText) findViewById(R.id.editText3);
+		// String s3 = edit3.getText().toString();
+		// Check Success
+
+		if (myResult.matches("")) {
+			// IF Fail
+			// AlertDialog.Builder builder = new
+			// AlertDialog.Builder(join.this);
+			// builder.setMessage(getString(R.string.error_des))
+			// .setPositiveButton(getString(R.string.yes), null)
+			// .setTitle(getString(R.string.error));
+			// builder.show();
+			//
+			Global.Infoalert(join.this, getString(R.string.error),
+					getString(R.string.error_des), getString(R.string.yes));
+		} else {
+			// Go to Next Step
+
+			String[] array = myResult.split("//");
+			Global.dumpArray(array);
+
+			// Setting Editor
+			SharedPreferences edit = getSharedPreferences("setting",
+					MODE_PRIVATE);
+			SharedPreferences.Editor editor = edit.edit();
+			editor.putString("frist_use_app", "false"); // Ű��,
+			editor.putString("user_srl", array[0]);
+			editor.putString("user_srl_auth", array[1]);
+			editor.putString("name_1", s1);
+			editor.putString("name_2", s2);
+			editor.commit();
+
+			deletetemp();
+			Intent intent = new Intent(join.this, MainActivity.class);
+			startActivity(intent);
+			finish();
+		}
+	}
+
+	protected Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+
+			if (msg.what == 1) {
+				myResult = msg.obj.toString();
+				joinAct();
+
+			}
+
+		}
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -703,13 +763,62 @@ Bitmap profile_bitmap;
 
 						// Register GCM
 						reg_id = Global.GCMReg();
-						Global.SaveBitmapToFileCache(profile_bitmap, "sdcard/favorite/temp/", "profile.jpg");
-				//		Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
+						Global.SaveBitmapToFileCache(profile_bitmap,
+								"sdcard/favorite/temp/", "profile.jpg");
+						// Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
 						
-					
+						// get ID
 
-						// Connection Start
-						new Downloader().execute();
+						SharedPreferences prefs = getSharedPreferences("temp",
+								MODE_PRIVATE);
+						String id = prefs.getString("temp_id", "null");
+
+						// REG ID
+
+						SharedPreferences prefs1 = getSharedPreferences("setting",
+								MODE_PRIVATE);
+
+
+
+						// EditText edit3 = (EditText) findViewById(R.id.editText3);
+						// String s3 = edit3.getText().toString();
+
+						// Make name
+						String[] name = Global.NameBuilder(s1, s2);
+
+						first_name = name[0];
+						last_name = name[1];
+						
+						Log.i("Name", last_name + first_name);
+
+						// Reg id null
+						if (reg_id.matches(""))	reg_id = "null";
+						
+
+
+
+						ArrayList<String> Paramname = new ArrayList<String>();
+						Paramname.add("authcode");
+						Paramname.add("tarks_account");
+						Paramname.add("name_1");
+						Paramname.add("name_2");
+						Paramname.add("gender");
+						Paramname.add("reg_id");
+
+						ArrayList<String> Paramvalue = new ArrayList<String>();
+						Paramvalue.add("642979");
+						Paramvalue.add(id_auth);
+						Paramvalue.add(first_name);
+						Paramvalue.add(last_name);
+						Paramvalue.add(String.valueOf(gender));
+						Paramvalue.add(reg_id);
+
+						ArrayList<String> files = new ArrayList<String>();
+						files.add("sdcard/favorite/temp/profile.jpg");
+
+						new AsyncHttpTask(this, getString(R.string.server_path)
+								+ "member/join.php", mHandler,
+								Paramname, Paramvalue, files, 1);
 
 					} catch (Exception e) {
 						// Show network error

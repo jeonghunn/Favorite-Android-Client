@@ -499,7 +499,6 @@ int drawable tarks_white 0x7f0200b3
 int drawable twitter 0x7f0200b4
 int drawable welcome_background 0x7f0200b5
 int drawable yellow_button 0x7f0200b6
-int id Button01 0x7f040067
 int id CropImageView 0x7f040040
 int id CropOverlayView 0x7f04003d
 int id ImageView_image 0x7f04003c
@@ -597,6 +596,7 @@ int id tableRow2 0x7f04004f
 int id tableRow3 0x7f040050
 int id tableRow4 0x7f040054
 int id tableRow5 0x7f040058
+int id tarks_login 0x7f040067
 int id textView1 0x7f040043
 int id textView2 0x7f040047
 int id textView3 0x7f040048

@@ -109,18 +109,20 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 					"multipart/form-data;boundary=" + boundary);
 
 			// write data
-			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+			OutputStreamWriter dos = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");//EUC-KR");
 
 			// Check it is null
 			if (paramNames != null && paramValues != null) {
 				for (int i = 0; i < paramNames.size(); i++) {
-					dos.writeBytes(twoHyphens + boundary + lineEnd); // 필드 구분자
+					Log.i("value", paramNames.get(i).toString());
+					dos.write(twoHyphens + boundary + lineEnd); // 필드 구분자
 																		// 시작
-					dos.writeBytes("Content-Disposition: form-data; name=\""
+					dos.write("Content-Disposition: form-data; name=\""
 							+ paramNames.get(i) + "\"" + lineEnd);
-					dos.writeBytes(lineEnd);
-					dos.writeBytes(paramValues.get(i).toString());
-					dos.writeBytes(lineEnd);
+					dos.write(lineEnd);
+					dos.write(paramValues.get(i).toString());
+					Log.i("value", paramValues.get(i).toString());
+					dos.write(lineEnd);
 				}
 			}
 
@@ -131,11 +133,11 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 					// fis = new FileInputStream(files.get(files.size()-1));
 					mFileInputStream = new FileInputStream(files.get(i)
 							.toString());
-					Log.d("Test", "mFileInputStream  is " + mFileInputStream);
-					dos.writeBytes(twoHyphens + boundary + lineEnd);
-					dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\""
+					//Log.d("Test", "mFileInputStream  is " + mFileInputStream);
+					dos.write(twoHyphens + boundary + lineEnd);
+					dos.write("Content-Disposition: form-data; name=\"uploadedfile\";filename=\""
 							+ files.get(i).toString() + "\"" + lineEnd);
-					dos.writeBytes(lineEnd);
+					dos.write(lineEnd);
 
 					int bytesAvailable = mFileInputStream.available();
 					int maxBufferSize = 1024;
@@ -149,19 +151,19 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 					// read image
 					while (bytesRead > 0) {
-						dos.write(buffer, 0, bufferSize);
+						dos.write(0);
 						bytesAvailable = mFileInputStream.available();
 						bufferSize = Math.min(bytesAvailable, maxBufferSize);
 						bytesRead = mFileInputStream
 								.read(buffer, 0, bufferSize);
 					}
 
-					dos.writeBytes(lineEnd);
+					dos.write(lineEnd);
 					// ======================end
 				}
 			}
 
-			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+			dos.write(twoHyphens + boundary + twoHyphens + lineEnd);
 
 			if (files != null) {
 				mFileInputStream.close();
