@@ -107,23 +107,29 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			conn.setRequestProperty("Connection", "Keep-Alive");
 			conn.setRequestProperty("Content-Type",
 					"multipart/form-data;boundary=" + boundary);
+			
 
 			// write data
-			OutputStreamWriter dos = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");//EUC-KR");
+			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");//EUC-KR");
 
 			// Check it is null
 			if (paramNames != null && paramValues != null) {
 				for (int i = 0; i < paramNames.size(); i++) {
 					Log.i("value", paramNames.get(i).toString());
-					dos.write(twoHyphens + boundary + lineEnd); // 필드 구분자
+					out.write(twoHyphens + boundary + lineEnd); // 필드 구분자
 																		// 시작
-					dos.write("Content-Disposition: form-data; name=\""
+					out.write("Content-Disposition: form-data; name=\""
 							+ paramNames.get(i) + "\"" + lineEnd);
-					dos.write(lineEnd);
-					dos.write(paramValues.get(i).toString());
+					out.write(lineEnd);
+					out.write(paramValues.get(i).toString());
 					Log.i("value", paramValues.get(i).toString());
-					dos.write(lineEnd);
+					out.write(lineEnd);
+				
+				
+
 				}
+		
 			}
 
 			if (files != null) {
@@ -133,11 +139,11 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 					// fis = new FileInputStream(files.get(files.size()-1));
 					mFileInputStream = new FileInputStream(files.get(i)
 							.toString());
-					//Log.d("Test", "mFileInputStream  is " + mFileInputStream);
-					dos.write(twoHyphens + boundary + lineEnd);
-					dos.write("Content-Disposition: form-data; name=\"uploadedfile\";filename=\""
+					Log.d("Test", "mFileInputStream  is " + mFileInputStream);
+					dos.writeBytes(twoHyphens + boundary + lineEnd);
+					dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\""
 							+ files.get(i).toString() + "\"" + lineEnd);
-					dos.write(lineEnd);
+					dos.writeBytes(lineEnd);
 
 					int bytesAvailable = mFileInputStream.available();
 					int maxBufferSize = 1024;
@@ -151,19 +157,19 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 					// read image
 					while (bytesRead > 0) {
-						dos.write(0);
+						dos.write(buffer, 0, bufferSize);
 						bytesAvailable = mFileInputStream.available();
 						bufferSize = Math.min(bytesAvailable, maxBufferSize);
 						bytesRead = mFileInputStream
 								.read(buffer, 0, bufferSize);
 					}
 
-					dos.write(lineEnd);
+					dos.writeBytes(lineEnd);
 					// ======================end
 				}
 			}
 
-			dos.write(twoHyphens + boundary + twoHyphens + lineEnd);
+			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 
 			if (files != null) {
 				mFileInputStream.close();
@@ -172,6 +178,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			// Log.e("Test" , "File is written");
 
 			dos.flush(); // finish upload...
+			out.flush(); // finish upload...
 
 			// get response
 			int ch;
@@ -190,6 +197,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			// Log.e("Test", "result = " + s);
 
 			dos.close();
+			out.close();
 			// onPostExecute(myResult);
 
 		} catch (Exception e) {
