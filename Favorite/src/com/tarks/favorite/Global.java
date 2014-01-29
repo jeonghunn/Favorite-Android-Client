@@ -78,6 +78,8 @@ public final class Global {
 
 		return hash;
 	}
+	
+	
 
 	// Google Clound Message Registartion
 	public static String GCMReg() {

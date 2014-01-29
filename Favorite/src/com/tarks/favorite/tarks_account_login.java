@@ -94,7 +94,7 @@ public class tarks_account_login extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				Uri uri = Uri
-						.parse("http://tarks.net/index.php?mid=main&act=dispMemberSignUpForm");
+						.parse("https://tarks.net/index.php?mid=main&act=dispMemberSignUpForm");
 				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				startActivity(intent);
 			}

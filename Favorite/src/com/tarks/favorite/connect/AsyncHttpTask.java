@@ -12,6 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import com.tarks.favorite.Global;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
@@ -59,18 +62,21 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 		super.execute("");
 	}
+	
+	
 
 	@Override
 	protected String doInBackground(String... urls) {
 
 		// urls[0]의 URL부터 데이터를 읽어와 String으로 리턴
+	//	Log.i("URL", url);
 		return Task(url);
 
 	}
 
 	@Override
 	public void onPreExecute() {
-		Log.i("Test", "onPreExecute Called on global");
+		//Log.i("Test", "onPreExecute Called on global");
 
 	}
 
@@ -213,9 +219,13 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			
 			
 		}
+		
+		
 
 		return null;
 
 	}
+	
+
 
 }
