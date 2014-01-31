@@ -57,6 +57,9 @@ public final class Global {
 	 //private EditText mEdityEntry; 
 	//ModApplication
 	static ModApplication mod = ModApplication.getInstance();
+	
+	//image byte
+	public static byte[] image;
 
 	
 	private Global() {

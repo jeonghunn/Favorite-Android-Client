@@ -464,30 +464,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 	}
 
-	private void processEntity(HttpResponse rtnResult) {
-		HttpEntity entity = rtnResult.getEntity();
-
-		BufferedReader br;
-		String line, result = "";
-
-		try {
-			br = new BufferedReader(new InputStreamReader(entity.getContent(),
-					"UTF-8"));
-			while ((line = br.readLine()) != null) {
-				result += line;
-			}
-
-			Log.i("TEST", " 결과 == " + result);
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	String user_srl, name, number, phone_number;
 	String regId;
 	String id, id_auth;
@@ -512,7 +488,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		// get ID
 
-		HttpResponse result = null;
+		// HttpResponse result = null;
 
 		// Intent intent = getIntent();// 인텐트 받아오고
 
@@ -578,11 +554,12 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		if (requestCode == IMAGE_EDIT) {
 			// Log.i("Imageresult", "itsok");
 			if (resultCode == Activity.RESULT_OK) {
-				byte[] b = data.getByteArrayExtra("image");
+				byte[] b = Global.image;
 				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
 				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
-
+				//Set global image null
+				Global.image = null;
 			}
 		}
 	}
@@ -655,7 +632,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 	public void joinAct() {
 		// set Progressbar
-		setSupportProgressBarIndeterminateVisibility(false);
+
 		// import EditText
 		EditText edit1 = (EditText) findViewById(R.id.editText1);
 		String s1 = edit1.getText().toString();
@@ -707,6 +684,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
+				// Stop progress bar
+				setSupportProgressBarIndeterminateVisibility(false);
 				joinAct();
 
 			}
@@ -736,6 +715,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				okbutton = false;
 				ButtonEnable(1);
 
+			
 				// import EditText
 				EditText edit1 = (EditText) findViewById(R.id.editText1);
 				String s1 = edit1.getText().toString();
@@ -745,18 +725,15 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// no value on name
 				if (s1.matches("") || s2.matches("")) {
 					// No Value
-					// AlertDialog.Builder builder = new AlertDialog.Builder(
-					// join.this);
-					// builder.setMessage(getString(R.string.noname))
-					// .setPositiveButton(getString(R.string.yes), null)
-					// .setTitle(getString(R.string.error));
-					// builder.show();
 					Global.Infoalert(this, getString(R.string.error),
 							getString(R.string.noname), getString(R.string.yes));
 				} else {
 					// dont make error
 
 					try {
+						
+						// Start Progressbar
+						setSupportProgressBarIndeterminateVisibility(true);
 
 						// Show Registering toast
 						Global.toast(getString(R.string.registering));
@@ -766,7 +743,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Global.SaveBitmapToFileCache(profile_bitmap,
 								"sdcard/favorite/temp/", "profile.jpg");
 						// Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
-						
+
 						// get ID
 
 						SharedPreferences prefs = getSharedPreferences("temp",
@@ -775,12 +752,11 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						// REG ID
 
-						SharedPreferences prefs1 = getSharedPreferences("setting",
-								MODE_PRIVATE);
+						SharedPreferences prefs1 = getSharedPreferences(
+								"setting", MODE_PRIVATE);
 
-
-
-						// EditText edit3 = (EditText) findViewById(R.id.editText3);
+						// EditText edit3 = (EditText)
+						// findViewById(R.id.editText3);
 						// String s3 = edit3.getText().toString();
 
 						// Make name
@@ -788,14 +764,12 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						first_name = name[0];
 						last_name = name[1];
-						
-						Log.i("Name", last_name + first_name);
+
+				//		Log.i("Name", last_name + first_name);
 
 						// Reg id null
-						if (reg_id.matches(""))	reg_id = "null";
-						
-
-
+						if (reg_id.matches(""))
+							reg_id = "null";
 
 						ArrayList<String> Paramname = new ArrayList<String>();
 						Paramname.add("authcode");
@@ -817,8 +791,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						files.add("sdcard/favorite/temp/profile.jpg");
 
 						new AsyncHttpTask(this, getString(R.string.server_path)
-								+ "member/join.php", mHandler,
-								Paramname, Paramvalue, files, 1);
+								+ "member/join.php", mHandler, Paramname,
+								Paramvalue, files, 1);
 
 					} catch (Exception e) {
 						// Show network error

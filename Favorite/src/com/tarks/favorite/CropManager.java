@@ -8,6 +8,7 @@ import java.io.InputStream;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -258,10 +259,13 @@ public class CropManager extends SherlockActivity {
 			croppedImage.compress(CompressFormat.JPEG, 100, stream); 
 			byte[] b = stream.toByteArray();
 
+			
+	Global.image = b;
+ 			
 			  // Intent 생성
 			   Intent intent = new Intent();
 			   // 생성한 Intent에 데이터 입력
-			   intent.putExtra("image", b);
+//			   intent.putExtra("image", b);
 			   // 결과값 설정(결과 코드, 인텐트)
 			   this.setResult(RESULT_OK,intent);
 			   // 본 Activity 종료
