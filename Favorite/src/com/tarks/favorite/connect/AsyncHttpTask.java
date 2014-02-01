@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import com.tarks.favorite.Global;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
+import com.tarks.favorite.global.Global;
 
 import android.content.Context;
 import android.os.AsyncTask;

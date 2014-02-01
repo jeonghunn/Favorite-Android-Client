@@ -37,6 +37,8 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.edmodo.cropper.CropImageView;
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Menu;
@@ -260,7 +262,7 @@ public class CropManager extends SherlockActivity {
 			byte[] b = stream.toByteArray();
 
 			
-	Global.image = b;
+	Globalvariable.image = b;
  			
 			  // Intent 생성
 			   Intent intent = new Intent();

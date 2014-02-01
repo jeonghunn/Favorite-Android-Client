@@ -55,6 +55,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.start.join;
 
 public class tarks_account_login extends SherlockActivity {
@@ -63,7 +65,7 @@ public class tarks_account_login extends SherlockActivity {
 	String myId, myPWord, myTitle, mySubject, myResult;
 	EditText edit1, edit2;
 	String s1, s2;
-	boolean okbutton = true;
+//	boolean okbutton = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -134,29 +136,6 @@ public class tarks_account_login extends SherlockActivity {
 		}
 	};
 
-	public boolean ButtonEnable(final int s) {
-		new Thread(new Runnable() {
-			public void run() {
-				int i = 0;
-				while (true) {
-					if (i > s) {
-						okbutton = true;
-						break;
-					} else {
-						try {
-							Thread.sleep(1000);
-							i += 1;
-						} catch (InterruptedException ie) {
-							ie.printStackTrace();
-						}
-					}
-
-				}
-			}
-		}).start();
-		return okbutton;
-	}
-
 	public void TarksAccountLogin() {
 		// Set Progress
 		setSupportProgressBarIndeterminateVisibility(true);
@@ -200,9 +179,9 @@ public class tarks_account_login extends SherlockActivity {
 		switch (item.getItemId()) {
 		case R.id.yes:
 			// Check okbutton
-			if (okbutton == true) {
-				okbutton = false;
-				ButtonEnable(1);
+			if (Globalvariable.okbutton == true) {
+				Globalvariable.okbutton = false;
+				Global.ButtonEnable(1);
 				edit1 = (EditText) findViewById(R.id.editText1);
 				s1 = edit1.getText().toString();
 

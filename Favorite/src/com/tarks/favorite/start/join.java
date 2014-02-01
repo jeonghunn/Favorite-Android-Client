@@ -56,12 +56,13 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.CropManager;
-import com.tarks.favorite.Global;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.R.string;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 
 public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Imageview
@@ -78,19 +79,13 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// User Auth key
 	String auth_key;
 	int gender = 1; // Default gender is male
-	boolean okbutton = true;
+	//boolean okbutton = true;
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
 
-	// Upload
-	private FileInputStream mFileInputStream = null;
-	private URL connectUrl = null;
-	private EditText mEdityEntry;
-
-	String lineEnd = "\r\n";
-	String twoHyphens = "--";
-	String boundary = "*****";
+	//Profile picture changed
+	boolean profile_changed = false;
 
 	public class InfoDown extends AsyncTask<String, Void, Bitmap> {
 
@@ -156,9 +151,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 				// get ID
 				// 설정 값 불러오기
-				SharedPreferences prefs = getSharedPreferences("temp",
-						MODE_PRIVATE);
-				String id = prefs.getString("temp_id", "null");
+				String id = Globalvariable.temp_id;
 
 				// --------------------------
 				// URL 설정하고 접속하기
@@ -293,11 +286,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		private Bitmap downloadBitmap(String url) {
 			try {
 
-				// get ID
 
-				SharedPreferences prefs = getSharedPreferences("temp",
-						MODE_PRIVATE);
-				String id = prefs.getString("temp_id", "null");
 
 				// REG ID
 
@@ -492,10 +481,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		// Intent intent = getIntent();// 인텐트 받아오고
 
-		SharedPreferences prefs = getSharedPreferences("temp", MODE_PRIVATE);
-		id = prefs.getString("temp_id", "");
-		id_auth = prefs.getString("temp_id_auth", "null");
 
+		id = Globalvariable.temp_id;
+		id_auth = Globalvariable.temp_id_auth;
 		// RadioButton
 		rg1 = (RadioGroup) findViewById(R.id.radioGroup1);
 		rg1.setOnCheckedChangeListener(this);
@@ -523,7 +511,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		TextView ids = (TextView) findViewById(R.id.textView2);
 		ids.setText(id);
 
-		if (!id.matches("")) {
+		if (id != null) {
 			// Connection Start
 			try {
 				new InfoDown().execute();
@@ -554,12 +542,14 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		if (requestCode == IMAGE_EDIT) {
 			// Log.i("Imageresult", "itsok");
 			if (resultCode == Activity.RESULT_OK) {
-				byte[] b = Global.image;
+				byte[] b = Globalvariable.image;
 				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
 				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
+				//Profile changed
+				profile_changed = true;
 				//Set global image null
-				Global.image = null;
+				Globalvariable.image = null;
 			}
 		}
 	}
@@ -583,12 +573,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	}
 
 	public void deletetemp() {
-		// Setting Editor DeleteTemp
-		SharedPreferences edit = getSharedPreferences("temp", MODE_PRIVATE);
-		SharedPreferences.Editor editor = edit.edit();
-		editor.remove("temp_id");
-		editor.remove("temp_id_auth");
-		editor.commit();
+Globalvariable.temp_id = null;
+Globalvariable.temp_id_auth = null;
+		
 	}
 
 	// 백키를 눌렀을때의 반응.
@@ -607,28 +594,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		}
 	}
 
-	public boolean ButtonEnable(final int s) {
-		new Thread(new Runnable() {
-			public void run() {
-				int i = 0;
-				while (true) {
-					if (i > s) {
-						okbutton = true;
-						break;
-					} else {
-						try {
-							Thread.sleep(1000);
-							i += 1;
-						} catch (InterruptedException ie) {
-							ie.printStackTrace();
-						}
-					}
 
-				}
-			}
-		}).start();
-		return okbutton;
-	}
 
 	public void joinAct() {
 		// set Progressbar
@@ -710,10 +676,10 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			onBackPressed();
 			return true;
 		case R.id.yes:
-			if (okbutton == true) {
+			if (Globalvariable.okbutton == true) {
 				// Set ok button disable
-				okbutton = false;
-				ButtonEnable(1);
+				Globalvariable.okbutton = false;
+				Global.ButtonEnable(1);
 
 			
 				// import EditText
@@ -740,25 +706,10 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						// Register GCM
 						reg_id = Global.GCMReg();
-						Global.SaveBitmapToFileCache(profile_bitmap,
-								"sdcard/favorite/temp/", "profile.jpg");
-						// Global.DoFileUpload("sdcard/favorite/temp/profile.jpg");
+		
 
-						// get ID
 
-						SharedPreferences prefs = getSharedPreferences("temp",
-								MODE_PRIVATE);
-						String id = prefs.getString("temp_id", "null");
-
-						// REG ID
-
-						SharedPreferences prefs1 = getSharedPreferences(
-								"setting", MODE_PRIVATE);
-
-						// EditText edit3 = (EditText)
-						// findViewById(R.id.editText3);
-						// String s3 = edit3.getText().toString();
-
+					
 						// Make name
 						String[] name = Global.NameBuilder(s1, s2);
 
@@ -787,9 +738,17 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramvalue.add(String.valueOf(gender));
 						Paramvalue.add(reg_id);
 
-						ArrayList<String> files = new ArrayList<String>();
-						files.add("sdcard/favorite/temp/profile.jpg");
-
+						//Files null if no profile changed
+						ArrayList<String> files = null;
+						if(profile_changed == true){
+							Global.SaveBitmapToFileCache(profile_bitmap,
+									getCacheDir().toString(), "/profile.jpg");
+						 files = new ArrayList<String>();
+							files.add(getCacheDir().toString() + "/profile.jpg");
+						}
+						
+					
+						
 						new AsyncHttpTask(this, getString(R.string.server_path)
 								+ "member/join.php", mHandler, Paramname,
 								Paramvalue, files, 1);

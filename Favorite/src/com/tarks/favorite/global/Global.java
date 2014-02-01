@@ -1,4 +1,4 @@
-package com.tarks.favorite;
+package com.tarks.favorite.global;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,6 +42,9 @@ import java.util.TimerTask;
 import org.apache.http.HttpResponse;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.ModApplication;
+import com.tarks.favorite.R;
+import com.tarks.favorite.R.string;
 import com.tarks.favorite.start.join;
 
 public final class Global {
@@ -51,15 +54,11 @@ public final class Global {
 	// public static boolean isFirstRuned = true;
 	// public static boolean isFirstMain = true;
 
-	//Upload
-	private static FileInputStream mFileInputStream = null;
-	private static URL connectUrl = null;
 	 //private EditText mEdityEntry; 
 	//ModApplication
 	static ModApplication mod = ModApplication.getInstance();
 	
-	//image byte
-	public static byte[] image;
+
 
 	
 	private Global() {
@@ -238,6 +237,29 @@ public final class Global {
             }
         }
   }
+	
+	public static boolean ButtonEnable(final int s) {
+		new Thread(new Runnable() {
+			public void run() {
+				int i = 0;
+				while (true) {
+					if (i > s) {
+						Globalvariable.okbutton = true;
+						break;
+					} else {
+						try {
+							Thread.sleep(1000);
+							i += 1;
+						} catch (InterruptedException ie) {
+							ie.printStackTrace();
+						}
+					}
+
+				}
+			}
+		}).start();
+		return Globalvariable.okbutton;
+	}
 	
 	
 	//InternetConnection Error Message

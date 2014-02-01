@@ -37,10 +37,11 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.CropManager;
-import com.tarks.favorite.Global;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 
 
 
@@ -201,12 +202,14 @@ public class welcome extends SherlockActivity {
 			if (resultCode == Activity.RESULT_OK) {
 		     	  //Save auth key to temp
 		           //Setting Editor
-		 			SharedPreferences edit = getSharedPreferences("temp",
-		 					MODE_PRIVATE);
-		 			SharedPreferences.Editor editor = edit.edit();
-		 			editor.putString("temp_id",  data.getStringExtra("id"));			
-		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));			
-		 			editor.commit();
+				Globalvariable.temp_id = data.getStringExtra("id");
+				Globalvariable.temp_id_auth = data.getStringExtra("auth_code");
+//		 			SharedPreferences edit = getSharedPreferences("temp",
+//		 					MODE_PRIVATE);
+//		 			SharedPreferences.Editor editor = edit.edit();
+//		 			editor.putString("temp_id",  data.getStringExtra("id"));			
+//		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));			
+//		 			editor.commit();
 		 			
 		 			Intent intent = new Intent(welcome.this, join.class); 
 					startActivity(intent);

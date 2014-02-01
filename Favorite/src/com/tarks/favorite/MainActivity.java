@@ -56,6 +56,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.global.Global;
 import com.tarks.favorite.start.welcome;
 
 public class MainActivity extends SherlockActivity {
