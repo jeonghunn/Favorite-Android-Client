@@ -126,7 +126,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				gender = Integer.parseInt(array[4]);
 				// Download Profile image
 				new ImageDownloader().execute(getString(R.string.server_path)
-						+ "files/profile/" + auth_key + ".jpg");
+						+ "files/profile/" + user_srl + ".jpg");
 				// Set EditText
 				// Country
 
@@ -214,172 +214,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 	}
 
-	private class Downloader extends AsyncTask<String, Void, Bitmap> {
-
-		protected Bitmap doInBackground(String... param) {
-			// TODO Auto-generated method stub
-			// Error Login
-
-			return downloadBitmap(myId);
-		}
-
-		@Override
-		protected void onPreExecute() {
-			Log.i("Async-Example", "onPreExecute Called");
-			// set Progressbar
-			setSupportProgressBarIndeterminateVisibility(true);
-
-		}
-
-		protected void onPostExecute(Bitmap result) {
-			Log.i("Async-Example", "onPostExecute Called");
-			// set Progressbar
-			setSupportProgressBarIndeterminateVisibility(false);
-			// import EditText
-			EditText edit1 = (EditText) findViewById(R.id.editText1);
-			String s1 = edit1.getText().toString();
-
-			EditText edit2 = (EditText) findViewById(R.id.editText2);
-			String s2 = edit2.getText().toString();
-
-			// EditText edit3 = (EditText) findViewById(R.id.editText3);
-			// String s3 = edit3.getText().toString();
-			// Check Success
-
-			if (myResult.matches("")) {
-				// IF Fail
-				// AlertDialog.Builder builder = new
-				// AlertDialog.Builder(join.this);
-				// builder.setMessage(getString(R.string.error_des))
-				// .setPositiveButton(getString(R.string.yes), null)
-				// .setTitle(getString(R.string.error));
-				// builder.show();
-				//
-				Global.Infoalert(join.this, getString(R.string.error),
-						getString(R.string.error_des), getString(R.string.yes));
-			} else {
-				// Go to Next Step
-
-				String[] array = myResult.split("//");
-				Global.dumpArray(array);
-
-				// Setting Editor
-				SharedPreferences edit = getSharedPreferences("setting",
-						MODE_PRIVATE);
-				SharedPreferences.Editor editor = edit.edit();
-				editor.putString("frist_use_app", "false"); // Ű��,
-				editor.putString("user_srl", array[0]);
-				editor.putString("user_srl_auth", array[1]);
-				editor.putString("name_1", s1);
-				editor.putString("name_2", s2);
-				editor.commit();
-
-				deletetemp();
-				Intent intent = new Intent(join.this, MainActivity.class);
-				startActivity(intent);
-				finish();
-
-			}
-			// Set ok button enable
-		}
-
-		private Bitmap downloadBitmap(String url) {
-			try {
-
-
-
-				// REG ID
-
-				SharedPreferences prefs1 = getSharedPreferences("setting",
-						MODE_PRIVATE);
-
-				// import EditText
-				EditText edit1 = (EditText) findViewById(R.id.editText1);
-				String s1 = edit1.getText().toString();
-
-				EditText edit2 = (EditText) findViewById(R.id.editText2);
-				String s2 = edit2.getText().toString();
-
-				// EditText edit3 = (EditText) findViewById(R.id.editText3);
-				// String s3 = edit3.getText().toString();
-
-				// Make name
-				String[] name = Global.NameBuilder(s1, s2);
-
-				first_name = name[0];
-				last_name = name[1];
-
-				// Reg id null
-				if (reg_id.matches("")) {
-					reg_id = "null";
-				}
-
-				// --------------------------
-				// URL 설정하고 접속하기
-				// --------------------------
-				URL url1 = new URL(getString(R.string.server_path)
-						+ "member/join.php"); // URL
-				// 설정
-				HttpURLConnection http = (HttpURLConnection) url1
-						.openConnection(); // 접속
-
-				// --------------------------
-				// 전송 모드 설정 - 기본적인 설정이다
-				// --------------------------
-				http.setDefaultUseCaches(false);
-				http.setDoInput(true); // 서버에서 읽기 모드 지정
-				http.setDoOutput(true); // 서버로 쓰기 모드 지정
-				http.setRequestMethod("POST"); // 전송 방식은 POST
-
-				// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
-				http.setRequestProperty("content-type",
-						"application/x-www-form-urlencoded");
-				// --------------------------
-				// 서버로 값 전송
-				// --------------------------
-				StringBuffer buffer = new StringBuffer();
-				buffer.append("authcode").append("=").append("642979")
-						.append("&"); // php 변수에 값 대입
-				buffer.append("tarks_account").append("=").append(id_auth)
-						.append("&");
-				buffer.append("name_1").append("=").append(first_name)
-						.append("&");
-				buffer.append("name_2").append("=").append(last_name)
-						.append("&");
-				buffer.append("gender").append("=").append(gender).append("&");
-				buffer.append("reg_id").append("=").append(reg_id);
-
-				OutputStreamWriter outStream = new OutputStreamWriter(
-						http.getOutputStream(), "utf-8");
-				PrintWriter writer = new PrintWriter(outStream);
-				writer.write(buffer.toString());
-				writer.flush();
-				// --------------------------
-				// 서버에서 전송받기
-				// --------------------------
-				InputStreamReader tmp = new InputStreamReader(
-						http.getInputStream(), "EUC-KR");
-				BufferedReader reader = new BufferedReader(tmp);
-				StringBuilder builder = new StringBuilder();
-				String str;
-
-				while ((str = reader.readLine()) != null) { // 서버에서 라인단위로 보내줄
-															// 것이므로 라인단위로 읽는다
-					builder.append(str); // View에 표시하기 위해 라인 구분자 추가
-				}
-				myResult = builder.toString(); // 전송결과를 전역 변수에 저장
-
-			} catch (MalformedURLException e) {
-				//
-			} catch (IOException e) {
-				//
-			}
-
-			return null;
-		}
-
-	}
-
+	
 	private class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 
 		protected Bitmap doInBackground(String... param) {
@@ -609,7 +444,7 @@ Globalvariable.temp_id_auth = null;
 		// EditText edit3 = (EditText) findViewById(R.id.editText3);
 		// String s3 = edit3.getText().toString();
 		// Check Success
-
+try{
 		if (myResult.matches("")) {
 			// IF Fail
 			// AlertDialog.Builder builder = new
@@ -643,6 +478,11 @@ Globalvariable.temp_id_auth = null;
 			startActivity(intent);
 			finish();
 		}
+		
+}catch (Exception e){
+	Global.Infoalert(join.this, getString(R.string.error),
+			getString(R.string.error_des), getString(R.string.yes));
+}
 	}
 
 	protected Handler mHandler = new Handler() {

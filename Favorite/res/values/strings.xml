@@ -2,10 +2,10 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0</string>
-    <string name="build">109</string>
+    <string name="ver">1.0.0.1125</string>
+    <string name="build">1125</string>
     <string name="verkind">Beta 2</string>
-    <string name="copyright">Copyrightⓒ. 2013. TarksTeam.</string>
+    <string name="copyright">Copyrightⓒ. 2014. TarksTeam.</string>
     <string name="lang">en</string>
     <string name="server_path">http://tarks.net/favorite/</string>
     <string name="action_settings">Settings</string>

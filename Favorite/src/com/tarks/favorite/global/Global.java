@@ -1,51 +1,24 @@
 package com.tarks.favorite.global;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
-
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.*;
 import java.math.BigInteger;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.apache.http.HttpResponse;
 
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
-import com.tarks.favorite.R.string;
-import com.tarks.favorite.start.join;
 
 public final class Global {
 
@@ -140,6 +113,19 @@ public final class Global {
 			connect = ni.isConnected();
 		}
 		return connect;
+	}
+	
+	//Default Connection Error
+	public static void ConnectionError(Context cx){
+		if (InternetConnection(1) == true || InternetConnection(0) == true) {
+			Infoalert(cx, cx.getString(R.string.error),
+					cx.getString(R.string.error_des), cx.getString(R.string.yes));
+		} else{
+		Infoalert(cx, cx.getString(R.string.networkerror),
+					cx.getString(R.string.networkerrord),
+					cx.getString(R.string.yes));
+
+		}
 	}
 	
 	//Make name
@@ -238,6 +224,7 @@ public final class Global {
         }
   }
 	
+	//This is prevent too many server requests
 	public static boolean ButtonEnable(final int s) {
 		new Thread(new Runnable() {
 			public void run() {
@@ -260,6 +247,8 @@ public final class Global {
 		}).start();
 		return Globalvariable.okbutton;
 	}
+	
+	
 	
 	
 	//InternetConnection Error Message

@@ -84,9 +84,10 @@ public class tarks_account_login extends SherlockActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(tarks_account_login.this, join.class);
+				Uri uri = Uri
+						.parse("https://tarks.net/index.php?mid=main&act=dispMemberFindAccount");
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				startActivity(intent);
-				finish();
 			}
 		});
 
@@ -102,13 +103,23 @@ public class tarks_account_login extends SherlockActivity {
 			}
 		});
 	}
+	
+	public void ConnectionError(){
+		Global.ConnectionError(this);
+	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
+			//Stop progressbar
+			setSupportProgressBarIndeterminateVisibility(false);
+			
+			if (msg.what == -1) {
+				ConnectionError();
+				
+			}
 
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
-				setSupportProgressBarIndeterminateVisibility(false);
 				if (myResult.matches("")) {
 					// Error Login
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
@@ -206,9 +217,7 @@ public class tarks_account_login extends SherlockActivity {
 					// Log.i("ERROR", "App has been error");
 					// System.out.println();
 					// Not Connected To Internet
-					Global.Infoalert(this, getString(R.string.networkerror),
-							getString(R.string.networkerrord),
-							getString(R.string.yes));
+					ConnectionError();
 
 				}
 			}

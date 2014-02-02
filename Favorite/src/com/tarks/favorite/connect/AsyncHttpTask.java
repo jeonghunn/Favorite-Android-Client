@@ -62,21 +62,19 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 		super.execute("");
 	}
-	
-	
 
 	@Override
 	protected String doInBackground(String... urls) {
 
 		// urls[0]의 URL부터 데이터를 읽어와 String으로 리턴
-	//	Log.i("URL", url);
+		// Log.i("URL", url);
 		return Task(url);
 
 	}
 
 	@Override
 	public void onPreExecute() {
-		//Log.i("Test", "onPreExecute Called on global");
+		// Log.i("Test", "onPreExecute Called on global");
 
 	}
 
@@ -113,29 +111,27 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			conn.setRequestProperty("Connection", "Keep-Alive");
 			conn.setRequestProperty("Content-Type",
 					"multipart/form-data;boundary=" + boundary);
-			
 
 			// write data
 			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");//EUC-KR");
+			OutputStreamWriter out = new OutputStreamWriter(
+					conn.getOutputStream(), "UTF-8");// EUC-KR");
 
 			// Check it is null
 			if (paramNames != null && paramValues != null) {
 				for (int i = 0; i < paramNames.size(); i++) {
 					Log.i("value", paramNames.get(i).toString());
 					out.write(twoHyphens + boundary + lineEnd); // 필드 구분자
-																		// 시작
+																// 시작
 					out.write("Content-Disposition: form-data; name=\""
 							+ paramNames.get(i) + "\"" + lineEnd);
 					out.write(lineEnd);
 					out.write(paramValues.get(i).toString());
 					Log.i("value", paramValues.get(i).toString());
 					out.write(lineEnd);
-				
-				
 
 				}
-		
+
 			}
 
 			if (files != null) {
@@ -211,21 +207,13 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			// TODO: handle exception
 			// Infoalert(context, mod.getString(R.string.error),
 			// mod.getString(R.string.error_des), mod.getString(R.string.yes));
-			
-			Message msg = handler.obtainMessage();
-			msg.what = -1;
-			msg.obj = e;
-			handler.sendMessage(msg);
-			
-			
+//Change to error code
+			handlernum = -1;
+
 		}
-		
-		
 
 		return null;
 
 	}
-	
-
 
 }
