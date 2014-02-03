@@ -6,7 +6,7 @@ public final class Globalvariable {
 	
 	//temp
 	public static String temp_id;
-	public static String temp_id_auth;
+	public static String temp_id_auth = "null";
 	
 	//OKButton enable
 	public static boolean okbutton = true;

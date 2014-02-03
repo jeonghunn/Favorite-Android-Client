@@ -61,6 +61,7 @@ import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
 import com.tarks.favorite.R.string;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
@@ -79,30 +80,17 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// User Auth key
 	String auth_key;
 	int gender = 1; // Default gender is male
-	//boolean okbutton = true;
+	// boolean okbutton = true;
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
 
-	//Profile picture changed
+	// Profile picture changed
 	boolean profile_changed = false;
 
-	public class InfoDown extends AsyncTask<String, Void, Bitmap> {
+	public void InfoDownAct() {
 
-		public Bitmap doInBackground(String... param) {
-			// TODO Auto-generated method stub
-
-			// Check This Tarks Account Already Have Buldang Account
-			return downloadBitmap(myId);
-
-		}
-
-		@Override
-		public void onPreExecute() {
-			// Log.i("Async-Example", "onPreExecute Called");
-		}
-
-		public void onPostExecute(Bitmap result) {
+		try {
 			// Log.i("Async-Example", "onPostExecute Called");
 			// import EditText
 			EditText edit1 = (EditText) findViewById(R.id.editText1);
@@ -125,8 +113,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				name_2 = array[3];
 				gender = Integer.parseInt(array[4]);
 				// Download Profile image
-				new ImageDownloader().execute(getString(R.string.server_path)
-						+ "files/profile/" + user_srl + ".jpg");
+				new ImageDownloader(this, getString(R.string.server_path)
+						+ "files/profile/" + user_srl + ".jpg", mHandler, 3);
 				// Set EditText
 				// Country
 
@@ -144,153 +132,32 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// if null
 			}
 
+		} catch (Exception e) {
+			Global.Infoalert(join.this, getString(R.string.error),
+					getString(R.string.error_des), getString(R.string.yes));
 		}
-
-		public Bitmap downloadBitmap(String url) {
-			try {
-
-				// get ID
-				// 설정 값 불러오기
-				String id = Globalvariable.temp_id;
-
-				// --------------------------
-				// URL 설정하고 접속하기
-				// --------------------------
-				URL url1 = new URL(getString(R.string.server_path)
-						+ "member/tarks_get_member_info.php"); // URL
-				// 설정
-				HttpURLConnection http = (HttpURLConnection) url1
-						.openConnection(); // 접속
-
-				// --------------------------
-				// 전송 모드 설정 - 기본적인 설정이다
-				// --------------------------
-				http.setDefaultUseCaches(false);
-				http.setDoInput(true); // 서버에서 읽기 모드 지정
-				http.setDoOutput(true); // 서버로 쓰기 모드 지정
-				http.setRequestMethod("POST"); // 전송 방식은 POST
-
-				// 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
-				http.setRequestProperty("content-type",
-						"application/x-www-form-urlencoded");
-				// --------------------------
-				// 서버로 값 전송
-				// --------------------------
-				StringBuffer buffer = new StringBuffer();
-				buffer.append("authcode").append("=").append("642979")
-						.append("&"); // php 변수에 값 대입
-				buffer.append("tarks_account").append("=").append(id);
-
-				OutputStreamWriter outStream = new OutputStreamWriter(
-						http.getOutputStream(), "utf-8");
-				PrintWriter writer = new PrintWriter(outStream);
-				writer.write(buffer.toString());
-				writer.flush();
-				// --------------------------
-				// 서버에서 전송받기
-				// --------------------------
-				InputStreamReader tmp = new InputStreamReader(
-						http.getInputStream(), "utf-8");
-				BufferedReader reader = new BufferedReader(tmp);
-				StringBuilder builder = new StringBuilder();
-				String str;
-
-				while ((str = reader.readLine()) != null) { // 서버에서 라인단위로
-															// 보내줄
-					builder.append(str); // 것이므로 라인단위로 읽는다
-					// builder.append(str + "\n"); // View에 표시하기 위해 라인 구분자
-					// 추가
-				}
-				infoResult = builder.toString(); // 전송결과를 전역 변수에 저장
-
-			} catch (MalformedURLException e) {
-				//
-			} catch (IOException e) {
-				//
-			}
-
-			return null;
-		}
-
 	}
 
-	
-	private class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+	public void InfoDown() {
+		String id = Globalvariable.temp_id;
 
-		protected Bitmap doInBackground(String... param) {
-			// TODO Auto-generated method stub
-			return downloadBitmap(param[0]);
-		}
+		ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("tarks_account");
 
-		@Override
-		protected void onPreExecute() {
-			Log.i("Async-Example", "onPreExecute Called");
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add(id);
 
-		}
-
-		protected void onPostExecute(Bitmap result) {
-			Log.i("Async-Example", "onPostExecute Called");
-			profile.setImageBitmap(result);
-			// simpleWaitDialog.dismiss();
-
-		}
-
-		private Bitmap downloadBitmap(String url) {
-			// initilize the default HTTP client object
-			final DefaultHttpClient client = new DefaultHttpClient();
-
-			// forming a HttoGet request
-			final HttpGet getRequest = new HttpGet(url);
-			try {
-
-				HttpResponse response = client.execute(getRequest);
-
-				// check 200 OK for success
-				final int statusCode = response.getStatusLine().getStatusCode();
-
-				if (statusCode != HttpStatus.SC_OK) {
-					Log.w("ImageDownloader", "Error " + statusCode
-							+ " while retrieving bitmap from " + url);
-					return null;
-
-				}
-
-				final HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					InputStream inputStream = null;
-					try {
-						// getting contents from the stream
-						inputStream = entity.getContent();
-
-						// decoding stream data back into image Bitmap that
-						// android understands
-						final Bitmap bitmap = BitmapFactory
-								.decodeStream(inputStream);
-
-						return bitmap;
-					} finally {
-						if (inputStream != null) {
-							inputStream.close();
-						}
-						entity.consumeContent();
-					}
-				}
-			} catch (Exception e) {
-				// You Could provide a more explicit error message for
-				// IOException
-				getRequest.abort();
-				Log.e("ImageDownloader", "Something went wrong while"
-						+ " retrieving bitmap from " + url + e.toString());
-			}
-
-			return null;
-		}
-
+		new AsyncHttpTask(this, getString(R.string.server_path)
+				+ "member/tarks_get_member_info.php", mHandler, Paramname,
+				Paramvalue, null, 2);
 	}
 
 	String user_srl, name, number, phone_number;
 	String regId;
-	String id, id_auth;
+	String id;
+	String id_auth;
 	String reg_id;
 	String myId, myPWord, myTitle, mySubject, myResult;
 	String infoResult;
@@ -315,7 +182,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		// HttpResponse result = null;
 
 		// Intent intent = getIntent();// 인텐트 받아오고
-
 
 		id = Globalvariable.temp_id;
 		id_auth = Globalvariable.temp_id_auth;
@@ -345,19 +211,12 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
 		ids.setText(id);
+		
+
 
 		if (id != null) {
 			// Connection Start
-			try {
-				new InfoDown().execute();
-			} catch (Exception e) {
-				// Not Connected To Internet
-				AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
-				builder.setMessage(getString(R.string.networkerrord))
-						.setPositiveButton(getString(R.string.yes), null)
-						.setTitle(getString(R.string.networkerror));
-				builder.show();
-			}
+			InfoDown();
 		}
 
 	}
@@ -381,9 +240,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
 				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
-				//Profile changed
+				// Profile changed
 				profile_changed = true;
-				//Set global image null
+				// Set global image null
 				Globalvariable.image = null;
 			}
 		}
@@ -408,9 +267,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	}
 
 	public void deletetemp() {
-Globalvariable.temp_id = null;
-Globalvariable.temp_id_auth = null;
-		
+		Globalvariable.temp_id = null;
+		Globalvariable.temp_id_auth = null;
+
 	}
 
 	// 백키를 눌렀을때의 반응.
@@ -429,8 +288,6 @@ Globalvariable.temp_id_auth = null;
 		}
 	}
 
-
-
 	public void joinAct() {
 		// set Progressbar
 
@@ -444,56 +301,77 @@ Globalvariable.temp_id_auth = null;
 		// EditText edit3 = (EditText) findViewById(R.id.editText3);
 		// String s3 = edit3.getText().toString();
 		// Check Success
-try{
-		if (myResult.matches("")) {
-			// IF Fail
-			// AlertDialog.Builder builder = new
-			// AlertDialog.Builder(join.this);
-			// builder.setMessage(getString(R.string.error_des))
-			// .setPositiveButton(getString(R.string.yes), null)
-			// .setTitle(getString(R.string.error));
-			// builder.show();
-			//
+		try {
+			if (myResult.matches("")) {
+				// IF Fail
+				// AlertDialog.Builder builder = new
+				// AlertDialog.Builder(join.this);
+				// builder.setMessage(getString(R.string.error_des))
+				// .setPositiveButton(getString(R.string.yes), null)
+				// .setTitle(getString(R.string.error));
+				// builder.show();
+				//
+				Global.Infoalert(join.this, getString(R.string.error),
+						getString(R.string.error_des), getString(R.string.yes));
+			} else {
+				// Go to Next Step
+
+				String[] array = myResult.split("//");
+				Global.dumpArray(array);
+
+				// Setting Editor
+				SharedPreferences edit = getSharedPreferences("setting",
+						MODE_PRIVATE);
+				SharedPreferences.Editor editor = edit.edit();
+				editor.putString("frist_use_app", "false"); // Ű��,
+				editor.putString("user_srl", array[0]);
+				editor.putString("user_srl_auth", array[1]);
+				editor.putString("name_1", s1);
+				editor.putString("name_2", s2);
+				editor.commit();
+
+				deletetemp();
+				Intent intent = new Intent(join.this, MainActivity.class);
+				startActivity(intent);
+				finish();
+			}
+
+		} catch (Exception e) {
 			Global.Infoalert(join.this, getString(R.string.error),
 					getString(R.string.error_des), getString(R.string.yes));
-		} else {
-			// Go to Next Step
-
-			String[] array = myResult.split("//");
-			Global.dumpArray(array);
-
-			// Setting Editor
-			SharedPreferences edit = getSharedPreferences("setting",
-					MODE_PRIVATE);
-			SharedPreferences.Editor editor = edit.edit();
-			editor.putString("frist_use_app", "false"); // Ű��,
-			editor.putString("user_srl", array[0]);
-			editor.putString("user_srl_auth", array[1]);
-			editor.putString("name_1", s1);
-			editor.putString("name_2", s2);
-			editor.commit();
-
-			deletetemp();
-			Intent intent = new Intent(join.this, MainActivity.class);
-			startActivity(intent);
-			finish();
 		}
-		
-}catch (Exception e){
-	Global.Infoalert(join.this, getString(R.string.error),
-			getString(R.string.error_des), getString(R.string.yes));
-}
+	}
+
+	// Call connection Error
+	public void ConnectionError() {
+		Global.ConnectionError(this);
 	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
+			setSupportProgressBarIndeterminateVisibility(false);
 
+			if (msg.what == -1) {
+				ConnectionError();
+			}
+
+			// Join Activity
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
 				// Stop progress bar
-				setSupportProgressBarIndeterminateVisibility(false);
 				joinAct();
 
+			}
+
+			// Get Member Information
+			if (msg.what == 2) {
+				infoResult = msg.obj.toString();
+				InfoDownAct();
+			}
+
+			// Get Profile Image
+			if (msg.what == 3) {
+				profile.setImageBitmap((Bitmap) msg.obj);
 			}
 
 		}
@@ -521,7 +399,6 @@ try{
 				Globalvariable.okbutton = false;
 				Global.ButtonEnable(1);
 
-			
 				// import EditText
 				EditText edit1 = (EditText) findViewById(R.id.editText1);
 				String s1 = edit1.getText().toString();
@@ -537,7 +414,7 @@ try{
 					// dont make error
 
 					try {
-						
+
 						// Start Progressbar
 						setSupportProgressBarIndeterminateVisibility(true);
 
@@ -546,17 +423,14 @@ try{
 
 						// Register GCM
 						reg_id = Global.GCMReg();
-		
 
-
-					
 						// Make name
 						String[] name = Global.NameBuilder(s1, s2);
 
 						first_name = name[0];
 						last_name = name[1];
 
-				//		Log.i("Name", last_name + first_name);
+						// Log.i("Name", last_name + first_name);
 
 						// Reg id null
 						if (reg_id.matches(""))
@@ -578,17 +452,15 @@ try{
 						Paramvalue.add(String.valueOf(gender));
 						Paramvalue.add(reg_id);
 
-						//Files null if no profile changed
+						// Files null if no profile changed
 						ArrayList<String> files = null;
-						if(profile_changed == true){
+						if (profile_changed == true) {
 							Global.SaveBitmapToFileCache(profile_bitmap,
 									getCacheDir().toString(), "/profile.jpg");
-						 files = new ArrayList<String>();
+							files = new ArrayList<String>();
 							files.add(getCacheDir().toString() + "/profile.jpg");
 						}
-						
-					
-						
+
 						new AsyncHttpTask(this, getString(R.string.server_path)
 								+ "member/join.php", mHandler, Paramname,
 								Paramvalue, files, 1);

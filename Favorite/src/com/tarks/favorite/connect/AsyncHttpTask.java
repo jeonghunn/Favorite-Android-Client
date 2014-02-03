@@ -83,12 +83,12 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		// Log.i("Message", "Post");
 
 		// Log.i("Message", "1");
-		// Log.i("hey", responseData);
+		
 		Message msg = handler.obtainMessage();
 		msg.what = handlernum;
 		msg.obj = myResult;
 		handler.sendMessage(msg);
-
+		// Log.i("hey", myResult);
 	}
 
 	public String Task(String url) {

@@ -210,6 +210,146 @@ public class MainActivity extends SherlockActivity {
 		}
 	}
 	
+	public void StartApp(){
+		try{
+		
+			if (infoResult.startsWith("/LINE/.")) {
+				//Account Changed
+				// Alert
+				AlertDialog.Builder alert = new AlertDialog.Builder(
+						MainActivity.this);
+				alert.setTitle(getString(R.string.error));
+				alert.setMessage(getString(R.string.reg_id_error));
+				alert.setIcon(R.drawable.ic_launcher);
+				alert.setPositiveButton(getString(R.string.yes),
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// Clear Old Settings
+								getSharedPreferences("setting", 0).edit()
+										.clear().commit();
+								getSharedPreferences("temp", 0).edit()
+										.clear().commit();
+
+								// New Start
+								// 로딩 화면은 종료하라.
+								finish();
+								// 이동한다. 메인으로
+								Intent intent = new Intent(
+										MainActivity.this,
+										MainActivity.class);
+								startActivity(intent);
+
+							}
+						});
+				alert.show();
+			} else {
+				//Check mySql Error
+				if(infoResult.matches("db_error")){
+					load = false;
+					ConnectionError();
+				}
+
+			//    Log.i("Result value",infoResult);
+				String[] array = infoResult.split("/LINE/.");
+				//    Global.dumpArray(array);
+
+
+					String tarks_account = array[0];
+					String name_1 = array[1];
+					String name_2 = array[2];
+					String permission = array[3];
+					String reg_id = array[4];
+					String key = array[5];
+					String like_me =  array[6];
+					String favorite =  array[7];
+				
+				// 설정 값 저장
+				// Setting Editor
+				SharedPreferences edit = getSharedPreferences("setting",
+						MODE_PRIVATE);
+				SharedPreferences.Editor editor = edit.edit();
+				editor.putString("name_1", name_1);
+				editor.putString("name_2", name_2);
+				editor.putString("permission", permission);
+				editor.putString("key", key);
+				editor.putString("like_me", like_me);
+				editor.putString("favorite", favorite);
+				editor.commit();
+				
+				// Kind of Load Stop
+				
+			
+
+				// Reg ID가 기존과 다를 때
+				if (REGid.startsWith(reg_id)||reg_id.matches("null")) {
+				} else {
+					load = false;
+					// Alert
+					AlertDialog.Builder alert = new AlertDialog.Builder(
+							MainActivity.this);
+					alert.setTitle(getString(R.string.error));
+					alert.setMessage(getString(R.string.reg_id_error));
+					alert.setIcon(R.drawable.ic_launcher);
+					alert.setPositiveButton(getString(R.string.yes),
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// Clear Old Settings
+									getSharedPreferences("setting", 0).edit()
+											.clear().commit();
+									getSharedPreferences("temp", 0).edit()
+											.clear().commit();
+
+									// New Start
+									// 로딩 화면은 종료하라.
+									finish();
+									// 이동한다. 메인으로
+									Intent intent = new Intent(
+											MainActivity.this,
+											MainActivity.class);
+									startActivity(intent);
+
+								}
+							});
+					alert.show();
+				}
+
+
+				// Permission Denied
+				if (permission.matches("4")) {
+					load = false;
+					// Alert
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							MainActivity.this);
+					builder.setMessage(getString(R.string.permission_denied))
+							.setPositiveButton(getString(R.string.yes), null)
+							.setTitle(getString(R.string.error));
+					builder.show();
+				}
+				// 제한사항이 없을 경우
+				if (load == true) {
+					// 로딩 화면은 종료하라.
+					finish();
+					// 이동한다. 메인으로
+					Intent intent = new Intent(MainActivity.this, main.class);
+					startActivity(intent);
+
+				}
+
+				
+				
+			
+			}
+			}catch (Exception e){
+		//	ConnectionError();
+			}
+
+	
+	}
+	
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -219,146 +359,9 @@ public class MainActivity extends SherlockActivity {
 			}
 			
 			if (msg.what == 1) {
-
-				try{
-					infoResult = msg.obj.toString();
-					if (infoResult.startsWith("/LINE/.")) {
-						//Account Changed
-						// Alert
-						AlertDialog.Builder alert = new AlertDialog.Builder(
-								MainActivity.this);
-						alert.setTitle(getString(R.string.error));
-						alert.setMessage(getString(R.string.reg_id_error));
-						alert.setIcon(R.drawable.ic_launcher);
-						alert.setPositiveButton(getString(R.string.yes),
-								new DialogInterface.OnClickListener() {
-
-									public void onClick(DialogInterface dialog,
-											int which) {
-										// Clear Old Settings
-										getSharedPreferences("setting", 0).edit()
-												.clear().commit();
-										getSharedPreferences("temp", 0).edit()
-												.clear().commit();
-
-										// New Start
-										// 로딩 화면은 종료하라.
-										finish();
-										// 이동한다. 메인으로
-										Intent intent = new Intent(
-												MainActivity.this,
-												MainActivity.class);
-										startActivity(intent);
-
-									}
-								});
-						alert.show();
-					} else {
-					
-						// Cut Result Value
-//						StringTokenizer st = new StringTokenizer(infoResult, "/LINE/.");
-//						String tarks_account = st.nextToken();
-//						String name_1 = st.nextToken();
-//						String name_2 = st.nextToken();
-//						String permission = st.nextToken();
-//						String reg_id = st.nextToken();
-//						String key = st.nextToken();
-//						String like_me =  String.valueOf(st.nextToken());
-//						String favorite =  String.valueOf(st.nextToken());
-					    Log.i("Result value",infoResult);
-						String[] array = infoResult.split("/LINE/.");
-						//    Global.dumpArray(array);
-
-
-							String tarks_account = array[0];
-							String name_1 = array[1];
-							String name_2 = array[2];
-							String permission = array[3];
-							String reg_id = array[4];
-							String key = array[5];
-							String like_me =  array[6];
-							String favorite =  array[7];
-						
-						// 설정 값 저장
-						// Setting Editor
-						SharedPreferences edit = getSharedPreferences("setting",
-								MODE_PRIVATE);
-						SharedPreferences.Editor editor = edit.edit();
-						editor.putString("name_1", name_1);
-						editor.putString("name_2", name_2);
-						editor.putString("permission", permission);
-						editor.putString("key", key);
-						editor.putString("like_me", like_me);
-						editor.putString("favorite", favorite);
-						editor.commit();
-						
-						// Kind of Load Stop
-
-						// Reg ID가 기존과 다를 때
-						if (REGid.startsWith(reg_id)||reg_id.matches("null")) {
-						} else {
-							load = false;
-							// Alert
-							AlertDialog.Builder alert = new AlertDialog.Builder(
-									MainActivity.this);
-							alert.setTitle(getString(R.string.error));
-							alert.setMessage(getString(R.string.reg_id_error));
-							alert.setIcon(R.drawable.ic_launcher);
-							alert.setPositiveButton(getString(R.string.yes),
-									new DialogInterface.OnClickListener() {
-
-										public void onClick(DialogInterface dialog,
-												int which) {
-											// Clear Old Settings
-											getSharedPreferences("setting", 0).edit()
-													.clear().commit();
-											getSharedPreferences("temp", 0).edit()
-													.clear().commit();
-
-											// New Start
-											// 로딩 화면은 종료하라.
-											finish();
-											// 이동한다. 메인으로
-											Intent intent = new Intent(
-													MainActivity.this,
-													MainActivity.class);
-											startActivity(intent);
-
-										}
-									});
-							alert.show();
-						}
-
-
-						// Permission Denied
-						if (permission.matches("4")) {
-							load = false;
-							// Alert
-							AlertDialog.Builder builder = new AlertDialog.Builder(
-									MainActivity.this);
-							builder.setMessage(getString(R.string.permission_denied))
-									.setPositiveButton(getString(R.string.yes), null)
-									.setTitle(getString(R.string.error));
-							builder.show();
-						}
-						// 제한사항이 없을 경우
-						if (load == true) {
-							// 로딩 화면은 종료하라.
-							finish();
-							// 이동한다. 메인으로
-							Intent intent = new Intent(MainActivity.this, main.class);
-							startActivity(intent);
-
-						}
-
-						
-						
-					
-					}
-					}catch (Exception e){
-				//	ConnectionError();
-					}
-
+				infoResult = msg.obj.toString();
+				StartApp();
+				
 			}
 			
 		}
