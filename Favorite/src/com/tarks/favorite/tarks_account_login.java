@@ -147,7 +147,7 @@ public class tarks_account_login extends SherlockActivity {
 		}
 	};
 
-	public void TarksAccountLogin() {
+	public void TarksAccountLogin() throws NoSuchAlgorithmException {
 		// Set Progress
 		setSupportProgressBarIndeterminateVisibility(true);
 
@@ -159,6 +159,8 @@ public class tarks_account_login extends SherlockActivity {
 		// md5 password value
 		String src = s2;
 		String enc = Global.getMD5Hash(src);
+		
+	//	Log.i("password", enc);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");

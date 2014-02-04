@@ -38,22 +38,34 @@ public final class Global {
 
 	}
 
-	// md5 encrypt 암호화
-	public static String getMD5Hash(String s) {
-		MessageDigest m = null;
-		String hash = null;
+	// md5 encrypt 암호화 compatible with php
+	public static String getMD5Hash(String s) throws NoSuchAlgorithmException {
 
-		try {
-			m = MessageDigest.getInstance("MD5");
-			m.update(s.getBytes(), 0, s.length());
-			hash = new BigInteger(1, m.digest()).toString(16);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
-		return hash;
+		  String result = s;
+		    if(s != null) {
+		        MessageDigest md = MessageDigest.getInstance("MD5"); //or "SHA-1"
+		        md.update(s.getBytes());
+		        BigInteger hash = new BigInteger(1, md.digest());
+		        result = hash.toString(16);
+		        while(result.length() < 32) { //40 for SHA-1
+		            result = "0" + result;
+		        }
+		    }
+		    return result;
 	}
-	
+	//MD5 default
+//	MessageDigest m = null;
+//	String hash = null;
+//
+//	try {
+//		m = MessageDigest.getInstance("MD5");
+//		m.update(s.getBytes(), 0, s.length());
+//		hash = new BigInteger(1, m.digest()).toString(16);
+//	} catch (NoSuchAlgorithmException e) {
+//		e.printStackTrace();
+//	}
+//
+//	return hash;
 	
 
 	// Google Clound Message Registartion
