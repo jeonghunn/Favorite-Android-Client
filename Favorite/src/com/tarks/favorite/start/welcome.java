@@ -144,6 +144,7 @@ public class welcome extends SherlockActivity {
         
     	//no error
 	//	try{	
+        Log.i("Phone Number", Global.getPhoneNumber(false) + "df");
 	Log.i("Cache folder", getCacheDir().toString());
 			//	new Downloader()
 		//				.execute();

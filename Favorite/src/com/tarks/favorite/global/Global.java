@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.*;
@@ -260,8 +262,43 @@ public final class Global {
 		return Globalvariable.okbutton;
 	}
 	
+	public static String getPhoneNumber(boolean getphonenumber){
+		// Get Country number and phone number
+				// get Phone number
+		String result = null;
+				try {
+					TelephonyManager systemService = (TelephonyManager) mod.getSystemService(Context.TELEPHONY_SERVICE);
+					String Number = systemService.getLine1Number(); // 폰번호를 가져오는
+																	// 겁니다..
+					String PhoneNumber = Number.substring(Number.length() - 10,
+							Number.length());
+					
+					String country_code = Number.substring(0,
+							Number.length() - PhoneNumber.length());
+					
+					//KR
+			//		String countryCode = systemService.getSimCountryIso();
+
+					if(getphonenumber == true){
+						result = PhoneNumber;
+					}else{
+						country_code = country_code.replace("+" , "");
+						result = country_code;
+					}
+					// set Edittext
+					// tv.setText(PhoneNumber);
+					
+					Log.i("Result", result);
+				} catch (Exception e) {
+
+				}
+				
+		
+				
+				return result;
+	}
 	
-	
+
 	
 	//InternetConnection Error Message
 	

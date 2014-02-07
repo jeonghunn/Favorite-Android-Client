@@ -37,6 +37,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -77,6 +78,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	String first_name;
 	String last_name;
 	String name_1, name_2;
+	//Country code and Phone number
+	String PhoneNumber;
+	String CountryCode;
 	// User Auth key
 	String auth_key;
 	int gender = 1; // Default gender is male
@@ -84,6 +88,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
+
 
 	// Profile picture changed
 	boolean profile_changed = false;
@@ -208,11 +213,11 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			}
 		});
 
+		
+
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
 		ids.setText(id);
-		
-
 
 		if (id != null) {
 			// Connection Start
@@ -265,6 +270,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		}
 	}
+	
+
 
 	public void deletetemp() {
 		Globalvariable.temp_id = null;
@@ -442,6 +449,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramname.add("name_1");
 						Paramname.add("name_2");
 						Paramname.add("gender");
+						Paramname.add("country_code");
+						Paramname.add("phone_number");
 						Paramname.add("reg_id");
 
 						ArrayList<String> Paramvalue = new ArrayList<String>();
@@ -450,6 +459,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramvalue.add(first_name);
 						Paramvalue.add(last_name);
 						Paramvalue.add(String.valueOf(gender));
+						Paramvalue.add(Global.getPhoneNumber(false));
+						Paramvalue.add(Global.getPhoneNumber(true));
 						Paramvalue.add(reg_id);
 
 						// Files null if no profile changed
