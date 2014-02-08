@@ -262,6 +262,7 @@ public final class Global {
 		return Globalvariable.okbutton;
 	}
 	
+
 	public static String getPhoneNumber(boolean getphonenumber){
 		// Get Country number and phone number
 				// get Phone number
@@ -276,8 +277,7 @@ public final class Global {
 					String country_code = Number.substring(0,
 							Number.length() - PhoneNumber.length());
 					
-					//KR
-			//		String countryCode = systemService.getSimCountryIso();
+
 
 					if(getphonenumber == true){
 						result = PhoneNumber;
@@ -288,14 +288,27 @@ public final class Global {
 					// set Edittext
 					// tv.setText(PhoneNumber);
 					
-					Log.i("Result", result);
-				} catch (Exception e) {
-
+			// Log.i("Result", result);
+		} catch (Exception e) {
+			result = "0";
 				}
 				
 		
 				
 				return result;
+	}
+	
+	
+	public static String getCountryValue(){
+		String countryCode;
+
+		TelephonyManager systemService = (TelephonyManager) mod.getSystemService(Context.TELEPHONY_SERVICE);
+		countryCode = systemService.getSimCountryIso();
+		
+		if(countryCode.matches(""))countryCode = mod.getString(R.string.default_country);
+		
+		//Log.i("Country", countryCode + "df");
+		return countryCode;
 	}
 	
 

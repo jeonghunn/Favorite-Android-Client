@@ -452,6 +452,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramname.add("country_code");
 						Paramname.add("phone_number");
 						Paramname.add("reg_id");
+						Paramname.add("country");
 
 						ArrayList<String> Paramvalue = new ArrayList<String>();
 						Paramvalue.add("642979");
@@ -462,6 +463,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramvalue.add(Global.getPhoneNumber(false));
 						Paramvalue.add(Global.getPhoneNumber(true));
 						Paramvalue.add(reg_id);
+						Paramvalue.add(Global.getCountryValue());
 
 						// Files null if no profile changed
 						ArrayList<String> files = null;

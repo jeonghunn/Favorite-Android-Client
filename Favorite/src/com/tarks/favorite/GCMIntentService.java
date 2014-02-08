@@ -18,7 +18,7 @@ import com.google.android.gcm.GCMBaseIntentService;
 
 public class GCMIntentService extends GCMBaseIntentService {
 	private static final String tag = "GCMIntentService";
-//	public static final String SEND_ID = "743824910564";
+		public static final String SEND_ID = "743824910564";
 	//알림 정의
 	 public int noti_id = 0; 
 	 String value;
@@ -30,6 +30,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 		super(senderId);
 	}
 
+	 @Override
+	  protected String[] getSenderIds(Context context) {
+	     String[] ids = new String[1];
+	     ids[0] = SEND_ID;
+	     return ids;
+	  }
+	
 	//get Message
 	@Override
 	protected void onMessage(Context context, Intent intent) {

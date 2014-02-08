@@ -141,10 +141,10 @@ public class welcome extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-        
+        Global.getCountryValue();
     	//no error
-	//	try{	
-        Log.i("Phone Number", Global.getPhoneNumber(false) + "df");
+	///	try{	
+  //      Log.i("Phone Number", Global.getPhoneNumber(false) + "df");
 	Log.i("Cache folder", getCacheDir().toString());
 			//	new Downloader()
 		//				.execute();
