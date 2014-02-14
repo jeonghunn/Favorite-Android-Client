@@ -24,7 +24,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:fontFamily="sans-serif-thin"
                 android:text="No Info"
                 android:textColor="#33B6EA"
                 android:textSize="24sp" />
@@ -36,7 +35,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="48dip"
-                android:fontFamily="sans-serif-light"
                 android:text="No Info"
                 android:textSize="16sp" />
         </LinearLayout>

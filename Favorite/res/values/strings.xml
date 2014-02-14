@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.1217</string>
-    <string name="build">1217</string>
+    <string name="ver">1.0.0.1261</string>
+    <string name="build">1261</string>
     <string name="verkind">Beta 2</string>
     <string name="copyright">Copyrightⓒ. 2014. Tarks.</string>
     <string name="lang">en</string>
@@ -49,7 +49,7 @@
     <string name="name">Name</string>
     <string name="phone_number">Phone number</string>
     <string name="registering">Registering...</string>
-    <string name="noname">Enter you name.</string>
+    <string name="noname">Enter your name.</string>
     <string name="error_des">An error occurred while work was in progress. Please try again in a few minutes.</string>
     <string name="permission_denied">Sorry. This user blocked because rule violation.</string>
     <string name="reg_id_error">Authentication information has changed. Account information must be recertified.</string>
@@ -98,5 +98,6 @@
     <string name="cut_image">Cut Image</string>
     <string name="rotate">Rotate</string>
          <string name="find_account_info">Find Account Info</string>
-
+         <string name="send_feedback">Send Feedback</string>
+  <string name="send_feedback_des">Send feedback to Developers</string>
 </resources>

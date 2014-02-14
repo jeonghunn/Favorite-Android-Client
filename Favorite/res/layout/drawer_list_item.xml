@@ -9,6 +9,7 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:padding="5sp"
         android:adjustViewBounds="true" />
 
     <LinearLayout

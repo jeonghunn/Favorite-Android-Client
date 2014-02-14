@@ -5,6 +5,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -41,16 +42,16 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 
 		// Generate title
-		title = new String[] { "Title Fragment 1", "Title Fragment 2",
-				"Title Fragment 3" };
+		title = new String[] { getString(R.string.home), "Title Fragment 2",
+				getString(R.string.setting) };
 
 		// Generate subtitle
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 
 		// Generate icon
-		icon = new int[] { R.drawable.check, R.drawable.edit_dark,
-				R.drawable.edit_dark };
+		icon = new int[] { R.drawable.settings, R.drawable.settings,
+				R.drawable.settings };
 
 		// Locate DrawerLayout in drawer_main.xml
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,7 +144,10 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 2:
-			ft.replace(R.id.content_frame, fragment3);
+		//	ft.replace(R.id.content_frame, fragment3);
+			Intent intent = new Intent(main.this, setting.class);
+			startActivity(intent);
+
 			break;
 		}
 		ft.commit();

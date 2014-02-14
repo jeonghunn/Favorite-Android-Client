@@ -64,6 +64,16 @@
             android:name=".main"
             android:icon="@drawable/ic_launcher_simple"
             android:screenOrientation="portrait" />
+         <activity
+            android:name=".info"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/app_info" 
+           />
+            <activity
+            android:name=".setting"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/setting" 
+           />
         <activity
             android:name=".result"
             android:icon="@drawable/ic_launcher_simple"

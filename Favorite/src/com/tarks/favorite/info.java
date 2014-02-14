@@ -15,7 +15,7 @@ public class info extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form);
+        setContentView(R.layout.info);
       //액션바백버튼가져오기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
        
