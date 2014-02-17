@@ -1,6 +1,8 @@
 package com.tarks.favorite;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class MenuListAdapter extends BaseAdapter {
 		this.mTitle = title;
 	//	this.mSubTitle = subtitle;
 		this.mIcon = icon;
+	//	this.mColor = color;
 	}
 
 	@Override
@@ -64,7 +67,11 @@ public class MenuListAdapter extends BaseAdapter {
 
 		// Set the results into ImageView
 		imgIcon.setImageResource(mIcon[position]);
-
+		
+		if(position == 0) {
+			itemView.setBackgroundColor(Color.parseColor("#FF5E00".toString()));
+			imgIcon.setImageDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+		}
 		return itemView;
 	}
 

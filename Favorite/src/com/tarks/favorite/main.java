@@ -2,12 +2,15 @@ package com.tarks.favorite;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.global.Global;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -42,17 +45,17 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 
 		// Generate title
-		title = new String[] { getString(R.string.home), "Title Fragment 2",
+		title = new String[] { Global.NameMaker(Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.home), "Title Fragment 2",
 				getString(R.string.setting) };
 
 		// Generate subtitle
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
-
 		// Generate icon
-		icon = new int[] { R.drawable.settings, R.drawable.settings,
+		icon = new int[] { R.drawable.ic_action_refresh, R.drawable.settings, R.drawable.settings,
 				R.drawable.settings };
 
+	
 		// Locate DrawerLayout in drawer_main.xml
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -144,9 +147,13 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 2:
-		//	ft.replace(R.id.content_frame, fragment3);
-			Intent intent = new Intent(main.this, setting.class);
+			Intent intent = new Intent(main.this, ProfileActivity.class);
 			startActivity(intent);
+			break;
+		case 3:
+			//	ft.replace(R.id.content_frame, fragment3);
+//			Intent intent = new Intent(main.this, setting.class);
+//			startActivity(intent);
 
 			break;
 		}
@@ -178,4 +185,5 @@ public class main extends SherlockFragmentActivity {
 		mTitle = title;
 		getSupportActionBar().setTitle(mTitle);
 	}
+	
 }

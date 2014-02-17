@@ -3,8 +3,10 @@ package com.tarks.favorite.global;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -155,6 +157,17 @@ public final class Global {
 		return name;
 	}
 	
+	//Make name value
+	public static String NameMaker(String name_1, String name_2){
+		String name;
+		if(mod.getString(R.string.lang).matches("ko")){
+			name = name_1 + name_2;
+		}else{
+			name = name_2 + " " + name_1;
+		}
+		return name;
+	}
+	
 	
 	public static int[] getIMGSize(ContentResolver cr, Uri uri) throws FileNotFoundException{
 		Bitmap bm;
@@ -262,7 +275,14 @@ public final class Global {
 		return Globalvariable.okbutton;
 	}
 	
+	public static String getSetting(String setting, String default_value){
+		SharedPreferences prefs = mod.getSharedPreferences("setting",
+				mod.MODE_PRIVATE);
+		return prefs.getString(setting, default_value);
+	}
+	
 
+	
 	public static String getPhoneNumber(boolean getphonenumber){
 		// Get Country number and phone number
 				// get Phone number
@@ -311,6 +331,55 @@ public final class Global {
 		return countryCode;
 	}
 	
+	/**
+	  * 지정한 패스의 파일을 읽어서 Bitmap을 리턴 (화면사이즈에 최다한 맞춰서 리스케일한다.)
+	  *
+	  * @param context
+	  *            application context
+	  * @param imgFilePath
+	  *            bitmap file path
+	  * @return Bitmap
+	  * @throws IOException
+	  */
+	public static Bitmap loadBackgroundBitmap(Context context,
+	        String imgFilePath) throws Exception, OutOfMemoryError { 
+//	    if (!FileUtil.exists(imgFilePath)) {
+//	        throw new FileNotFoundException("background-image file not found : " + imgFilePath);
+//	    }
+
+	    // 폰의 화면 사이즈를 구한다.
+	  //  Display display = ((WindowManager) context
+	  //          .getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+	//    int displayWidth = display.getWidth();
+	//    int displayHeight = display.getHeight();
+	// 
+	    // 읽어들일 이미지의 사이즈를 구한다.
+	    BitmapFactory.Options options = new BitmapFactory.Options();
+	    options.inPreferredConfig = Config.RGB_565;
+	    options.inJustDecodeBounds = true;
+	    BitmapFactory.decodeFile(imgFilePath, options);
+	 
+	    // 화면 사이즈에 가장 근접하는 이미지의 리스케일 사이즈를 구한다.
+	    // 리스케일의 사이즈는 짝수로 지정한다. (이미지 손실을 최소화하기 위함.) 
+	//    float widthScale = options.outWidth / displayWidth;
+	//    float heightScale = options.outHeight / displayHeight;
+	 //   float scale = widthScale > heightScale ? widthScale : heightScale;
+//	            
+//	    if(scale >= 8) {
+//	        options.inSampleSize = 8;
+//	    } else if(scale >= 6) {
+//	        options.inSampleSize = 6;
+//	    } else if(scale >= 4) {
+//	        options.inSampleSize = 4;
+//	    } else if(scale >= 2) {
+//	        options.inSampleSize = 2;
+//	    } else {
+//	        options.inSampleSize = 1;
+//	    }
+	    options.inJustDecodeBounds = false;
+	 
+	    return BitmapFactory.decodeFile(imgFilePath, options);
+	}
 
 	
 	//InternetConnection Error Message

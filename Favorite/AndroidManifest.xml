@@ -74,6 +74,12 @@
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/setting" 
            />
+               <activity
+            android:name=".ProfileActivity"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/setting" 
+              android:theme="@style/AppTheme.TranslucentActionBar" 
+           />
         <activity
             android:name=".result"
             android:icon="@drawable/ic_launcher_simple"
