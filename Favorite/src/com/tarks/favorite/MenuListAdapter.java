@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class MenuListAdapter extends BaseAdapter {
@@ -69,8 +70,18 @@ public class MenuListAdapter extends BaseAdapter {
 		imgIcon.setImageResource(mIcon[position]);
 		
 		if(position == 0) {
+			txtTitle.setPadding(20, 0, 0, 0);
 			itemView.setBackgroundColor(Color.parseColor("#FF5E00".toString()));
-			imgIcon.setImageDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+		//	imgIcon.setImageDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+//			imgIcon.setScaleType(ScaleType.CENTER);
+//			imgIcon.getLayoutParams().width = 80;
+//			imgIcon.getLayoutParams().height = 80;
+			imgIcon.setBackgroundDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+			try{
+			//imgIcon.setBackground(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+			}catch(Exception e){
+				
+			}
 		}
 		return itemView;
 	}

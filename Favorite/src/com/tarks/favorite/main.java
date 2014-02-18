@@ -52,7 +52,7 @@ public class main extends SherlockFragmentActivity {
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 		// Generate icon
-		icon = new int[] { R.drawable.ic_action_refresh, R.drawable.settings, R.drawable.settings,
+		icon = new int[] {R.drawable.drawer_profile , R.drawable.settings, R.drawable.settings,
 				R.drawable.settings };
 
 	
@@ -131,7 +131,12 @@ public class main extends SherlockFragmentActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			selectItem(position);
+			if(position == 0){
+				Intent intent = new Intent(main.this, ProfileActivity.class);
+				startActivity(intent);	
+			}else selectItem(position);
+			
+			
 		}
 	}
 
