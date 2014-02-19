@@ -52,7 +52,7 @@ public class main extends SherlockFragmentActivity {
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 		// Generate icon
-		icon = new int[] {R.drawable.drawer_profile , R.drawable.settings, R.drawable.settings,
+		icon = new int[] {R.drawable.drawer_profile , R.drawable.home , R.drawable.settings,
 				R.drawable.settings };
 
 	
@@ -149,7 +149,7 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 1:
-			ft.replace(R.id.content_frame, fragment2);
+			ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 2:
 			Intent intent = new Intent(main.this, ProfileActivity.class);
