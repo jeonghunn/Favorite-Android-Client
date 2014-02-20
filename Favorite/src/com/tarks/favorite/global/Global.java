@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
+import com.tarks.favorite.connect.ImageDownloader;
 
 public final class Global {
 
@@ -212,6 +215,7 @@ public final class Global {
 
 		}
 	
+	//Bitmap to File
 	public static void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath, String filename) {
         
 		File file = new File(strFilePath);
@@ -250,6 +254,20 @@ public final class Global {
             }
         }
   }
+	public static void DownloadImageToFile(String filepath){
+		new ImageDownloader(mod, filepath, mHandler, 1);
+	}
+	
+	protected static Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+		if(msg.what == 1){ 
+		//	SaveBitmapToFileCache((Bitmap) msg.obj, );
+			Global.SaveBitmapToFileCache((Bitmap) msg.obj,
+					mod.getCacheDir().toString(), "/profile.jpg");
+		}
+
+		}
+	};
 	
 	//This is prevent too many server requests
 	public static boolean ButtonEnable(final int s) {

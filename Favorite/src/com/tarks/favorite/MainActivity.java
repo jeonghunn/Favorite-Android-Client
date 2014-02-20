@@ -68,7 +68,7 @@ public class MainActivity extends SherlockActivity {
 	String REGid;
 	//Notice Result
 	String NoticeResult;
-	
+	String user_srl;
 	// Allow Load
 	boolean load = true;
 
@@ -127,7 +127,7 @@ public class MainActivity extends SherlockActivity {
 		// 설정 값 불러오기
 		SharedPreferences prefs = getSharedPreferences("setting",
 				MODE_PRIVATE);
-		String user_srl = prefs.getString("user_srl", "");
+		 user_srl = prefs.getString("user_srl", "");
 		String user_srl_auth = prefs.getString("user_srl_auth", "");
 
 		
@@ -145,7 +145,7 @@ public class MainActivity extends SherlockActivity {
       Paramvalue.add(getString(R.string.lang));
       Paramvalue.add(user_srl);
       Paramvalue.add(user_srl_auth);
-      Paramvalue.add("tarks_account//name_1//name_2//permission//reg_id//key//like_me//favorite");
+      Paramvalue.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
 				
       
 				new AsyncHttpTask(this, getString(R.string.server_path) + "load.php", mHandler, Paramname, Paramvalue, null, 1);
@@ -154,14 +154,7 @@ public class MainActivity extends SherlockActivity {
 	}
 	  
 	  
-	public static boolean isStringDouble(String s) {
-		try {
-			Double.parseDouble(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
+
 	
 	public void ConnectionError(){
 		// If No Network Connection
@@ -260,10 +253,16 @@ public class MainActivity extends SherlockActivity {
 					String name_1 = array[1];
 					String name_2 = array[2];
 					String permission = array[3];
-					String reg_id = array[4];
-					String key = array[5];
-					String like_me =  array[6];
-					String favorite =  array[7];
+					String profile_update = array[4];
+					String reg_id = array[5];
+					String key = array[6];
+					String like_me =  array[7];
+					String favorite =  array[8];
+					
+					if(!profile_update.matches(Global.getSetting("profile_update", ""))){
+						Global.DownloadImageToFile(getString(R.string.server_path)
+								+ "files/profile/" + user_srl + ".jpg");
+					}
 				
 				// 설정 값 저장
 				// Setting Editor
@@ -273,6 +272,7 @@ public class MainActivity extends SherlockActivity {
 				editor.putString("name_1", name_1);
 				editor.putString("name_2", name_2);
 				editor.putString("permission", permission);
+				editor.putString("profile_update", profile_update);
 				editor.putString("key", key);
 				editor.putString("like_me", like_me);
 				editor.putString("favorite", favorite);

@@ -29,6 +29,7 @@ import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.manuelpeinado.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 
@@ -37,6 +38,8 @@ public class ProfileActivity extends SherlockActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
 
         FadingActionBarHelper helper = new FadingActionBarHelper()
            .actionBarBackground(R.drawable.ab_background)
@@ -112,9 +115,17 @@ public class ProfileActivity extends SherlockActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-   //     getSupportMenuInflater().inflate(R.menu.activity_menu, menu);
-        return true;
-    }
+    //빽백키 상단액션바
+	   @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            onBackPressed();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	    
+	    
+	   }
 }
