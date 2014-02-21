@@ -7,35 +7,33 @@
     <!-- @author croute -->
     <!-- @since 2011.02.25 -->
 
-  <!--   <PreferenceCategory
-        xmlns:android="http://schemas.android.com/apk/res/android"
+     <PreferenceCategory
         android:key="setting_activity_pushalarm"
-        android:title="@string/appsetting" >
+        android:title="@string/user_settings" >
 
-        <CheckBoxPreference
+  <!--       <CheckBoxPreference
             android:defaultValue="true"
             android:key="searchmode"
             android:summary="@string/start_by_search_mode_des"
-            android:title="@string/start_by_search_mode" />
+            android:title="@string/start_by_search_mode" /> -->
         
              <Preference
-            android:key="browse"
+            android:key="profile"
             android:selectable="true"
-            android:summary="@string/browsing_settings_des"
-            android:title="@string/browsing_settings" />
+            android:summary="@string/profile_settings_des"
+            android:title="@string/profile" />
 
 
-        <com.tarks.fastengine.SeekBarDialogPreference
+    <!--     <com.tarks.fastengine.SeekBarDialogPreference
             android:defaultValue="10"
             android:dialogMessage="@string/recent_max_items_des"
             android:max="30"
             android:summary="@string/recent_max_items_des"
             android:title="@string/recent_max_items"
-            custom:min="0" />
-    </PreferenceCategory> -->
+            custom:min="0" /> -->
+    </PreferenceCategory>
 
     <PreferenceCategory
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:key="appinfo"
         android:title="@string/appinfo" >
 

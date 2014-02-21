@@ -1,7 +1,7 @@
 <resources>
 
     <string name="lang">ko</string>
-     <string name="default_country">kr</string>
+    <string name="default_country">kr</string>
     <string name="statistics_des">%1$s명의 사용자가\n%2$s명을 좋아하고 있습니다.\n그 누군가가 당신일지도 모릅니다."</string>
     <string name="menu_settings">설정</string>
     <string name="app_info">어플리케이션 정보..</string>
@@ -86,11 +86,17 @@
     <string name="blank_error">아무것도 입력하지 않았습니다.</string>
     <string name="server_connection_error_des">서버와의 통신중 오류가 발생했습니다.\n점검중이거나, 서버의 문제일 수 있습니다. 자세한 내용은 \'서비스 상태 확인\'을 눌러 확인하세요.</string>
     <string name="check_service_status">서비스 상태 확인</string>
-           <string name="male">남자</string>
-        <string name="female">여자</string>
-                  <string name="cut_image">이미지 자르기</string>
+    <string name="male">남자</string>
+    <string name="female">여자</string>
+    <string name="cut_image">이미지 자르기</string>
     <string name="rotate">회전</string>
-     <string name="find_account_info">ID/PW 찾기</string>
-             <string name="send_feedback">의견 보내기</string>
-               <string name="send_feedback_des">개발자에게 의견을 보냅니다.</string>
+    <string name="find_account_info">ID/PW 찾기</string>
+    <string name="send_feedback">의견 보내기</string>
+    <string name="send_feedback_des">개발자에게 의견을 보냅니다.</string>
+    <string name="delete">삭</string>
+    <string name="delete_profile_photo">프로필 사진을 삭제합니다.</string>
+    <string name="profile">프로필</string>
+    <string name="profile_settings_des">당신의 프로필 정보를 설정해보세요.</string>
+    <string name="user_settings">사용자 설정</string>
+
 </resources>

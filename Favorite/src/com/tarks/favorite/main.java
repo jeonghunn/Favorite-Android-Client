@@ -152,13 +152,12 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 2:
-			Intent intent = new Intent(main.this, ProfileActivity.class);
-			startActivity(intent);
+//			Intent intent = new Intent(main.this, ProfileActivity.class);
+//			startActivity(intent);
 			break;
 		case 3:
-			//	ft.replace(R.id.content_frame, fragment3);
-//			Intent intent = new Intent(main.this, setting.class);
-//			startActivity(intent);
+			Intent intent = new Intent(main.this, setting.class);
+			startActivity(intent);
 
 			break;
 		}

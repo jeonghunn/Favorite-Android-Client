@@ -8,6 +8,10 @@ public final class Globalvariable {
 	public static String temp_id;
 	public static String temp_id_auth = "null";
 	
+	//File Save
+	public static String filesavepath;
+	public static String filename;
+	
 	//OKButton enable
 	public static boolean okbutton = true;
 }

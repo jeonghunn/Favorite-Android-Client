@@ -46,6 +46,7 @@ public class mainfragment extends SherlockFragment implements
 	//Like me or favorite
 	 String like_me_result;
 	 String favorite_result;
+	 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

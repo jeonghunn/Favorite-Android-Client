@@ -259,10 +259,13 @@ public class MainActivity extends SherlockActivity {
 					String like_me =  array[7];
 					String favorite =  array[8];
 					
-					if(!profile_update.matches(Global.getSetting("profile_update", ""))){
-						Global.DownloadImageToFile(getString(R.string.server_path)
-								+ "files/profile/" + user_srl + ".jpg");
-					}
+//					if(!profile_update.matches(Global.getSetting("profile_update", "") || getCacheDir().toString(), "/profile.jpg")){
+//						Global.DownloadImageToFile(getString(R.string.server_path)
+//								+ "files/profile/" + user_srl + ".jpg", getCacheDir().toString(), "/profile.jpg");
+//					}
+					
+					Global.UpdateFileCache(profile_update, Global.getSetting("profile_update", ""), getString(R.string.server_path)
+							+ "files/profile/" + user_srl + ".jpg", getCacheDir().toString(), "/profile.jpg");
 				
 				// 설정 값 저장
 				// Setting Editor

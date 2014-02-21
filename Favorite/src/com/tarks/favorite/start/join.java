@@ -24,6 +24,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -41,6 +42,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -212,6 +214,44 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				startActivityForResult(i, REQ_CODE_PICK_PICTURE);
 			}
 		});
+		
+		//LongTimeclicklistener
+		profile.setOnLongClickListener(new OnLongClickListener(){
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				AlertDialog.Builder alert = new AlertDialog.Builder(
+						join.this);
+				alert.setTitle(getString(R.string.delete));
+				alert.setMessage(getString(R.string.delete_profile_photo));
+				alert.setPositiveButton(getString(R.string.yes),
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// Clear Old Settings
+							profile.setImageDrawable(null);
+							profile.setBackgroundResource(R.drawable.black_button);
+							profile_changed = true;
+							}
+							
+							
+						});
+				alert.setNegativeButton(getString(R.string.no),
+						new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog,
+							int which) {
+	
+
+					}
+				});
+				
+				alert.show();
+				return false;
+			}
+		});
 
 		
 
@@ -378,7 +418,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 			// Get Profile Image
 			if (msg.what == 3) {
-				profile.setImageBitmap((Bitmap) msg.obj);
+				if((Bitmap) msg.obj != null) profile.setImageBitmap((Bitmap) msg.obj);
 			}
 
 		}

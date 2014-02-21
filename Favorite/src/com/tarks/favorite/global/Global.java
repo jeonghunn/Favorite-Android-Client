@@ -254,8 +254,17 @@ public final class Global {
             }
         }
   }
-	public static void DownloadImageToFile(String filepath){
+	public static void UpdateFileCache(String new_update, String updatetime, String filepath ,String filesavepath, String filename){
+		  File files = new File(filesavepath + filename);
+		if(!new_update.matches(updatetime) || files.exists() == false){
+		DownloadImageToFile(filepath, filesavepath, filename);
+		}
+	}
+	
+	public static void DownloadImageToFile(String filepath, String filesavepath, String filename){
 		new ImageDownloader(mod, filepath, mHandler, 1);
+		Globalvariable.filesavepath = filesavepath;
+		Globalvariable.filename =  filename;
 	}
 	
 	protected static Handler mHandler = new Handler() {
@@ -263,7 +272,9 @@ public final class Global {
 		if(msg.what == 1){ 
 		//	SaveBitmapToFileCache((Bitmap) msg.obj, );
 			Global.SaveBitmapToFileCache((Bitmap) msg.obj,
-					mod.getCacheDir().toString(), "/profile.jpg");
+					Globalvariable.filesavepath, Globalvariable.filename);
+			Globalvariable.filesavepath = null;
+			Globalvariable.filename = null;
 		}
 
 		}
