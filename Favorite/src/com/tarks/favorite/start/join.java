@@ -40,6 +40,8 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -90,6 +92,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
+    int CAMERA_PIC_REQUEST = 2;
 
 
 	// Profile picture changed
@@ -202,56 +205,50 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		profile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_PICK);
-				i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-				i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
-																							// on
-																							// the
-																							// SD
-																							// card.
 
-				// 결과를 리턴하는 Activity 호출
-				startActivityForResult(i, REQ_CODE_PICK_PICTURE);
+				
+		        v.showContextMenu();
 			}
 		});
 		
+		  registerForContextMenu(profile);
 		//LongTimeclicklistener
-		profile.setOnLongClickListener(new OnLongClickListener(){
-			
-			@Override
-			public boolean onLongClick(View v) {
-				// TODO Auto-generated method stub
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						join.this);
-				alert.setTitle(getString(R.string.delete));
-				alert.setMessage(getString(R.string.delete_profile_photo));
-				alert.setPositiveButton(getString(R.string.yes),
-						new DialogInterface.OnClickListener() {
-
-							public void onClick(DialogInterface dialog,
-									int which) {
-								// Clear Old Settings
-							profile.setImageDrawable(null);
-							profile.setBackgroundResource(R.drawable.black_button);
-							profile_changed = true;
-							}
-							
-							
-						});
-				alert.setNegativeButton(getString(R.string.no),
-						new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog,
-							int which) {
-	
-
-					}
-				});
-				
-				alert.show();
-				return false;
-			}
-		});
+//		profile.setOnLongClickListener(new OnLongClickListener(){
+//			
+//			@Override
+//			public boolean onLongClick(View v) {
+//				// TODO Auto-generated method stub
+//				AlertDialog.Builder alert = new AlertDialog.Builder(
+//						join.this);
+//				alert.setTitle(getString(R.string.delete));
+//				alert.setMessage(getString(R.string.delete_profile_photo));
+//				alert.setPositiveButton(getString(R.string.yes),
+//						new DialogInterface.OnClickListener() {
+//
+//							public void onClick(DialogInterface dialog,
+//									int which) {
+//								// Clear Old Settings
+//							profile.setImageResource(R.drawable.black_button);
+//						//	profile.setBackgroundResource(R.drawable.black_button);
+//							profile_changed = true;
+//							}
+//							
+//							
+//						});
+//				alert.setNegativeButton(getString(R.string.no),
+//						new DialogInterface.OnClickListener() {
+//
+//					public void onClick(DialogInterface dialog,
+//							int which) {
+//	
+//
+//					}
+//				});
+//				
+//				alert.show();
+//				return false;
+//			}
+//		});
 
 		
 
@@ -265,7 +262,61 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		}
 
 	}
+	
+	
+	 @Override
+	    public void onCreateContextMenu(ContextMenu menu, View v,
+	            ContextMenuInfo menuInfo) {
+	         Log.i("ContextMenu", "Contextmenu");
+	            if(v.getId() == R.id.profile_image) {
+	              
+	                 
+	                menu.setHeaderIcon(android.R.drawable.btn_star);
+	              //  menu.setHeaderTitle("공지사항");
+	                menu.add(Menu.NONE, 1, Menu.NONE, "사진 선택");
+	                menu.add(Menu.NONE, 2, Menu.NONE, "카메라");
+	                menu.add(Menu.NONE, 3, Menu.NONE, "삭제");
+	                 
+	              
+	             
+	            }
+	         
+	        super.onCreateContextMenu(menu, v, menuInfo);
+	        
+	        
+	    }
+	     
 
+	   
+@Override
+	    public boolean onContextItemSelected(android.view.MenuItem item) {
+	         
+	        switch (item.getItemId()) {
+	        case 1:
+				Intent i = new Intent(Intent.ACTION_PICK);
+				i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+				i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
+				// 결과를 리턴하는 Activity 호출
+				startActivityForResult(i, REQ_CODE_PICK_PICTURE);
+	            break;
+	            
+	            
+	        case 2:
+	        	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
+	        	break;
+	        	
+	        case 3:
+	        	profile.setImageResource(R.drawable.black_button);
+					profile_changed = true;
+	        	break;
+	 
+	        default:
+	            break;
+	        }
+	         
+	        return super.onContextItemSelected(item);
+	    }
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQ_CODE_PICK_PICTURE) {
@@ -291,6 +342,30 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				Globalvariable.image = null;
 			}
 		}
+		
+		// Request Code 가 일치 하는지 확인    
+		if( requestCode == CAMERA_PIC_REQUEST )
+	    	{ 
+	               // 카메라로 사진을 찍은 후 Add 버튼을 눌렀는지 확인 한다.
+	    		if( data != null )
+	    		{
+	    			Bitmap thumbnail = (Bitmap)data.getExtras().get("data");
+	        		
+	        		if( thumbnail != null )
+	        		{      // 가지고온 사진 데이터를 이미지 뷰에 보여 준다.
+//	        			Intent intent = new Intent(join.this, CropManager.class);
+//	    				intent.putExtra("uri", Global.getImageUri(this, thumbnail) );
+//	    				startActivityForResult(intent, IMAGE_EDIT);
+	    		
+	    				
+	    				profile_bitmap = thumbnail;
+	        profile.setImageBitmap(thumbnail);
+	    				profile_changed = true;
+	    				Globalvariable.image = null;
+	        		}
+	    		}
+	    	}
+	    
 	}
 
 	@Override

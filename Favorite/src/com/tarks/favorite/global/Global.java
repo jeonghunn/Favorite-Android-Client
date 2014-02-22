@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore.Images;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -254,6 +255,16 @@ public final class Global {
             }
         }
   }
+	
+	//Bitmap to uri
+	public static  Uri getImageUri(Context inContext, Bitmap inImage) {
+		  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		  inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+		  String path = Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+		  return Uri.parse(path);
+		}
+	
+	
 	public static void UpdateFileCache(String new_update, String updatetime, String filepath ,String filesavepath, String filename){
 		  File files = new File(filesavepath + filename);
 		if(!new_update.matches(updatetime) || files.exists() == false){
