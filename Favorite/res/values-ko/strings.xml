@@ -98,5 +98,7 @@
     <string name="profile">프로필</string>
     <string name="profile_settings_des">당신의 프로필 정보를 설정해보세요.</string>
     <string name="user_settings">사용자 설정</string>
+    <string name="choose_picture">사진 선택</string>
+    <string name="camera">카메라</string>
 
 </resources>

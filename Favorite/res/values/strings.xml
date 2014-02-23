@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.1377</string>
-    <string name="build">1377</string>
+    <string name="ver">1.0.0.1411</string>
+    <string name="build">1411</string>
     <string name="verkind">Beta 2</string>
     <string name="copyright">Copyrightⓒ. 2014. Tarks.</string>
     <string name="lang">en</string>
@@ -97,12 +97,15 @@
     <string name="female">Felmale</string>
     <string name="cut_image">Cut Image</string>
     <string name="rotate">Rotate</string>
-         <string name="find_account_info">Find Account Info</string>
-         <string name="send_feedback">Send Feedback</string>
-  <string name="send_feedback_des">Send feedback to Developers</string>
-     <string name="delete">Delete</string>
-     <string name="delete_profile_photo">Delete profile photo.</string>
-       <string name="profile">Profile</string>
-        <string name="profile_settings_des">Set your profile.</string>
-           <string name="user_settings">User Settings</string>
+    <string name="find_account_info">Find Account Info</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="send_feedback_des">Send feedback to Developers</string>
+    <string name="delete">Delete</string>
+    <string name="delete_profile_photo">Delete profile photo.</string>
+    <string name="profile">Profile</string>
+    <string name="profile_settings_des">Set your profile.</string>
+    <string name="user_settings">User Settings</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="camera">Camera</string>
+
 </resources>

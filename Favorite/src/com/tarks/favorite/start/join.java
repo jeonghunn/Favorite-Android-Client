@@ -2,7 +2,9 @@ package com.tarks.favorite.start;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,6 +32,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -38,6 +41,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
+import android.provider.MediaStore.Images.Media;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -93,6 +98,16 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
     int CAMERA_PIC_REQUEST = 2;
+
+    
+    //Camera
+    static final String[] IMAGE_PROJECTION = {      
+    	 MediaStore.Images.ImageColumns.DATA, 
+    	 MediaStore.Images.Thumbnails.DATA
+    	};
+    
+    final Uri uriImages = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;        
+    final Uri uriImagesthum = MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI;
 
 
 	// Profile picture changed
@@ -273,9 +288,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	                 
 	                menu.setHeaderIcon(android.R.drawable.btn_star);
 	              //  menu.setHeaderTitle("공지사항");
-	                menu.add(Menu.NONE, 1, Menu.NONE, "사진 선택");
-	                menu.add(Menu.NONE, 2, Menu.NONE, "카메라");
-	                menu.add(Menu.NONE, 3, Menu.NONE, "삭제");
+	                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.choose_picture));
+	                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.camera));
+	                menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
 	                 
 	              
 	             
@@ -302,8 +317,22 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	            
 	            
 	        case 2:
-	        	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
+	        	int w, h;
+//	        	Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//				startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
+	        	
+	        	  Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+	        	  File photo;
+	        	  try
+	        	    {
+	        	        // place where to store camera taken picture
+	        	 //       photo = this.createTemporaryFile("picture", ".jpg");
+	        	        photo.delete();
+	        	    }
+	        	    catch(Exception e)
+	        	    {
+	        	        return false;
+	        	    }
 	        	break;
 	        	
 	        case 3:
@@ -356,12 +385,28 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 //	        			Intent intent = new Intent(join.this, CropManager.class);
 //	    				intent.putExtra("uri", Global.getImageUri(this, thumbnail) );
 //	    				startActivityForResult(intent, IMAGE_EDIT);
-	    		
-	    				
-	    				profile_bitmap = thumbnail;
-	        profile.setImageBitmap(thumbnail);
-	    				profile_changed = true;
-	    				Globalvariable.image = null;
+String szDateTop = null;
+	        			try{
+	        				 final Cursor cursorImages = Media.query(null, uriImages, IMAGE_PROJECTION, null, null, null);
+	        				     if(cursorImages != null && cursorImages.moveToLast()){         
+	        				   szDateTop = cursorImages.getString(0);
+	        				  cursorImages.close();
+	        				  } 
+	        				 }catch(Exception e){}
+	    				File file = new File(szDateTop);
+	        	         Uri uri = Uri.fromFile(file);
+	    				try {
+							profile_bitmap = Images.Media.getBitmap(getContentResolver(), uri);
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+        profile.setImageBitmap(profile_bitmap);
+//	    				profile_changed = true;
+//	    				Globalvariable.image = null;
 	        		}
 	    		}
 	    	}

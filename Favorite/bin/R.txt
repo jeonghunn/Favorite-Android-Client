@@ -710,6 +710,7 @@ int string birthday 0x7f090049
 int string birthday_des 0x7f09004a
 int string blank_error 0x7f090066
 int string build 0x7f09000f
+int string camera 0x7f090076
 int string check_how_many_people_are_favorite_me 0x7f090059
 int string check_result 0x7f090055
 int string check_service_status 0x7f090068
@@ -717,6 +718,7 @@ int string check_with_facebook 0x7f090060
 int string check_with_kakaostory 0x7f09005e
 int string check_with_kakaotalk 0x7f09005f
 int string check_with_twitter 0x7f090061
+int string choose_picture 0x7f090075
 int string community 0x7f090022
 int string contact 0x7f090025
 int string contact_pick_error 0x7f090065
@@ -727,7 +729,7 @@ int string delete 0x7f090070
 int string delete_profile_photo 0x7f090071
 int string drawer_close 0x7f09005b
 int string drawer_open 0x7f09005a
-int string during_logout 0x7f090079
+int string during_logout 0x7f09007b
 int string error 0x7f090038
 int string error_des 0x7f09003e
 int string error_login 0x7f090037
@@ -744,8 +746,8 @@ int string lang 0x7f090012
 int string location 0x7f09004b
 int string location_des 0x7f09004c
 int string logout 0x7f090029
-int string logout_des 0x7f090077
-int string logout_really 0x7f090078
+int string logout_des 0x7f090079
+int string logout_really 0x7f09007a
 int string male 0x7f090069
 int string menu_settings 0x7f090018
 int string message 0x7f090052
@@ -772,7 +774,7 @@ int string permission_denied 0x7f09003f
 int string phone_number 0x7f09003b
 int string phone_number_content 0x7f090048
 int string phone_number_des 0x7f090047
-int string plan 0x7f090075
+int string plan 0x7f090077
 int string profile 0x7f090072
 int string profile_settings_des 0x7f090073
 int string refresh 0x7f090021
@@ -793,7 +795,7 @@ int string share 0x7f09002c
 int string sign_up 0x7f090027
 int string signing_in 0x7f090035
 int string skip 0x7f090042
-int string special_user 0x7f090076
+int string special_user 0x7f090078
 int string start 0x7f09002f
 int string statistics_des 0x7f090017
 int string tarks_account 0x7f090030
