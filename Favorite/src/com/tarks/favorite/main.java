@@ -98,7 +98,7 @@ public class main extends SherlockFragmentActivity {
 			public void onDrawerOpened(View drawerView) {
 				// TODO Auto-generated method stub
 				// Set the title on the action when drawer open
-				getSupportActionBar().setTitle(mDrawerTitle);
+				//getSupportActionBar().setTitle(mDrawerTitle);
 				super.onDrawerOpened(drawerView);
 			}
 		};
@@ -109,6 +109,8 @@ public class main extends SherlockFragmentActivity {
 			selectItem(0);
 		}
 	}
+	
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -165,7 +167,7 @@ public class main extends SherlockFragmentActivity {
 		mDrawerList.setItemChecked(position, true);
 
 		// Get the title followed by the position
-		setTitle(title[position]);
+		//setTitle(title[position]);
 		// Close drawer
 		mDrawerLayout.closeDrawer(mDrawerList);
 	}
@@ -184,10 +186,10 @@ public class main extends SherlockFragmentActivity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = title;
-		getSupportActionBar().setTitle(mTitle);
-	}
-	
+//	@Override
+//	public void setTitle(CharSequence title) {
+//		mTitle = title;
+//		getSupportActionBar().setTitle(mTitle);
+//	}
+//	
 }

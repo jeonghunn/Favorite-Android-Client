@@ -71,7 +71,7 @@ public class MenuListAdapter extends BaseAdapter {
 		
 		if(position == 0) {
 			txtTitle.setPadding(20, 0, 0, 0);
-			itemView.setBackgroundColor(Color.parseColor("#FF5E00".toString()));
+			itemView.setBackgroundColor(Color.parseColor("#FF8224".toString()));
 		//	imgIcon.setImageDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
 //			imgIcon.setScaleType(ScaleType.CENTER);
 //			imgIcon.getLayoutParams().width = 80;

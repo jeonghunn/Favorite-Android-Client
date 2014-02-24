@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.1411</string>
-    <string name="build">1411</string>
+    <string name="ver">1.0.0.1441</string>
+    <string name="build">1441</string>
     <string name="verkind">Beta 2</string>
     <string name="copyright">Copyrightⓒ. 2014. Tarks.</string>
     <string name="lang">en</string>
@@ -107,5 +107,6 @@
     <string name="user_settings">User Settings</string>
     <string name="choose_picture">Choose Picture</string>
     <string name="camera">Camera</string>
-
+    <string name="no_storage_error">No SDCard or any storage.</string>
+   <string name="welcome_des">환영합니다. 다른 사람들이 나를 좋아하는지를 알려면, 몇가지 정보를 입력해주세요:)</string>
 </resources>

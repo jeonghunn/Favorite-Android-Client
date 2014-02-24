@@ -92,6 +92,7 @@
             android:label="@string/check_result" />
         <activity
             android:name=".start.welcome"
+             android:screenOrientation="portrait"
             android:theme="@style/Theme.Sherlock.NoActionBar" />
         <activity
             android:name="com.tarks.favorite.tarks_account_login"

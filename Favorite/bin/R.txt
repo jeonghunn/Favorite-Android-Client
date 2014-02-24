@@ -729,7 +729,7 @@ int string delete 0x7f090070
 int string delete_profile_photo 0x7f090071
 int string drawer_close 0x7f09005b
 int string drawer_open 0x7f09005a
-int string during_logout 0x7f09007b
+int string during_logout 0x7f09007d
 int string error 0x7f090038
 int string error_des 0x7f09003e
 int string error_login 0x7f090037
@@ -746,8 +746,8 @@ int string lang 0x7f090012
 int string location 0x7f09004b
 int string location_des 0x7f09004c
 int string logout 0x7f090029
-int string logout_des 0x7f090079
-int string logout_really 0x7f09007a
+int string logout_des 0x7f09007b
+int string logout_really 0x7f09007c
 int string male 0x7f090069
 int string menu_settings 0x7f090018
 int string message 0x7f090052
@@ -760,6 +760,7 @@ int string networkerror 0x7f09001f
 int string networkerrord 0x7f090020
 int string no 0x7f09001b
 int string no_info 0x7f090024
+int string no_storage_error 0x7f090077
 int string noname 0x7f09003d
 int string not_support_feature 0x7f090041
 int string notice 0x7f09002a
@@ -774,7 +775,7 @@ int string permission_denied 0x7f09003f
 int string phone_number 0x7f09003b
 int string phone_number_content 0x7f090048
 int string phone_number_des 0x7f090047
-int string plan 0x7f090077
+int string plan 0x7f090079
 int string profile 0x7f090072
 int string profile_settings_des 0x7f090073
 int string refresh 0x7f090021
@@ -795,7 +796,7 @@ int string share 0x7f09002c
 int string sign_up 0x7f090027
 int string signing_in 0x7f090035
 int string skip 0x7f090042
-int string special_user 0x7f090078
+int string special_user 0x7f09007a
 int string start 0x7f09002f
 int string statistics_des 0x7f090017
 int string tarks_account 0x7f090030
@@ -807,6 +808,7 @@ int string user_settings 0x7f090074
 int string ver 0x7f09000e
 int string verkind 0x7f090010
 int string welcome 0x7f090036
+int string welcome_des 0x7f090078
 int string who_favorited_me 0x7f090058
 int string yes 0x7f09001a
 int style ActionBar_Solid_Favorite 0x7f0a006b

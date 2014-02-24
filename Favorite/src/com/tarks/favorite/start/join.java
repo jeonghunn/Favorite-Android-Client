@@ -80,6 +80,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	ImageView profile;
 	// bitmap
 	Bitmap profile_bitmap;
+	//IMG
+	Uri mImageUri;
 	// RadioGroup
 
 	RadioGroup rg1;
@@ -326,13 +328,18 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	        	  try
 	        	    {
 	        	        // place where to store camera taken picture
-	        	 //       photo = this.createTemporaryFile("picture", ".jpg");
+	        	        photo = Global.createTemporaryFile("picture", ".jpg");
 	        	        photo.delete();
 	        	    }
 	        	    catch(Exception e)
 	        	    {
+	        	    	Global.toast(getString(R.string.no_storage_error));
 	        	        return false;
 	        	    }
+	        	      mImageUri = Uri.fromFile(photo);
+	        	    intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+	        	    //start camera intent
+	        	   join.this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
 	        	break;
 	        	
 	        case 3:
@@ -372,44 +379,15 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			}
 		}
 		
-		// Request Code 가 일치 하는지 확인    
-		if( requestCode == CAMERA_PIC_REQUEST )
-	    	{ 
-	               // 카메라로 사진을 찍은 후 Add 버튼을 눌렀는지 확인 한다.
-	    		if( data != null )
-	    		{
-	    			Bitmap thumbnail = (Bitmap)data.getExtras().get("data");
-	        		
-	        		if( thumbnail != null )
-	        		{      // 가지고온 사진 데이터를 이미지 뷰에 보여 준다.
-//	        			Intent intent = new Intent(join.this, CropManager.class);
-//	    				intent.putExtra("uri", Global.getImageUri(this, thumbnail) );
-//	    				startActivityForResult(intent, IMAGE_EDIT);
-String szDateTop = null;
-	        			try{
-	        				 final Cursor cursorImages = Media.query(null, uriImages, IMAGE_PROJECTION, null, null, null);
-	        				     if(cursorImages != null && cursorImages.moveToLast()){         
-	        				   szDateTop = cursorImages.getString(0);
-	        				  cursorImages.close();
-	        				  } 
-	        				 }catch(Exception e){}
-	    				File file = new File(szDateTop);
-	        	         Uri uri = Uri.fromFile(file);
-	    				try {
-							profile_bitmap = Images.Media.getBitmap(getContentResolver(), uri);
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-        profile.setImageBitmap(profile_bitmap);
-//	    				profile_changed = true;
-//	    				Globalvariable.image = null;
-	        		}
-	    		}
-	    	}
+		 if(requestCode==CAMERA_PIC_REQUEST && resultCode==RESULT_OK)
+		    {
+		      // ImageView imageView;
+		       //... some code to inflate/create/find appropriate ImageView to place grabbed image
+		  //      profile_bitmap = Global.grabImage(mImageUri);
+		        Intent intent = new Intent(join.this, CropManager.class);
+				intent.putExtra("uri", mImageUri);
+				startActivityForResult(intent, IMAGE_EDIT);
+		    }
 	    
 	}
 
