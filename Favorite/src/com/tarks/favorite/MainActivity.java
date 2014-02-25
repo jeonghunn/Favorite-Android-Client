@@ -66,14 +66,14 @@ public class MainActivity extends SherlockActivity {
 	String myId, myPWord, myTitle, mySubject, myResult;
 	String infoResult;
 	String REGid;
-	//Notice Result
+	// Notice Result
 	String NoticeResult;
 	String user_srl;
 	// Allow Load
 	boolean load = true;
 
-	
-	
+	// Connect timeout boolean
+	boolean ConnectTimeout = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,12 +84,12 @@ public class MainActivity extends SherlockActivity {
 		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
 		String frist_use = prefs.getString("frist_use_app", "true");
 
-	
-		// Check Network Connection
-	try{
-	
+		ConnectTimeout();
 
-		//	Log.d("==============", regId);
+		// Check Network Connection
+		try {
+
+			// Log.d("==============", regId);
 			REGid = Global.GCMReg();
 			// Let's Call Information
 			// Connection Start
@@ -100,70 +100,90 @@ public class MainActivity extends SherlockActivity {
 				startActivity(intent);
 				finish();
 			} else {
-				//First Notice Download
+				// First Notice Download
 				InfoDown();
-			
-		} 
-			
-	}catch (Exception e){
-		// If No Network Connection
-					// 로딩 화면은 종료하라.
-					finish();
-					// 이동한다. 메인으로
-					Intent intent = new Intent(MainActivity.this, main.class);
-					startActivity(intent);
-		
-	}
 
-		
+			}
 
+		} catch (Exception e) {
+			// If No Network Connection
+			// 로딩 화면은 종료하라.
+			finish();
+			// 이동한다. 메인으로
+			Intent intent = new Intent(MainActivity.this, main.class);
+			startActivity(intent);
 
+		}
 
 	}
 
-	public void InfoDown(){
+	public void InfoDown() {
 
 		// get user_srl
 		// 설정 값 불러오기
-		SharedPreferences prefs = getSharedPreferences("setting",
-				MODE_PRIVATE);
-		 user_srl = prefs.getString("user_srl", "");
+		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
+		user_srl = prefs.getString("user_srl", "");
 		String user_srl_auth = prefs.getString("user_srl_auth", "");
 
-		
-		
-      ArrayList<String> Paramname = new ArrayList<String>();
-      Paramname.add("authcode");
-      Paramname.add("lang");
-      Paramname.add("user_srl");
-      Paramname.add("user_srl_auth");
-      Paramname.add("member_info");
-      
-      
-      ArrayList<String> Paramvalue = new ArrayList<String>();
-      Paramvalue.add("642979");
-      Paramvalue.add(getString(R.string.lang));
-      Paramvalue.add(user_srl);
-      Paramvalue.add(user_srl_auth);
-      Paramvalue.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
-				
-      
-				new AsyncHttpTask(this, getString(R.string.server_path) + "load.php", mHandler, Paramname, Paramvalue, null, 1);
-				
-			
-	}
-	  
-	  
+		ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("lang");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+		Paramname.add("member_info");
 
-	
-	public void ConnectionError(){
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add(getString(R.string.lang));
+		Paramvalue.add(user_srl);
+		Paramvalue.add(user_srl_auth);
+		Paramvalue
+				.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
+
+		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
+				mHandler, Paramname, Paramvalue, null, 1);
+
+	}
+
+	public void ConnectTimeout() {
+		new Thread(new Runnable() {
+			public void run() {
+				while (true) {
+					
+
+					try {
+						Thread.sleep(15000);
+						if(ConnectTimeout == false){
+							break;
+						}
+						if (this != null) {
+							Message msg = mHandler.obtainMessage();
+							msg.arg1 = 0;
+							mHandler.sendMessage(msg);
+						}
+						break;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		}).start();
+	}
+
+	public void BreakTimeout() {
+		ConnectTimeout = false;
+	}
+
+	public void ConnectionError() {
 		// If No Network Connection
 		// Check Internet Connection
-	
 
 		// Check Network Connection
-		if (Global.InternetConnection(1) == true || Global.InternetConnection(0) == true) {
-			//Show Alert
+		if (Global.InternetConnection(1) == true
+				|| Global.InternetConnection(0) == true) {
+			// Show Alert
 			AlertDialog.Builder alert = new AlertDialog.Builder(
 					MainActivity.this);
 			alert.setTitle(getString(R.string.error));
@@ -172,42 +192,41 @@ public class MainActivity extends SherlockActivity {
 			alert.setPositiveButton(getString(R.string.check_service_status),
 					new DialogInterface.OnClickListener() {
 
-						public void onClick(DialogInterface dialog,
-								int which) {
-							
-							 Uri uri = Uri.parse("https://sites.google.com/site/tarksservicesstatus/");
-								Intent it = new Intent(Intent.ACTION_VIEW, uri);
-								startActivity(it);
+						public void onClick(DialogInterface dialog, int which) {
+
+							Uri uri = Uri
+									.parse("https://sites.google.com/site/tarksservicesstatus/");
+							Intent it = new Intent(Intent.ACTION_VIEW, uri);
+							startActivity(it);
 						}
 					});
 			alert.setNegativeButton(getString(R.string.yes),
 					new DialogInterface.OnClickListener() {
 
-				public void onClick(DialogInterface dialog,
-						int which) {
-				
-					finish();
-			
+						public void onClick(DialogInterface dialog, int which) {
 
-				}
-			});
+							finish();
+
+						}
+					});
 			alert.show();
-			
-		}else{
-		// 로딩 화면은 종료하라.
-		  Toast.makeText(MainActivity.this, getString(R.string.networkerrord), 0).show(); 
-		finish();
-		// 이동한다. 메인으로
-		Intent intent = new Intent(MainActivity.this, main.class);
-		startActivity(intent);
+
+		} else {
+			// 로딩 화면은 종료하라.
+			Toast.makeText(MainActivity.this,
+					getString(R.string.networkerrord), 0).show();
+			finish();
+			// 이동한다. 메인으로
+			Intent intent = new Intent(MainActivity.this, main.class);
+			startActivity(intent);
 		}
 	}
-	
-	public void StartApp(){
-		try{
-		
+
+	public void StartApp() {
+		try {
+
 			if (infoResult.startsWith("/LINE/.")) {
-				//Account Changed
+				// Account Changed
 				// Alert
 				AlertDialog.Builder alert = new AlertDialog.Builder(
 						MainActivity.this);
@@ -222,15 +241,14 @@ public class MainActivity extends SherlockActivity {
 								// Clear Old Settings
 								getSharedPreferences("setting", 0).edit()
 										.clear().commit();
-								getSharedPreferences("temp", 0).edit()
-										.clear().commit();
+								getSharedPreferences("temp", 0).edit().clear()
+										.commit();
 
 								// New Start
 								// 로딩 화면은 종료하라.
 								finish();
 								// 이동한다. 메인으로
-								Intent intent = new Intent(
-										MainActivity.this,
+								Intent intent = new Intent(MainActivity.this,
 										MainActivity.class);
 								startActivity(intent);
 
@@ -238,35 +256,39 @@ public class MainActivity extends SherlockActivity {
 						});
 				alert.show();
 			} else {
-				//Check mySql Error
-				if(infoResult.matches("db_error")){
+				// Check mySql Error
+				if (infoResult.matches("db_error")) {
 					load = false;
 					ConnectionError();
 				}
 
-			//    Log.i("Result value",infoResult);
+				// Log.i("Result value",infoResult);
 				String[] array = infoResult.split("/LINE/.");
-				//    Global.dumpArray(array);
+				// Global.dumpArray(array);
 
+				String tarks_account = array[0];
+				String name_1 = array[1];
+				String name_2 = array[2];
+				String permission = array[3];
+				String profile_update = array[4];
+				String reg_id = array[5];
+				String key = array[6];
+				String like_me = array[7];
+				String favorite = array[8];
 
-					String tarks_account = array[0];
-					String name_1 = array[1];
-					String name_2 = array[2];
-					String permission = array[3];
-					String profile_update = array[4];
-					String reg_id = array[5];
-					String key = array[6];
-					String like_me =  array[7];
-					String favorite =  array[8];
-					
-//					if(!profile_update.matches(Global.getSetting("profile_update", "") || getCacheDir().toString(), "/profile.jpg")){
-//						Global.DownloadImageToFile(getString(R.string.server_path)
-//								+ "files/profile/" + user_srl + ".jpg", getCacheDir().toString(), "/profile.jpg");
-//					}
-					
-					Global.UpdateFileCache(profile_update, Global.getSetting("profile_update", ""), getString(R.string.server_path)
-							+ "files/profile/" + user_srl + ".jpg", getCacheDir().toString(), "/profile.jpg");
-				
+				// if(!profile_update.matches(Global.getSetting("profile_update",
+				// "") || getCacheDir().toString(), "/profile.jpg")){
+				// Global.DownloadImageToFile(getString(R.string.server_path)
+				// + "files/profile/" + user_srl + ".jpg",
+				// getCacheDir().toString(), "/profile.jpg");
+				// }
+
+				Global.UpdateFileCache(profile_update,
+						Global.getSetting("profile_update", ""),
+						getString(R.string.server_path) + "files/profile/"
+								+ user_srl + ".jpg", getCacheDir().toString(),
+						"/profile.jpg");
+
 				// 설정 값 저장
 				// Setting Editor
 				SharedPreferences edit = getSharedPreferences("setting",
@@ -280,13 +302,11 @@ public class MainActivity extends SherlockActivity {
 				editor.putString("like_me", like_me);
 				editor.putString("favorite", favorite);
 				editor.commit();
-				
+
 				// Kind of Load Stop
-				
-			
 
 				// Reg ID가 기존과 다를 때
-				if (REGid.startsWith(reg_id)||reg_id.matches("null")) {
+				if (REGid.startsWith(reg_id) || reg_id.matches("null")) {
 				} else {
 					load = false;
 					// Alert
@@ -320,7 +340,6 @@ public class MainActivity extends SherlockActivity {
 					alert.show();
 				}
 
-
 				// Permission Denied
 				if (permission.matches("4")) {
 					load = false;
@@ -335,6 +354,7 @@ public class MainActivity extends SherlockActivity {
 				// 제한사항이 없을 경우
 				if (load == true) {
 					// 로딩 화면은 종료하라.
+
 					finish();
 					// 이동한다. 메인으로
 					Intent intent = new Intent(MainActivity.this, main.class);
@@ -342,32 +362,35 @@ public class MainActivity extends SherlockActivity {
 
 				}
 
-				
-				
-			
 			}
-			}catch (Exception e){
-		//	ConnectionError();
-			}
+		} catch (Exception e) {
+			// ConnectionError();
+		}
 
-	
 	}
-	
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			
+			//IF Sucessfull no timeout
+			if (msg.what != 0) {
+				BreakTimeout();
+			}
+
 			if (msg.what == -1) {
 				ConnectionError();
 			}
-			
+
+			if (msg.what == 0) {
+				ConnectionError();
+			}
+
 			if (msg.what == 1) {
 				infoResult = msg.obj.toString();
 				StartApp();
-				
+
 			}
-			
+
 		}
 	};
-	
+
 }
