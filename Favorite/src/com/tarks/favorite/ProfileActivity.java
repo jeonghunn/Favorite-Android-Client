@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -31,10 +33,15 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.manuelpeinado.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
+import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 
 public class ProfileActivity extends SherlockActivity {
-
+	
+	
+	int member_srl;
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +58,30 @@ public class ProfileActivity extends SherlockActivity {
         getSupportActionBar().setTitle( Global.NameMaker(Global.getSetting("name_1", ""), Global.getSetting("name_2", "")));
         
         ImageView profile = (ImageView) findViewById(R.id.image_header);
-        profile.setImageDrawable(Drawable.createFromPath( getCacheDir().toString() + "/profile.jpg"));
+        profile.setImageDrawable(Drawable.createFromPath( getCacheDir().toString() + "/member/" + member_srl + ".jpg"));
+        
+//    	ArrayList<String> Paramname = new ArrayList<String>();
+//		Paramname.add("authcode");
+//		Paramname.add("lang");
+//		Paramname.add("user_srl");
+//		Paramname.add("user_srl_auth");
+//		Paramname.add("member_info");
+//
+//		ArrayList<String> Paramvalue = new ArrayList<String>();
+//		Paramvalue.add("642979");
+//		Paramvalue.add(getString(R.string.lang));
+//		Paramvalue.add(user_srl);
+//		Paramvalue.add(user_srl_auth);
+//		Paramvalue
+//				.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
+//
+//		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
+//				mHandler, Paramname, Paramvalue, null, 1);
+//        
+//    	Global.UpdateFileCache(profile_update,
+//				Global.getUser(member_srl, "0"),
+//				getString(R.string.server_path) + "files/profile/"
+//						+ member_srl + ".jpg", getCacheDir().toString(), member_srl +".jpg");
 
         ListView listView = (ListView) findViewById(android.R.id.list);
       ArrayList<String> items = new ArrayList<String>();
@@ -115,6 +145,24 @@ public class ProfileActivity extends SherlockActivity {
         }
     }
 
+    protected Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			//IF Sucessfull no timeout
+		
+
+			if (msg.what == -1) {
+				Global.ConnectionError(ProfileActivity.this);
+			}
+
+		
+			if (msg.what == 1) {
+				
+
+			}
+
+		}
+	};
+    
     //빽백키 상단액션바
 	   @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {

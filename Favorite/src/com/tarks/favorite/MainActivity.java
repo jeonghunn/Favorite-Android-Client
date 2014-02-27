@@ -121,9 +121,9 @@ public class MainActivity extends SherlockActivity {
 
 		// get user_srl
 		// 설정 값 불러오기
-		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
-		user_srl = prefs.getString("user_srl", "");
-		String user_srl_auth = prefs.getString("user_srl_auth", "");
+		//SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
+		user_srl = Global.getSetting("user_srl", "");
+		String user_srl_auth = Global.getSetting("user_srl_auth", "");
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -148,20 +148,28 @@ public class MainActivity extends SherlockActivity {
 	public void ConnectTimeout() {
 		new Thread(new Runnable() {
 			public void run() {
+				int time = 0;
 				while (true) {
 					
 
 					try {
-						Thread.sleep(15000);
+						//15 seconds
+						if(time != 14){
+						Thread.sleep(1000);
+						time = time + 1;
+						Log.i("Timeout", time +"load");
 						if(ConnectTimeout == false){
 							break;
 						}
+						}else{
 						if (this != null) {
 							Message msg = mHandler.obtainMessage();
 							msg.arg1 = 0;
 							mHandler.sendMessage(msg);
 						}
 						break;
+						}
+						//break;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -386,6 +394,7 @@ public class MainActivity extends SherlockActivity {
 
 			if (msg.what == 1) {
 				infoResult = msg.obj.toString();
+				Log.i("InfoResult", infoResult + "null");
 				StartApp();
 
 			}

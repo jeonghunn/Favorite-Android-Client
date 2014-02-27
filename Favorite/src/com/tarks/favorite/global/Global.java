@@ -343,6 +343,12 @@ public final class Global {
 				mod.MODE_PRIVATE);
 		return prefs.getString(setting, default_value);
 	}
+	
+	public static String getUser(String setting, String default_value) {
+		SharedPreferences prefs = mod.getSharedPreferences("users",
+				mod.MODE_PRIVATE);
+		return prefs.getString(setting, default_value);
+	}
 
 	public static String getPhoneNumber(boolean getphonenumber) {
 		// Get Country number and phone number
