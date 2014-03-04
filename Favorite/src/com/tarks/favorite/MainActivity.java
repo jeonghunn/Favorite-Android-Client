@@ -96,6 +96,7 @@ public class MainActivity extends SherlockActivity {
 			// 처음 사용자가 아닐시에
 			if (frist_use.matches("true")) {
 				// 이동한다. 환영합니다로.
+				BreakTimeout();
 				Intent intent = new Intent(MainActivity.this, welcome.class);
 				startActivity(intent);
 				finish();
