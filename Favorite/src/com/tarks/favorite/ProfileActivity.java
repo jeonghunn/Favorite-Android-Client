@@ -38,7 +38,7 @@ import com.tarks.favorite.global.Global;
 
 public class ProfileActivity extends SherlockActivity {
 	
-	
+	//Member srl
 	int member_srl;
 	
 	
@@ -60,24 +60,21 @@ public class ProfileActivity extends SherlockActivity {
         ImageView profile = (ImageView) findViewById(R.id.image_header);
         profile.setImageDrawable(Drawable.createFromPath( getCacheDir().toString() + "/member/" + member_srl + ".jpg"));
         
-//    	ArrayList<String> Paramname = new ArrayList<String>();
-//		Paramname.add("authcode");
-//		Paramname.add("lang");
-//		Paramname.add("user_srl");
-//		Paramname.add("user_srl_auth");
-//		Paramname.add("member_info");
-//
-//		ArrayList<String> Paramvalue = new ArrayList<String>();
-//		Paramvalue.add("642979");
-//		Paramvalue.add(getString(R.string.lang));
-//		Paramvalue.add(user_srl);
-//		Paramvalue.add(user_srl_auth);
-//		Paramvalue
-//				.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
-//
-//		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
-//				mHandler, Paramname, Paramvalue, null, 1);
-//        
+    	ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+		Paramname.add("profile_user_srl");
+
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add(Global.getSetting("user_srl", "0"));
+		Paramvalue.add(Global.getSetting("user_srl_auth", "null"));
+		Paramvalue.add(String.valueOf(member_srl));
+
+		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
+				mHandler, Paramname, Paramvalue, null, 1);
+        
 //    	Global.UpdateFileCache(profile_update,
 //				Global.getUser(member_srl, "0"),
 //				getString(R.string.server_path) + "files/profile/"

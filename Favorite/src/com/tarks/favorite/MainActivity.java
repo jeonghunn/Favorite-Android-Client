@@ -184,6 +184,16 @@ public class MainActivity extends SherlockActivity {
 	public void BreakTimeout() {
 		ConnectTimeout = false;
 	}
+	
+	public void PermissionError(){
+		// Alert
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				MainActivity.this);
+		builder.setMessage(getString(R.string.permission_denied))
+				.setPositiveButton(getString(R.string.yes), null)
+				.setTitle(getString(R.string.error));
+		builder.show();
+	}
 
 	public void ConnectionError() {
 		// If No Network Connection
@@ -233,7 +243,7 @@ public class MainActivity extends SherlockActivity {
 
 	public void StartApp() {
 		try {
-
+// Global.toast(infoResult);
 			if (infoResult.startsWith("/LINE/.")) {
 				// Account Changed
 				// Alert
@@ -270,7 +280,16 @@ public class MainActivity extends SherlockActivity {
 					load = false;
 					ConnectionError();
 				}
-
+				//Check IP Error
+				if (infoResult.matches("ip_error")) {
+					load = false;
+					PermissionError();
+				}
+				//Check Permission Error
+				if (infoResult.matches("permission_error")) {
+					load = false;
+					PermissionError();
+				}
 				// Log.i("Result value",infoResult);
 				String[] array = infoResult.split("/LINE/.");
 				// Global.dumpArray(array);
@@ -350,16 +369,10 @@ public class MainActivity extends SherlockActivity {
 				}
 
 				// Permission Denied
-				if (permission.matches("4")) {
-					load = false;
-					// Alert
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							MainActivity.this);
-					builder.setMessage(getString(R.string.permission_denied))
-							.setPositiveButton(getString(R.string.yes), null)
-							.setTitle(getString(R.string.error));
-					builder.show();
-				}
+//				if (permission.matches("4")) {
+//					load = false;
+//					PermissionError();
+//				}
 				// 제한사항이 없을 경우
 				if (load == true) {
 					// 로딩 화면은 종료하라.
