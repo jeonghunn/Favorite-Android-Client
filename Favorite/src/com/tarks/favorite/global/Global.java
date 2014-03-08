@@ -3,6 +3,7 @@ package com.tarks.favorite.global;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -471,4 +472,25 @@ public final class Global {
 	// return output;
 	// }
 
+	
+	public static void Feedback(Context cx){
+		// System info
+		String s = "Device info:";
+		s += "\n OS Version: " + System.getProperty("os.version") + "("
+				+ android.os.Build.VERSION.INCREMENTAL + ")";
+		s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
+		s += "\n Device: " + android.os.Build.DEVICE;
+		s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
+				+ android.os.Build.PRODUCT + ")";
+
+		// Send email
+		Intent Email = new Intent(Intent.ACTION_SEND);
+		Email.setType("text/email");
+		Email.putExtra(Intent.EXTRA_EMAIL,
+				new String[] { "main@tarks.net" });
+		Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+		Email.putExtra(Intent.EXTRA_TEXT, s);
+		cx.startActivity(Intent.createChooser(Email,
+				cx.getString(R.string.choose_email_app)));
+	}
 }

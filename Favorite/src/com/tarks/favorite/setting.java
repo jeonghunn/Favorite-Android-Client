@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.global.Global;
 
 @SuppressWarnings("deprecation")
 public class setting extends SherlockPreferenceActivity {
@@ -60,24 +61,8 @@ public class setting extends SherlockPreferenceActivity {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
-				// System info
-				String s = "Device info:";
-				s += "\n OS Version: " + System.getProperty("os.version") + "("
-						+ android.os.Build.VERSION.INCREMENTAL + ")";
-				s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
-				s += "\n Device: " + android.os.Build.DEVICE;
-				s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
-						+ android.os.Build.PRODUCT + ")";
+				Global.Feedback(setting.this);
 
-				// Send email
-				Intent Email = new Intent(Intent.ACTION_SEND);
-				Email.setType("text/email");
-				Email.putExtra(Intent.EXTRA_EMAIL,
-						new String[] { "main@tarks.net" });
-				Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-				Email.putExtra(Intent.EXTRA_TEXT, s);
-				startActivity(Intent.createChooser(Email,
-						getString(R.string.send_feedback)));
 				return false;
 			}
 		});

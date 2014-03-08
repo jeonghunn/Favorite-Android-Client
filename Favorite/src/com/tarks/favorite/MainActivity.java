@@ -122,7 +122,8 @@ public class MainActivity extends SherlockActivity {
 
 		// get user_srl
 		// 설정 값 불러오기
-		//SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
+		// SharedPreferences prefs = getSharedPreferences("setting",
+		// MODE_PRIVATE);
 		user_srl = Global.getSetting("user_srl", "");
 		String user_srl_auth = Global.getSetting("user_srl_auth", "");
 
@@ -151,26 +152,25 @@ public class MainActivity extends SherlockActivity {
 			public void run() {
 				int time = 0;
 				while (true) {
-					
 
 					try {
-						//15 seconds
-						if(time != 14){
-						Thread.sleep(1000);
-						time = time + 1;
-						Log.i("Timeout", time +"load");
-						if(ConnectTimeout == false){
+						// 15 seconds
+						if (time != 14) {
+							Thread.sleep(1000);
+							time = time + 1;
+							Log.i("Timeout", time + "load");
+							if (ConnectTimeout == false) {
+								break;
+							}
+						} else {
+							if (this != null) {
+								Message msg = mHandler.obtainMessage();
+								msg.arg1 = 0;
+								mHandler.sendMessage(msg);
+							}
 							break;
 						}
-						}else{
-						if (this != null) {
-							Message msg = mHandler.obtainMessage();
-							msg.arg1 = 0;
-							mHandler.sendMessage(msg);
-						}
-						break;
-						}
-						//break;
+						// break;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -184,14 +184,55 @@ public class MainActivity extends SherlockActivity {
 	public void BreakTimeout() {
 		ConnectTimeout = false;
 	}
-	
-	public void PermissionError(){
+
+	public void PermissionError() {
 		// Alert
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				MainActivity.this);
-		builder.setMessage(getString(R.string.permission_denied))
-				.setPositiveButton(getString(R.string.yes), null)
-				.setTitle(getString(R.string.error));
+		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+		builder.setMessage(getString(R.string.permission_denied)).setTitle(
+				getString(R.string.error));
+		builder.setPositiveButton(getString(R.string.check_service_status),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						Global.Feedback(MainActivity.this);
+
+					}
+				});
+		builder.setNegativeButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+
+						finish();
+
+					}
+				});
+		builder.show();
+
+		builder.show();
+	}
+
+	public void IPError() {
+		// Alert
+		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+		builder.setMessage(getString(R.string.ip_error_des)).setTitle(
+				getString(R.string.error));
+		builder.setPositiveButton(getString(R.string.enquire),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						Global.Feedback(MainActivity.this);
+					}
+				});
+		builder.setNegativeButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+
+						finish();
+
+					}
+				});
 		builder.show();
 	}
 
@@ -208,7 +249,7 @@ public class MainActivity extends SherlockActivity {
 			alert.setTitle(getString(R.string.error));
 			alert.setMessage(getString(R.string.server_connection_error_des));
 			alert.setIcon(R.drawable.ic_launcher);
-			alert.setPositiveButton(getString(R.string.check_service_status),
+			alert.setPositiveButton(getString(R.string.enquire),
 					new DialogInterface.OnClickListener() {
 
 						public void onClick(DialogInterface dialog, int which) {
@@ -243,7 +284,18 @@ public class MainActivity extends SherlockActivity {
 
 	public void StartApp() {
 		try {
-// Global.toast(infoResult);
+			// Global.toast(infoResult);
+			// Check mySql Error
+			if (infoResult.matches("db_error")) {
+				load = false;
+				ConnectionError();
+			}
+			// Check IP Error
+			if (infoResult.matches("ip_error")) {
+				load = false;
+				IPError();
+			}
+
 			if (infoResult.startsWith("/LINE/.")) {
 				// Account Changed
 				// Alert
@@ -275,17 +327,8 @@ public class MainActivity extends SherlockActivity {
 						});
 				alert.show();
 			} else {
-				// Check mySql Error
-				if (infoResult.matches("db_error")) {
-					load = false;
-					ConnectionError();
-				}
-				//Check IP Error
-				if (infoResult.matches("ip_error")) {
-					load = false;
-					PermissionError();
-				}
-				//Check Permission Error
+
+				// Check Permission Error
 				if (infoResult.matches("permission_error")) {
 					load = false;
 					PermissionError();
@@ -369,10 +412,10 @@ public class MainActivity extends SherlockActivity {
 				}
 
 				// Permission Denied
-//				if (permission.matches("4")) {
-//					load = false;
-//					PermissionError();
-//				}
+				// if (permission.matches("4")) {
+				// load = false;
+				// PermissionError();
+				// }
 				// 제한사항이 없을 경우
 				if (load == true) {
 					// 로딩 화면은 종료하라.
@@ -393,7 +436,7 @@ public class MainActivity extends SherlockActivity {
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			//IF Sucessfull no timeout
+			// IF Sucessfull no timeout
 			if (msg.what != 0) {
 				BreakTimeout();
 			}
