@@ -257,12 +257,14 @@ public final class Global {
 		return Uri.parse(path);
 	}
 
-	public static void UpdateFileCache(String new_update, String updatetime,
+	public static boolean UpdateFileCache(String new_update, String updatetime,
 			String filepath, String filesavepath, String filename) {
 		File files = new File(filesavepath + filename);
 		if (!new_update.matches(updatetime) || files.exists() == false) {
-			DownloadImageToFile(filepath, filesavepath, filename);
+			Log.i("true", "Update need");
+		return true;
 		}
+		return false;
 	}
 
 	public static void DownloadImageToFile(String filepath,
@@ -271,6 +273,8 @@ public final class Global {
 		Globalvariable.filesavepath = filesavepath;
 		Globalvariable.filename = filename;
 	}
+	
+	
 
 	protected static Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -351,6 +355,18 @@ public final class Global {
 		return prefs.getString(setting, default_value);
 	}
 
+	public static void SaveUserSetting(String user, String value){
+		// 설정 값 저장
+		// Setting Editor
+		SharedPreferences edit = mod.getSharedPreferences("users",
+				mod.MODE_PRIVATE);
+		SharedPreferences.Editor editor = edit.edit();
+		editor.putString(user, value);
+
+		editor.commit();
+
+	}
+	
 	public static String getPhoneNumber(boolean getphonenumber) {
 		// Get Country number and phone number
 		// get Phone number

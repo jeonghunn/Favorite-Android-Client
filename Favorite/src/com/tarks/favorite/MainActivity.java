@@ -56,7 +56,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.connect.AsyncHttpTask;
+import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.start.welcome;
 
 public class MainActivity extends SherlockActivity {
@@ -79,7 +81,7 @@ public class MainActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-	
+
 		// 자신의 신분 설정값을 불러옵니다.
 		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
 		String frist_use = prefs.getString("frist_use_app", "true");
@@ -353,11 +355,14 @@ public class MainActivity extends SherlockActivity {
 				// getCacheDir().toString(), "/profile.jpg");
 				// }
 
-				Global.UpdateFileCache(profile_update,
+				if (Global.UpdateFileCache(profile_update,
 						Global.getSetting("profile_update", ""),
 						getString(R.string.server_path) + "files/profile/"
 								+ user_srl + ".jpg", getCacheDir().toString(),
-						"/profile.jpg");
+						"/profile.jpg")) {
+					new ImageDownloader(this, getString(R.string.server_path)
+							+ "files/profile/" + user_srl + ".jpg", mHandler, 2);
+				}
 
 				// 설정 값 저장
 				// Setting Editor
@@ -452,6 +457,12 @@ public class MainActivity extends SherlockActivity {
 				infoResult = msg.obj.toString();
 				Log.i("InfoResult", infoResult + "null");
 				StartApp();
+
+			}
+
+			if (msg.what == 2) {
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj, getCacheDir()
+						.toString(), "/profile.jpg");
 
 			}
 
