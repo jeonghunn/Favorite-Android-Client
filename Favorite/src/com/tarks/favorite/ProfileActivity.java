@@ -65,9 +65,6 @@ public class ProfileActivity extends SherlockActivity {
 		setContentView(helper.createView(this));
 		helper.initActionBar(this);
 
-		getSupportActionBar().setTitle(
-				Global.NameMaker(Global.getSetting("name_1", ""),
-						Global.getSetting("name_2", "")));
 
 		profile = (ImageView) findViewById(R.id.image_header);
 		profile.setImageDrawable(Drawable.createFromPath(getCacheDir()
@@ -164,6 +161,9 @@ public class ProfileActivity extends SherlockActivity {
 				String profile_update = array[6];
 				String lang = array[7];
 				String country = array[8];
+				
+				getSupportActionBar().setTitle(
+						Global.NameMaker(name_1, name_2));
 
 				if (Global.UpdateFileCache(profile_update,
 						Global.getUser(member_srl, "0"),
@@ -191,12 +191,7 @@ public class ProfileActivity extends SherlockActivity {
 	};
 
 	public void Refresh() {
-		helper = new FadingActionBarHelper()
-				.actionBarBackground(R.drawable.ab_background)
-				.headerLayout(R.layout.profile)
-				.contentLayout(R.layout.activity_listview);
-		setContentView(helper.createView(this));
-		helper.initActionBar(this);
+		
 
 		setList();
 	}
