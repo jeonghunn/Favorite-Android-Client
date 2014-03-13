@@ -142,7 +142,7 @@ public class MainActivity extends SherlockActivity {
 		Paramvalue.add(user_srl);
 		Paramvalue.add(user_srl_auth);
 		Paramvalue
-				.add("tarks_account//name_1//name_2//permission//profile_update//reg_id//key//like_me//favorite");
+				.add("tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
 		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
 				mHandler, Paramname, Paramvalue, null, 1);
@@ -342,11 +342,12 @@ public class MainActivity extends SherlockActivity {
 				String name_1 = array[1];
 				String name_2 = array[2];
 				String permission = array[3];
-				String profile_update = array[4];
-				String reg_id = array[5];
-				String key = array[6];
-				String like_me = array[7];
-				String favorite = array[8];
+				String profile_pic = array[4];
+				String profile_update = array[5];
+				String reg_id = array[6];
+				String key = array[7];
+				String like_me = array[8];
+				String favorite = array[9];
 
 				// if(!profile_update.matches(Global.getSetting("profile_update",
 				// "") || getCacheDir().toString(), "/profile.jpg")){
@@ -372,6 +373,7 @@ public class MainActivity extends SherlockActivity {
 				editor.putString("name_1", name_1);
 				editor.putString("name_2", name_2);
 				editor.putString("permission", permission);
+				editor.putString("profile_pic", profile_pic);
 				editor.putString("profile_update", profile_update);
 				editor.putString("key", key);
 				editor.putString("like_me", like_me);

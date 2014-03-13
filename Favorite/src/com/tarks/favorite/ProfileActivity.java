@@ -16,6 +16,7 @@
 package com.tarks.favorite;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,6 +43,8 @@ import com.tarks.favorite.global.Globalvariable;
 
 public class ProfileActivity extends SherlockActivity {
 
+	//Profile image local path
+String local_path;
 	// Member srl
 	String member_srl = "5";
 	// Profile
@@ -51,6 +54,7 @@ public class ProfileActivity extends SherlockActivity {
 	ListView listView;
 	// FadingActionbar
 	FadingActionBarHelper helper;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +69,10 @@ public class ProfileActivity extends SherlockActivity {
 		setContentView(helper.createView(this));
 		helper.initActionBar(this);
 
-
+		local_path =  getCacheDir().toString()
+				+ "/member/";
 		profile = (ImageView) findViewById(R.id.image_header);
-		profile.setImageDrawable(Drawable.createFromPath(getCacheDir()
-				.toString() + "/member/" + member_srl + ".jpg"));
+		profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -85,7 +89,7 @@ public class ProfileActivity extends SherlockActivity {
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(String.valueOf(member_srl));
 		Paramvalue
-				.add("tarks_account//name_1//name_2//gender//birthday//join_day//profile_update//lang//country");
+				.add("tarks_account//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
@@ -151,16 +155,17 @@ public class ProfileActivity extends SherlockActivity {
 
 			if (msg.what == 1) {
 				String[] array = msg.obj.toString().split("/LINE/.");
-
+Global.dumpArray(array);
 				String tarks_account = array[0];
 				String name_1 = array[1];
 				String name_2 = array[2];
 				String gender = array[3];
 				String birthday = array[4];
 				String join_day = array[5];
-				String profile_update = array[6];
-				String lang = array[7];
-				String country = array[8];
+				String profile_pic = array[6];
+				String profile_update = array[7];
+				String lang = array[8];
+				String country = array[9];
 				
 				getSupportActionBar().setTitle(
 						Global.NameMaker(name_1, name_2));
@@ -168,12 +173,16 @@ public class ProfileActivity extends SherlockActivity {
 				if (Global.UpdateFileCache(profile_update,
 						Global.getUser(member_srl, "0"),
 						getString(R.string.server_path) + "files/profile/"
-								+ member_srl + ".jpg", getCacheDir().toString()
-								+ "/member/", member_srl + ".jpg")) {
+								+ member_srl + ".jpg",  local_path, member_srl + ".jpg") && profile_pic.matches("Y")) {
 					Global.SaveUserSetting(member_srl, profile_update);
 					ProfileImageDownload();
-					Log.i("test", "Let s profile image download");
+				//	Log.i("test", "Let s profile image download");
 
+				}
+				if( profile_pic.matches("N")){
+				File file = new File(local_path + member_srl +  ".jpg");
+				file.delete();
+				profile.setImageDrawable(null);
 				}
 			}
 

@@ -89,6 +89,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	String first_name;
 	String last_name;
 	String name_1, name_2;
+	//Profile
+	String profile_pic;
 	//Country code and Phone number
 	String PhoneNumber;
 	String CountryCode;
@@ -139,9 +141,12 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				name_1 = array[2];
 				name_2 = array[3];
 				gender = Integer.parseInt(array[4]);
+				profile_pic = array[5];
 				// Download Profile image
+				if(profile_pic.matches("Y")){
 				new ImageDownloader(this, getString(R.string.server_path)
 						+ "files/profile/" + user_srl + ".jpg", mHandler, 3);
+				}
 				// Set EditText
 				// Country
 
@@ -589,6 +594,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramname.add("gender");
 						Paramname.add("country_code");
 						Paramname.add("phone_number");
+						Paramname.add("profile_pic");
 						Paramname.add("reg_id");
 						Paramname.add("country");
 
@@ -600,6 +606,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramvalue.add(String.valueOf(gender));
 						Paramvalue.add(Global.getPhoneNumber(false));
 						Paramvalue.add(Global.getPhoneNumber(true));
+						Paramvalue.add(profile_changed ? "Y" : "N");
 						Paramvalue.add(reg_id);
 						Paramvalue.add(Global.getCountryValue());
 
