@@ -6,15 +6,19 @@ import com.tarks.favorite.global.Global;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v4.view.GravityCompat;
@@ -40,6 +44,8 @@ public class main extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		// Get the view from drawer_main.xml
 		setContentView(R.layout.main);
+		
+		
 
 		// Get the Title
 		mTitle = mDrawerTitle = getTitle();
@@ -135,6 +141,7 @@ public class main extends SherlockFragmentActivity {
 				long id) {
 			if(position == 0){
 				Intent intent = new Intent(main.this, ProfileActivity.class);
+				  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 				startActivity(intent);	
 			}else selectItem(position);
 			

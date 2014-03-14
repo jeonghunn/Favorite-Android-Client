@@ -21,16 +21,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -46,7 +54,7 @@ public class ProfileActivity extends SherlockActivity {
 	//Profile image local path
 String local_path;
 	// Member srl
-	String member_srl = "5";
+	String member_srl = "0";
 	// Profile
 	ImageView profile;
 
@@ -55,12 +63,20 @@ String local_path;
 	// FadingActionbar
 	FadingActionBarHelper helper;
 	
+	//List
+	ArrayList<List> m_orders = new ArrayList<List>();
+	//Define ListAdapter
+	ListAdapter m_adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		//Get Intent
+		Intent intent = getIntent();//인텐트  받아오고
+        member_srl = intent.getStringExtra("member_srl");
 
 		helper = new FadingActionBarHelper()
 				.actionBarBackground(R.drawable.ab_background)
@@ -100,23 +116,23 @@ String local_path;
 
 	public void setList() {
 		listView = (ListView) findViewById(android.R.id.list);
-		ArrayList<String> items = new ArrayList<String>();
+		m_adapter = new ListAdapter(this, R.layout.profile_list,
+				m_orders);
+		
+		   for (int i = 0; i <= 10; i++) {
+				List p1 = new List("최진영", "헤헤헿헤헤헿헤ㅔ헿헤헤헤", 1, 1);
+				m_orders.add(p1);
+				
+				List p2 = new List("이진오", "그래서요 음 어 그러게", 1, 1);
+				m_orders.add(p2);
+	        }
+	
+		
+		listView.setAdapter(m_adapter);
+		
+	//	ListView listview = (ListView) findViewById(R.id.listView1);
 
-		items.add("솔직히 오늘 무슨일이 있을지는 미지수입니다.");
-		items.add("음 그래서 그래서 물어보는데 ");
-		items.add("아따아");
-		items.add("Once upon a midnight dreary");
-		items.add("While I pondered weak and weary");
-		items.add("Over many a quaint and curious volume of forgotten lore");
-		items.add("Once upon a midnight dreary");
-		items.add("While I pondered weak and weary");
-		items.add("Over many a quaint and curious volume of forgotten lore");
-		items.add("Once upon a midnight dreary");
-		items.add("While I pondered weak and weary");
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, items);
-		listView.setAdapter(adapter);
 	}
 
 	/**
@@ -144,6 +160,10 @@ String local_path;
 		new ImageDownloader(this, getString(R.string.server_path)
 				+ "files/profile/" + member_srl + ".jpg", mHandler, 2);
 	}
+	
+	public void MemberInfoError(){
+		Global.Infoalert(this, getString(R.string.error), getString(R.string.member_info_error_des), getString(R.string.yes));
+	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -154,6 +174,8 @@ String local_path;
 			}
 
 			if (msg.what == 1) {
+				
+				try{
 				String[] array = msg.obj.toString().split("/LINE/.");
 Global.dumpArray(array);
 				String tarks_account = array[0];
@@ -184,6 +206,10 @@ Global.dumpArray(array);
 				file.delete();
 				profile.setImageDrawable(null);
 				}
+				}catch (Exception e){
+					MemberInfoError();
+					
+				}
 			}
 
 			if (msg.what == 2) {
@@ -204,6 +230,84 @@ Global.dumpArray(array);
 
 		setList();
 	}
+	
+	private class ListAdapter extends ArrayAdapter<List> {
+
+		private ArrayList<List> items;
+
+		public ListAdapter(Context context, int textViewResourceId,
+				ArrayList<List> items) {
+			super(context, textViewResourceId, items);
+			this.items = items;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			if (v == null) {
+				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				v = vi.inflate(R.layout.profile_list, null);
+			}
+			final List p = items.get(position);
+			if (p != null) {
+				TextView tt = (TextView) v.findViewById(R.id.titre);
+				TextView bt = (TextView) v.findViewById(R.id.description);
+				ImageView image = (ImageView) v.findViewById(R.id.img);
+				if (tt != null) {
+					tt.setText(p.getTitle());
+				}
+				if (bt != null) {
+					bt.setText(p.getDes());
+				}
+				if (image != null) {
+					image.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
+					image.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+
+							
+						}
+					});
+				}
+			}
+			return v;
+		}
+	}
+
+	
+	class List {
+
+		private String Title;
+		private String Description;
+		private int Tag;
+		private int Position;
+
+		public List(String _Title, String _Description, int _Tag, int _Position) {
+			this.Title = _Title;
+			this.Description = _Description;
+			this.Tag = _Tag;
+			this.Position = _Position;
+		}
+
+		public String getTitle() {
+			return Title;
+		}
+
+		public String getDes() {
+			return Description;
+		}
+		
+		public int getTag() {
+			return Tag;
+		}
+		
+		public int getPos() {
+			return Position;
+		}
+
+	}
+	
 
 	// 빽백키 상단액션바
 	@Override

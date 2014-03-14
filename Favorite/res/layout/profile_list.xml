@@ -1,23 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="6dp"
+    android:paddingBottom="4sp"
+     android:paddingTop="2dp"
+      android:paddingRight="5sp"
+       android:paddingLeft="5sp"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+            android:background="@drawable/black_button"
         android:orientation="horizontal"
         android:weightSum="100" >
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:adjustViewBounds="true"
             android:baselineAlignBottom="true"
             android:contentDescription="Color Stripe"
+            android:src="@drawable/people"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -35,7 +40,7 @@
                 android:layout_marginLeft="8dip"
                 android:text="No Info"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/description"
