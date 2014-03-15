@@ -67,6 +67,8 @@ String local_path;
 	ArrayList<List> m_orders = new ArrayList<List>();
 	//Define ListAdapter
 	ListAdapter m_adapter;
+	//Menu
+	private Menu optionsMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -308,6 +310,22 @@ Global.dumpArray(array);
 
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		  this.optionsMenu = menu;
+		MenuItem item;
+
+		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+//		item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
+//		item.setIcon(R.drawable.ic_menu_add_bookmark);
+
+		
+
+		return true;
+	}
 
 	// 빽백키 상단액션바
 	@Override
