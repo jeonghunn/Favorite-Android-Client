@@ -45,6 +45,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
+import com.tarks.favorite.document.document_write;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
@@ -331,6 +332,10 @@ Global.dumpArray(array);
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case 0:
+			Intent intent = new Intent(ProfileActivity.this, document_write.class);
+			startActivity(intent);	
+		return true;
 		case android.R.id.home:
 			onBackPressed();
 			return true;
