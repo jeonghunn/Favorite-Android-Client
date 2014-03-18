@@ -87,7 +87,7 @@
             android:name=".document.document_write"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/write" 
-              android:theme="@style/Theme.Sherlock.Light.Dialog" 
+              android:theme="@style/Theme.Favorite.Light.Dialog" 
            />
         <activity
             android:name=".result"

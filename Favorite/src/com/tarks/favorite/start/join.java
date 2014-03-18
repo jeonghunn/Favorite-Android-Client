@@ -80,7 +80,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	ImageView profile;
 	// bitmap
 	Bitmap profile_bitmap;
-	//IMG
+	// IMG
 	Uri mImageUri;
 	// RadioGroup
 
@@ -89,9 +89,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	String first_name;
 	String last_name;
 	String name_1, name_2;
-	//Profile
+	// Profile
 	String profile_pic;
-	//Country code and Phone number
+	// Country code and Phone number
 	String PhoneNumber;
 	String CountryCode;
 	// User Auth key
@@ -101,18 +101,15 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 	// Profile pick
 	int REQ_CODE_PICK_PICTURE = 0;
 	int IMAGE_EDIT = 1;
-    int CAMERA_PIC_REQUEST = 2;
+	int CAMERA_PIC_REQUEST = 2;
 
-    
-    //Camera
-    static final String[] IMAGE_PROJECTION = {      
-    	 MediaStore.Images.ImageColumns.DATA, 
-    	 MediaStore.Images.Thumbnails.DATA
-    	};
-    
-    final Uri uriImages = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;        
-    final Uri uriImagesthum = MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI;
+	// Camera
+	static final String[] IMAGE_PROJECTION = {
+			MediaStore.Images.ImageColumns.DATA,
+			MediaStore.Images.Thumbnails.DATA };
 
+	final Uri uriImages = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+	final Uri uriImagesthum = MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI;
 
 	// Profile picture changed
 	boolean profile_changed = false;
@@ -143,9 +140,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				gender = Integer.parseInt(array[4]);
 				profile_pic = array[5];
 				// Download Profile image
-				if(profile_pic.matches("Y")){
-				new ImageDownloader(this, getString(R.string.server_path)
-						+ "files/profile/" + user_srl + ".jpg", mHandler, 3);
+				if (profile_pic.matches("Y")) {
+					new ImageDownloader(this, getString(R.string.server_path)
+							+ "files/profile/" + user_srl + ".jpg", mHandler, 3);
 				}
 				// Set EditText
 				// Country
@@ -228,51 +225,48 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			@Override
 			public void onClick(View v) {
 
-				
-		        v.showContextMenu();
+				v.showContextMenu();
 			}
 		});
-		
-		  registerForContextMenu(profile);
-		//LongTimeclicklistener
-//		profile.setOnLongClickListener(new OnLongClickListener(){
-//			
-//			@Override
-//			public boolean onLongClick(View v) {
-//				// TODO Auto-generated method stub
-//				AlertDialog.Builder alert = new AlertDialog.Builder(
-//						join.this);
-//				alert.setTitle(getString(R.string.delete));
-//				alert.setMessage(getString(R.string.delete_profile_photo));
-//				alert.setPositiveButton(getString(R.string.yes),
-//						new DialogInterface.OnClickListener() {
-//
-//							public void onClick(DialogInterface dialog,
-//									int which) {
-//								// Clear Old Settings
-//							profile.setImageResource(R.drawable.black_button);
-//						//	profile.setBackgroundResource(R.drawable.black_button);
-//							profile_changed = true;
-//							}
-//							
-//							
-//						});
-//				alert.setNegativeButton(getString(R.string.no),
-//						new DialogInterface.OnClickListener() {
-//
-//					public void onClick(DialogInterface dialog,
-//							int which) {
-//	
-//
-//					}
-//				});
-//				
-//				alert.show();
-//				return false;
-//			}
-//		});
 
-		
+		registerForContextMenu(profile);
+		// LongTimeclicklistener
+		// profile.setOnLongClickListener(new OnLongClickListener(){
+		//
+		// @Override
+		// public boolean onLongClick(View v) {
+		// // TODO Auto-generated method stub
+		// AlertDialog.Builder alert = new AlertDialog.Builder(
+		// join.this);
+		// alert.setTitle(getString(R.string.delete));
+		// alert.setMessage(getString(R.string.delete_profile_photo));
+		// alert.setPositiveButton(getString(R.string.yes),
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(DialogInterface dialog,
+		// int which) {
+		// // Clear Old Settings
+		// profile.setImageResource(R.drawable.black_button);
+		// // profile.setBackgroundResource(R.drawable.black_button);
+		// profile_changed = true;
+		// }
+		//
+		//
+		// });
+		// alert.setNegativeButton(getString(R.string.no),
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(DialogInterface dialog,
+		// int which) {
+		//
+		//
+		// }
+		// });
+		//
+		// alert.show();
+		// return false;
+		// }
+		// });
 
 		// set id Text
 		TextView ids = (TextView) findViewById(R.id.textView2);
@@ -284,80 +278,73 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		}
 
 	}
-	
-	
-	 @Override
-	    public void onCreateContextMenu(ContextMenu menu, View v,
-	            ContextMenuInfo menuInfo) {
-	         Log.i("ContextMenu", "Contextmenu");
-	            if(v.getId() == R.id.profile_image) {
-	              
-	                 
-	                menu.setHeaderIcon(android.R.drawable.btn_star);
-	              //  menu.setHeaderTitle("공지사항");
-	                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.choose_picture));
-	                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.camera));
-	                menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
-	                 
-	              
-	             
-	            }
-	         
-	        super.onCreateContextMenu(menu, v, menuInfo);
-	        
-	        
-	    }
-	     
 
-	   
-@Override
-	    public boolean onContextItemSelected(android.view.MenuItem item) {
-	         
-	        switch (item.getItemId()) {
-	        case 1:
-				Intent i = new Intent(Intent.ACTION_PICK);
-				i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-				i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
-				// 결과를 리턴하는 Activity 호출
-				startActivityForResult(i, REQ_CODE_PICK_PICTURE);
-	            break;
-	            
-	            
-	        case 2:
-	        	int w, h;
-//	        	Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//				startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
-	        	
-	        	  Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-	        	  File photo;
-	        	  try
-	        	    {
-	        	        // place where to store camera taken picture
-	        	        photo = Global.createTemporaryFile("picture", ".jpg");
-	        	        photo.delete();
-	        	    }
-	        	    catch(Exception e)
-	        	    {
-	        	    	Global.toast(getString(R.string.no_storage_error));
-	        	        return false;
-	        	    }
-	        	      mImageUri = Uri.fromFile(photo);
-	        	    intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-	        	    //start camera intent
-	        	   join.this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
-	        	break;
-	        	
-	        case 3:
-	        	profile.setImageResource(R.drawable.black_button);
-					profile_changed = true;
-	        	break;
-	 
-	        default:
-	            break;
-	        }
-	         
-	        return super.onContextItemSelected(item);
-	    }
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		Log.i("ContextMenu", "Contextmenu");
+		if (v.getId() == R.id.profile_image) {
+
+			menu.setHeaderIcon(android.R.drawable.btn_star);
+			// menu.setHeaderTitle("공지사항");
+			menu.add(Menu.NONE, 1, Menu.NONE,
+					getString(R.string.choose_picture));
+			menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.camera));
+			menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
+
+		}
+
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+	}
+
+	@Override
+	public boolean onContextItemSelected(android.view.MenuItem item) {
+
+		switch (item.getItemId()) {
+		case 1:
+			Intent i = new Intent(Intent.ACTION_PICK);
+			i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+			i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
+			// 결과를 리턴하는 Activity 호출
+			startActivityForResult(i, REQ_CODE_PICK_PICTURE);
+			break;
+
+		case 2:
+			int w,
+			h;
+			// Intent cameraIntent = new
+			// Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			// startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
+
+			Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+			File photo;
+			try {
+				// place where to store camera taken picture
+				photo = Global.createTemporaryFile("picture", ".jpg");
+				photo.delete();
+			} catch (Exception e) {
+				Global.toast(getString(R.string.no_storage_error));
+				return false;
+			}
+			mImageUri = Uri.fromFile(photo);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+			// start camera intent
+			join.this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
+			break;
+
+		case 3:
+			profile.setImageResource(R.drawable.black_button);
+			profile_changed = false;
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onContextItemSelected(item);
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQ_CODE_PICK_PICTURE) {
@@ -383,17 +370,17 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				Globalvariable.image = null;
 			}
 		}
-		
-		 if(requestCode==CAMERA_PIC_REQUEST && resultCode==RESULT_OK)
-		    {
-		      // ImageView imageView;
-		       //... some code to inflate/create/find appropriate ImageView to place grabbed image
-		  //      profile_bitmap = Global.grabImage(mImageUri);
-		        Intent intent = new Intent(join.this, CropManager.class);
-				intent.putExtra("uri", mImageUri);
-				startActivityForResult(intent, IMAGE_EDIT);
-		    }
-	    
+
+		if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
+			// ImageView imageView;
+			// ... some code to inflate/create/find appropriate ImageView to
+			// place grabbed image
+			// profile_bitmap = Global.grabImage(mImageUri);
+			Intent intent = new Intent(join.this, CropManager.class);
+			intent.putExtra("uri", mImageUri);
+			startActivityForResult(intent, IMAGE_EDIT);
+		}
+
 	}
 
 	@Override
@@ -413,8 +400,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		}
 	}
-	
-
 
 	public void deletetemp() {
 		Globalvariable.temp_id = null;
@@ -521,7 +506,8 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 			// Get Profile Image
 			if (msg.what == 3) {
-				if((Bitmap) msg.obj != null) profile.setImageBitmap((Bitmap) msg.obj);
+				if ((Bitmap) msg.obj != null)
+					profile.setImageBitmap((Bitmap) msg.obj);
 			}
 
 		}
@@ -620,7 +606,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						}
 
 						new AsyncHttpTask(this, getString(R.string.server_path)
-								+ "member/join.php", mHandler, Paramname,
+								+ "member/join_app.php", mHandler, Paramname,
 								Paramvalue, files, 1);
 
 					} catch (Exception e) {

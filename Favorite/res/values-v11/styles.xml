@@ -8,4 +8,7 @@
         <!-- API 11 theme customizations can go here. -->
     </style>
 
+    
+     <style name="Theme.Favorite.Light.Dialog" parent="android:Theme.Holo.Light.Dialog">
+    </style>
 </resources>

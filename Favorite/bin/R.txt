@@ -880,11 +880,11 @@ int style TextAppearance_Sherlock_Widget_PopupMenu_Large 0x7f070042
 int style TextAppearance_Sherlock_Widget_PopupMenu_Small 0x7f070044
 int style TextAppearance_Sherlock_Widget_TextView_SpinnerItem 0x7f070046
 int style Theme_Favorite 0x7f07006b
+int style Theme_Favorite_Light_Dialog 0x7f070060
 int style Theme_Favorite_Widget 0x7f070074
 int style Theme_Sherlock 0x7f070056
 int style Theme_Sherlock_Light 0x7f070057
 int style Theme_Sherlock_Light_DarkActionBar 0x7f070058
-int style Theme_Sherlock_Light_Dialog 0x7f070060
 int style Theme_Sherlock_Light_NoActionBar 0x7f07005a
 int style Theme_Sherlock_NoActionBar 0x7f070059
 int style Widget 0x7f070002

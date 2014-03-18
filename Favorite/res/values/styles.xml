@@ -30,7 +30,7 @@
         <item name="background">@android:color/transparent</item>
     </style>
     
-     <style name="Theme.Sherlock.Light.Dialog" parent="android:Theme.Holo.Light.Dialog">
+     <style name="Theme.Favorite.Light.Dialog" parent="@android:style/Theme.Dialog">
     </style>
 
     

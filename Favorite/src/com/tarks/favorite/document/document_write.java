@@ -3,6 +3,7 @@ package com.tarks.favorite.document;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -15,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.actionbarsherlock.app.SherlockActivity;
+
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
@@ -28,7 +29,7 @@ import com.tarks.favorite.global.Global;
 import com.tarks.favorite.start.join;
 import com.tarks.favorite.start.welcome;
 
-public class document_write extends SherlockActivity {
+public class document_write extends Activity {
 
 	Button bt;
 
@@ -110,17 +111,6 @@ public class document_write extends SherlockActivity {
 		}
 	};
 
-	// 빽백키 상단액션바
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			onBackPressed();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
+	
 
 }
