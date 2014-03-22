@@ -1,5 +1,7 @@
 package com.tarks.favorite.global;
 
+import android.net.Uri;
+
 public final class Globalvariable {
 	//image byte
 	public static byte[] image;
@@ -14,4 +16,7 @@ public final class Globalvariable {
 	
 	//OKButton enable
 	public static boolean okbutton = true;
+	
+	//Image uri
+	public static Uri image_uri;
 }

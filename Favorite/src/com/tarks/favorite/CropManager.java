@@ -36,7 +36,7 @@ import android.widget.ToggleButton;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.edmodo.cropper.CropImageView;
+import com.tarks.favorite.cropper.CropImageView;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 import com.actionbarsherlock.view.MenuItem;
@@ -113,8 +113,8 @@ public class CropManager extends SherlockActivity {
 				BitmapFactory.Options option = new BitmapFactory.Options();
 				option.inPurgeable = true;
 				
-				if (imagesize[1]> 1024)	option.inSampleSize = 4;
-				if(imagesize[1] > 4000)	option.inSampleSize = 8;
+				if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide));
+				if(imagesize[1] > 4000)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*2;
 				//  BitmapFactory.decodeStream(in, null, option);
 				bm = BitmapFactory.decodeStream(in,null, option);
 

@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -208,7 +210,7 @@ public final class Global {
 		//
 		// if(editsize == true){
 		if (size[1] > 4000)
-			option.inSampleSize = 8;
+			option.inSampleSize = 2;
 		if (size[1] > 1024)
 			option.inSampleSize = 4;
 		// }
@@ -288,12 +290,80 @@ public final class Global {
 
 		}
 	};
+	
+	 public static int dp(int value) {
+		float density = mod.getResources().getDisplayMetrics().density;
+	        return (int)(density * value);
+	    }
+	 
+	 public static Bitmap loadBitmap(String path, float maxWidth, float maxHeight) {
+	        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+	        bmOptions.inJustDecodeBounds = true;
+	        BitmapFactory.decodeFile(path, bmOptions);
+	        float photoW = bmOptions.outWidth;
+	        float photoH = bmOptions.outHeight;
+	        float scaleFactor = Math.max(photoW / maxWidth, photoH / maxHeight);
+	        if (scaleFactor < 1) {
+	            scaleFactor = 1;
+	        }
+	        bmOptions.inJustDecodeBounds = false;
+	        bmOptions.inSampleSize = (int)scaleFactor;
+
+	        ExifInterface exif;
+	        Matrix matrix = null;
+	        try {
+	            exif = new ExifInterface(path);
+	            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+	            matrix = new Matrix();
+	            switch (orientation) {
+	                case ExifInterface.ORIENTATION_ROTATE_90:
+	                    matrix.postRotate(90);
+	                    break;
+	                case ExifInterface.ORIENTATION_ROTATE_180:
+	                    matrix.postRotate(180);
+	                    break;
+	                case ExifInterface.ORIENTATION_ROTATE_270:
+	                    matrix.postRotate(270);
+	                    break;
+	            }
+	        } catch (Exception e) {
+	         //   FileLog.e("tmessages", e);
+	        }
+
+	        Bitmap b;
+	        try {
+	            b = BitmapFactory.decodeFile(path, bmOptions);
+	            if (b != null && matrix != null) {
+	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
+	            }
+	        } catch (Exception e) {
+	        //    FileLoader.Instance.memCache.evictAll();
+	            b = BitmapFactory.decodeFile(path, bmOptions);
+	            if (b != null && matrix != null) {
+	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
+	            }
+	        }
+
+	        return b;
+	    }
+	 
+	 
+	    public static void addMediaToGallery(String fromPath) {
+	        if (fromPath == null) {
+	            return;
+	        }
+	        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+	        File f = new File(fromPath);
+	        Uri contentUri = Uri.fromFile(f);
+	        mediaScanIntent.setData(contentUri);
+	        mod.sendBroadcast(mediaScanIntent);
+	    }
 
 	// Make temporary file
 	public static File createTemporaryFile(String part, String ext)
 			throws Exception {
-		File tempDir = Environment.getExternalStorageDirectory();
-		tempDir = new File(tempDir.getAbsolutePath() + "/.temp/"); // added
+		File tempDir = mod.getExternalCacheDir();
+		tempDir = new File(tempDir.getAbsolutePath()); // added
 																	// missing
 																	// ")"
 		if (!tempDir.exists()) {
