@@ -67,7 +67,7 @@
             android:icon="@drawable/ic_launcher_simple"
             android:screenOrientation="portrait" />
          <activity
-            android:name=".document_wirte"
+            android:name="com.tarks.favorite.page.document_wirte"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/app_info" 
            />
@@ -84,7 +84,7 @@
            />
                
                      <activity
-            android:name=".document.document_write"
+            android:name="com.tarks.favorite.page.document_write"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/write" 
               android:theme="@style/Theme.Favorite.Light.Dialog" 

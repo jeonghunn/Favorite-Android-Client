@@ -45,10 +45,10 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.document.document_write;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
+import com.tarks.favorite.page.document_write;
 
 public class ProfileActivity extends SherlockActivity {
 

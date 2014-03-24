@@ -103,5 +103,5 @@
     <string name="no_storage_error">SDCard 또는 여분의 저장 장소가 없습니다.</string>
     <string name="enquire">문의</string>
        <string name="choose_email_app">이메일 어플리케이션을 선택해주세요.</string>
-     <string name="write">쓰기s</string>
+     <string name="write">쓰기</string>
 </resources>

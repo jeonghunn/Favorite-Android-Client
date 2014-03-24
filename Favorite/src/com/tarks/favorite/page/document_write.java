@@ -1,4 +1,4 @@
-package com.tarks.favorite.document;
+package com.tarks.favorite.page;
 
 import java.io.File;
 import java.util.ArrayList;
