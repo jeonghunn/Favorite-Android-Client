@@ -3,6 +3,7 @@ package com.tarks.favorite;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.page.ProfileActivity;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;

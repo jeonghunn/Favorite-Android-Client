@@ -141,8 +141,9 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				profile_pic = array[5];
 				// Download Profile image
 				if (profile_pic.matches("Y")) {
+					profile_changed = true;
 					new ImageDownloader(this, getString(R.string.server_path)
-							+ "files/profile/" + user_srl + ".jpg", mHandler, 3);
+							+ "files/profile/" + user_srl  + ".jpg", mHandler, 3);
 				}
 				// Set EditText
 				// Country
@@ -600,7 +601,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						ArrayList<String> files = null;
 						if (profile_changed == true) {
 							Global.SaveBitmapToFileCache(profile_bitmap,
-									getCacheDir().toString(), "/profile.jpg");
+									getCacheDir().toString(), "/profile.jpg", true);
 							files = new ArrayList<String>();
 							files.add(getCacheDir().toString() + "/profile.jpg");
 						}

@@ -114,7 +114,8 @@ public class CropManager extends SherlockActivity {
 				option.inPurgeable = true;
 				
 				if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide));
-				if(imagesize[1] > 4000)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*2;
+				if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*2;
+				if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*4;
 				//  BitmapFactory.decodeStream(in, null, option);
 				bm = BitmapFactory.decodeStream(in,null, option);
 

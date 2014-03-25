@@ -77,7 +77,7 @@
              android:label="@string/setting" 
            />
                <activity
-            android:name=".ProfileActivity"
+            android:name="com.tarks.favorite.page.ProfileActivity"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/app_name" 
               android:theme="@style/AppTheme.TranslucentActionBar" 

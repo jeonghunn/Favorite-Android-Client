@@ -28,6 +28,10 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import net.coobird.thumbnailator.Thumbnails;
+
+
+
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
@@ -218,10 +222,26 @@ public final class Global {
 		return in;
 
 	}
+	
+//	public static void makeThumbNail(Bitmap src,String dest){
+//		src = UIUtil.rotate(getApplicationContext(), b, path, uriId);
+//
+//		// 1is height
+//		size[1] = option.outHeight;
+//		size[0] = option.outWidth;
+//		//
+//		// if(editsize == true){
+//
+//			option.inSampleSize = 4;
+//		// }
+//		//
+//		return in;
+//              
+//      }
 
 	// Bitmap to File
 	public static void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath,
-			String filename) {
+			String filename, boolean thumbnail) {
 
 		File file = new File(strFilePath);
 
@@ -237,7 +257,7 @@ public final class Global {
 		try {
 			fileCacheItem.createNewFile();
 			out = new FileOutputStream(fileCacheItem);
-
+			if(thumbnail) bitmap = Bitmap.createScaledBitmap(bitmap, 160, 160, false);
 			bitmap.compress(CompressFormat.JPEG, 100, out);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -283,7 +303,7 @@ public final class Global {
 			if (msg.what == 1) {
 				// SaveBitmapToFileCache((Bitmap) msg.obj, );
 				Global.SaveBitmapToFileCache((Bitmap) msg.obj,
-						Globalvariable.filesavepath, Globalvariable.filename);
+						Globalvariable.filesavepath, Globalvariable.filename, false);
 				Globalvariable.filesavepath = null;
 				Globalvariable.filename = null;
 			}
@@ -291,61 +311,61 @@ public final class Global {
 		}
 	};
 	
-	 public static int dp(int value) {
-		float density = mod.getResources().getDisplayMetrics().density;
-	        return (int)(density * value);
-	    }
-	 
-	 public static Bitmap loadBitmap(String path, float maxWidth, float maxHeight) {
-	        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-	        bmOptions.inJustDecodeBounds = true;
-	        BitmapFactory.decodeFile(path, bmOptions);
-	        float photoW = bmOptions.outWidth;
-	        float photoH = bmOptions.outHeight;
-	        float scaleFactor = Math.max(photoW / maxWidth, photoH / maxHeight);
-	        if (scaleFactor < 1) {
-	            scaleFactor = 1;
-	        }
-	        bmOptions.inJustDecodeBounds = false;
-	        bmOptions.inSampleSize = (int)scaleFactor;
-
-	        ExifInterface exif;
-	        Matrix matrix = null;
-	        try {
-	            exif = new ExifInterface(path);
-	            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-	            matrix = new Matrix();
-	            switch (orientation) {
-	                case ExifInterface.ORIENTATION_ROTATE_90:
-	                    matrix.postRotate(90);
-	                    break;
-	                case ExifInterface.ORIENTATION_ROTATE_180:
-	                    matrix.postRotate(180);
-	                    break;
-	                case ExifInterface.ORIENTATION_ROTATE_270:
-	                    matrix.postRotate(270);
-	                    break;
-	            }
-	        } catch (Exception e) {
-	         //   FileLog.e("tmessages", e);
-	        }
-
-	        Bitmap b;
-	        try {
-	            b = BitmapFactory.decodeFile(path, bmOptions);
-	            if (b != null && matrix != null) {
-	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
-	            }
-	        } catch (Exception e) {
-	        //    FileLoader.Instance.memCache.evictAll();
-	            b = BitmapFactory.decodeFile(path, bmOptions);
-	            if (b != null && matrix != null) {
-	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
-	            }
-	        }
-
-	        return b;
-	    }
+//	 public static int dp(int value) {
+//		float density = mod.getResources().getDisplayMetrics().density;
+//	        return (int)(density * value);
+//	    }
+//	 
+//	 public static Bitmap loadBitmap(String path, float maxWidth, float maxHeight) {
+//	        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//	        bmOptions.inJustDecodeBounds = true;
+//	        BitmapFactory.decodeFile(path, bmOptions);
+//	        float photoW = bmOptions.outWidth;
+//	        float photoH = bmOptions.outHeight;
+//	        float scaleFactor = Math.max(photoW / maxWidth, photoH / maxHeight);
+//	        if (scaleFactor < 1) {
+//	            scaleFactor = 1;
+//	        }
+//	        bmOptions.inJustDecodeBounds = false;
+//	        bmOptions.inSampleSize = (int)scaleFactor;
+//
+//	        ExifInterface exif;
+//	        Matrix matrix = null;
+//	        try {
+//	            exif = new ExifInterface(path);
+//	            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+//	            matrix = new Matrix();
+//	            switch (orientation) {
+//	                case ExifInterface.ORIENTATION_ROTATE_90:
+//	                    matrix.postRotate(90);
+//	                    break;
+//	                case ExifInterface.ORIENTATION_ROTATE_180:
+//	                    matrix.postRotate(180);
+//	                    break;
+//	                case ExifInterface.ORIENTATION_ROTATE_270:
+//	                    matrix.postRotate(270);
+//	                    break;
+//	            }
+//	        } catch (Exception e) {
+//	         //   FileLog.e("tmessages", e);
+//	        }
+//
+//	        Bitmap b;
+//	        try {
+//	            b = BitmapFactory.decodeFile(path, bmOptions);
+//	            if (b != null && matrix != null) {
+//	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
+//	            }
+//	        } catch (Exception e) {
+//	        //    FileLoader.Instance.memCache.evictAll();
+//	            b = BitmapFactory.decodeFile(path, bmOptions);
+//	            if (b != null && matrix != null) {
+//	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
+//	            }
+//	        }
+//
+//	        return b;
+//	    }
 	 
 	 
 	    public static void addMediaToGallery(String fromPath) {

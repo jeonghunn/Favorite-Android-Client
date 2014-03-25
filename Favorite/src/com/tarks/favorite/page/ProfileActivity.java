@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tarks.favorite;
+package com.tarks.favorite.page;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,12 +43,16 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.R;
+import com.tarks.favorite.R.drawable;
+import com.tarks.favorite.R.id;
+import com.tarks.favorite.R.layout;
+import com.tarks.favorite.R.string;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-import com.tarks.favorite.page.document_write;
 
 public class ProfileActivity extends SherlockActivity {
 
@@ -88,10 +92,13 @@ String local_path;
 		setContentView(helper.createView(this));
 		helper.initActionBar(this);
 
-		local_path =  getCacheDir().toString()
-				+ "/member/";
+//		local_path =  getCacheDir().toString()
+//				+ "/member/";
+		try{
+		local_path = getExternalCacheDir().getAbsolutePath().toString() +  "/member/";
+		}catch(Exception e){}
 		profile = (ImageView) findViewById(R.id.image_header);
-		profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
+		profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl));
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -161,7 +168,7 @@ String local_path;
 
 	public void ProfileImageDownload() {
 		new ImageDownloader(this, getString(R.string.server_path)
-				+ "files/profile/" + member_srl + ".jpg", mHandler, 2);
+				+ "files/profile/" + member_srl + ".jpg" , mHandler, 2);
 	}
 	
 	public void MemberInfoError(){
@@ -198,7 +205,7 @@ Global.dumpArray(array);
 				if (Global.UpdateFileCache(profile_update,
 						Global.getUser(member_srl, "0"),
 						getString(R.string.server_path) + "files/profile/"
-								+ member_srl + ".jpg",  local_path, member_srl + ".jpg") && profile_pic.matches("Y")) {
+								+ member_srl + ".jpg",  local_path, member_srl ) && profile_pic.matches("Y")) {
 					Global.SaveUserSetting(member_srl, profile_update);
 					ProfileImageDownload();
 				//	Log.i("test", "Let s profile image download");
@@ -217,14 +224,14 @@ Global.dumpArray(array);
 
 			if (msg.what == 2) {
 				// Save File cache
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj, getCacheDir()
-						.toString() + "/member/", member_srl + ".jpg");
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path, member_srl + ".jpg", false );
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/", member_srl + ".jpg", true );
+
 				// Set Profile
-				profile.setImageDrawable(Drawable.createFromPath(getCacheDir()
-						.toString() + "/member/" + member_srl + ".jpg"));
+				profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
 				Refresh();
 			}
-
+ 
 		}
 	};
 
@@ -263,7 +270,7 @@ Global.dumpArray(array);
 					bt.setText(p.getDes());
 				}
 				if (image != null) {
-					image.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
+					image.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/" + member_srl + ".jpg" ));
 					image.setOnClickListener(new OnClickListener() {
 
 						@Override
