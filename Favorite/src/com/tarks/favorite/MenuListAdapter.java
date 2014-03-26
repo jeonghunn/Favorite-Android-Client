@@ -1,5 +1,8 @@
 package com.tarks.favorite;
 
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -76,7 +79,7 @@ public class MenuListAdapter extends BaseAdapter {
 //			imgIcon.setScaleType(ScaleType.CENTER);
 //			imgIcon.getLayoutParams().width = 80;
 //			imgIcon.getLayoutParams().height = 80;
-			imgIcon.setBackgroundDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
+			imgIcon.setBackgroundDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/member/thumbnail/" + Global.getSetting("user_srl", "0") + ".jpg"));
 			try{
 			//imgIcon.setBackground(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
 			}catch(Exception e){

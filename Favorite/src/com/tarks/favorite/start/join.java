@@ -583,6 +583,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramname.add("phone_number");
 						Paramname.add("profile_pic");
 						Paramname.add("reg_id");
+						Paramname.add("lang");
 						Paramname.add("country");
 
 						ArrayList<String> Paramvalue = new ArrayList<String>();
@@ -595,13 +596,13 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 						Paramvalue.add(Global.getPhoneNumber(true));
 						Paramvalue.add(profile_changed ? "Y" : "N");
 						Paramvalue.add(reg_id);
+						Paramvalue.add(getString(R.string.lang));
 						Paramvalue.add(Global.getCountryValue());
 
 						// Files null if no profile changed
 						ArrayList<String> files = null;
-						if (profile_changed == true) {
-							Global.SaveBitmapToFileCache(profile_bitmap,
-									getCacheDir().toString(), "/profile.jpg", true);
+						if (profile_changed == true && profile_bitmap != null) {
+							Global.SaveBitmapToFileCache(profile_bitmap, getCacheDir().toString(), "/profile.jpg");
 							files = new ArrayList<String>();
 							files.add(getCacheDir().toString() + "/profile.jpg");
 						}

@@ -1476,7 +1476,7 @@ containing a value of this type.
         public static final int delete_profile_photo=0x7f090072;
         public static final int drawer_close=0x7f09005c;
         public static final int drawer_open=0x7f09005b;
-        public static final int during_logout=0x7f090083;
+        public static final int during_logout=0x7f090084;
         public static final int enquire=0x7f090079;
         public static final int error=0x7f090039;
         public static final int error_des=0x7f09003f;
@@ -1489,16 +1489,17 @@ containing a value of this type.
         public static final int hello_world=0x7f090017;
         public static final int home=0x7f09002f;
         public static final int id=0x7f090033;
-        public static final int ip_error_des=0x7f09007d;
+        public static final int information=0x7f09007c;
+        public static final int ip_error_des=0x7f09007e;
         public static final int join=0x7f090044;
         public static final int lang=0x7f090013;
         public static final int location=0x7f09004c;
         public static final int location_des=0x7f09004d;
         public static final int logout=0x7f09002a;
-        public static final int logout_des=0x7f090081;
-        public static final int logout_really=0x7f090082;
+        public static final int logout_des=0x7f090082;
+        public static final int logout_really=0x7f090083;
         public static final int male=0x7f09006a;
-        public static final int member_info_error_des=0x7f09007e;
+        public static final int member_info_error_des=0x7f09007f;
         public static final int menu_settings=0x7f090019;
         public static final int message=0x7f090053;
         public static final int moreview=0x7f090024;
@@ -1526,7 +1527,7 @@ containing a value of this type.
         public static final int phone_number_content=0x7f090049;
         public static final int phone_number_des=0x7f090048;
         public static final int pic_size_devide=0x7f090010;
-        public static final int plan=0x7f09007f;
+        public static final int plan=0x7f090080;
         public static final int profile=0x7f090073;
         public static final int profile_settings_des=0x7f090074;
         public static final int refresh=0x7f090022;
@@ -1547,7 +1548,7 @@ containing a value of this type.
         public static final int sign_up=0x7f090028;
         public static final int signing_in=0x7f090036;
         public static final int skip=0x7f090043;
-        public static final int special_user=0x7f090080;
+        public static final int special_user=0x7f090081;
         public static final int start=0x7f090030;
         public static final int statistics_des=0x7f090018;
         public static final int tarks_account=0x7f090031;
@@ -1559,7 +1560,7 @@ containing a value of this type.
         public static final int ver=0x7f09000e;
         public static final int verkind=0x7f090011;
         public static final int welcome=0x7f090037;
-        public static final int welcome_des=0x7f09007c;
+        public static final int welcome_des=0x7f09007d;
         public static final int who_favorited_me=0x7f090059;
         public static final int write=0x7f09007b;
         public static final int yes=0x7f09001b;

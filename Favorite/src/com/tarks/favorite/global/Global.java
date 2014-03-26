@@ -169,9 +169,9 @@ public final class Global {
 	}
 
 	// Make name value
-	public static String NameMaker(String name_1, String name_2) {
+	public static String NameMaker(String lang, String name_1, String name_2) {
 		String name;
-		if (mod.getString(R.string.lang).matches("ko")) {
+		if (lang.matches("ko")) {
 			name = name_1 + name_2;
 		} else {
 			name = name_2 + " " + name_1;
@@ -238,12 +238,18 @@ public final class Global {
 //		return in;
 //              
 //      }
+	
+
 
 	// Bitmap to File
 	public static void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath,
-			String filename, boolean thumbnail) {
+			String filename) {
 
-		File file = new File(strFilePath);
+		
+		
+		File file = null;
+				try{
+		 file = new File(strFilePath);} catch (Exception e){}
 
 		// If no folders
 		if (!file.exists()) {
@@ -257,18 +263,57 @@ public final class Global {
 		try {
 			fileCacheItem.createNewFile();
 			out = new FileOutputStream(fileCacheItem);
-			if(thumbnail) bitmap = Bitmap.createScaledBitmap(bitmap, 160, 160, false);
 			bitmap.compress(CompressFormat.JPEG, 100, out);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				out.close();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	// Bitmap to File
+		public static void createThumbnail(Bitmap bitmap, String strFilePath,
+				String filename) {
+			
+			File file = new File(strFilePath);
+
+			// If no folders
+			if (!file.exists()) {
+				file.mkdirs();
+				// Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+			}
+
+			File fileCacheItem = new File(strFilePath + filename);
+			OutputStream out = null;
+			
+
+
+
+			try {
+				
+				int height=bitmap.getHeight();
+				int width=bitmap.getWidth();
+				
+				
+				fileCacheItem.createNewFile();
+				out = new FileOutputStream(fileCacheItem);
+				bitmap = Bitmap.createScaledBitmap(bitmap, 160, height/(width/160), true);
+				bitmap.compress(CompressFormat.JPEG, 100, out);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	// Bitmap to uri
 	public static Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -303,7 +348,7 @@ public final class Global {
 			if (msg.what == 1) {
 				// SaveBitmapToFileCache((Bitmap) msg.obj, );
 				Global.SaveBitmapToFileCache((Bitmap) msg.obj,
-						Globalvariable.filesavepath, Globalvariable.filename, false);
+						Globalvariable.filesavepath, Globalvariable.filename);
 				Globalvariable.filesavepath = null;
 				Globalvariable.filename = null;
 			}

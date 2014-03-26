@@ -56,8 +56,8 @@ import com.tarks.favorite.global.Globalvariable;
 
 public class ProfileActivity extends SherlockActivity {
 
-	//Profile image local path
-String local_path;
+	// Profile image local path
+	String local_path;
 	// Member srl
 	String member_srl = "0";
 	// Profile
@@ -67,12 +67,12 @@ String local_path;
 	ListView listView;
 	// FadingActionbar
 	FadingActionBarHelper helper;
-	
-	//List
+
+	// List
 	ArrayList<List> m_orders = new ArrayList<List>();
-	//Define ListAdapter
+	// Define ListAdapter
 	ListAdapter m_adapter;
-	//Menu
+	// Menu
 	private Menu optionsMenu;
 
 	@Override
@@ -80,10 +80,10 @@ String local_path;
 		super.onCreate(savedInstanceState);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		//Get Intent
-		Intent intent = getIntent();//인텐트  받아오고
-        member_srl = intent.getStringExtra("member_srl");
+
+		// Get Intent
+		Intent intent = getIntent();// 인텐트 받아오고
+		member_srl = intent.getStringExtra("member_srl");
 
 		helper = new FadingActionBarHelper()
 				.actionBarBackground(R.drawable.ab_background)
@@ -92,13 +92,15 @@ String local_path;
 		setContentView(helper.createView(this));
 		helper.initActionBar(this);
 
-//		local_path =  getCacheDir().toString()
-//				+ "/member/";
-		try{
-		local_path = getExternalCacheDir().getAbsolutePath().toString() +  "/member/";
-		}catch(Exception e){}
+		// local_path = getCacheDir().toString()
+		// + "/member/";
+		try {
+			local_path = getCacheDir().toString() + "/member/";
+		} catch (Exception e) {
+		}
 		profile = (ImageView) findViewById(R.id.image_header);
-		profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl));
+		profile.setImageDrawable(Drawable.createFromPath(local_path
+				+ member_srl + ".jpg"));
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -126,22 +128,19 @@ String local_path;
 
 	public void setList() {
 		listView = (ListView) findViewById(android.R.id.list);
-		m_adapter = new ListAdapter(this, R.layout.profile_list,
-				m_orders);
-		
-		   for (int i = 0; i <= 10; i++) {
-				List p1 = new List("최진영", "헤헤헿헤헤헿헤ㅔ헿헤헤헤", 1, 1);
-				m_orders.add(p1);
-				
-				List p2 = new List("이진오", "그래서요 음 어 그러게", 1, 1);
-				m_orders.add(p2);
-	        }
-	
-		
-		listView.setAdapter(m_adapter);
-		
-	//	ListView listview = (ListView) findViewById(R.id.listView1);
+		m_adapter = new ListAdapter(this, R.layout.profile_list, m_orders);
 
+		for (int i = 0; i <= 10; i++) {
+			List p1 = new List("최진영", "헤헤헿헤헤헿헤ㅔ헿헤헤헤", 1, 1);
+			m_orders.add(p1);
+
+			List p2 = new List("이진오", "그래서요 음 어 그러게", 1, 1);
+			m_orders.add(p2);
+		}
+
+		listView.setAdapter(m_adapter);
+
+		// ListView listview = (ListView) findViewById(R.id.listView1);
 
 	}
 
@@ -168,11 +167,13 @@ String local_path;
 
 	public void ProfileImageDownload() {
 		new ImageDownloader(this, getString(R.string.server_path)
-				+ "files/profile/" + member_srl + ".jpg" , mHandler, 2);
+				+ "files/profile/" + member_srl + ".jpg", mHandler, 2);
 	}
-	
-	public void MemberInfoError(){
-		Global.Infoalert(this, getString(R.string.error), getString(R.string.member_info_error_des), getString(R.string.yes));
+
+	public void MemberInfoError() {
+		Global.Infoalert(this, getString(R.string.error),
+				getString(R.string.member_info_error_des),
+				getString(R.string.yes));
 	}
 
 	protected Handler mHandler = new Handler() {
@@ -184,63 +185,70 @@ String local_path;
 			}
 
 			if (msg.what == 1) {
-				
-				try{
-				String[] array = msg.obj.toString().split("/LINE/.");
-Global.dumpArray(array);
-				String tarks_account = array[0];
-				String name_1 = array[1];
-				String name_2 = array[2];
-				String gender = array[3];
-				String birthday = array[4];
-				String join_day = array[5];
-				String profile_pic = array[6];
-				String profile_update = array[7];
-				String lang = array[8];
-				String country = array[9];
-				
-				getSupportActionBar().setTitle(
-						Global.NameMaker(name_1, name_2));
 
-				if (Global.UpdateFileCache(profile_update,
-						Global.getUser(member_srl, "0"),
-						getString(R.string.server_path) + "files/profile/"
-								+ member_srl + ".jpg",  local_path, member_srl ) && profile_pic.matches("Y")) {
-					Global.SaveUserSetting(member_srl, profile_update);
-					ProfileImageDownload();
-				//	Log.i("test", "Let s profile image download");
+				try {
+					String[] array = msg.obj.toString().split("/LINE/.");
+					Global.dumpArray(array);
+					String tarks_account = array[0];
+					String name_1 = array[1];
+					String name_2 = array[2];
+					String gender = array[3];
+					String birthday = array[4];
+					String join_day = array[5];
+					String profile_pic = array[6];
+					String profile_update = array[7];
+					String lang = array[8];
+					String country = array[9];
 
-				}
-				if( profile_pic.matches("N")){
-				File file = new File(local_path + member_srl +  ".jpg");
-				file.delete();
-				profile.setImageDrawable(null);
-				}
-				}catch (Exception e){
+					getSupportActionBar().setTitle(
+							Global.NameMaker(lang, name_1, name_2));
+
+					if (Global.UpdateFileCache(profile_update,
+							Global.getUser(member_srl, "0"),
+							getString(R.string.server_path) + "files/profile/"
+									+ member_srl + ".jpg", local_path,
+							member_srl + ".jpg")
+							&& profile_pic.matches("Y")) {
+						Global.SaveUserSetting(member_srl, profile_update);
+						ProfileImageDownload();
+						// Log.i("test", "Let s profile image download");
+
+					}
+					if (profile_pic.matches("N")) {
+						File file = new File(local_path + member_srl + ".jpg");
+						file.delete();
+						profile.setImageDrawable(null);
+					}
+				} catch (Exception e) {
 					MemberInfoError();
-					
+
 				}
 			}
 
 			if (msg.what == 2) {
 				// Save File cache
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path, member_srl + ".jpg", false );
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/", member_srl + ".jpg", true );
+				try {
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
+							member_srl + ".jpg");
+					Global.createThumbnail((Bitmap) msg.obj, local_path
+							+ "thumbnail/", member_srl + ".jpg");
 
-				// Set Profile
-				profile.setImageDrawable(Drawable.createFromPath(local_path + member_srl + ".jpg"));
-				Refresh();
+					// Set Profile
+					profile.setImageDrawable(Drawable.createFromPath(local_path
+							+ member_srl + ".jpg"));
+					Refresh();
+				} catch (Exception e) {
+				}
 			}
- 
+
 		}
 	};
 
 	public void Refresh() {
-		
 
 		setList();
 	}
-	
+
 	private class ListAdapter extends ArrayAdapter<List> {
 
 		private ArrayList<List> items;
@@ -270,13 +278,13 @@ Global.dumpArray(array);
 					bt.setText(p.getDes());
 				}
 				if (image != null) {
-					image.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/" + member_srl + ".jpg" ));
+					image.setImageDrawable(Drawable.createFromPath(local_path
+							+ "thumbnail/" + member_srl + ".jpg"));
 					image.setOnClickListener(new OnClickListener() {
 
 						@Override
 						public void onClick(View v) {
 
-							
 						}
 					});
 				}
@@ -285,7 +293,6 @@ Global.dumpArray(array);
 		}
 	}
 
-	
 	class List {
 
 		private String Title;
@@ -307,30 +314,30 @@ Global.dumpArray(array);
 		public String getDes() {
 			return Description;
 		}
-		
+
 		public int getTag() {
 			return Tag;
 		}
-		
+
 		public int getPos() {
 			return Position;
 		}
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		  this.optionsMenu = menu;
+		this.optionsMenu = menu;
 		MenuItem item;
 
 		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(0, 1, 0, getString(R.string.information)).setShowAsAction(
+				MenuItem.SHOW_AS_ACTION_NEVER);
 
-//		item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
-//		item.setIcon(R.drawable.ic_menu_add_bookmark);
-
-		
+		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
+		// item.setIcon(R.drawable.ic_menu_add_bookmark);
 
 		return true;
 	}
@@ -340,9 +347,15 @@ Global.dumpArray(array);
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case 0:
-			Intent intent = new Intent(ProfileActivity.this, document_write.class);
-			startActivity(intent);	
-		return true;
+			Intent intent = new Intent(ProfileActivity.this,
+					document_write.class);
+			startActivity(intent);
+			return true;
+		case 1:
+			Intent intent2 = new Intent(ProfileActivity.this,
+					ProfileInfo.class);
+			startActivity(intent2);
+			return true;
 		case android.R.id.home:
 			onBackPressed();
 			return true;

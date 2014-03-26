@@ -52,7 +52,7 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 
 		// Generate title
-		title = new String[] { Global.NameMaker(Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.home), "Title Fragment 2",
+		title = new String[] { Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.home), "Title Fragment 2",
 				getString(R.string.setting) };
 
 		// Generate subtitle

@@ -1,8 +1,12 @@
 package com.tarks.favorite.global;
 
+import com.tarks.favorite.ModApplication;
+
 import android.net.Uri;
 
 public final class Globalvariable {
+	
+
 	//image byte
 	public static byte[] image;
 	
@@ -19,4 +23,6 @@ public final class Globalvariable {
 	
 	//Image uri
 	public static Uri image_uri;
+	
+
 }

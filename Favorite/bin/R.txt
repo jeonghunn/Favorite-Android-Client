@@ -734,7 +734,7 @@ int string delete 0x7f090071
 int string delete_profile_photo 0x7f090072
 int string drawer_close 0x7f09005c
 int string drawer_open 0x7f09005b
-int string during_logout 0x7f090083
+int string during_logout 0x7f090084
 int string enquire 0x7f090079
 int string error 0x7f090039
 int string error_des 0x7f09003f
@@ -747,16 +747,17 @@ int string find_account_info 0x7f09006e
 int string hello_world 0x7f090017
 int string home 0x7f09002f
 int string id 0x7f090033
-int string ip_error_des 0x7f09007d
+int string information 0x7f09007c
+int string ip_error_des 0x7f09007e
 int string join 0x7f090044
 int string lang 0x7f090013
 int string location 0x7f09004c
 int string location_des 0x7f09004d
 int string logout 0x7f09002a
-int string logout_des 0x7f090081
-int string logout_really 0x7f090082
+int string logout_des 0x7f090082
+int string logout_really 0x7f090083
 int string male 0x7f09006a
-int string member_info_error_des 0x7f09007e
+int string member_info_error_des 0x7f09007f
 int string menu_settings 0x7f090019
 int string message 0x7f090053
 int string moreview 0x7f090024
@@ -784,7 +785,7 @@ int string phone_number 0x7f09003c
 int string phone_number_content 0x7f090049
 int string phone_number_des 0x7f090048
 int string pic_size_devide 0x7f090010
-int string plan 0x7f09007f
+int string plan 0x7f090080
 int string profile 0x7f090073
 int string profile_settings_des 0x7f090074
 int string refresh 0x7f090022
@@ -805,7 +806,7 @@ int string share 0x7f09002d
 int string sign_up 0x7f090028
 int string signing_in 0x7f090036
 int string skip 0x7f090043
-int string special_user 0x7f090080
+int string special_user 0x7f090081
 int string start 0x7f090030
 int string statistics_des 0x7f090018
 int string tarks_account 0x7f090031
@@ -817,7 +818,7 @@ int string user_settings 0x7f090075
 int string ver 0x7f09000e
 int string verkind 0x7f090011
 int string welcome 0x7f090037
-int string welcome_des 0x7f09007c
+int string welcome_des 0x7f09007d
 int string who_favorited_me 0x7f090059
 int string write 0x7f09007b
 int string yes 0x7f09001b

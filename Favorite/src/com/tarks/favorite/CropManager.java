@@ -121,7 +121,9 @@ public class CropManager extends SherlockActivity {
 
 				
 	
-				
+				cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
+						DEFAULT_ASPECT_RATIO_VALUES);
+				cropImageView.findFocus();
 		
 	
 			cropImageView.setImageBitmap(bm);
@@ -132,8 +134,8 @@ public class CropManager extends SherlockActivity {
 		
 	
 			
-		cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
-				DEFAULT_ASPECT_RATIO_VALUES);
+
+	
 
 		
 	

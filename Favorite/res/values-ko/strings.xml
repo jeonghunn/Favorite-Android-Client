@@ -104,4 +104,5 @@
     <string name="enquire">문의</string>
        <string name="choose_email_app">이메일 어플리케이션을 선택해주세요.</string>
      <string name="write">쓰기</string>
+         <string name="information">정보</string>
 </resources>

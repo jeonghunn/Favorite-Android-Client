@@ -360,7 +360,7 @@ public class MainActivity extends SherlockActivity {
 						Global.getSetting("profile_update", ""),
 						getString(R.string.server_path) + "files/profile/"
 								+ user_srl + ".jpg" , getCacheDir().toString(),
-						"/profile.jpg") && profile_pic.matches("Y")) {
+						"/member/" + user_srl + ".jpg") && profile_pic.matches("Y")) {
 					new ImageDownloader(this, getString(R.string.server_path)
 							+ "files/profile/" + user_srl + ".jpg", mHandler, 2);
 				}
@@ -463,8 +463,8 @@ public class MainActivity extends SherlockActivity {
 			}
 
 			if (msg.what == 2) {
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj, getCacheDir()
-						.toString(), "/profile.jpg", true);
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj, getCacheDir().toString() , "/member/" + user_srl + ".jpg");
+				Global.createThumbnail((Bitmap) msg.obj, getCacheDir().toString() , "/member/thumbnail/" + user_srl + ".jpg");
 
 			}
 
