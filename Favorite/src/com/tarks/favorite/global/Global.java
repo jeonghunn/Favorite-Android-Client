@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore.Images;
 import android.telephony.TelephonyManager;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,6 +28,12 @@ import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -341,7 +348,51 @@ public final class Global {
 		Globalvariable.filename = filename;
 	}
 	
+//	public static String getDate(long timeStamp){
+//		Locale systemLocale = mod.getResources().getConfiguration().locale;
+//	    SimpleDateFormat objFormatter = new SimpleDateFormat("dd-MM-yyyy");
+//	    objFormatter.setTimeZone(TimeZone.getTimeZone(systemLocale));
+//
+//	    Calendar objCalendar =    
+//	            Calendar.getInstance(TimeZone.getTimeZone(systemLocale));
+//	    objCalendar.setTimeInMillis(timeStamp*1000);//edit
+//	    String result = objFormatter.format(objCalendar.getTime());
+//	    objCalendar.clear();
+//	    return result;         
+//	}
 	
+	public static String getDate(String timeStamp){
+	    java.text.DateFormat objFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	    objFormatter.setTimeZone(TimeZone.getDefault());
+
+	    Calendar objCalendar =    
+	            Calendar.getInstance(TimeZone.getDefault());
+	    objCalendar.setTimeInMillis(Long.parseLong(timeStamp)*1000);//edit
+	    String result = objFormatter.format(objCalendar.getTime());
+	    objCalendar.clear();
+	    return result;         
+	}
+	 
+//	 public static String getDate(String time){  
+//	        Date date = new Date(Long.parseLong(time));
+//	        SimpleDateFormat dateFormat = 
+//	      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+//	        return dateFormat.format(date);  
+//	    }
+//	
+//	public static String getDate(long timeStamp){
+//
+//	    try{
+//	        java.text.DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//	        Date netDate = (new Date(timeStamp));
+//	        return sdf.format(netDate);
+//	    }
+//	    catch(Exception ex){
+//	        return "xx";
+//	    }
+//	}
+	
+
 
 	protected static Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {

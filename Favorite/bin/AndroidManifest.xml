@@ -82,6 +82,10 @@
              android:label="@string/app_name" 
               android:theme="@style/AppTheme.TranslucentActionBar" 
            />
+                        <activity
+            android:name=".page.ProfileInfo"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/user_info" />
                
                      <activity
             android:name="com.tarks.favorite.page.document_write"
@@ -93,6 +97,11 @@
             android:name=".result"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/check_result" />
+        
+         <activity
+            android:name=".info"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/app_info" />
         <activity
             android:name=".result_view"
             android:icon="@drawable/ic_launcher_simple"

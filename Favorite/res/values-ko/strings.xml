@@ -57,7 +57,7 @@
     <string name="name_1">성</string>
     <string name="name_2">이름</string>
     <string name="phone_number_des">전화번호로 누가 날 좋아하는지 찾습니다.</string>
-    <string name="birthday">생년월일로 찾기</string>
+    <string name="birthday">생일</string>
     <string name="birthday_des">생년월일로 누가 날 좋아하는지 찾습니다.</string>
     <string name="location">위치로 찾기</string>
     <string name="location_des">자신이 살고 있는 곳으로 찾습니다.</string>
@@ -105,4 +105,6 @@
        <string name="choose_email_app">이메일 어플리케이션을 선택해주세요.</string>
      <string name="write">쓰기</string>
          <string name="information">정보</string>
+          <string name="user_info">사용자 정보</string>
+                 <string name="gender">성별</string>
 </resources>

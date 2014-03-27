@@ -58,6 +58,8 @@ public class ProfileActivity extends SherlockActivity {
 
 	// Profile image local path
 	String local_path;
+	//User name
+	String title;
 	// Member srl
 	String member_srl = "0";
 	// Profile
@@ -200,8 +202,9 @@ public class ProfileActivity extends SherlockActivity {
 					String lang = array[8];
 					String country = array[9];
 
-					getSupportActionBar().setTitle(
-							Global.NameMaker(lang, name_1, name_2));
+					title = Global.NameMaker(lang, name_1, name_2);
+
+					getSupportActionBar().setTitle(title);
 
 					if (Global.UpdateFileCache(profile_update,
 							Global.getUser(member_srl, "0"),
@@ -354,6 +357,7 @@ public class ProfileActivity extends SherlockActivity {
 		case 1:
 			Intent intent2 = new Intent(ProfileActivity.this,
 					ProfileInfo.class);
+			  intent2.putExtra("member_srl", member_srl);
 			startActivity(intent2);
 			return true;
 		case android.R.id.home:
