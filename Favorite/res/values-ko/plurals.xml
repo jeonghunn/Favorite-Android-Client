@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<plurals name="like_him">
+        <item quantity="one">한 명이 좋아함</item>
+        <item quantity="other">%s명이 좋아함</item>
+        </plurals>
+</resources>

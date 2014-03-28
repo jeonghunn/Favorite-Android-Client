@@ -80,11 +80,11 @@ public class document_write extends Activity {
 		Paramvalue.add("null");
 		Paramvalue.add(content);
 		Paramvalue.add("3");
-		Paramvalue.add("1");
+		Paramvalue.add("0");
 		Paramvalue.add("0");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app.php", mHandler, Paramname, Paramvalue,
+				+ "board/documents_app_write.php", mHandler, Paramname, Paramvalue,
 				null, 1);
 	}
 

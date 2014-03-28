@@ -29,8 +29,10 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -42,6 +44,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
+import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 
 public final class Global {
@@ -330,23 +333,34 @@ public final class Global {
 				inImage, "Title", null);
 		return Uri.parse(path);
 	}
+	
+	public static boolean UpdateMemberFileCache(String user_srl, String new_update, String profile_pic) {
+		String local_path = mod.getCacheDir().toString() + "/member/";
+		if (Global.UpdateFileCache(new_update,
+				Global.getUser(user_srl, "0"),
+				mod.getString(R.string.server_path) + "files/profile/"
+						+ user_srl + ".jpg", local_path,
+				user_srl + ".jpg") && profile_pic.matches("Y")) return true;
+		
+		return false;
+	}
 
 	public static boolean UpdateFileCache(String new_update, String updatetime,
 			String filepath, String filesavepath, String filename) {
 		File files = new File(filesavepath + filename);
-		if (!new_update.matches(updatetime) || files.exists() == false) {
+		if (Long.parseLong(new_update) > Long.parseLong(updatetime) || files.exists() == false) {
 			Log.i("true", "Update need");
 		return true;
 		}
 		return false;
 	}
 
-	public static void DownloadImageToFile(String filepath,
-			String filesavepath, String filename) {
-		new ImageDownloader(mod, filepath, mHandler, 1);
-		Globalvariable.filesavepath = filesavepath;
-		Globalvariable.filename = filename;
-	}
+//	public static void DownloadImageToFile(String filepath,
+//			String filesavepath, String filename) {
+//		new ImageDownloader(mod, filepath, mHandler, 1);
+//		Globalvariable.filesavepath = filesavepath;
+//		Globalvariable.filename = filename;
+//	}
 	
 //	public static String getDate(long timeStamp){
 //		Locale systemLocale = mod.getResources().getConfiguration().locale;
@@ -361,8 +375,18 @@ public final class Global {
 //	    return result;         
 //	}
 	
+	public static long getCurrentTimeStamp(){
+
+		return System.currentTimeMillis() / 1000;
+	}
+	
 	public static String getDate(String timeStamp){
-	    java.text.DateFormat objFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	   
+	    return getDate(timeStamp, mod.getString(R.string.date));         
+	}
+	
+	public static String getDate(String timeStamp, String DateFormat){
+	    java.text.DateFormat objFormatter = new SimpleDateFormat(DateFormat);
 	    objFormatter.setTimeZone(TimeZone.getDefault());
 
 	    Calendar objCalendar =    
@@ -394,18 +418,53 @@ public final class Global {
 	
 
 
-	protected static Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			if (msg.what == 1) {
-				// SaveBitmapToFileCache((Bitmap) msg.obj, );
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj,
-						Globalvariable.filesavepath, Globalvariable.filename);
-				Globalvariable.filesavepath = null;
-				Globalvariable.filename = null;
-			}
-
-		}
-	};
+//	protected static Handler mHandler = new Handler() {
+//		public void handleMessage(Message msg) {
+//			String local_path = mod.getCacheDir().toString() + "/member/";
+//			String member_srl = "0";
+//			if (msg.what == 1) {
+//				// SaveBitmapToFileCache((Bitmap) msg.obj, );
+//				Global.SaveBitmapToFileCache((Bitmap) msg.obj,
+//						Globalvariable.filesavepath, Globalvariable.filename);
+//				createThumbnail((Bitmap) msg.obj, local_path
+//						+ "thumbnail/", member_srl + ".jpg");
+//				Globalvariable.filesavepath = null;
+//				Globalvariable.filename = null;
+//			}
+//			
+//			if (msg.what == 2) {
+//				
+//				try {
+//				
+//				
+//				String[] array = msg.obj.toString().split("/LINE/.");
+//				Global.dumpArray(array);
+//				 member_srl = array[0];
+//				String profile_update = array[1];
+//				String profile_pic = array[2];
+//				
+//				
+//				if (Global.UpdateFileCache(profile_update,
+//						Global.getUser(member_srl, "0"),
+//						mod.getString(R.string.server_path) + "files/profile/"
+//								+ member_srl + ".jpg", local_path,
+//						member_srl + ".jpg")
+//						&& profile_pic.matches("Y")) {
+//					SaveUserSetting(member_srl, profile_update);
+//					DownloadImageToFile(mod.getString(R.string.server_path) + "files/profile/"
+//							+ member_srl + ".jpg",
+//							local_path,
+//							member_srl + ".jpg");
+//
+//				}
+//			
+//				
+//			} catch (Exception e) {
+//			}
+//			}
+//
+//		}
+//	};
 	
 //	 public static int dp(int value) {
 //		float density = mod.getResources().getDisplayMetrics().density;
@@ -552,6 +611,7 @@ public final class Global {
 		editor.commit();
 
 	}
+	
 	
 	public static String getPhoneNumber(boolean getphonenumber) {
 		// Get Country number and phone number

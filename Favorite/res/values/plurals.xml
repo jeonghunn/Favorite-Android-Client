@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <plurals name="like_him">
+        <item quantity="one">One Person liked</item>
+        <item quantity="other">%s People are liked</item>
+        </plurals>
+</resources>

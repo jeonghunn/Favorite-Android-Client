@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,6 +45,7 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.ViewConfiguration;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,6 +83,17 @@ public class MainActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
+		
+		try {
+	        ViewConfiguration config = ViewConfiguration.get(this);
+	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+	        if(menuKeyField != null) {
+	            menuKeyField.setAccessible(true);
+	            menuKeyField.setBoolean(config, false);
+	        }
+	    } catch (Exception ex) {
+	        // Ignore
+	    }
 
 		// 자신의 신분 설정값을 불러옵니다.
 		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
@@ -356,13 +369,13 @@ public class MainActivity extends SherlockActivity {
 				// getCacheDir().toString(), "/profile.jpg");
 				// }
 
-				if (Global.UpdateFileCache(profile_update,
-						Global.getSetting("profile_update", ""),
-						getString(R.string.server_path) + "files/profile/"
-								+ user_srl + ".jpg" , getCacheDir().toString(),
-						"/member/" + user_srl + ".jpg") && profile_pic.matches("Y")) {
+				if (Global.UpdateMemberFileCache(user_srl, profile_update, profile_pic)) {
+					Global.SaveUserSetting(user_srl, profile_update);
+					//Download image
 					new ImageDownloader(this, getString(R.string.server_path)
 							+ "files/profile/" + user_srl + ".jpg", mHandler, 2);
+					// Log.i("test", "Let s profile image download");
+
 				}
 
 				// 설정 값 저장
@@ -383,8 +396,8 @@ public class MainActivity extends SherlockActivity {
 				// Kind of Load Stop
 
 				// Reg ID가 기존과 다를 때
-				if (REGid.startsWith(reg_id) || reg_id.matches("null")) {
-				} else {
+				if (!REGid.startsWith(reg_id) && !reg_id.matches("null")) {
+			
 					load = false;
 					// Alert
 					AlertDialog.Builder alert = new AlertDialog.Builder(
@@ -423,6 +436,8 @@ public class MainActivity extends SherlockActivity {
 				// PermissionError();
 				// }
 				// 제한사항이 없을 경우
+				
+				if(load) Log.i("Start", "True");
 				if (load == true) {
 					// 로딩 화면은 종료하라.
 
@@ -435,7 +450,7 @@ public class MainActivity extends SherlockActivity {
 
 			}
 		} catch (Exception e) {
-			// ConnectionError();
+			Global.ConnectionError(this);
 		}
 
 	}

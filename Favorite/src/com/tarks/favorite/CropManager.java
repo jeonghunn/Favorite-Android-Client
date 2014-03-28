@@ -99,8 +99,7 @@ public class CropManager extends SherlockActivity {
 		// ViewGroup root = (ViewGroup) findViewById(R.id.mylayout);
 		// setFont(root, mFont);
 
-		// Initialize components of the app
-		cropImageView = (CropImageView) findViewById(R.id.CropImageView);
+	
 		Bitmap firstbm;
 
 		ContentResolver cr = getContentResolver();
@@ -120,20 +119,20 @@ public class CropManager extends SherlockActivity {
 				bm = BitmapFactory.decodeStream(in,null, option);
 
 				
+				// Initialize components of the app
+				cropImageView = (CropImageView) findViewById(R.id.CropImageView);
+				
 	
-				cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
-						DEFAULT_ASPECT_RATIO_VALUES);
-				cropImageView.findFocus();
-		
+
 	
 			cropImageView.setImageBitmap(bm);
-	
+			cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
+					DEFAULT_ASPECT_RATIO_VALUES);
 		} catch (Exception e1){
 			e1.printStackTrace();
 		}
 		
 	
-			
 
 	
 

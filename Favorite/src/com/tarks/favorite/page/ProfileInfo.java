@@ -3,6 +3,7 @@ package com.tarks.favorite.page;
 import java.io.File;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
@@ -60,6 +62,8 @@ public class ProfileInfo extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// Can use progress
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.listview);
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,6 +87,9 @@ public class ProfileInfo extends SherlockActivity {
 
 		m_adapter = new ListAdapter(this, R.layout.list, m_orders);
 		
+		// Start Progressbar
+		setSupportProgressBarIndeterminateVisibility(true);
+		
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("user_srl");
@@ -98,7 +105,7 @@ public class ProfileInfo extends SherlockActivity {
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(String.valueOf(member_srl));
 		Paramvalue
-				.add("tarks_account//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country");
+				.add("tarks_account//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
@@ -112,36 +119,48 @@ public class ProfileInfo extends SherlockActivity {
 
 	}
 	
-	public void setProfileList(){
-
+	public void setProfileList(int like_me){
 		profile.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/"
 				+ member_srl + ".jpg"));
 		profile_title.setText(title);
-		profile_des.setText("24명이 좋아함");
-
-		setList(array);
+		// number cut
+		NumberFormat nf = NumberFormat.getInstance();
+		// nf.setMaximumIntegerDigits(5); //최대수 지정
+		String result = nf.format(like_me);
+		
+		if(like_me != 0){
+		int plural = like_me > 1 ?  2 : 1;
+		profile_des.setText(String.format(getResources().getQuantityString(R.plurals.like_him, plural), result));
+		}
 
 	}
 	
-	public void setList(String[] array){
+	public void setList(){
 		
 
 		String tarks_account = array[0];
-		String name_1 = array[1];
-		String name_2 = array[2];
-		String gender = array[3];
-		String birthday = array[4];
-		String join_day = array[5];
-		String profile_pic = array[6];
-		String profile_update = array[7];
-		String lang = array[8];
-		String country = array[9];
+		String admin = array[1];
+		String name_1 = array[2];
+		String name_2 = array[3];
+		String gender = array[4];
+		String birthday = array[5];
+		String country_code = array[6];
+		String phone_number = array[7];
+		String join_day = array[8];
+		String profile_pic = array[9];
+		String profile_update = array[10];
+		String lang = array[11];
+		String country = array[12];
+		String like_me = array[13];
+		String favorite = array[14];
 		
+		setProfileList(Integer.parseInt(like_me));
 
 		if(!tarks_account.matches("null")) AddList(getString(R.string.tarks_account) , tarks_account);
 		if(!gender.matches("null")) AddList(getString(R.string.gender) , gender.matches("1") ? getString(R.string.male) : getString(R.string.female));
-		if(!birthday.matches("null")) AddList(getString(R.string.birthday) , birthday);
+		if(!birthday.matches("null") && !birthday.matches("0")) AddList(getString(R.string.birthday) , birthday);
 		if(!join_day.matches("null")) AddList(getString(R.string.join) , Global.getDate(join_day));
+		if(!phone_number.matches("null")) AddList(getString(R.string.phone_number) , "+" + country_code + phone_number);
 	//	if(!tarks_account.matches("null")) AddList(getString(R.string.tarks_account) , tarks_account);
 	//	if(!tarks_account.matches("null")) AddList(getString(R.string.tarks_account) , tarks_account);
 		
@@ -230,6 +249,7 @@ public class ProfileInfo extends SherlockActivity {
 	
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
+			setSupportProgressBarIndeterminateVisibility(false);
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
@@ -240,17 +260,21 @@ public class ProfileInfo extends SherlockActivity {
 
 				try {
 					 array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
+					 
 					String tarks_account = array[0];
-					String name_1 = array[1];
-					String name_2 = array[2];
-					String gender = array[3];
-					String birthday = array[4];
-					String join_day = array[5];
-					String profile_pic = array[6];
-					String profile_update = array[7];
-					String lang = array[8];
-					String country = array[9];
+					String admin = array[1];
+					String name_1 = array[2];
+					String name_2 = array[3];
+					String gender = array[4];
+					String birthday = array[5];
+					String join_day = array[6];
+					String profile_pic = array[7];
+					String profile_update = array[8];
+					String lang = array[9];
+					String country = array[10];
+					String like_me = array[11];
+					String favorite = array[12];
 					
 					
 					title = Global.NameMaker(lang, name_1, name_2);
@@ -273,7 +297,7 @@ public class ProfileInfo extends SherlockActivity {
 						profile.setImageDrawable(null);
 					}
 					
-					setProfileList();
+					setList();
 				
 				} catch (Exception e) {
 					MemberInfoError();
@@ -289,7 +313,7 @@ public class ProfileInfo extends SherlockActivity {
 					Global.createThumbnail((Bitmap) msg.obj, local_path
 							+ "thumbnail/", member_srl + ".jpg");
 
-					setProfileList();
+					setList();
 	
 				} catch (Exception e) {
 				}
