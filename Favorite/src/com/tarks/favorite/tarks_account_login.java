@@ -174,7 +174,7 @@ public class tarks_account_login extends SherlockActivity {
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/tarks_account_check.php", mHandler, Paramname,
-				Paramvalue, null, 1);
+				Paramvalue, null, 1,0);
 	}
 
 	@Override

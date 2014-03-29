@@ -37,6 +37,7 @@ import android.util.Log;
 public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 	private Handler handler;
 	private Exception exception;
+	int DataContent;
 	String responseData;
 	String fileName;
 	String url, myResult;
@@ -52,7 +53,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 	private static FileInputStream mFileInputStream = null;
 	private static URL connectUrl = null;
 
-	public ImageDownloader(Context cx, String urls, Handler handler, int hnum) {
+	public ImageDownloader(Context cx, String urls, Handler handler, int hnum, int Data) {
 		Log.i("Test", "asyc callec");
 		// Set handler
 		this.handler = handler;
@@ -63,7 +64,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 		// set hanler return number
 		handlernum = hnum;
 		// doInBackground("");
-
+		DataContent = Data;
 		super.execute("");
 	}
 
@@ -91,6 +92,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 		Message msg = handler.obtainMessage();
 		msg.what = handlernum;
 		msg.obj = responseData;
+		msg.arg1 = DataContent;
 		handler.sendMessage(msg);
 
 	}

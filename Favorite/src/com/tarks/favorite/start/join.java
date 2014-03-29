@@ -143,7 +143,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				if (profile_pic.matches("Y")) {
 					profile_changed = true;
 					new ImageDownloader(this, getString(R.string.server_path)
-							+ "files/profile/" + user_srl  + ".jpg", mHandler, 3);
+							+ "files/profile/" + user_srl  + ".jpg", mHandler, 3,0);
 				}
 				// Set EditText
 				// Country
@@ -181,7 +181,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/tarks_get_member_info.php", mHandler, Paramname,
-				Paramvalue, null, 2);
+				Paramvalue, null, 2,0);
 	}
 
 	String user_srl, name, number, phone_number;
@@ -610,7 +610,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						new AsyncHttpTask(this, getString(R.string.server_path)
 								+ "member/join_app.php", mHandler, Paramname,
-								Paramvalue, files, 1);
+								Paramvalue, files, 1,0);
 
 					} catch (Exception e) {
 						// Show network error

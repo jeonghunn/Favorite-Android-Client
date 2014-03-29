@@ -33,6 +33,7 @@ public class document_write extends Activity {
 	Button bt;
 
 	String content;
+	String page_srl;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,9 @@ public class document_write extends Activity {
 		// 액션바백버튼가져오기
 		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		
+		// Get Intent
+		Intent intent = getIntent();// 인텐트 받아오고
+		page_srl = intent.getStringExtra("page_srl");
 
 		// Let's Start!
 		bt = (Button) findViewById(R.id.button1);
@@ -62,6 +65,7 @@ public class document_write extends Activity {
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
+		Paramname.add("page_srl");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
 		Paramname.add("title");
@@ -73,6 +77,7 @@ public class document_write extends Activity {
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("642979");
 		Paramvalue.add("1");
+		Paramvalue.add(page_srl);
 		Paramvalue.add(Global.getSetting("user_srl",
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
@@ -85,7 +90,13 @@ public class document_write extends Activity {
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "board/documents_app_write.php", mHandler, Paramname, Paramvalue,
-				null, 1);
+				null, 1,0);
+	}
+	
+	public void FinishAct(){
+		  Intent intent = new Intent();
+		   this.setResult(RESULT_OK,intent);
+		finish();
 	}
 
 	protected Handler mHandler = new Handler() {
@@ -99,12 +110,13 @@ public class document_write extends Activity {
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
 				if(result.matches("document_write_succeed")) {
-					finish();
+				FinishAct();
 				}else{
 					Global.ConnectionError(document_write.this);
 				}
 				Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString());
+			
 			}
 
 		}

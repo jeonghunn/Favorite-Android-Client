@@ -23,6 +23,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -38,6 +40,7 @@ import com.tarks.favorite.R;
 import com.tarks.favorite.fadingactionbar.view.ObservableScrollView;
 import com.tarks.favorite.fadingactionbar.view.ObservableWebViewWithHeader;
 import com.tarks.favorite.fadingactionbar.view.OnScrollChangedCallback;
+import com.tarks.favorite.page.ProfileActivity;
 
 @SuppressWarnings("unchecked")
 public abstract class FadingActionBarHelperBase {
@@ -59,6 +62,8 @@ public abstract class FadingActionBarHelperBase {
     private boolean mFirstGlobalLayoutPerformed;
     private FrameLayout mMarginView;
     private View mListViewBackgroundView;
+    private boolean mLockListView;
+    Context cx;
 
     public final <T extends FadingActionBarHelperBase> T actionBarBackground(int drawableResId) {
         mActionBarBackgroundResId = drawableResId;
@@ -175,10 +180,12 @@ public abstract class FadingActionBarHelperBase {
             mActionBarBackgroundDrawable.setCallback(mDrawableCallback);
         }
         mActionBarBackgroundDrawable.setAlpha(0);
+
     }
 
     protected abstract int getActionBarHeight();
     protected abstract boolean isActionBarNull();
+    protected abstract void getDocList(String number);
     protected abstract void setActionBarBackgroundDrawable(Drawable drawable);
 
     protected <T> T getActionBarWithReflection(Activity activity, String methodName) {
@@ -282,6 +289,19 @@ public abstract class FadingActionBarHelperBase {
     private OnScrollListener mOnScrollListener = new OnScrollListener() {
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        	
+        	   int count = totalItemCount - visibleItemCount;
+   
+    	    if(firstVisibleItem >= count && totalItemCount != 0
+    	      && mLockListView == false )
+    	    {
+    	      Log.i("로그", "Loading next items");
+    	      addItems(totalItemCount);
+    	    }  
+    	  
+    	    
+        
+        
             View topChild = view.getChildAt(0);
             if (topChild == null) {
                 onNewScroll(0);
@@ -295,7 +315,40 @@ public abstract class FadingActionBarHelperBase {
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
         }
+        
+        private void addItems(final int size)
+  	  {
+  	    // 아이템을 추가하는 동안 중복 요청을 방지하기 위해 락을 걸어둡니다.
+  	    mLockListView = true;
+
+  	    Runnable run = new Runnable()
+  	    {
+  	      @Override
+  	      public void run()
+  	      {
+  	    	//getActionBarHeight();
+  	    //	getDocList(String.valueOf(size));
+    			if(cx != null) {
+    				//((ProfileActivity) cx).setFadingActionBar();
+    				Log.i("DOC", size + "");
+    			//	((ProfileActivity) cx).getDocList(String.valueOf(size - 1));
+    				((ProfileActivity) cx).MoreLoad(String.valueOf(size - 1));
+    			}
+  	        // 모든 데이터를 로드하여 적용하였다면 어댑터에 알리고
+  	        // 리스트뷰의 락을 해제합니다.
+  	     //   m_adapter.notifyDataSetChanged();
+  	        mLockListView = false;
+  	      }
+  	    };
+  	    
+  	    // 속도의 딜레이를 구현하기 위한 꼼수
+  	    Handler handler = new Handler();
+  	    handler.postDelayed(run, 1000);
+  	  }
+  	
     };
+    
+    
     private int mLastScrollPosition;
 
     private void onNewScroll(int scrollPosition) {
@@ -353,4 +406,14 @@ public abstract class FadingActionBarHelperBase {
         }
         gradientView.setBackgroundResource(gradient);
     }
+
+
+
+	public void initContext(Context context) {
+		// TODO Auto-generated method stub
+		cx = context;
+
+	}
+
+	
 }

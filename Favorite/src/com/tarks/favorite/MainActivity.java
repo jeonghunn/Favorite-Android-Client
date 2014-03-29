@@ -158,7 +158,7 @@ public class MainActivity extends SherlockActivity {
 				.add("tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
 		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
-				mHandler, Paramname, Paramvalue, null, 1);
+				mHandler, Paramname, Paramvalue, null, 1,0);
 
 	}
 
@@ -373,7 +373,7 @@ public class MainActivity extends SherlockActivity {
 					Global.SaveUserSetting(user_srl, profile_update);
 					//Download image
 					new ImageDownloader(this, getString(R.string.server_path)
-							+ "files/profile/" + user_srl + ".jpg", mHandler, 2);
+							+ "files/profile/" + user_srl + ".jpg", mHandler, 2, 0);
 					// Log.i("test", "Let s profile image download");
 
 				}

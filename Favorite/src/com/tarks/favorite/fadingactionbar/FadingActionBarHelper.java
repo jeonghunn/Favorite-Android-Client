@@ -15,14 +15,19 @@
  */
 package com.tarks.favorite.fadingactionbar;
 
+import com.tarks.favorite.page.ProfileActivity;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 public class FadingActionBarHelper extends FadingActionBarHelperBase {
 
     private ActionBar mActionBar;
+    private Context mContext = null;
+    
 
     @SuppressLint("NewApi")
     @Override
@@ -30,6 +35,20 @@ public class FadingActionBarHelper extends FadingActionBarHelperBase {
         mActionBar = activity.getActionBar();
         super.initActionBar(activity);
     }
+    
+    @Override
+    public void initContext(Context context) {
+    	   this.mContext = context;
+    	   super.initContext(context);
+       
+    
+    }
+    
+    public void getDocList(String number) {
+       ((ProfileActivity) mContext).getDocList(number);
+       return;
+    }
+ 
 
     @SuppressLint("NewApi")
     @Override

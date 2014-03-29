@@ -28,6 +28,7 @@ import android.util.Log;
 public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Handler handler;
 	private Exception exception;
+	int DataContent;
 	String responseData;
 	String fileName;
 	String url, myResult;
@@ -44,7 +45,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private static URL connectUrl = null;
 
 	public AsyncHttpTask(Context cx, String urls, Handler handler,
-			ArrayList pNames, ArrayList pValues, ArrayList fe, int hnum) {
+			ArrayList pNames, ArrayList pValues, ArrayList fe, int hnum, int Data) {
 		Log.i("Test", "asyc callec");
 		// Set handler
 		this.handler = handler;
@@ -58,10 +59,14 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		files = fe;
 		// set hanler return number
 		handlernum = hnum;
+		DataContent = Data;
+
 		// doInBackground("");
 
 		super.execute("");
 	}
+	
+
 
 	@Override
 	protected String doInBackground(String... urls) {
@@ -87,6 +92,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		Message msg = handler.obtainMessage();
 		msg.what = handlernum;
 		msg.obj = myResult;
+		msg.arg1 = DataContent;
 		handler.sendMessage(msg);
 		// Log.i("hey", myResult);
 	}

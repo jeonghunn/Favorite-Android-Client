@@ -19,22 +19,35 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
+import com.tarks.favorite.page.ProfileActivity;
 
 public final class FadingActionBarHelper extends FadingActionBarHelperBase {
 
     private ActionBar mActionBar;
+    private Context mContext = null;
 
     @Override
     public void initActionBar(Activity activity) {
         mActionBar = getActionBar(activity);
         super.initActionBar(activity);
+    }
+    
+    
+    @Override
+    public void initContext(Context context) {
+    	   this.mContext = context;
+    	   super.initContext(context);
+       
+    
     }
 
     private ActionBar getActionBar(Activity activity) {
@@ -69,4 +82,11 @@ public final class FadingActionBarHelper extends FadingActionBarHelperBase {
     protected void setActionBarBackgroundDrawable(Drawable drawable) {
         mActionBar.setBackgroundDrawable(drawable);
     }
+
+    @Override
+    public void getDocList(String number) {
+    	Log.i("DOCN", number);
+        ((ProfileActivity) mContext).getDocList(number);
+        return;
+     }
 }
