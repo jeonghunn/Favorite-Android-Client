@@ -73,13 +73,12 @@ public class ProfileActivity extends SherlockActivity  {
 	String title;
 	// Member srl
 	String member_srl = "0";
-	String profile_user_srl = "0";
+	//String profile_user_srl = "0";
 	// Profile
 	ImageView profile;
 
 	// ListView
 	ListView listView;
-	  private boolean mLockListView;
 	// FadingActionbar
 	FadingActionBarHelper helper;
 
@@ -113,8 +112,10 @@ public class ProfileActivity extends SherlockActivity  {
 		} catch (Exception e) {
 		}
 		profile = (ImageView) findViewById(R.id.image_header);
+		try{
 		profile.setImageDrawable(Drawable.createFromPath(local_path
 				+ member_srl + ".jpg"));
+		}catch(Exception e){}
 		
 		// Start Progressbar
 		setSupportProgressBarIndeterminateVisibility(true);
@@ -260,7 +261,7 @@ helper.initContext(this);
 		Paramvalue
 				.add("profile_pic//profile_update");
 		
-		profile_user_srl = user_srl ;
+	
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
@@ -594,6 +595,7 @@ helper.initContext(this);
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 		//	setListAdapter();
+			listView.smoothScrollToPosition(0);
 			m_adapter.clear();
 			getDocList("0");
 			

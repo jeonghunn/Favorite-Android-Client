@@ -2,6 +2,7 @@ package com.tarks.favorite;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,53 +15,76 @@ import android.os.Vibrator;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.tarks.favorite.global.Global;
+import com.tarks.favorite.page.ProfileActivity;
+
 //메세지의 고유 ID(?)정도로 생각하면 됩니다. 메세지의 중복수신을 막기 위해 랜덤값을 지정합니다
 
 public class GCMIntentService extends GCMBaseIntentService {
 	private static final String tag = "GCMIntentService";
-		public static final String SEND_ID = "743824910564";
-	//알림 정의
-	 public int noti_id = 0; 
-	 String value;
+	public static final String SEND_ID = "743824910564";
+	// 알림 정의
+	public int noti_id = 0;
+	String value;
+
 	public GCMIntentService() {
-	//	this(SEND_ID);
+		// this(SEND_ID);
 	}
 
 	public GCMIntentService(String senderId) {
 		super(senderId);
 	}
 
-	 @Override
-	  protected String[] getSenderIds(Context context) {
-	     String[] ids = new String[1];
-	     ids[0] = SEND_ID;
-	     return ids;
-	  }
-	
-	//get Message
 	@Override
-	protected void onMessage(Context context, Intent intent) {
-		Bundle b = intent.getExtras();
-		Iterator<String> iterator = b.keySet().iterator();
-		while (iterator.hasNext()) {
-			String key = iterator.next();
-			String value = b.get(key).toString();
-			//Message Filter
-			if(value.matches("do_not_collapse||743824910564")){}else{
-			Intent intent1 = new Intent(GCMIntentService.this, MainActivity.class);
-//Notice Message
-			
-			//Notice Message
-			//Noti id
-			Random r = new Random();
-			int i1=r.nextInt(1000-1) + 1;
-			
-			CNotification.addNotification(GCMIntentService.this, intent1, i1,
-					R.drawable.ic_launcher_simple, value,
-					value, key);
-			}
-		}
-			
+	protected String[] getSenderIds(Context context) {
+		String[] ids = new String[1];
+		ids[0] = SEND_ID;
+		return ids;
+	}
+
+	// get Message
+	@Override
+	protected void onMessage(Context arg0, Intent arg1) {
+		   Bundle bundle = arg1.getExtras();
+	        Set<String> setKey = bundle.keySet();
+	        Iterator<String> iterKey = setKey.iterator();
+	        String send_user_srl = null;
+	        String kind = null;
+            String number = null;
+            String title = null;
+            String content = null;
+	        while (iterKey.hasNext()){
+	            String key = iterKey.next();
+	            String value = bundle.getString(key);
+	         
+	         
+	            Log.d("GCMIntentService", "onMessage. key = " + key + ", value = " + value);
+	            
+	            if(key.matches("collapse_key")){
+		            String[] keyarray = value.split("//");
+	                kind = keyarray[0];
+	                number = keyarray[1];
+		            }
+	                //Documents
+		            if(key.matches("data")){
+		            	   String[] array = value.split("/LINE/.");
+		            	   send_user_srl = array[0];
+		            	   title = array[1];
+		            	   content = array[2];
+		            	 
+		              }
+	        }
+	     Log.i("Member", send_user_srl);
+
+	        	Intent intent1 = new Intent(GCMIntentService.this, MainActivity.class);
+	        	Intent intent2 = new Intent(GCMIntentService.this, ProfileActivity.class);
+	      	   intent2.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+	        	CNotification.addNotification(GCMIntentService.this, intent2, Integer.parseInt(send_user_srl) *10,
+						R.drawable.ic_launcher_simple, value,
+						title, content);
+	            
+	        
+	
 //Effect
 			
 			
@@ -71,8 +95,6 @@ public class GCMIntentService extends GCMBaseIntentService {
 			Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			vibe.vibrate(1000);  
 	}
-		
-	
 
 	@Override
 	protected void onError(Context context, String errorId) {
@@ -82,13 +104,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onRegistered(Context context, String regId) {
 		Log.d(tag, "onRegistered. regId : " + regId);
-		//Setting
-		  //Setting Editor
-			SharedPreferences edit = getSharedPreferences("setting",
-					MODE_PRIVATE);
-			SharedPreferences.Editor editor = edit.edit();
-			editor.putString("regId", regId);															
-			editor.commit();
+		// Setting
+		// Setting Editor
+		SharedPreferences edit = getSharedPreferences("setting", MODE_PRIVATE);
+		SharedPreferences.Editor editor = edit.edit();
+		editor.putString("regId", regId);
+		editor.commit();
 	}
 
 	@Override

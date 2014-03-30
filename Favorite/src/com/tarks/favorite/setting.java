@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.page.ProfileInfo;
 
 @SuppressWarnings("deprecation")
 public class setting extends SherlockPreferenceActivity {
@@ -29,6 +31,19 @@ public class setting extends SherlockPreferenceActivity {
 
 
 
+		/********** FEEDBACK ***********/
+		Preference profile = findPreference("profile");
+		profile.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(setting.this, ProfileInfo.class);
+				  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+				startActivity(intent);	
+
+				return false;
+			}
+		});
+		
 		/********** NOTICE ***********/
 //		Preference notice = findPreference("notice");
 //		notice.setOnPreferenceClickListener(new OnPreferenceClickListener() {

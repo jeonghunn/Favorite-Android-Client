@@ -48,6 +48,8 @@ public class ProfileInfo extends SherlockActivity {
 	// ListView
 	ListView listView;
 
+	//Edit
+	ImageButton profile_edit;
 	//Profile
 	ImageView profile;
 	//TextView
@@ -59,6 +61,8 @@ public class ProfileInfo extends SherlockActivity {
 	ListAdapter m_adapter;
 	//Array member info
 	String[] array;
+	//self
+	boolean self_profile;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,15 +78,21 @@ public class ProfileInfo extends SherlockActivity {
 		Intent intent = getIntent();// 인텐트 받아오고
 		member_srl = intent.getStringExtra("member_srl");
 		
+		
+		//IF self profile
+				self_profile = Global.getSetting("user_srl", "0").matches(member_srl);
 		//Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
 		 // Header, Footer 생성 및 등록
        View header = getLayoutInflater().inflate(R.layout.profile_avatar_layout, null, false);
        profile = (ImageView) header.findViewById(R.id.profile_img);
+       profile_edit = (ImageButton) header.findViewById(R.id.edit);
        profile_title = (TextView) header.findViewById(R.id.title);
        profile_des = (TextView) header.findViewById(R.id.description);
        profile.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/"
 				+ member_srl + ".jpg"));
+       
+  //     profile_edit.setOnClickListener(l)
 
        listView.addHeaderView(header);
 
@@ -126,6 +136,14 @@ public class ProfileInfo extends SherlockActivity {
 			profile.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/"
 				+ member_srl + ".jpg"));
 		profile_title.setText(title);
+		
+		if(!self_profile) {
+			profile_edit.setBackgroundResource(R.drawable.transparent);
+			profile_edit.setImageResource(R.drawable.transparent);
+		}
+
+
+		
 		// number cut
 		NumberFormat nf = NumberFormat.getInstance();
 		// nf.setMaximumIntegerDigits(5); //최대수 지정
@@ -283,6 +301,8 @@ public class ProfileInfo extends SherlockActivity {
 					
 				
 					title = Global.NameMaker(lang, name_1, name_2);
+					
+					
 					
 					if (Global.UpdateFileCache(profile_update,
 							Global.getUser(member_srl, "0"),

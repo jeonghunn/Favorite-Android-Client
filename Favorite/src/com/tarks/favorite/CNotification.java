@@ -24,7 +24,7 @@ public class CNotification {
         Notification noti = new Notification(iconId, ticker,  
                 System.currentTimeMillis());  
   
-        noti.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+        noti.flags = Notification.FLAG_AUTO_CANCEL;
         PendingIntent pintent = PendingIntent  
                 .getActivity(context, 0, intent, 0);  
   
