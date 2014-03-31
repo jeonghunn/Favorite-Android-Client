@@ -77,8 +77,9 @@ public class MenuListAdapter extends BaseAdapter {
 			itemView.setBackgroundColor(Color.parseColor("#FF8224".toString()));
 		//	imgIcon.setImageDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));
 //			imgIcon.setScaleType(ScaleType.CENTER);
-//			imgIcon.getLayoutParams().width = 80;
-//			imgIcon.getLayoutParams().height = 80;
+	//		imgIcon.getLayoutParams().width = 160;
+	//		imgIcon.getLayoutParams().height = 160;
+	//		imgIcon.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			imgIcon.setBackgroundDrawable(Drawable.createFromPath( context.getCacheDir().toString() + "/member/thumbnail/" + Global.getSetting("user_srl", "0") + ".jpg"));
 			try{
 			//imgIcon.setBackground(Drawable.createFromPath( context.getCacheDir().toString() + "/profile.jpg"));

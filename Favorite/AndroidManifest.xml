@@ -93,6 +93,13 @@
              android:label="@string/write" 
               android:theme="@style/Theme.Favorite.Light.Dialog" 
            />
+                     
+                     
+                     <activity
+            android:name="com.tarks.favorite.page.document_read"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/app_name" 
+           />
         <activity
             android:name=".result"
             android:icon="@drawable/ic_launcher_simple"

@@ -41,7 +41,11 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -168,6 +172,30 @@ helper.initContext(this);
 	public void setListAdapter(){
 		profile = (ImageView) findViewById(R.id.image_header);
 		listView = (ListView) findViewById(android.R.id.list);
+		 listView.setOnItemClickListener( new OnItemClickListener(){	
+				 
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					// TODO Auto-generated method stub
+					if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
+						if (((HeaderViewListAdapter) arg0.getAdapter())
+								.getWrappedAdapter() instanceof ListAdapter) {
+							ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
+									.getAdapter()).getWrappedAdapter();
+						
+							List ls = (List) ca.getItem(arg2 -1 );
+							
+							Intent intent = new Intent(ProfileActivity.this, document_read.class);
+							  intent.putExtra("doc_srl", String.valueOf(ls.getDocSrl()));
+							startActivity(intent);	
+
+						}
+					}
+		
+				}
+		});
 //		listView.setOnScrollListener(this);
 		m_adapter = new ListAdapter(this, R.layout.profile_list, m_orders);
 		
@@ -179,12 +207,12 @@ helper.initContext(this);
 
 	}
 
-	public void setList(String user_srl, String name, String contents) {
+	public void setList(int doc_srl, String user_srl, String name, String contents) {
 
 		//Get Profile
 //		getMemberInfo(user_srl);
 		
-			List p1 = new List(user_srl ,name, contents, 1, 1);
+			List p1 = new List(user_srl ,name, contents, 1, doc_srl);
 			m_orders.add(p1);
 
 	
@@ -240,8 +268,6 @@ helper.initContext(this);
 	}
 	
 	public void getMemberInfo(String user_srl){
-		Log.i("Time", Global.getCurrentTimeStamp() + "");
-		Log.i("Dtat", Global.getUser(user_srl, "0") + "");
 		if(Global.getCurrentTimeStamp() - Integer.parseInt(Global.getUser(user_srl, "0")) > 8000){
 		
 		ArrayList<String> Paramname = new ArrayList<String>();
@@ -389,7 +415,7 @@ helper.initContext(this);
 				
 				Log.i("user", user_srl);
 				getMemberInfo(user_srl);
-				setList(user_srl, name, content);
+				setList(Integer.parseInt(srl), user_srl, name, content);
 				m_adapter.notifyDataSetChanged();
 				}
 				}catch(Exception e){
@@ -509,14 +535,14 @@ helper.initContext(this);
 		private String Title;
 		private String Description;
 		private int Tag;
-		private int Position;
+		private int Doc_srl;
 
-		public List(String _user_Srl, String _Title, String _Description, int _Tag, int _Position) {
+		public List(String _user_Srl, String _Title, String _Description, int _Tag, int _Doc_srl) {
 			this.user_srl = _user_Srl;
 			this.Title = _Title;
 			this.Description = _Description;
 			this.Tag = _Tag;
-			this.Position = _Position;
+			this.Doc_srl = _Doc_srl;
 		}
 		
 		public String getUserSrl() {
@@ -536,8 +562,8 @@ helper.initContext(this);
 			return Tag;
 		}
 
-		public int getPos() {
-			return Position;
+		public int getDocSrl() {
+			return Doc_srl;
 		}
 
 	}

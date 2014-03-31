@@ -196,6 +196,7 @@ public class ProfileInfo extends SherlockActivity {
 		m_orders.add(p1);
 	}
 
+
 	private class ListAdapter extends ArrayAdapter<List> {
 
 		private ArrayList<List> items;

@@ -67,7 +67,7 @@
             android:icon="@drawable/ic_launcher_simple"
             android:screenOrientation="portrait" />
          <activity
-            android:name="com.tarks.favorite.page.document_wirte"
+            android:name="com.tarks.favorite.info"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/app_info" 
            />
@@ -93,13 +93,20 @@
              android:label="@string/write" 
               android:theme="@style/Theme.Favorite.Light.Dialog" 
            />
+                     
+                     
+                     <activity
+            android:name="com.tarks.favorite.page.document_read"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/app_name" 
+           />
         <activity
             android:name=".result"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/check_result" />
         
          <activity
-            android:name=".info"
+            android:name=".document_read"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/app_info" />
         <activity

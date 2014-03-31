@@ -382,16 +382,52 @@ public final class Global {
 	
 	public static String getDate(String timeStamp){
 	   
-	    return getDate(timeStamp, mod.getString(R.string.date));         
+	    return getDate(Long.parseLong(timeStamp), mod.getString(R.string.date));         
 	}
 	
-	public static String getDate(String timeStamp, String DateFormat){
+	private static class TIME_MAXIMUM{
+        public static final int SEC = 60;
+        public static final int MIN = 60;
+        public static final int HOUR = 24;
+        public static final int DAY = 30;
+        public static final int MONTH = 12;
+}
+ 
+	
+	public static String formatTimeString(long timestamp) {
+		 
+	    long curTime = System.currentTimeMillis() / 1000;
+	    long regTime = timestamp;
+	    long diffTime = (curTime - regTime);
+	 
+	    String msg = null;
+	    if (diffTime < TIME_MAXIMUM.SEC) {
+	            // sec
+	        msg = mod.getString(R.string.a_moment_ago);
+	    } else if ((diffTime /= TIME_MAXIMUM.SEC) < TIME_MAXIMUM.MIN) {
+	        // min
+	    	
+	    	int plural = diffTime > 1 ?  2 : 1;
+	        msg = String.format(mod.getResources().getQuantityString(R.plurals.minute, plural), diffTime);
+	    } else if ((diffTime /= TIME_MAXIMUM.MIN) < TIME_MAXIMUM.HOUR) {
+	        // hour
+	     	int plural = diffTime > 1 ?  2 : 1;
+	        msg = String.format(mod.getResources().getQuantityString(R.plurals.hour, plural), diffTime);
+	   
+	          } else {
+	        msg = getDate(timestamp, mod.getString(R.string.date_all));
+	    }
+	 
+	    return msg;
+	}
+	
+	public static String getDate(long timeStamp, String DateFormat){
 	    java.text.DateFormat objFormatter = new SimpleDateFormat(DateFormat);
 	    objFormatter.setTimeZone(TimeZone.getDefault());
 
 	    Calendar objCalendar =    
 	            Calendar.getInstance(TimeZone.getDefault());
-	    objCalendar.setTimeInMillis(Long.parseLong(timeStamp)*1000);//edit
+	    objCalendar.setTimeInMillis(timeStamp*1000);//edit
 	    String result = objFormatter.format(objCalendar.getTime());
 	    objCalendar.clear();
 	    return result;         
