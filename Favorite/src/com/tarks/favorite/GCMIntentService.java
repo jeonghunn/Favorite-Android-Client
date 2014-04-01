@@ -4,19 +4,26 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.page.document_read;
 
 //메세지의 고유 ID(?)정도로 생각하면 됩니다. 메세지의 중복수신을 막기 위해 랜덤값을 지정합니다
 
@@ -52,6 +59,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	        String kind = null;
             String number = null;
             String title = null;
+            String des = null;
             String content = null;
 	        while (iterKey.hasNext()){
 	            String key = iterKey.next();
@@ -71,29 +79,68 @@ public class GCMIntentService extends GCMBaseIntentService {
 		            	   send_user_srl = array[0];
 		            	   title = array[1];
 		            	   content = array[2];
+		            	   des = array[3];
 		            	 
 		              }
 	        }
 	     Log.i("Member", send_user_srl);
 
-	        	Intent intent1 = new Intent(GCMIntentService.this, MainActivity.class);
-	        	Intent intent2 = new Intent(GCMIntentService.this, ProfileActivity.class);
-	      	   intent2.putExtra("member_srl", Global.getSetting("user_srl", "0"));
-	        	CNotification.addNotification(GCMIntentService.this, intent2, Integer.parseInt(send_user_srl) *10,
-						R.drawable.ic_launcher_simple, value,
-						title, content);
-	            
 	        
+	        	
+	    		NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+	 
+	    		Intent intent = null;
+	   
+	    		if(kind.matches("1")){
+	    			intent = new Intent(GCMIntentService.this, ProfileActivity.class);
+			      	   intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+	    		}
+	    		if(kind.matches("2")){
+	    			intent = new Intent(GCMIntentService.this, document_read.class);
+			      	   intent.putExtra("doc_srl", number);
+	    		}
+	    		// Because clicking the notification opens a new ("special") activity, there's
+	    		// no need to create an artificial back stack.
+		 
+		      	PendingIntent resultPendingIntent =
+		      	    PendingIntent.getActivity(
+		      	    this,
+		      	    0,
+		      	  intent,
+		      	    PendingIntent.FLAG_UPDATE_CURRENT
+		      	);
+	    		// Constructs the Builder object.
+		      	Notification builder =
+	    		        new NotificationCompat.Builder(GCMIntentService.this)
+	    		        .setSmallIcon(R.drawable.ic_launcher_simple)
+	    		        .setContentTitle(title)
+	    		        .setContentText(des)
+	    		        .setLargeIcon(Global.filetobitmap(getCacheDir().toString() + "/member/thumbnail/" + send_user_srl + ".jpg"))
+	    		        .setDefaults(Notification.DEFAULT_ALL) // requires VIBRATE permission
+	    		        .setDefaults(Notification.FLAG_SHOW_LIGHTS)
+	    		        	.setSubText(getString(R.string.app_name))
+	    
+	    		        		    		.setContentIntent(resultPendingIntent)
+	    		
+	    		        .setStyle(new NotificationCompat.BigTextStyle()
+	    		                .bigText(content)).build();
+	    		
+
+
+	    		builder.flags =  Notification.FLAG_AUTO_CANCEL;
+	    	//	builder.ledARGB = Color.YELLOW;
+	    			manager.notify(Integer.parseInt(send_user_srl) *10, builder);
 	
 //Effect
 			
 			
-			Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(getApplicationContext(),RingtoneManager.TYPE_NOTIFICATION);
-			Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
-			ringtone.play();
-			
-			Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-			vibe.vibrate(1000);  
+//			Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(getApplicationContext(),RingtoneManager.TYPE_NOTIFICATION);
+//			Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+//			ringtone.play();
+//			
+//			Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//			vibe.vibrate(1000);  
 	}
 
 	@Override

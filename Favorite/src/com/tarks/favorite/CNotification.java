@@ -20,6 +20,9 @@ public class CNotification {
     public static void addNotification(Context context, Intent intent,  
             int noticeId, int iconId, String ticker, String title,  
             String message) {  
+    	
+    	
+    	
   
         Notification noti = new Notification(iconId, ticker,  
                 System.currentTimeMillis());  

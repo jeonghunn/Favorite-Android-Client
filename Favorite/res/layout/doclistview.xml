@@ -10,6 +10,7 @@
         android:layout_above="@+id/send"
         android:layout_centerHorizontal="true"
            android:background="#EAEAEA"
+               android:divider="@null"
         android:cacheColorHint="#00000000" >
 
     </ListView>
