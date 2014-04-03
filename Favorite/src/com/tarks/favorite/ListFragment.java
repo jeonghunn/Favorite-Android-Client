@@ -115,7 +115,7 @@ public class ListFragment extends Fragment implements OnItemLongClickListener {
 		map.put("title", getString(R.string.school));
 		map.put("n", "3");
 		map.put("des", getString(R.string.school_des));
-		map.put("img", String.valueOf(R.drawable.edit_dark));
+	//	map.put("img", String.valueOf(R.drawable.edit_dark));
 		listItem.add(map);  
 		
 	

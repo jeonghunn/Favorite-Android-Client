@@ -3,25 +3,36 @@ package com.tarks.favorite.page;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.text.ClipboardManager;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -35,7 +46,9 @@ import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.page.ProfileActivity.List;
+import com.tarks.favorite.start.join;
 
 public class document_read extends SherlockActivity {
 
@@ -65,6 +78,8 @@ public class document_read extends SherlockActivity {
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter
 	ListAdapter m_adapter;
+	// ClipBoard
+	CharSequence clipboard_content;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -88,6 +103,36 @@ public class document_read extends SherlockActivity {
 
 		// Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
+		
+//		 listView.setOnItemLongClickListener( new OnItemLongClickListener(){
+//
+//			@Override
+//			public boolean onItemLongClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				// TODO Auto-generated method stub
+//				// TODO Auto-generated method stub
+//				if (parent.getAdapter() instanceof HeaderViewListAdapter) {
+//					if (((HeaderViewListAdapter) parent.getAdapter())
+//							.getWrappedAdapter() instanceof ListAdapter) {
+//						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) parent
+//								.getAdapter()).getWrappedAdapter();
+//			
+//
+//						List ls = (List) ca.getItem(position -1 );
+//						
+//						clipboard_content = ls.getDes();
+//						parent.showContextMenu();
+//
+//					}
+//				}
+//	
+//			
+//				return false;
+//				
+//			}
+//
+//				
+//		});
 		// Header, Footer 생성 및 등록
 		View header = getLayoutInflater().inflate(R.layout.doclist_header,
 				null, false);
@@ -99,6 +144,18 @@ public class document_read extends SherlockActivity {
 
 		// profile_edit.setOnClickListener(l)
 
+		doc_content.setOnLongClickListener(new OnLongClickListener() {
+
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+
+				clipboard_content = doc_content.getText().toString();
+				 v.showContextMenu();
+				return true;
+			}
+		});
+		registerForContextMenu(doc_content);
 		profile_title.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -125,7 +182,18 @@ public class document_read extends SherlockActivity {
 
 			@Override
 			public void onClick(View v) {
-				CommentPostAct();
+				if (Globalvariable.okbutton == true) {
+					// Set ok button disable
+					Globalvariable.okbutton = false;
+					Global.ButtonEnable(1);
+					String comment_value = comment_edittext.getText()
+							.toString();
+
+					if (!comment_value.matches("")) {
+						CommentPostAct();
+					}
+
+				}
 			}
 		});
 		previous_comments = (Button) findViewById(R.id.previous_comments_button);
@@ -135,11 +203,14 @@ public class document_read extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				previous_count = previous_count + 1;
-				getCommentsList(getStartComment(comments_count), getStartComment(comments_count) == 0 ? comments_count - (previous_count-1)*10 : 10 );
-				if(getStartComment(comments_count) == 0) 	previous_comments.setVisibility(View.GONE);
+				getCommentsList(getStartComment(comments_count),
+						getStartComment(comments_count) == 0 ? comments_count
+								- (previous_count - 1) * 10 : 10);
+				if (getStartComment(comments_count) == 0)
+					previous_comments.setVisibility(View.GONE);
 				Log.i("Count", getStartComment(comments_count) + "");
 			}
-			
+
 		});
 		m_adapter = new ListAdapter(this, R.layout.comment_list, m_orders);
 		listView.setAdapter(m_adapter);
@@ -204,14 +275,16 @@ public class document_read extends SherlockActivity {
 				Paramvalue, null, 5, 0);
 	}
 
-	public void setList(int moreload, int doc_srl, String user_srl, String name,
-			String contents, String date) {
+	public void setList(int moreload, int doc_srl, String user_srl,
+			String name, String contents, String date) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
 		List p1 = new List(user_srl, name, contents, date, 0, 0);
-		if(moreload == -1)
-		m_orders.add(p1); else m_orders.add(moreload, p1);
+		if (moreload == -1)
+			m_orders.add(p1);
+		else
+			m_orders.add(moreload, p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
@@ -223,14 +296,45 @@ public class document_read extends SherlockActivity {
 		// Get Profile
 		// getMemberInfo(user_srl);
 		List p1 = new List(user_srl, name, contents, date, 0, 0);
-		m_orders.add(0 ,p1);
+		m_orders.add(0, p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
 	}
-	
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		Log.i("ContextMenu", "Contextmenu");
+
+		menu.setHeaderIcon(android.R.drawable.btn_star);
+		// menu.setHeaderTitle("공지사항");
+		menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
+
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+	}
+
+	@Override
+	public boolean onContextItemSelected(android.view.MenuItem item) {
+
+		switch (item.getItemId()) {
+		case 1:
+			ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//			ClipData clip = ClipData.newPlainText("content", clipboard_content);
+//			clipboard.setPrimaryClip(clip);
+			clipboard.setText(clipboard_content);
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onContextItemSelected(item);
+	}
+
 	public int getStartComment(int comment) {
-		comment = comment - previous_count*10;
+		comment = comment - previous_count * 10;
 		if (comment < 0)
 			comment = 0;
 
@@ -238,17 +342,16 @@ public class document_read extends SherlockActivity {
 	}
 
 	public void seePreviousComments(int comments) {
-		if (comments - previous_count*10 > 0) {
+		if (comments - previous_count * 10 > 0) {
 			previous_comments.setVisibility(View.VISIBLE);
 		}
 	}
-	
-	public void setCommentsCount(int count){
+
+	public void setCommentsCount(int count) {
 		comments_count = count;
 		comment_count.setText(String.valueOf(count));
 	}
-	
-	
+
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
 				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000) {
@@ -312,7 +415,7 @@ public class document_read extends SherlockActivity {
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
-		Paramvalue.add(comment_edittext.getText().toString());
+		Paramvalue.add(Global.setValue(comment_edittext.getText().toString()));
 		Paramvalue.add("3");
 		Paramvalue.add("0");
 
@@ -348,7 +451,7 @@ public class document_read extends SherlockActivity {
 					tt.setText(p.getTitle());
 				}
 				if (bt != null) {
-					bt.setText(p.getDes());
+					bt.setText(Global.getValue(p.getDes()));
 				}
 				if (date != null) {
 					date.setText(p.getDate());
@@ -457,9 +560,9 @@ public class document_read extends SherlockActivity {
 					profile_des.setText(Global.formatTimeString(Long
 							.parseLong(date)));
 					setCommentsCount(Integer.parseInt(comments));
-					doc_content.setText(content);
-					//Set comment
-					getCommentsList(getStartComment(comments_count) , 10);
+					doc_content.setText(Global.getValue(content));
+					// Set comment
+					getCommentsList(getStartComment(comments_count), 10);
 
 				} catch (Exception e) {
 
@@ -553,8 +656,10 @@ public class document_read extends SherlockActivity {
 						String privacy = array[6];
 						Log.i("user", user_srl);
 
-						if(previous_count > 1)  moreload = i;
-						setList(moreload, Integer.parseInt(srl), user_srl, name, content,
+						if (previous_count > 1)
+							moreload = i;
+						setList(moreload, Integer.parseInt(srl), user_srl,
+								name, content,
 								Global.formatTimeString(Long.parseLong(date)));
 						m_adapter.notifyDataSetChanged();
 					}

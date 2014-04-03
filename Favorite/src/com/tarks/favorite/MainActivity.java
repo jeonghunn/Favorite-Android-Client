@@ -31,6 +31,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.media.Ringtone;
@@ -75,6 +76,7 @@ public class MainActivity extends SherlockActivity {
 	String user_srl;
 	// Allow Load
 	boolean load = true;
+	boolean updated = false;
 
 	// Connect timeout boolean
 	boolean ConnectTimeout = true;
@@ -263,7 +265,7 @@ public class MainActivity extends SherlockActivity {
 			alert.setTitle(getString(R.string.error));
 			alert.setMessage(getString(R.string.server_connection_error_des));
 			alert.setIcon(R.drawable.ic_launcher);
-			alert.setPositiveButton(getString(R.string.enquire),
+			alert.setPositiveButton(getString(R.string.check_service_status),
 					new DialogInterface.OnClickListener() {
 
 						public void onClick(DialogInterface dialog, int which) {
@@ -377,6 +379,8 @@ public class MainActivity extends SherlockActivity {
 					// Log.i("test", "Let s profile image download");
 
 				}
+				
+			
 
 				// 설정 값 저장
 				// Setting Editor
@@ -391,12 +395,26 @@ public class MainActivity extends SherlockActivity {
 				editor.putString("key", key);
 				editor.putString("like_me", like_me);
 				editor.putString("favorite", favorite);
+				
+				
+				//Version Check
+				PackageInfo pinfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+				String versionNumber = String.valueOf(pinfo.versionCode);
+				//Check Version
+				if(!Global.getSetting("verCode", "0").matches(versionNumber)){
+					updated = true;
+					editor.putString("verCode", versionNumber);
+					
+				}
+				
+				//Commit
 				editor.commit();
 
 				// Kind of Load Stop
 
+
 				// Reg ID가 기존과 다를 때
-				if (!REGid.startsWith(reg_id) && !reg_id.matches("null")) {
+				if (!REGid.startsWith(reg_id) && !reg_id.matches("null") && updated == false ) {
 			
 					load = false;
 					// Alert

@@ -543,7 +543,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				String s2 = edit2.getText().toString();
 
 				// no value on name
-				if (s1.matches("") || s2.matches("")) {
+				if (s2.matches("")) {
 					// No Value
 					Global.Infoalert(this, getString(R.string.error),
 							getString(R.string.noname), getString(R.string.yes));

@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.2435</string>
-    <string name="build">2435</string>
+    <string name="ver">1.0.0.2503</string>
+    <string name="build">2503</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta 2</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -118,10 +118,15 @@
     <string name="member_info_error_des">Unknown member information.</string>
     <string name="type_a_comment">Type a comment.</string>
     <string name="a_moment_ago">a moment ago</string>
+    <string name="no_content">Content is Empty.</string>
+    <string name="date">"dd/MM/yyyy"</string>
+    <string name="date_all">dd/MM/yyyy hh:mm aa</string>
+    <string name="see_previous_comments">See previous comments</string>
+    <string name="copy">Copy</string>
+    <string name="warning">Warning</string>
+    <string name="notice_new_document">Wrote new document</string>
+    <string name="notice_new_comment">Commented on a post</string>
     <string name="welcome_des">환영합니다. 다른 사람들이 나를 좋아하는지를 알려면, 몇가지 정보를 입력해주세요:)</string>
     <string name="ip_error_des">지금 사용하시고 있는 IP는 부적절한 활동 내역으로 이용 중지 처리되었습니다.</string>
-    <string name="date">"dd/MM/yyyy"</string>
-      <string name="date_all">dd/MM/yyyy hh:mm aa</string>
-         <string name="see_previous_comments">See previous comments</string>
 
 </resources>

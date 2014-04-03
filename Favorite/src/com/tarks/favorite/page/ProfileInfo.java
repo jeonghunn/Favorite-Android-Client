@@ -55,6 +55,8 @@ public class ProfileInfo extends SherlockActivity {
 	//TextView
 	TextView profile_title;
 	TextView profile_des;
+	
+
 	// List
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter

@@ -80,10 +80,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 		            	   title = array[1];
 		            	   content = array[2];
 		            	   des = array[3];
+		            	   
+		            	   if(des.matches("new_document")) des = getString(R.string.notice_new_document);
+		            	   if(des.matches("new_comment")) des = getString(R.string.notice_new_comment);
 		            	 
 		              }
 	        }
-	     Log.i("Member", send_user_srl);
 
 	        
 	        	
@@ -124,7 +126,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	    		        		    		.setContentIntent(resultPendingIntent)
 	    		
 	    		        .setStyle(new NotificationCompat.BigTextStyle()
-	    		                .bigText(content)).build();
+	    		                .bigText(Global.getValue(content))).build();
 	    		
 
 

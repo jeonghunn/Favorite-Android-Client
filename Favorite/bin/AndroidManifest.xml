@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tarks.favorite"
-    android:versionCode="2"
+    android:versionCode="4"
     android:versionName="@string/ver" >
     
      <uses-feature android:name="android.hardware.camera"></uses-feature>
@@ -91,7 +91,6 @@
             android:name="com.tarks.favorite.page.document_write"
             android:icon="@drawable/ic_launcher_simple"
              android:label="@string/write" 
-              android:theme="@style/Theme.Favorite.Light.Dialog" 
            />
                      
                      

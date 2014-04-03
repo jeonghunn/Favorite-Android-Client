@@ -19,16 +19,19 @@ import android.widget.EditText;
 
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.start.join;
 import com.tarks.favorite.start.welcome;
 
-public class document_write extends Activity {
+public class document_write extends SherlockActivity {
 
 	Button bt;
 
@@ -38,26 +41,19 @@ public class document_write extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.documet_write);
+		
+		// Can use progress
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+		setContentView(R.layout.document_write);
 		// 액션바백버튼가져오기
-		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
 
-		// Let's Start!
-		bt = (Button) findViewById(R.id.button1);
-		bt.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				EditText edit1 = (EditText) findViewById(R.id.editText1);
-				content = edit1.getText().toString();
-
-				PostAct();
-			}
-		});
 
 	}
 
@@ -83,7 +79,7 @@ public class document_write extends Activity {
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add("null");
-		Paramvalue.add(content);
+		Paramvalue.add(Global.setValue(content));
 		Paramvalue.add("3");
 		Paramvalue.add("0");
 		Paramvalue.add("0");
@@ -102,7 +98,7 @@ public class document_write extends Activity {
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			// IF Sucessfull no timeout
-
+			setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
 				Global.ConnectionError(document_write.this);
 			}
@@ -121,7 +117,44 @@ public class document_write extends Activity {
 
 		}
 	};
-
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// 메뉴 버튼 구현부분
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.accept, menu);
+		return true;
+
+	}
+
+
+	// 빽백키 상단액션바
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case  R.id.yes:
+			if (Globalvariable.okbutton == true) {
+				// Set ok button disable
+				Globalvariable.okbutton = false;
+				Global.ButtonEnable(1);
+				setSupportProgressBarIndeterminateVisibility(true);
+				EditText edit1 = (EditText) findViewById(R.id.editText1);
+				content = edit1.getText().toString();
+
+				PostAct();
+
+			}
+		
+			return true;
+	
+		case android.R.id.home:
+			onBackPressed();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
 
 }

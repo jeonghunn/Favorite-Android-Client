@@ -300,6 +300,17 @@ public final class Global {
 		}
 	}
 	
+	
+	public static String getValue(String value){
+		value = value.replace("<etr>", "\n");
+		return value;
+	}
+
+	public static String setValue(String value){
+		value = value.replace("\n", "<etr>");
+		return value;
+	}
+	
 	// Bitmap to File
 		public static void createThumbnail(Bitmap bitmap, String strFilePath,
 				String filename) {

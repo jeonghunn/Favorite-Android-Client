@@ -1,25 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-      android:paddingBottom="4sp"
-    android:orientation="vertical" >
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="4sp"
     android:paddingLeft="5sp"
-    android:background="#FFFFFF"
     android:paddingRight="5sp"
     android:paddingTop="2dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/black_button"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="3sp"
         android:weightSum="100" >
 
         <ImageView
@@ -30,7 +23,7 @@
             android:baselineAlignBottom="true"
             android:contentDescription="Color Stripe"
             android:scaleType="centerCrop"
-            android:src="@drawable/person" />
+            android:src="@drawable/people" />
 
         <LinearLayout
             android:id="@+id/contentLayout"
@@ -47,51 +40,29 @@
                 android:layout_marginLeft="8dip"
                 android:text="No Info"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:autoLink="all"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="48dip"
                 android:text="No Info"
                 android:textColor="#8C8C8C"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/comment_count"
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#8C8C8C" />
+            android:text="00"
+            android:textColor="#8C8C8C"
+            android:textSize="10sp" />
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5sp"
-        android:paddingRight="5sp"
-        android:autoLink="all"
-        android:paddingTop="5sp"
-           android:paddingBottom="10sp"
-        android:text="Content"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
-
-</LinearLayout>
-
-    <Button
-        android:id="@+id/previous_comments_button"
-        android:visibility="gone" 
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/square_black_button"
-        android:text="@string/see_previous_comments" />
 </LinearLayout>
