@@ -440,8 +440,10 @@ public final class Global {
 	     	int plural = diffTime > 1 ?  2 : 1;
 	        msg = String.format(mod.getResources().getQuantityString(R.plurals.hour, plural), diffTime);
 	   
+	        
+	        
 	          } else {
-	        msg = getDate(timestamp, mod.getString(R.string.date_all));
+	        msg = getDate(timestamp, mod.getString(R.string.date));
 	    }
 	 
 	    return msg;

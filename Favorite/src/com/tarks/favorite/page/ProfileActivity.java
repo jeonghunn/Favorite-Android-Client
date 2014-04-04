@@ -25,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,6 +57,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.CropManager;
+import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.main;
 import com.tarks.favorite.R.drawable;
@@ -67,6 +70,7 @@ import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
+import com.tarks.favorite.like.favorite_category;
 import com.tarks.favorite.start.join;
 
 public class ProfileActivity extends SherlockActivity {
@@ -293,6 +297,32 @@ public class ProfileActivity extends SherlockActivity {
 			Global.SaveUserSetting(user_srl,
 					Long.toString(Global.getCurrentTimeStamp()));
 		}
+	}
+
+	
+	public void addFavorite(String user_srl) {
+	
+
+			ArrayList<String> Paramname = new ArrayList<String>();
+			Paramname.add("authcode");
+			Paramname.add("kind");
+			Paramname.add("user_srl");
+			Paramname.add("user_srl_auth");
+			Paramname.add("value");
+
+			ArrayList<String> Paramvalue = new ArrayList<String>();
+			Paramvalue.add("642979");
+			Paramvalue.add("3");
+			Paramvalue.add(Global.getSetting("user_srl",
+					Global.getSetting("user_srl", "0")));
+			Paramvalue.add(Global.getSetting("user_srl_auth",
+					Global.getSetting("user_srl_auth", "null")));
+			Paramvalue.add(String.valueOf(user_srl));
+
+			new AsyncHttpTask(this, getString(R.string.server_path)
+					+ "member/profile_info.php", mHandler, Paramname,
+					Paramvalue, null, 4, Integer.parseInt(user_srl));
+		
 	}
 
 	/**
@@ -641,13 +671,25 @@ public class ProfileActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case 0:
-		
+			// Alert
+			AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+			builder.setMessage(getString(R.string.favorite_add_des)).setTitle(
+					getString(R.string.add_favorite));
+			builder.setPositiveButton(getString(R.string.yes),
+					new DialogInterface.OnClickListener() {
+
+						public void onClick(DialogInterface dialog, int which) {
+							Global.Feedback(ProfileActivity.this);
+						}
+					});
+			builder.setNegativeButton(getString(R.string.no), null);
+			builder.show();
 			return true;
 		case 1:
-			Intent intent = new Intent(ProfileActivity.this,
+			Intent intent1 = new Intent(ProfileActivity.this,
 					document_write.class);
-			intent.putExtra("page_srl", member_srl);
-			startActivityForResult(intent, 1);
+			intent1.putExtra("page_srl", member_srl);
+			startActivityForResult(intent1, 1);
 
 			return true;
 		case 2:

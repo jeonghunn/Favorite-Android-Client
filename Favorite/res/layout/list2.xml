@@ -29,12 +29,12 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/titre"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:text="No Info"
-                android:textColor="#000000"
+            
                 android:textSize="24sp" />
 
             <TextView

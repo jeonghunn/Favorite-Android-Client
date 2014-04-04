@@ -48,7 +48,7 @@ public class document_write extends SherlockActivity {
 		setContentView(R.layout.document_write);
 		// 액션바백버튼가져오기
 		 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+			setSupportProgressBarIndeterminateVisibility(false);
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
@@ -58,6 +58,8 @@ public class document_write extends SherlockActivity {
 	}
 
 	public void PostAct() {
+		// IF Sucessfull no timeout
+					setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -142,8 +144,12 @@ public class document_write extends SherlockActivity {
 				EditText edit1 = (EditText) findViewById(R.id.editText1);
 				content = edit1.getText().toString();
 
+				if(!content.matches("")){
 				PostAct();
-
+				}else{
+					setSupportProgressBarIndeterminateVisibility(false);
+					Global.Infoalert(this, getString(R.string.warning), getString(R.string.no_content), getString(R.string.yes));
+				}
 			}
 		
 			return true;

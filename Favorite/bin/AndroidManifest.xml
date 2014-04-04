@@ -125,6 +125,13 @@
             android:name=".start.join"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/sign_up" />
+        
+            <activity
+            android:name=".like.favorite_category"
+            android:icon="@drawable/ic_launcher_simple"
+            android:theme="@style/Theme.Favorite.Light.Dialog"
+            android:label="@string/add_favorite" />
+            
         <activity
             android:name=".register.phone_number_reg"
             android:icon="@drawable/ic_launcher_simple"

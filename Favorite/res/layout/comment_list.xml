@@ -49,7 +49,7 @@
                 android:layout_gravity="center_vertical"
                 android:autoLink="all"
                 android:layout_marginLeft="8dip"
-                android:layout_marginRight="48dip"
+                android:layout_marginRight="8dip"
                 android:text="No Info"
                 android:textColor="#8C8C8C"
                 android:textSize="12sp" />
