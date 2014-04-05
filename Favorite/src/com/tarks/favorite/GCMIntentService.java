@@ -83,6 +83,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		            	   
 		            	   if(des.matches("new_document")) des = getString(R.string.notice_new_document);
 		            	   if(des.matches("new_comment")) des = getString(R.string.notice_new_comment);
+		            	   if(des.matches("added_to_favorite")) {des = getString(R.string.notice_added_to_favorite); content = getString(R.string.notice_added_to_favorite);}
 		            	 
 		              }
 	        }
@@ -101,6 +102,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 	    		if(kind.matches("2")){
 	    			intent = new Intent(GCMIntentService.this, document_read.class);
 			      	   intent.putExtra("doc_srl", number);
+	    		}
+	    		if(kind.matches("3")){
+	    			intent = new Intent(GCMIntentService.this, ProfileActivity.class);
+			      	   intent.putExtra("member_srl", send_user_srl);
 	    		}
 	    		// Because clicking the notification opens a new ("special") activity, there's
 	    		// no need to create an artificial back stack.

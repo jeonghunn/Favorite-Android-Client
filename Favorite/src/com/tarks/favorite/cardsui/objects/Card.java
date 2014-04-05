@@ -63,6 +63,13 @@ public abstract class Card extends AbstractCard {
 		this.favorite = favorite;
 		this.isClickable = isClickable;
 	}
+	
+	public Card(String title, String des, int user_srl, Boolean isClickable) {
+		this.title = title;
+		this.des = des;
+		this.user_srl = user_srl;
+		this.isClickable = isClickable;
+	}
 
 	@Override
 	public View getView(Context context, boolean swipable) {

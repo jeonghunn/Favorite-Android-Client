@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20sp"
     android:orientation="vertical" >
 
     <TableLayout
@@ -21,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="10dip"
+                      android:layout_marginRight="15sp"
                 android:text="@string/my_favorite_people" />
 
             <TextView
@@ -28,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                      android:layout_marginLeft="15sp"
                 android:padding="10dip"
                 android:text="@string/people_that_like_me" />
         </TableRow>
@@ -45,7 +48,7 @@
                 android:gravity="center"
                 android:padding="3dip"
                 android:text="0"
-                  android:textSize="50sp"
+                  android:textSize="40sp"
                 android:textColor="#DD7600" />
 
             <TextView
@@ -55,7 +58,7 @@
                 android:gravity="center"
                 android:padding="3dip"
                 android:text="0"
-                android:textSize="50sp"
+                android:textSize="40sp"
                 android:textColor="#DD7600" />
         </TableRow>
     </TableLayout>

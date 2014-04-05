@@ -39,8 +39,6 @@ import java.util.TimeZone;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-
-
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
@@ -232,49 +230,48 @@ public final class Global {
 		return in;
 
 	}
-	
-//	public static void makeThumbNail(Bitmap src,String dest){
-//		src = UIUtil.rotate(getApplicationContext(), b, path, uriId);
-//
-//		// 1is height
-//		size[1] = option.outHeight;
-//		size[0] = option.outWidth;
-//		//
-//		// if(editsize == true){
-//
-//			option.inSampleSize = 4;
-//		// }
-//		//
-//		return in;
-//              
-//      }
-	
-	public static Bitmap filetobitmap(String path){
-		Bitmap bitmap=null;
-		File f= new File(path);
 
-		        try {
-		        	BitmapFactory.Options options = new BitmapFactory.Options();
-		        	options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-		            bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
-		        } catch (FileNotFoundException e) {
-		            e.printStackTrace();
-		        }
+	// public static void makeThumbNail(Bitmap src,String dest){
+	// src = UIUtil.rotate(getApplicationContext(), b, path, uriId);
+	//
+	// // 1is height
+	// size[1] = option.outHeight;
+	// size[0] = option.outWidth;
+	// //
+	// // if(editsize == true){
+	//
+	// option.inSampleSize = 4;
+	// // }
+	// //
+	// return in;
+	//
+	// }
 
-		         
-		         return bitmap;
+	public static Bitmap filetobitmap(String path) {
+		Bitmap bitmap = null;
+		File f = new File(path);
+
+		try {
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+			bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null,
+					options);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return bitmap;
 	}
-
 
 	// Bitmap to File
 	public static void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath,
 			String filename) {
 
-		
-		
 		File file = null;
-				try{
-		 file = new File(strFilePath);} catch (Exception e){}
+		try {
+			file = new File(strFilePath);
+		} catch (Exception e) {
+		}
 
 		// If no folders
 		if (!file.exists()) {
@@ -299,57 +296,74 @@ public final class Global {
 			}
 		}
 	}
-	
-	
-	public static String getValue(String value){
+
+	public static String getValue(String value) {
 		value = value.replace("<etr>", "\n");
 		return value;
 	}
 
-	public static String setValue(String value){
+	public static String setValue(String value) {
 		value = value.replace("\n", "<etr>");
 		return value;
 	}
-	
+
 	// Bitmap to File
-		public static void createThumbnail(Bitmap bitmap, String strFilePath,
-				String filename) {
-			
-			File file = new File(strFilePath);
+	public static void createThumbnail(Bitmap bitmap, String strFilePath,
+			String filename) {
 
-			// If no folders
-			if (!file.exists()) {
-				file.mkdirs();
-				// Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-			}
+		File file = new File(strFilePath);
 
-			File fileCacheItem = new File(strFilePath + filename);
-			OutputStream out = null;
-			
-
-
-
-			try {
-				
-				int height=bitmap.getHeight();
-				int width=bitmap.getWidth();
-				
-				
-				fileCacheItem.createNewFile();
-				out = new FileOutputStream(fileCacheItem);
-				bitmap = Bitmap.createScaledBitmap(bitmap, 160, height/(width/160), true);
-				bitmap.compress(CompressFormat.JPEG, 100, out);
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+		// If no folders
+		if (!file.exists()) {
+			file.mkdirs();
+			// Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
 		}
 
+		File fileCacheItem = new File(strFilePath + filename);
+		OutputStream out = null;
+
+		try {
+
+			int height = bitmap.getHeight();
+			int width = bitmap.getWidth();
+
+			fileCacheItem.createNewFile();
+			out = new FileOutputStream(fileCacheItem);
+			bitmap = Bitmap.createScaledBitmap(bitmap, 160, height
+					/ (width / 160), true);
+			bitmap.compress(CompressFormat.JPEG, 100, out);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static String arraylistToString(ArrayList <String> array,  String delimiter){
+	//	String str;
+		 StringBuilder sb = new StringBuilder();
+		  for(String str : array){
+	            sb.append(str).append(delimiter); //separating contents using semi colon
+	        }
+		return sb.toString();
+		
+	}
+	
+	public static String arrayToString(String[] array, String delimiter) {
+	    StringBuilder arTostr = new StringBuilder();
+	    if (array.length > 0) {
+	        arTostr.append(array[0]);
+	        for (int i=1; i<array.length; i++) {
+	            arTostr.append(delimiter);
+	            arTostr.append(array[i]);
+	        }
+	    }
+	    return arTostr.toString();
+	}
 
 	// Bitmap to uri
 	public static Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -359,259 +373,271 @@ public final class Global {
 				inImage, "Title", null);
 		return Uri.parse(path);
 	}
-	
-	public static boolean UpdateMemberFileCache(String user_srl, String new_update, String profile_pic) {
+
+	public static boolean UpdateMemberFileCache(String user_srl,
+			String new_update, String profile_pic) {
 		String local_path = mod.getCacheDir().toString() + "/member/";
-		if (Global.UpdateFileCache(new_update,
-				Global.getUser(user_srl, "0"),
+		if (Global.UpdateFileCache(new_update, Global.getUser(user_srl, "0"),
 				mod.getString(R.string.server_path) + "files/profile/"
-						+ user_srl + ".jpg", local_path,
-				user_srl + ".jpg") && profile_pic.matches("Y")) return true;
-		
+						+ user_srl + ".jpg", local_path, user_srl + ".jpg")
+				&& profile_pic.matches("Y"))
+			return true;
+
 		return false;
 	}
 
 	public static boolean UpdateFileCache(String new_update, String updatetime,
 			String filepath, String filesavepath, String filename) {
 		File files = new File(filesavepath + filename);
-		if (Long.parseLong(new_update) > Long.parseLong(updatetime) || files.exists() == false) {
+		if (Long.parseLong(new_update) > Long.parseLong(updatetime)
+				|| files.exists() == false) {
 			Log.i("true", "Update need");
-		return true;
+			return true;
 		}
 		return false;
 	}
 
-//	public static void DownloadImageToFile(String filepath,
-//			String filesavepath, String filename) {
-//		new ImageDownloader(mod, filepath, mHandler, 1);
-//		Globalvariable.filesavepath = filesavepath;
-//		Globalvariable.filename = filename;
-//	}
-	
-//	public static String getDate(long timeStamp){
-//		Locale systemLocale = mod.getResources().getConfiguration().locale;
-//	    SimpleDateFormat objFormatter = new SimpleDateFormat("dd-MM-yyyy");
-//	    objFormatter.setTimeZone(TimeZone.getTimeZone(systemLocale));
-//
-//	    Calendar objCalendar =    
-//	            Calendar.getInstance(TimeZone.getTimeZone(systemLocale));
-//	    objCalendar.setTimeInMillis(timeStamp*1000);//edit
-//	    String result = objFormatter.format(objCalendar.getTime());
-//	    objCalendar.clear();
-//	    return result;         
-//	}
-	
-	public static long getCurrentTimeStamp(){
+	public static boolean CheckFileState(String path) {
+		File files = new File(path);
+
+		return files.exists();
+
+	}
+
+	// public static void DownloadImageToFile(String filepath,
+	// String filesavepath, String filename) {
+	// new ImageDownloader(mod, filepath, mHandler, 1);
+	// Globalvariable.filesavepath = filesavepath;
+	// Globalvariable.filename = filename;
+	// }
+
+	// public static String getDate(long timeStamp){
+	// Locale systemLocale = mod.getResources().getConfiguration().locale;
+	// SimpleDateFormat objFormatter = new SimpleDateFormat("dd-MM-yyyy");
+	// objFormatter.setTimeZone(TimeZone.getTimeZone(systemLocale));
+	//
+	// Calendar objCalendar =
+	// Calendar.getInstance(TimeZone.getTimeZone(systemLocale));
+	// objCalendar.setTimeInMillis(timeStamp*1000);//edit
+	// String result = objFormatter.format(objCalendar.getTime());
+	// objCalendar.clear();
+	// return result;
+	// }
+
+	public static long getCurrentTimeStamp() {
 
 		return System.currentTimeMillis() / 1000;
 	}
-	
-	public static String getDate(String timeStamp){
-	   
-	    return getDate(Long.parseLong(timeStamp), mod.getString(R.string.date));         
+
+	public static String getDate(String timeStamp) {
+
+		return getDate(Long.parseLong(timeStamp), mod.getString(R.string.date));
 	}
-	
-	private static class TIME_MAXIMUM{
-        public static final int SEC = 60;
-        public static final int MIN = 60;
-        public static final int HOUR = 24;
-        public static final int DAY = 30;
-        public static final int MONTH = 12;
-}
- 
-	
+
+	private static class TIME_MAXIMUM {
+		public static final int SEC = 60;
+		public static final int MIN = 60;
+		public static final int HOUR = 24;
+		public static final int DAY = 30;
+		public static final int MONTH = 12;
+	}
+
 	public static String formatTimeString(long timestamp) {
-		 
-	    long curTime = System.currentTimeMillis() / 1000;
-	    long regTime = timestamp;
-	    long diffTime = (curTime - regTime);
-	 
-	    String msg = null;
-	    if (diffTime < TIME_MAXIMUM.SEC) {
-	            // sec
-	        msg = mod.getString(R.string.a_moment_ago);
-	    } else if ((diffTime /= TIME_MAXIMUM.SEC) < TIME_MAXIMUM.MIN) {
-	        // min
-	    	
-	    	int plural = diffTime > 1 ?  2 : 1;
-	        msg = String.format(mod.getResources().getQuantityString(R.plurals.minute, plural), diffTime);
-	    } else if ((diffTime /= TIME_MAXIMUM.MIN) < TIME_MAXIMUM.HOUR) {
-	        // hour
-	     	int plural = diffTime > 1 ?  2 : 1;
-	        msg = String.format(mod.getResources().getQuantityString(R.plurals.hour, plural), diffTime);
-	   
-	        
-	        
-	          } else {
-	        msg = getDate(timestamp, mod.getString(R.string.date));
-	    }
-	 
-	    return msg;
+
+		long curTime = System.currentTimeMillis() / 1000;
+		long regTime = timestamp;
+		long diffTime = (curTime - regTime);
+
+		String msg = null;
+		if (diffTime < TIME_MAXIMUM.SEC) {
+			// sec
+			msg = mod.getString(R.string.a_moment_ago);
+		} else if ((diffTime /= TIME_MAXIMUM.SEC) < TIME_MAXIMUM.MIN) {
+			// min
+
+			int plural = diffTime > 1 ? 2 : 1;
+			msg = String.format(
+					mod.getResources().getQuantityString(R.plurals.minute,
+							plural), diffTime);
+		} else if ((diffTime /= TIME_MAXIMUM.MIN) < TIME_MAXIMUM.HOUR) {
+			// hour
+			int plural = diffTime > 1 ? 2 : 1;
+			msg = String.format(
+					mod.getResources()
+							.getQuantityString(R.plurals.hour, plural),
+					diffTime);
+
+		} else {
+			msg = getDate(timestamp, mod.getString(R.string.date));
+		}
+
+		return msg;
 	}
-	
-	public static String getDate(long timeStamp, String DateFormat){
-	    java.text.DateFormat objFormatter = new SimpleDateFormat(DateFormat);
-	    objFormatter.setTimeZone(TimeZone.getDefault());
 
-	    Calendar objCalendar =    
-	            Calendar.getInstance(TimeZone.getDefault());
-	    objCalendar.setTimeInMillis(timeStamp*1000);//edit
-	    String result = objFormatter.format(objCalendar.getTime());
-	    objCalendar.clear();
-	    return result;         
+	public static String getDate(long timeStamp, String DateFormat) {
+		java.text.DateFormat objFormatter = new SimpleDateFormat(DateFormat);
+		objFormatter.setTimeZone(TimeZone.getDefault());
+
+		Calendar objCalendar = Calendar.getInstance(TimeZone.getDefault());
+		objCalendar.setTimeInMillis(timeStamp * 1000);// edit
+		String result = objFormatter.format(objCalendar.getTime());
+		objCalendar.clear();
+		return result;
 	}
-	 
-//	 public static String getDate(String time){  
-//	        Date date = new Date(Long.parseLong(time));
-//	        SimpleDateFormat dateFormat = 
-//	      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-//	        return dateFormat.format(date);  
-//	    }
-//	
-//	public static String getDate(long timeStamp){
-//
-//	    try{
-//	        java.text.DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-//	        Date netDate = (new Date(timeStamp));
-//	        return sdf.format(netDate);
-//	    }
-//	    catch(Exception ex){
-//	        return "xx";
-//	    }
-//	}
-	
 
+	// public static String getDate(String time){
+	// Date date = new Date(Long.parseLong(time));
+	// SimpleDateFormat dateFormat =
+	// new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+	// return dateFormat.format(date);
+	// }
+	//
+	// public static String getDate(long timeStamp){
+	//
+	// try{
+	// java.text.DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	// Date netDate = (new Date(timeStamp));
+	// return sdf.format(netDate);
+	// }
+	// catch(Exception ex){
+	// return "xx";
+	// }
+	// }
 
-//	protected static Handler mHandler = new Handler() {
-//		public void handleMessage(Message msg) {
-//			String local_path = mod.getCacheDir().toString() + "/member/";
-//			String member_srl = "0";
-//			if (msg.what == 1) {
-//				// SaveBitmapToFileCache((Bitmap) msg.obj, );
-//				Global.SaveBitmapToFileCache((Bitmap) msg.obj,
-//						Globalvariable.filesavepath, Globalvariable.filename);
-//				createThumbnail((Bitmap) msg.obj, local_path
-//						+ "thumbnail/", member_srl + ".jpg");
-//				Globalvariable.filesavepath = null;
-//				Globalvariable.filename = null;
-//			}
-//			
-//			if (msg.what == 2) {
-//				
-//				try {
-//				
-//				
-//				String[] array = msg.obj.toString().split("/LINE/.");
-//				Global.dumpArray(array);
-//				 member_srl = array[0];
-//				String profile_update = array[1];
-//				String profile_pic = array[2];
-//				
-//				
-//				if (Global.UpdateFileCache(profile_update,
-//						Global.getUser(member_srl, "0"),
-//						mod.getString(R.string.server_path) + "files/profile/"
-//								+ member_srl + ".jpg", local_path,
-//						member_srl + ".jpg")
-//						&& profile_pic.matches("Y")) {
-//					SaveUserSetting(member_srl, profile_update);
-//					DownloadImageToFile(mod.getString(R.string.server_path) + "files/profile/"
-//							+ member_srl + ".jpg",
-//							local_path,
-//							member_srl + ".jpg");
-//
-//				}
-//			
-//				
-//			} catch (Exception e) {
-//			}
-//			}
-//
-//		}
-//	};
-	
-//	 public static int dp(int value) {
-//		float density = mod.getResources().getDisplayMetrics().density;
-//	        return (int)(density * value);
-//	    }
-//	 
-//	 public static Bitmap loadBitmap(String path, float maxWidth, float maxHeight) {
-//	        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//	        bmOptions.inJustDecodeBounds = true;
-//	        BitmapFactory.decodeFile(path, bmOptions);
-//	        float photoW = bmOptions.outWidth;
-//	        float photoH = bmOptions.outHeight;
-//	        float scaleFactor = Math.max(photoW / maxWidth, photoH / maxHeight);
-//	        if (scaleFactor < 1) {
-//	            scaleFactor = 1;
-//	        }
-//	        bmOptions.inJustDecodeBounds = false;
-//	        bmOptions.inSampleSize = (int)scaleFactor;
-//
-//	        ExifInterface exif;
-//	        Matrix matrix = null;
-//	        try {
-//	            exif = new ExifInterface(path);
-//	            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-//	            matrix = new Matrix();
-//	            switch (orientation) {
-//	                case ExifInterface.ORIENTATION_ROTATE_90:
-//	                    matrix.postRotate(90);
-//	                    break;
-//	                case ExifInterface.ORIENTATION_ROTATE_180:
-//	                    matrix.postRotate(180);
-//	                    break;
-//	                case ExifInterface.ORIENTATION_ROTATE_270:
-//	                    matrix.postRotate(270);
-//	                    break;
-//	            }
-//	        } catch (Exception e) {
-//	         //   FileLog.e("tmessages", e);
-//	        }
-//
-//	        Bitmap b;
-//	        try {
-//	            b = BitmapFactory.decodeFile(path, bmOptions);
-//	            if (b != null && matrix != null) {
-//	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
-//	            }
-//	        } catch (Exception e) {
-//	        //    FileLoader.Instance.memCache.evictAll();
-//	            b = BitmapFactory.decodeFile(path, bmOptions);
-//	            if (b != null && matrix != null) {
-//	                b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix, true);
-//	            }
-//	        }
-//
-//	        return b;
-//	    }
-	 
-	 
-	    public static void addMediaToGallery(String fromPath) {
-	        if (fromPath == null) {
-	            return;
-	        }
-	        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-	        File f = new File(fromPath);
-	        Uri contentUri = Uri.fromFile(f);
-	        mediaScanIntent.setData(contentUri);
-	        mod.sendBroadcast(mediaScanIntent);
-	    }
+	// protected static Handler mHandler = new Handler() {
+	// public void handleMessage(Message msg) {
+	// String local_path = mod.getCacheDir().toString() + "/member/";
+	// String member_srl = "0";
+	// if (msg.what == 1) {
+	// // SaveBitmapToFileCache((Bitmap) msg.obj, );
+	// Global.SaveBitmapToFileCache((Bitmap) msg.obj,
+	// Globalvariable.filesavepath, Globalvariable.filename);
+	// createThumbnail((Bitmap) msg.obj, local_path
+	// + "thumbnail/", member_srl + ".jpg");
+	// Globalvariable.filesavepath = null;
+	// Globalvariable.filename = null;
+	// }
+	//
+	// if (msg.what == 2) {
+	//
+	// try {
+	//
+	//
+	// String[] array = msg.obj.toString().split("/LINE/.");
+	// Global.dumpArray(array);
+	// member_srl = array[0];
+	// String profile_update = array[1];
+	// String profile_pic = array[2];
+	//
+	//
+	// if (Global.UpdateFileCache(profile_update,
+	// Global.getUser(member_srl, "0"),
+	// mod.getString(R.string.server_path) + "files/profile/"
+	// + member_srl + ".jpg", local_path,
+	// member_srl + ".jpg")
+	// && profile_pic.matches("Y")) {
+	// SaveUserSetting(member_srl, profile_update);
+	// DownloadImageToFile(mod.getString(R.string.server_path) +
+	// "files/profile/"
+	// + member_srl + ".jpg",
+	// local_path,
+	// member_srl + ".jpg");
+	//
+	// }
+	//
+	//
+	// } catch (Exception e) {
+	// }
+	// }
+	//
+	// }
+	// };
+
+	// public static int dp(int value) {
+	// float density = mod.getResources().getDisplayMetrics().density;
+	// return (int)(density * value);
+	// }
+	//
+	// public static Bitmap loadBitmap(String path, float maxWidth, float
+	// maxHeight) {
+	// BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+	// bmOptions.inJustDecodeBounds = true;
+	// BitmapFactory.decodeFile(path, bmOptions);
+	// float photoW = bmOptions.outWidth;
+	// float photoH = bmOptions.outHeight;
+	// float scaleFactor = Math.max(photoW / maxWidth, photoH / maxHeight);
+	// if (scaleFactor < 1) {
+	// scaleFactor = 1;
+	// }
+	// bmOptions.inJustDecodeBounds = false;
+	// bmOptions.inSampleSize = (int)scaleFactor;
+	//
+	// ExifInterface exif;
+	// Matrix matrix = null;
+	// try {
+	// exif = new ExifInterface(path);
+	// int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+	// matrix = new Matrix();
+	// switch (orientation) {
+	// case ExifInterface.ORIENTATION_ROTATE_90:
+	// matrix.postRotate(90);
+	// break;
+	// case ExifInterface.ORIENTATION_ROTATE_180:
+	// matrix.postRotate(180);
+	// break;
+	// case ExifInterface.ORIENTATION_ROTATE_270:
+	// matrix.postRotate(270);
+	// break;
+	// }
+	// } catch (Exception e) {
+	// // FileLog.e("tmessages", e);
+	// }
+	//
+	// Bitmap b;
+	// try {
+	// b = BitmapFactory.decodeFile(path, bmOptions);
+	// if (b != null && matrix != null) {
+	// b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix,
+	// true);
+	// }
+	// } catch (Exception e) {
+	// // FileLoader.Instance.memCache.evictAll();
+	// b = BitmapFactory.decodeFile(path, bmOptions);
+	// if (b != null && matrix != null) {
+	// b = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), matrix,
+	// true);
+	// }
+	// }
+	//
+	// return b;
+	// }
+
+	public static void addMediaToGallery(String fromPath) {
+		if (fromPath == null) {
+			return;
+		}
+		Intent mediaScanIntent = new Intent(
+				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		File f = new File(fromPath);
+		Uri contentUri = Uri.fromFile(f);
+		mediaScanIntent.setData(contentUri);
+		mod.sendBroadcast(mediaScanIntent);
+	}
 
 	// Make temporary file
 	public static File createTemporaryFile(String part, String ext)
 			throws Exception {
 		File tempDir = mod.getExternalCacheDir();
 		tempDir = new File(tempDir.getAbsolutePath()); // added
-																	// missing
-																	// ")"
+														// missing
+														// ")"
 		if (!tempDir.exists()) {
 			tempDir.mkdir();
 		}
 		return File.createTempFile(part, ext, tempDir);
 	}
 
-	//Get image
+	// Get image
 	public static Bitmap grabImage(Uri mImageUri) {
 		mod.getContentResolver().notifyChange(mImageUri, null);
 		ContentResolver cr = mod.getContentResolver();
@@ -619,12 +645,12 @@ public final class Global {
 		try {
 			bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr,
 					mImageUri);
-			//imageView.setImageBitmap(bitmap);
+			// imageView.setImageBitmap(bitmap);
 		} catch (Exception e) {
 			Toast.makeText(mod, "Failed to load", Toast.LENGTH_SHORT).show();
-		//	Log.d(TAG, "Failed to load", e);
+			// Log.d(TAG, "Failed to load", e);
 		}
-		
+
 		return bitmap;
 	}
 
@@ -657,14 +683,14 @@ public final class Global {
 				mod.MODE_PRIVATE);
 		return prefs.getString(setting, default_value);
 	}
-	
+
 	public static String getUser(String setting, String default_value) {
 		SharedPreferences prefs = mod.getSharedPreferences("users",
 				mod.MODE_PRIVATE);
 		return prefs.getString(setting, default_value);
 	}
 
-	public static void SaveUserSetting(String user, String value){
+	public static void SaveUserSetting(String user, String value) {
 		// 설정 값 저장
 		// Setting Editor
 		SharedPreferences edit = mod.getSharedPreferences("users",
@@ -675,8 +701,7 @@ public final class Global {
 		editor.commit();
 
 	}
-	
-	
+
 	public static String getPhoneNumber(boolean getphonenumber) {
 		// Get Country number and phone number
 		// get Phone number
@@ -798,8 +823,7 @@ public final class Global {
 	// return output;
 	// }
 
-	
-	public static void Feedback(Context cx){
+	public static void Feedback(Context cx) {
 		// System info
 		String s = "Device info:";
 		s += "\n OS Version: " + System.getProperty("os.version") + "("
@@ -812,8 +836,7 @@ public final class Global {
 		// Send email
 		Intent Email = new Intent(Intent.ACTION_SEND);
 		Email.setType("text/email");
-		Email.putExtra(Intent.EXTRA_EMAIL,
-				new String[] { "main@tarks.net" });
+		Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "main@tarks.net" });
 		Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
 		Email.putExtra(Intent.EXTRA_TEXT, s);
 		cx.startActivity(Intent.createChooser(Email,

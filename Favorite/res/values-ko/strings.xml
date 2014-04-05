@@ -70,8 +70,8 @@
     <string name="phone_number_content">휴대폰 번호를 입력하여 당신을 좋아하는 사람이 몇 명인지 확인해보세요.</string>
     <string name="register_favorite">좋아하는 사람 등록</string>
     <string name="check_result">결과 확인하기</string>
-    <string name="my_favorite_people">내가 좋아하는 사람</string>
-    <string name="people_that_like_me">나를 좋아해주는 사람</string>
+    <string name="my_favorite_people">좋아하는 사람</string>
+    <string name="people_that_like_me">나를 좋아하는 사람</string>
     <string name="test_result">%1$s님을 좋아하는 사람은 %2$s명 입니다.</string>
     <string name="who_favorited_me">누가 나를 좋아할까?</string>
     <string name="check_how_many_people_are_favorite_me">얼마나 많은 사람이 나를 좋아하는지 확인해보세요.</string>
@@ -120,5 +120,7 @@
     <string name="notice_new_comment">댓글을 달았습니다.</string>
     <string name="add">추가</string>
     <string name="favorite_add_des">좋아하는 사람(페이지)으로 추가하시겠습니까?</string>
+    <string name="added">추가되었습니다.</string>
+    <string name="notice_added_to_favorite">당신을 좋아하는 사람으로 추가했습니다.</string>
 
 </resources>

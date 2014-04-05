@@ -5,9 +5,9 @@ import android.view.View;
 
 public abstract class AbstractCard {
 
-	protected int image;
+	protected int image, user_srl;
 	
-	protected String description, color, titleColor, desc, title, titlePlay, like_me, favorite;
+	protected String description, color, titleColor, desc, title, titlePlay, like_me, favorite, des;
 
 	protected Boolean hasOverflow, isClickable;
 
@@ -50,6 +50,15 @@ public abstract class AbstractCard {
 	public Boolean getIsClickable() {
 		return isClickable;
 	}
+	
+	public String getDes() {
+		return des;
+	}
+	
+	public int getUserSrl() {
+		return user_srl;
+	}
+	
 	
 	public String like_me() {
 		return like_me;

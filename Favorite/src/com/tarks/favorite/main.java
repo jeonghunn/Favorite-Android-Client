@@ -1,9 +1,13 @@
 package com.tarks.favorite;
 
+import java.util.ArrayList;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.page.document_write;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -15,8 +19,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -117,6 +124,7 @@ public class main extends SherlockFragmentActivity {
 		}
 	}
 	
+
 
 
 	@Override

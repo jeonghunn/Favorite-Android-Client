@@ -354,7 +354,7 @@ public class document_read extends SherlockActivity {
 
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000) {
+				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000  || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false) {
 
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
@@ -658,6 +658,7 @@ public class document_read extends SherlockActivity {
 
 						if (previous_count > 1)
 							moreload = i;
+						getMemberInfo(user_srl);
 						setList(moreload, Integer.parseInt(srl), user_srl,
 								name, content,
 								Global.formatTimeString(Long.parseLong(date)));

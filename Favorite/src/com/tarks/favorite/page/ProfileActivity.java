@@ -81,8 +81,8 @@ public class ProfileActivity extends SherlockActivity {
 	String title;
 	// Member srl
 	String member_srl = "0";
-	String your_status;
-	String me_status;
+	int your_status;
+	int me_status;
 	// String profile_user_srl = "0";
 	// Profile
 	ImageView profile;
@@ -273,8 +273,8 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000) {
-
+				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false) {
+//Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
 			Paramname.add("user_srl");
@@ -305,7 +305,7 @@ public class ProfileActivity extends SherlockActivity {
 
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
-			Paramname.add("kind");
+			Paramname.add("category");
 			Paramname.add("user_srl");
 			Paramname.add("user_srl_auth");
 			Paramname.add("value");
@@ -317,11 +317,11 @@ public class ProfileActivity extends SherlockActivity {
 					Global.getSetting("user_srl", "0")));
 			Paramvalue.add(Global.getSetting("user_srl_auth",
 					Global.getSetting("user_srl_auth", "null")));
-			Paramvalue.add(String.valueOf(user_srl));
+			Paramvalue.add(user_srl);
 
 			new AsyncHttpTask(this, getString(R.string.server_path)
-					+ "member/profile_info.php", mHandler, Paramname,
-					Paramvalue, null, 4, Integer.parseInt(user_srl));
+					+ "favorite/favorite_app_add.php", mHandler, Paramname,
+					Paramvalue, null, 6, Integer.parseInt(user_srl));
 		
 	}
 
@@ -391,8 +391,8 @@ public class ProfileActivity extends SherlockActivity {
 					String profile_update = array[7];
 					String lang = array[8];
 					String country = array[9];
-					your_status = array[10];
-					me_status = array[11];
+					your_status = Integer.parseInt(array[10]);
+					me_status =  Integer.parseInt(array[11]);
 
 					title = Global.NameMaker(lang, name_1, name_2);
 
@@ -411,7 +411,7 @@ public class ProfileActivity extends SherlockActivity {
 						profile.setImageDrawable(null);
 					}
 
-					if (your_status.matches("1")) {
+					if (me_status < 3) {
 						add_menu_state = true;
 						invalidateOptionsMenu();
 					}
@@ -471,7 +471,7 @@ public class ProfileActivity extends SherlockActivity {
 					String profile_update = array[1];
 
 					String user_srl = String.valueOf(msg.arg1);
-					Log.i("Gett", user_srl + "");
+			//		Log.i("Gett", user_srl + "");
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -509,6 +509,20 @@ public class ProfileActivity extends SherlockActivity {
 					// Refresh();
 				} catch (Exception e) {
 				}
+			}
+			
+			if (msg.what == 6) {
+				String result = msg.obj.toString();
+				if(result.matches("favorite_add_succeed")) {
+				Global.toast(getString(R.string.added));
+				add_menu_state = false;
+				invalidateOptionsMenu();
+				}else{
+					Global.ConnectionError(ProfileActivity.this);
+				}
+			//	Log.i("Result","로그 정상 작동");
+				Log.i("Result", msg.obj.toString());
+			
 			}
 
 		}
@@ -679,7 +693,7 @@ public class ProfileActivity extends SherlockActivity {
 					new DialogInterface.OnClickListener() {
 
 						public void onClick(DialogInterface dialog, int which) {
-							Global.Feedback(ProfileActivity.this);
+							addFavorite(member_srl);
 						}
 					});
 			builder.setNegativeButton(getString(R.string.no), null);
