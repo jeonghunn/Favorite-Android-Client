@@ -396,7 +396,8 @@ public class document_read extends SherlockActivity {
 
 	public void CommentPostAct() {
 		setSupportProgressBarIndeterminateVisibility(true);
-
+		comment_edittext.setEnabled(false);
+		
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -621,6 +622,7 @@ public class document_read extends SherlockActivity {
 
 			if (msg.what == 4) {
 				String result = msg.obj.toString();
+				comment_edittext.setEnabled(true);
 				if (result.matches("comment_write_succeed")) {
 					setCommentsCount(comments_count + 1);
 					previous_count = 1;

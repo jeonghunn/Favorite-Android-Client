@@ -296,6 +296,7 @@ Log.i("Update", "Updateing");
 				String result = msg.obj.toString();
 				
 				Log.i("Result", msg.obj.toString());
+				try{
 				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
 					for (int i = 0; i < profile.length; i++) {
@@ -305,7 +306,9 @@ Log.i("Update", "Updateing");
 					}
 				// Global.dumpArray(array);
 				loadUsers(user_content_array);
-
+				}catch(Exception e){
+					
+				}
               
 			}
 			
