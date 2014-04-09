@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/black_button"
         android:ems="5"
@@ -28,18 +27,6 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/tarks_login"
-        style="@style/ButtonText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/black_button"
-        android:ems="5"
-        android:text="Tarks 계정으로 시작" />
-
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -48,5 +35,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="113dp"
         android:src="@drawable/favorite_simple" />
+
+    <Button
+        android:id="@+id/tarks_login"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/button1"
+        android:background="@drawable/black_button"
+        android:ems="5"
+        android:text="@string/sign_in" />
 
 </RelativeLayout>

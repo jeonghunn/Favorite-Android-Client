@@ -82,6 +82,12 @@
              android:label="@string/app_name" 
               android:theme="@style/AppTheme.TranslucentActionBar" 
            />
+               
+                          <activity
+            android:name="com.tarks.favorite.page.ProfileEdit"
+            android:icon="@drawable/ic_launcher_simple"
+             android:label="@string/edit_profile" 
+           />
                         <activity
             android:name=".page.ProfileInfo"
             android:icon="@drawable/ic_launcher_simple"

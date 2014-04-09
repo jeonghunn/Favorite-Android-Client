@@ -19,11 +19,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -95,6 +98,17 @@ public class ProfileInfo extends SherlockActivity {
 				+ member_srl + ".jpg"));
        
   //     profile_edit.setOnClickListener(l)
+       profile_edit.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent1 = new Intent(ProfileInfo.this,
+						ProfileEdit.class);
+				intent1.putExtra("member_srl", member_srl);
+				startActivityForResult(intent1, 1);
+			}
+		});
 
        listView.addHeaderView(header);
 
@@ -330,8 +344,8 @@ public class ProfileInfo extends SherlockActivity {
 					//	profile.setId(null);
 					//	profile.setImageDrawable(res.getDrawable(R.drawable.person));
 					}
-					
-					setList();
+				
+					setList();	
 				
 				} catch (Exception e) {
 					MemberInfoError();

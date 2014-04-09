@@ -2,10 +2,10 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.2619</string>
-    <string name="build">2619</string>
+    <string name="ver">1.0.0.2654</string>
+    <string name="build">2654</string>
     <string name="pic_size_devide">1</string>
-    <string name="verkind">Beta 2</string>
+    <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
     <string name="lang">en</string>
     <string name="default_country">us</string>
@@ -127,12 +127,13 @@
     <string name="notice_new_document">Wrote new document</string>
     <string name="notice_new_comment">Commented on a post</string>
     <string name="add">Add</string>
-      <string name="added">Added</string>
+    <string name="added">Added</string>
     <string name="favorite_add_des">Do you want to add to favorite?</string>
-      <string name="added">Added.</string>
-        <string name="notice_added_to_favorite">Added you to favorite.</string>
-      
+    <string name="added">Added.</string>
+    <string name="notice_added_to_favorite">Added you to favorite.</string>
+    <string name="ip_error_des">Your IP was blocked cause you have abnormal activity.</string>
+    <string name="sign_in">Sign in</string>
+     <string name="edit_profile">Edit Profile</string>
     <string name="welcome_des">환영합니다. 다른 사람들이 나를 좋아하는지를 알려면, 몇가지 정보를 입력해주세요:)</string>
-    <string name="ip_error_des">지금 사용하시고 있는 IP는 부적절한 활동 내역으로 이용 중지 처리되었습니다.</string>
 
 </resources>
