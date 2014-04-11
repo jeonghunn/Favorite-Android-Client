@@ -141,36 +141,8 @@ public class welcome extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-        Global.getCountryValue();
-    	//no error
-	///	try{	
-  //      Log.i("Phone Number", Global.getPhoneNumber(false) + "df");
-	Log.i("Cache folder", getCacheDir().toString());
-			//	new Downloader()
-		//				.execute();
-//        ArrayList<String> Paramname = new ArrayList<String>();
-//        Paramname.add("authcode");
-//        Paramname.add("tarks_account");
-//        
-//        ArrayList<String> Paramvalue = new ArrayList<String>();
-//        Paramvalue.add("642979");
-//        Paramvalue.add("jeonghunn");
-//				
-//        
-//				new Global.AsyncHttpTask(this, getString(R.string.server_path) + "member/tarks_account_check.php", mHandler, Paramname, Paramvalue, null, 1);
-//				
-//				new AsyncHttpTask.execute("","","");
-//
-	//	} catch (Exception e){
-		
-			// Not Connected To Internet
-//			AlertDialog.Builder builder = new AlertDialog.Builder(welcome.this);
-//			builder.setMessage(getString(R.string.networkerrord))
-//					.setPositiveButton(getString(R.string.yes), null)
-//					.setTitle(getString(R.string.networkerror));
-//			builder.show();
-			
-	//	}
+       // Global.getCountryValue();
+
 	 //Let's Start!
 	Button bt2 = (Button) findViewById(R.id.tarks_login);
 	bt2.setOnClickListener(new OnClickListener() {

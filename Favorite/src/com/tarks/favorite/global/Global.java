@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
@@ -23,6 +24,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.tarks.favorite.user.db.DbOpenHelper;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -163,10 +165,17 @@ public final class Global {
 		}
 	}
 
-	// Make name
+	
 	public static String[] NameBuilder(String name_1, String name_2) {
+		return NameBuilder(mod.getString(R.string.lang), name_1, name_2);
+	}
+
+	
+	
+	// Make name
+	public static String[] NameBuilder(String lang, String name_1, String name_2) {
 		String[] name = new String[2];
-		if (mod.getString(R.string.lang).matches("ko")) {
+		if (lang.matches("ko")) {
 			name[0] = name_1;
 			name[1] = name_2;
 		} else {
@@ -377,7 +386,7 @@ public final class Global {
 	public static boolean UpdateMemberFileCache(String user_srl,
 			String new_update, String profile_pic) {
 		String local_path = mod.getCacheDir().toString() + "/member/";
-		if (Global.UpdateFileCache(new_update, Global.getUser(user_srl, "0"),
+		if (Global.UpdateFileCache(new_update, Global.getUser(user_srl, "profile_update"),
 				mod.getString(R.string.server_path) + "files/profile/"
 						+ user_srl + ".jpg", local_path, user_srl + ".jpg")
 				&& profile_pic.matches("Y"))
@@ -684,21 +693,59 @@ public final class Global {
 		return prefs.getString(setting, default_value);
 	}
 
-	public static String getUser(String setting, String default_value) {
-		SharedPreferences prefs = mod.getSharedPreferences("users",
-				mod.MODE_PRIVATE);
-		return prefs.getString(setting, default_value);
+	public static String getUser(String user_srl, String value) {
+        Log.i("db", "helloget");
+		  // DB Create and Open
+		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
+        mDbOpenHelper.open();
+        String pu ;
+        Cursor csr = mDbOpenHelper.getUserInfo(user_srl);
+        Log.i("DB", csr.getCount() + "count");
+     
+        if(csr.getCount() == 0){
+        	 pu = "0";
+        }else{
+        	   pu = csr.getString(csr.getColumnIndex(value));
+        }
+
+        
+
+        //if(pu == null){
+      	
+     // }
+
+        
+        csr.close();
+        Log.i("DB", pu + "ddddd");
+
+      	mDbOpenHelper.close();
+
+		return pu;
 	}
 
-	public static void SaveUserSetting(String user, String value) {
+ 
+	public static void SaveUserSetting(String user, String profile_update, String profile_pic) {
+        Log.i("db", "hello");
 		// 설정 값 저장
 		// Setting Editor
-		SharedPreferences edit = mod.getSharedPreferences("users",
-				mod.MODE_PRIVATE);
-		SharedPreferences.Editor editor = edit.edit();
-		editor.putString(user, value);
+		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
+        mDbOpenHelper.open();
+        
+        Cursor csr = mDbOpenHelper.getUserInfo(user);
+        Log.i("DB", csr.getCount() + "count");
+        if(csr.getCount() == 0){
+      	  mDbOpenHelper.insertColumn(user, profile_update, profile_pic);
+     	  Log.i("DB",  "added");
+        }else{
+        	  mDbOpenHelper.updateColumn(user, profile_update, profile_pic);
+        	  Log.i("DB",  "update");
+        }
 
-		editor.commit();
+
+        Log.i("db", profile_update);
+
+        csr.close();
+      	mDbOpenHelper.close();
 
 	}
 

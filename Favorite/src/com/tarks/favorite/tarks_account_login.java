@@ -62,7 +62,8 @@ import com.tarks.favorite.start.join;
 public class tarks_account_login extends SherlockActivity {
 	Button bt;
 	Button bt2;
-	String myId, myPWord, myTitle, mySubject, myResult;
+	String myId, myPWord, myTitle, mySubject;
+	String myResult = null;
 	EditText edit1, edit2;
 	String s1, s2;
 //	boolean okbutton = true;

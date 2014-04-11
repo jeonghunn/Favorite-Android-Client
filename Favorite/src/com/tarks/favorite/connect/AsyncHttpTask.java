@@ -202,8 +202,8 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			}
 
 			myResult = builder.toString(); // 전송결과를 전역 변수에 저장
-			// Log.e("Test", "result = " + s);
-
+			// Log.e("Test", "result = " + myResult);
+           Log.i("Result value",  myResult + ".");
 			dos.close();
 			out.close();
 			// onPostExecute(myResult);

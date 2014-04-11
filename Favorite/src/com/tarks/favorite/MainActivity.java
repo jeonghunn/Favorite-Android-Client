@@ -63,6 +63,7 @@ import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.start.welcome;
+import com.tarks.favorite.user.db.DbOpenHelper;
 
 public class MainActivity extends SherlockActivity {
 	// 통신 스트링
@@ -97,6 +98,10 @@ public class MainActivity extends SherlockActivity {
 	        // Ignore
 	    }
 
+		
+
+
+		
 		// 자신의 신분 설정값을 불러옵니다.
 		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
 		String frist_use = prefs.getString("frist_use_app", "true");
@@ -372,7 +377,7 @@ public class MainActivity extends SherlockActivity {
 				// }
 
 				if (Global.UpdateMemberFileCache(user_srl, profile_update, profile_pic)) {
-					Global.SaveUserSetting(user_srl, profile_update);
+					Global.SaveUserSetting(user_srl, profile_update, profile_pic);
 					//Download image
 					new ImageDownloader(this, getString(R.string.server_path)
 							+ "files/profile/" + user_srl + ".jpg", mHandler, 2, 0);
@@ -489,9 +494,11 @@ public class MainActivity extends SherlockActivity {
 			}
 
 			if (msg.what == 1) {
+				try{
 				infoResult = msg.obj.toString();
 				Log.i("InfoResult", infoResult + "null");
 				StartApp();
+				} catch (Exception e){}
 
 			}
 

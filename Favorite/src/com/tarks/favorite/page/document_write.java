@@ -110,9 +110,10 @@ public class document_write extends SherlockActivity {
 				if(result.matches("document_write_succeed")) {
 				FinishAct();
 				}else{
+					Log.i("Error", "Error has been");
 					Global.ConnectionError(document_write.this);
 				}
-				Log.i("Result","로그 정상 작동");
+	//			Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString());
 			
 			}

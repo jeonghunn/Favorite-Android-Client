@@ -47,7 +47,7 @@ public class CropManager extends SherlockActivity {
 
 	// Static final constants
 	private static final int DEFAULT_ASPECT_RATIO_VALUES = 10;
-	private static final int ROTATE_NINETY_DEGREES = 90;
+	private static final int ROTATE_NINETY_DEGREES = 10;
 	private static final String ASPECT_RATIO_X = "ASPECT_RATIO_X";
 	private static final String ASPECT_RATIO_Y = "ASPECT_RATIO_Y";
 	private static final int ON_TOUCH = 1;
@@ -123,7 +123,7 @@ public class CropManager extends SherlockActivity {
 				cropImageView = (CropImageView) findViewById(R.id.CropImageView);
 				
 	
-
+				
 	
 			cropImageView.setImageBitmap(bm);
 			cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,

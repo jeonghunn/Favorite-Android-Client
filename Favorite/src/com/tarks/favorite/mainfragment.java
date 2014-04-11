@@ -250,7 +250,7 @@ public class mainfragment extends SherlockFragment implements
 	
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false) {
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
 Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
@@ -271,8 +271,7 @@ Log.i("Update", "Updateing");
 			new AsyncHttpTask(getActivity(), getString(R.string.server_path)
 					+ "member/profile_info.php", mHandler, Paramname,
 					Paramvalue, null, 3, Integer.parseInt(user_srl));
-			Global.SaveUserSetting(user_srl,
-					Long.toString(Global.getCurrentTimeStamp()));
+
 		}
 	}
 	
@@ -313,6 +312,7 @@ Log.i("Update", "Updateing");
 			}
 			
 			if (msg.what == 2) {
+				try{
 				String result = msg.obj.toString();
 				Log.i("Result", msg.obj.toString());
 				String[] array = result.split("/LINE/.");
@@ -320,6 +320,9 @@ Log.i("Update", "Updateing");
 					getMemberInfo(String.valueOf(user_content_array.get(i)));
 					setList(user_content_array.get(i), user_name_array.get(i), array[i]);
 					m_adapter.notifyDataSetChanged();
+				}
+				} catch (Exception e){
+					
 				}
 			}
 			
@@ -333,6 +336,9 @@ Log.i("Update", "Updateing");
 
 					String user_srl = String.valueOf(msg.arg1);
 			//		Log.i("Gett", user_srl + "");
+					Global.SaveUserSetting(user_srl,String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
+					
+					Global.SaveUserSetting(user_srl,profile_update, profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);

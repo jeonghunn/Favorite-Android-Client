@@ -273,8 +273,8 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "0")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false) {
-//Log.i("Update", "Updateing");
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false ) {
+			   Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
 			Paramname.add("user_srl");
@@ -294,8 +294,7 @@ public class ProfileActivity extends SherlockActivity {
 			new AsyncHttpTask(this, getString(R.string.server_path)
 					+ "member/profile_info.php", mHandler, Paramname,
 					Paramvalue, null, 4, Integer.parseInt(user_srl));
-			Global.SaveUserSetting(user_srl,
-					Long.toString(Global.getCurrentTimeStamp()));
+
 		}
 	}
 
@@ -400,7 +399,7 @@ public class ProfileActivity extends SherlockActivity {
 
 					if (Global.UpdateMemberFileCache(member_srl,
 							profile_update, profile_pic)) {
-						Global.SaveUserSetting(member_srl, profile_update);
+						Global.SaveUserSetting(member_srl,profile_update, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 
@@ -471,7 +470,7 @@ public class ProfileActivity extends SherlockActivity {
 					String profile_update = array[1];
 
 					String user_srl = String.valueOf(msg.arg1);
-			//		Log.i("Gett", user_srl + "");
+					Global.SaveUserSetting(user_srl,String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -563,8 +562,15 @@ public class ProfileActivity extends SherlockActivity {
 				}
 				if (image != null) {
 
+					boolean state = Global.CheckFileState(local_path
+							+ "thumbnail/" + p.getUserSrl() + ".jpg");
+					
+					if(state){
 					image.setImageDrawable(Drawable.createFromPath(local_path
 							+ "thumbnail/" + p.getUserSrl() + ".jpg"));
+					}else{
+						image.setImageResource(R.drawable.person);
+					}
 					image.setOnClickListener(new OnClickListener() {
 
 						@Override

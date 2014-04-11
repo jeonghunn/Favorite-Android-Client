@@ -37,17 +37,16 @@
         android:key="appinfo"
         android:title="@string/appinfo" >
 
-<!--         <Preference
+    <Preference
             android:key="notice"
             android:selectable="true"
-            android:summary="@string/notice_des"
             android:title="@string/notice" />
 
-        <Preference
+ <!--        <Preference
             android:key="help"
             android:selectable="true"
             android:summary="@string/help_des"
-            android:title="@string/help" /> -->
+            android:title="@string/help" /> --> -->
 
         <Preference
             android:key="feedback"

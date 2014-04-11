@@ -7,9 +7,11 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,12 +37,15 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
+import com.tarks.favorite.CropManager;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.page.ProfileActivity.List;
+import com.tarks.favorite.start.join;
 import com.tarks.widget.listviewutil;
 
 public class ProfileInfo extends SherlockActivity {
@@ -48,6 +53,7 @@ public class ProfileInfo extends SherlockActivity {
 	String local_path;
 	String member_srl = "0";
 	String title;
+	String profile_pic;
 	// ListView
 	ListView listView;
 
@@ -78,6 +84,12 @@ public class ProfileInfo extends SherlockActivity {
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		
+		Load();
+
+	}
+	
+	public void Load(){
 		local_path = getCacheDir().toString() + "/member/";
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
@@ -85,7 +97,7 @@ public class ProfileInfo extends SherlockActivity {
 		
 		
 		//IF self profile
-				self_profile = Global.getSetting("user_srl", "0").matches(member_srl);
+				//self_profile = Global.getSetting("user_srl", "0").matches(member_srl);
 		//Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
 		 // Header, Footer 생성 및 등록
@@ -114,7 +126,18 @@ public class ProfileInfo extends SherlockActivity {
 
 		m_adapter = new ListAdapter(this, R.layout.list, m_orders);
 		
+	setProfileInfo();
+
+		
+		
+
+         
+      
+	}
+	
+	public void setProfileInfo(){
 		// Start Progressbar
+		m_adapter.clear();
 		setSupportProgressBarIndeterminateVisibility(true);
 		
 		ArrayList<String> Paramname = new ArrayList<String>();
@@ -137,27 +160,11 @@ public class ProfileInfo extends SherlockActivity {
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
 				null, 1,0);
-
-		
-		
-
-         
-      
-
 	}
 	
 	public void setProfileList(int like_me, String profile_pic){
-		profile.setImageResource(R.drawable.person);
-		if(profile_pic.matches("Y"))
-			profile.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/"
-				+ member_srl + ".jpg"));
-		profile_title.setText(title);
-		
-		if(!self_profile) {
-			profile_edit.setBackgroundResource(R.drawable.transparent);
-			profile_edit.setImageResource(R.drawable.transparent);
-		}
 
+setProfile(profile_pic);
 
 		
 		// number cut
@@ -170,6 +177,20 @@ public class ProfileInfo extends SherlockActivity {
 		profile_des.setText(String.format(getResources().getQuantityString(R.plurals.like_him, plural), result));
 		}
 
+	}
+	
+	public void setProfile(String profile_pic){
+		profile.setImageResource(R.drawable.person);
+		if(profile_pic.matches("Y"))
+			profile.setImageDrawable(Drawable.createFromPath(local_path + "thumbnail/"
+				+ member_srl + ".jpg"));
+		profile_title.setText(title);
+		
+		if(!self_profile) {
+			 profile_edit.setOnClickListener(null);
+			profile_edit.setBackgroundResource(R.drawable.transparent);
+			profile_edit.setImageResource(R.drawable.transparent);
+		}
 	}
 	
 	public void setList(){
@@ -190,7 +211,10 @@ public class ProfileInfo extends SherlockActivity {
 		String country = array[12];
 		String like_me = array[13];
 		String favorite = array[14];
+		int your_status = Integer.parseInt(array[15]);
+		int me_status =  Integer.parseInt(array[16]);
 		
+		self_profile = your_status == 4;
 		setProfileList(Integer.parseInt(like_me), profile_pic);
 
 		if(!tarks_account.matches("null")) AddList(getString(R.string.tarks_account) , tarks_account);
@@ -309,7 +333,7 @@ public class ProfileInfo extends SherlockActivity {
 						String country_code = array[6];
 						String phone_number = array[7];
 						String join_day = array[8];
-						String profile_pic = array[9];
+						profile_pic = array[9];
 						String profile_update = array[10];
 						String lang = array[11];
 						String country = array[12];
@@ -322,12 +346,12 @@ public class ProfileInfo extends SherlockActivity {
 					
 					
 					if (Global.UpdateFileCache(profile_update,
-							Global.getUser(member_srl, "0"),
+							Global.getUser(member_srl, "profile_update"),
 							getString(R.string.server_path) + "files/profile/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")
 							&& profile_pic.matches("Y")) {
-						Global.SaveUserSetting(member_srl, profile_update);
+						Global.SaveUserSetting(member_srl, profile_update, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 
@@ -361,7 +385,8 @@ public class ProfileInfo extends SherlockActivity {
 					Global.createThumbnail((Bitmap) msg.obj, local_path
 							+ "thumbnail/", member_srl + ".jpg");
 
-					setList();
+			//		setList();
+					setProfile(profile_pic);
 	
 				} catch (Exception e) {
 				}
@@ -369,6 +394,19 @@ public class ProfileInfo extends SherlockActivity {
 
 		}
 	};
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+		
+		  setProfileInfo();
+
+		}
+
+	
+
+	}
+
 
 	// 빽백키 상단액션바
 	@Override

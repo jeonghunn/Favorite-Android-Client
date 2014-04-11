@@ -96,8 +96,8 @@ public class GCMIntentService extends GCMBaseIntentService {
 	    		Intent intent = null;
 	   
 	    		if(kind.matches("1")){
-	    			intent = new Intent(GCMIntentService.this, ProfileActivity.class);
-			      	   intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+	    			intent = new Intent(GCMIntentService.this, document_read.class);
+			      	   intent.putExtra("doc_srl", number);
 	    		}
 	    		if(kind.matches("2")){
 	    			intent = new Intent(GCMIntentService.this, document_read.class);

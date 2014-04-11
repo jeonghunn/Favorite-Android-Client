@@ -53,6 +53,9 @@ public class ProfileEdit extends SherlockActivity {
 	
 	String local_path;
 	String member_srl = "0";
+	String name_1;
+	String name_2;
+	String lang;
 	
 	//Name Edittext
 	EditText edittext_name_1;
@@ -243,6 +246,80 @@ public void AddList(String title, String description, int Tag){
 
 		
 	}
+    public void NameUpdate(){
+    	
+		// Make name
+		String[] name = Global.NameBuilder(lang , edittext_name_1.getText().toString(), edittext_name_2.getText().toString());
+
+		String first_name = name[0];
+		String last_name = name[1];
+    	
+ 	   ArrayList<String> Paramname = new ArrayList<String>();
+ 		Paramname.add("authcode");
+ 		Paramname.add("kind");
+ 		Paramname.add("user_srl");
+ 		Paramname.add("user_srl_auth");
+ 		Paramname.add("profile_user_srl");
+ 		Paramname.add("name_1");
+ 		Paramname.add("name_2");
+
+ 		ArrayList<String> Paramvalue = new ArrayList<String>();
+ 		Paramvalue.add("642979");
+ 		Paramvalue.add("2");
+ 		Paramvalue.add(Global.getSetting("user_srl",
+ 				Global.getSetting("user_srl", "0")));
+ 		Paramvalue.add(Global.getSetting("user_srl_auth",
+ 				Global.getSetting("user_srl_auth", "null")));
+ 		Paramvalue.add(member_srl);
+ 		Paramvalue.add(last_name);
+ 		Paramvalue.add(first_name);
+
+ 		// Files null if no profile changed
+ 		ArrayList<String> files = null;
+ 		if (profile_changed == true && profile_bitmap != null) {
+ 			Global.SaveBitmapToFileCache(profile_bitmap, getCacheDir().toString(), "/profile.jpg");
+ 			files = new ArrayList<String>();
+ 			files.add(getCacheDir().toString() + "/profile.jpg");
+ 		}
+
+ 		new AsyncHttpTask(this, getString(R.string.server_path)
+ 				+ "member/profile_update_app.php", mHandler, Paramname,
+ 				Paramvalue, files, 0,0);
+
+    }
+    
+   public void ProfileUpdate(){
+	   ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("kind");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+		Paramname.add("profile_user_srl");
+		Paramname.add("profile_pic");
+
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add("1");
+		Paramvalue.add(Global.getSetting("user_srl",
+				Global.getSetting("user_srl", "0")));
+		Paramvalue.add(Global.getSetting("user_srl_auth",
+				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add(member_srl);
+		Paramvalue.add(profile_changed ? "Y" : "N");
+
+		// Files null if no profile changed
+		ArrayList<String> files = null;
+		if (profile_changed == true && profile_bitmap != null) {
+			Global.SaveBitmapToFileCache(profile_bitmap, getCacheDir().toString(), "/profile.jpg");
+			files = new ArrayList<String>();
+			files.add(getCacheDir().toString() + "/profile.jpg");
+		}
+
+		new AsyncHttpTask(this, getString(R.string.server_path)
+				+ "member/profile_update_app.php", mHandler, Paramname,
+				Paramvalue, files, 0,0);
+
+   }
     
     public void ProfileImageDownload() {
 		// Start Progressbar
@@ -314,6 +391,7 @@ public void AddList(String title, String description, int Tag){
 		case 3:
 			profile.setImageResource(R.drawable.black_button);
 			profile_changed = false;
+			ProfileUpdate();
 			break;
 
 		default:
@@ -346,6 +424,8 @@ public void AddList(String title, String description, int Tag){
 				profile_changed = true;
 				// Set global image null
 				Globalvariable.image = null;
+				//Start update
+				ProfileUpdate();
 			}
 		}
 
@@ -444,8 +524,8 @@ public void AddList(String title, String description, int Tag){
 					 
 						String tarks_account = array[0];
 						String admin = array[1];
-						String name_1 = array[2];
-						String name_2 = array[3];
+						 name_1 = array[2];
+						 name_2 = array[3];
 						String gender = array[4];
 						String birthday = array[5];
 						String country_code = array[6];
@@ -453,7 +533,7 @@ public void AddList(String title, String description, int Tag){
 						String join_day = array[8];
 						String profile_pic = array[9];
 						String profile_update = array[10];
-						String lang = array[11];
+						 lang = array[11];
 						String country = array[12];
 						String like_me = array[13];
 						String favorite = array[14];
@@ -466,12 +546,12 @@ public void AddList(String title, String description, int Tag){
 					
 					
 					if (Global.UpdateFileCache(profile_update,
-							Global.getUser(member_srl, "0"),
+							Global.getUser(member_srl, "profile_update"),
 							getString(R.string.server_path) + "files/profile/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")
 							&& profile_pic.matches("Y")) {
-						Global.SaveUserSetting(member_srl, profile_update);
+						Global.SaveUserSetting(member_srl,profile_update, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 
@@ -502,6 +582,19 @@ public void AddList(String title, String description, int Tag){
 		}
 	};
 	
+	@Override
+	public void onBackPressed() {
+	if(!edittext_name_1.getText().toString().matches(name_1) || !edittext_name_2.getText().toString().matches(name_2)){
+		NameUpdate();
+	}
+	  // Intent 생성
+	   Intent intent = new Intent();
+	   // 생성한 Intent에 데이터 입력
+//	   intent.putExtra("image", b);
+	   // 결과값 설정(결과 코드, 인텐트)
+	   this.setResult(RESULT_OK,intent);
+	finish();
+	}
 	
       //빽백키 상단액션바
  	   @Override

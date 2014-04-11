@@ -45,17 +45,16 @@ public class setting extends SherlockPreferenceActivity {
 		});
 		
 		/********** NOTICE ***********/
-//		Preference notice = findPreference("notice");
-//		notice.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-//			@Override
-//			public boolean onPreferenceClick(Preference preference) {
-//				Intent intent = new Intent(setting.this, webview.class);
-//				intent.putExtra("url", "http://tarks.net/fastengine_notice/?l="
-//						+ getString(R.string.lang));
-//				startActivity(intent);
-//				return false;
-//			}
-//		});
+		Preference notice = findPreference("notice");
+		notice.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(setting.this, ProfileActivity.class);
+				  intent.putExtra("member_srl", "9");
+				startActivity(intent);	
+				return false;
+			}
+		});
 
 		/********** HELP ***********/
 //		Preference help = findPreference("help");
