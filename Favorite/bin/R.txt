@@ -760,7 +760,8 @@ int string choose_email_app 0x7f09007a
 int string choose_picture 0x7f090076
 int string community 0x7f090023
 int string contact 0x7f090026
-int string contact_pick_error 0x7f090066
+int string contact_pick_error 0x7f090097
+int string contact_pick_error_ 0x7f090066
 int string copy 0x7f090086
 int string copyright 0x7f090012
 int string cut_image 0x7f09006c

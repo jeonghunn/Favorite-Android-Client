@@ -1504,7 +1504,8 @@ containing a value of this type.
         public static final int choose_picture=0x7f090076;
         public static final int community=0x7f090023;
         public static final int contact=0x7f090026;
-        public static final int contact_pick_error=0x7f090066;
+        public static final int contact_pick_error=0x7f090097;
+        public static final int contact_pick_error_=0x7f090066;
         public static final int copy=0x7f090086;
         public static final int copyright=0x7f090012;
         public static final int cut_image=0x7f09006c;

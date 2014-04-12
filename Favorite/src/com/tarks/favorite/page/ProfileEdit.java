@@ -249,10 +249,10 @@ public void AddList(String title, String description, int Tag){
     public void NameUpdate(){
     	
 		// Make name
-		String[] name = Global.NameBuilder(lang , edittext_name_1.getText().toString(), edittext_name_2.getText().toString());
+		String[] name = Global.NameBuilder(edittext_name_1.getText().toString(), edittext_name_2.getText().toString());
 
-		String first_name = name[0];
-		String last_name = name[1];
+		String last_name = name[0];
+		String first_name = name[1];
     	
  	   ArrayList<String> Paramname = new ArrayList<String>();
  		Paramname.add("authcode");
@@ -262,6 +262,7 @@ public void AddList(String title, String description, int Tag){
  		Paramname.add("profile_user_srl");
  		Paramname.add("name_1");
  		Paramname.add("name_2");
+ 		Paramname.add("lang");
 
  		ArrayList<String> Paramvalue = new ArrayList<String>();
  		Paramvalue.add("642979");
@@ -273,6 +274,7 @@ public void AddList(String title, String description, int Tag){
  		Paramvalue.add(member_srl);
  		Paramvalue.add(last_name);
  		Paramvalue.add(first_name);
+ 		Paramvalue.add(getString(R.string.lang));
 
  		// Files null if no profile changed
  		ArrayList<String> files = null;

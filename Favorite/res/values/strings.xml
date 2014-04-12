@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.2753</string>
-    <string name="build">2753</string>
+    <string name="ver">1.0.0.2794</string>
+    <string name="build">2794</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -90,7 +90,7 @@
     <string name="people_are_like_you">People are like you.</string>
     <string name="peek">Peek</string>
     <string name="peek_des">Peeking the last name that people like me.</string>
-    <string name="contact_pick_error">Contact is not available.</string>
+    <string name="contact_pick_error.">Contact is not available.</string>
     <string name="blank_error">No value on textfield.</string>
     <string name="server_connection_error_des">Server connection has been error. Maybe checking or server problem. More details click \'Service status\'.</string>
     <string name="check_service_status">Service status</string>
