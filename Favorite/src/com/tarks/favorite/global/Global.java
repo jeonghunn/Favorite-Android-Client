@@ -694,13 +694,13 @@ public final class Global {
 	}
 
 	public static String getUser(String user_srl, String value) {
-        Log.i("db", "helloget");
+    //    Log.i("db", "helloget");
 		  // DB Create and Open
 		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
         mDbOpenHelper.open();
         String pu ;
         Cursor csr = mDbOpenHelper.getUserInfo(user_srl);
-        Log.i("DB", csr.getCount() + "count");
+    //    Log.i("DB", csr.getCount() + "count");
      
         if(csr.getCount() == 0){
         	 pu = "0";
@@ -716,7 +716,7 @@ public final class Global {
 
         
         csr.close();
-        Log.i("DB", pu + "ddddd");
+       // Log.i("DB", pu + "ddddd");
 
       	mDbOpenHelper.close();
 
@@ -725,24 +725,24 @@ public final class Global {
 
  
 	public static void SaveUserSetting(String user, String profile_update, String profile_pic) {
-        Log.i("db", "hello");
+       // Log.i("db", "hello");
 		// 설정 값 저장
 		// Setting Editor
 		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
         mDbOpenHelper.open();
         
         Cursor csr = mDbOpenHelper.getUserInfo(user);
-        Log.i("DB", csr.getCount() + "count");
+      //  Log.i("DB", csr.getCount() + "count");
         if(csr.getCount() == 0){
       	  mDbOpenHelper.insertColumn(user, profile_update, profile_pic);
-     	  Log.i("DB",  "added");
+     	//  Log.i("DB",  "added");
         }else{
         	  mDbOpenHelper.updateColumn(user, profile_update, profile_pic);
         	  Log.i("DB",  "update");
         }
 
 
-        Log.i("db", profile_update);
+    //    Log.i("db", profile_update);
 
         csr.close();
       	mDbOpenHelper.close();

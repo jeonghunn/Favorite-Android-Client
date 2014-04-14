@@ -586,9 +586,13 @@ public void AddList(String title, String description, int Tag){
 	
 	@Override
 	public void onBackPressed() {
+		try{
 	if(!edittext_name_1.getText().toString().matches(name_1) || !edittext_name_2.getText().toString().matches(name_2)){
 		NameUpdate();
 	}
+		} catch (Exception e){
+			
+		}
 	  // Intent 생성
 	   Intent intent = new Intent();
 	   // 생성한 Intent에 데이터 입력

@@ -132,7 +132,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			if (!infoResult.matches("null")) {
 				// Cut Result Value
 				String[] array = infoResult.split("/LINE/.");
-				Global.dumpArray(array);
+			//	Global.dumpArray(array);
 				String user_srl = array[0];
 				auth_key = array[1];
 				name_1 = array[2];
@@ -453,7 +453,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 				// Go to Next Step
 
 				String[] array = myResult.split("//");
-				Global.dumpArray(array);
+			//이미 	Global.dumpArray(array);
 
 				// Setting Editor
 				SharedPreferences edit = getSharedPreferences("setting",

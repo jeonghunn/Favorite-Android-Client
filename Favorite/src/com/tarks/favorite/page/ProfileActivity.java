@@ -273,7 +273,7 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false ) {
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false ) {
 			   Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
@@ -379,7 +379,7 @@ public class ProfileActivity extends SherlockActivity {
 
 				try {
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String tarks_account = array[0];
 					String name_1 = array[1];
 					String name_2 = array[2];
@@ -465,7 +465,7 @@ public class ProfileActivity extends SherlockActivity {
 				try {
 
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String profile_pic = array[0];
 					String profile_update = array[1];
 

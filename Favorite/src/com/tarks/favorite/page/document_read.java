@@ -101,6 +101,11 @@ public class document_read extends SherlockActivity {
 		} catch (Exception e) {
 		}
 
+	loadView();
+	}
+	
+	
+	public void loadView(){
 		// Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
 		
@@ -208,7 +213,8 @@ public class document_read extends SherlockActivity {
 								- (previous_count - 1) * 10 : 10);
 				if (getStartComment(comments_count) == 0)
 					previous_comments.setVisibility(View.GONE);
-				Log.i("Count", getStartComment(comments_count) + "");
+				listView.smoothScrollToPosition(0);
+			//	Log.i("Count", getStartComment(comments_count) + "");
 			}
 
 		});
@@ -217,6 +223,15 @@ public class document_read extends SherlockActivity {
 		getDoc();
 		//
 	}
+	
+	public void refreshAct(){
+		 comments_count = 0;
+		 previous_count = 1;
+		 m_adapter.clear();
+		 getDoc();
+		 
+		
+	} 
 
 	public void getDoc() {
 		// Start Progressbar
@@ -354,7 +369,7 @@ public class document_read extends SherlockActivity {
 
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
 			Paramname.add("user_srl");
@@ -541,7 +556,7 @@ public class document_read extends SherlockActivity {
 				try {
 					// page_srl//user_srl//name//title//content//date//status//privacy//comments//recommend//negative
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String page_srl = array[0];
 					user_srl = array[1];
 					String name = array[2];
@@ -588,7 +603,7 @@ public class document_read extends SherlockActivity {
 				try {
 
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String profile_pic = array[0];
 					String profile_update = array[1];
 
@@ -661,7 +676,7 @@ public class document_read extends SherlockActivity {
 
 					for (int i = 0; i < cmt.length; i++) {
 						String[] array = cmt[i].split("/LINE/.");
-						Global.dumpArray(array);
+					//	Global.dumpArray(array);
 						// srl//user_srl//name//content//date//status/privacy
 						String srl = array[0];
 						String user_srl = array[1];
@@ -688,12 +703,38 @@ public class document_read extends SherlockActivity {
 
 		}
 	};
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		MenuItem item;
+
+		menu.add(0, 0, 0, getString(R.string.refresh))
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+		menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
+				MenuItem.SHOW_AS_ACTION_NEVER);
+		
+
+		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
+		// item.setIcon(R.drawable.ic_menu_add_bookmark);
+
+		return true;
+	}
+
 
 	// 빽백키 상단액션바
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			onBackPressed();
+			return true;
+		case 0:
+			//Refresh
+			refreshAct();
+			return true;
+		case 1:
+			//Delete
 			onBackPressed();
 			return true;
 		default:

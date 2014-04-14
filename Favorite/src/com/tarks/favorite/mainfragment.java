@@ -250,7 +250,7 @@ public class mainfragment extends SherlockFragment implements
 	
 	public void getMemberInfo(String user_srl) {
 		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 8000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
 Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
