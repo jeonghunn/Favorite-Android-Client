@@ -70,7 +70,6 @@ import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-import com.tarks.favorite.like.favorite_category;
 import com.tarks.favorite.start.join;
 
 public class ProfileActivity extends SherlockActivity {
@@ -114,6 +113,11 @@ public class ProfileActivity extends SherlockActivity {
 		Intent intent = getIntent();// 인텐트 받아오고
 		member_srl = intent.getStringExtra("member_srl");
 
+		load();
+
+	}
+	
+	public void load(){
 		setFadingActionBar();
 		// local_path = getCacheDir().toString()
 		// + "/member/";
@@ -133,7 +137,6 @@ public class ProfileActivity extends SherlockActivity {
 		setListAdapter();
 
 		getDocList("0");
-
 	}
 
 	public void getProfileInfo() {
@@ -199,7 +202,7 @@ public class ProfileActivity extends SherlockActivity {
 								document_read.class);
 						intent.putExtra("doc_srl",
 								String.valueOf(ls.getDocSrl()));
-						startActivity(intent);
+						startActivityForResult(intent, 1);
 
 					}
 				}
@@ -678,10 +681,8 @@ public class ProfileActivity extends SherlockActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 			// setListAdapter();
-			listView.smoothScrollToPosition(0);
 			m_adapter.clear();
-			getDocList("0");
-
+			load();
 		}
 
 	}

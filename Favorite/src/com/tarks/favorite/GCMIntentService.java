@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
@@ -117,19 +118,24 @@ public class GCMIntentService extends GCMBaseIntentService {
 		      	  intent,
 		      	    PendingIntent.FLAG_UPDATE_CURRENT
 		      	);
+		      	
+		      	//User Explain
+		      	Resources res = getResources();
+		      	String user_explain = String.format(res.getString(R.string.user_explain), title); 
+		      	
 	    		// Constructs the Builder object.
 		      	Notification builder =
 	    		        new NotificationCompat.Builder(GCMIntentService.this)
-	    		        .setSmallIcon(R.drawable.ic_launcher_simple)
+		      	        .setTicker(user_explain + " " + des)
+	    		        .setSmallIcon(R.drawable.ic_stat_favorite_white)
 	    		        .setContentTitle(title)
 	    		        .setContentText(des)
 	    		        .setLargeIcon(Global.filetobitmap(getCacheDir().toString() + "/member/thumbnail/" + send_user_srl + ".jpg"))
+                        .setDefaults(Notification.FLAG_AUTO_CANCEL)
 	    		        .setDefaults(Notification.DEFAULT_ALL) // requires VIBRATE permission
-	    		        .setDefaults(Notification.FLAG_SHOW_LIGHTS)
 	    		        	.setSubText(getString(R.string.app_name))
-	    
 	    		        		    		.setContentIntent(resultPendingIntent)
-	    		
+	    		.setLights(0xff00ff00, 300, 200)
 	    		        .setStyle(new NotificationCompat.BigTextStyle()
 	    		                .bigText(Global.getValue(content))).build();
 	    		

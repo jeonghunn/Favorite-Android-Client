@@ -3,8 +3,10 @@ package com.tarks.favorite.page;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -41,6 +43,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
+import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
@@ -62,8 +65,11 @@ public class document_read extends SherlockActivity {
 	// Member srl
 	String doc_srl = "0";
 	String user_srl = "0";
+	String comments = "0";
 	int comments_count = 0;
 	int previous_count = 1;
+	int contextmenu_number = 0;
+	int contextmenu_status = 0;
 	// Edittext
 	EditText comment_edittext;
 	// ImageButton
@@ -80,6 +86,7 @@ public class document_read extends SherlockActivity {
 	ListAdapter m_adapter;
 	// ClipBoard
 	CharSequence clipboard_content;
+	int you_doc_status;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -109,35 +116,42 @@ public class document_read extends SherlockActivity {
 		// Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
 		
-//		 listView.setOnItemLongClickListener( new OnItemLongClickListener(){
-//
-//			@Override
-//			public boolean onItemLongClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				// TODO Auto-generated method stub
-//				// TODO Auto-generated method stub
-//				if (parent.getAdapter() instanceof HeaderViewListAdapter) {
-//					if (((HeaderViewListAdapter) parent.getAdapter())
-//							.getWrappedAdapter() instanceof ListAdapter) {
-//						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) parent
-//								.getAdapter()).getWrappedAdapter();
-//			
-//
-//						List ls = (List) ca.getItem(position -1 );
-//						
-//						clipboard_content = ls.getDes();
-//						parent.showContextMenu();
-//
-//					}
-//				}
-//	
-//			
-//				return false;
-//				
-//			}
-//
-//				
-//		});
+		 listView.setOnItemLongClickListener( new OnItemLongClickListener(){
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				if (parent.getAdapter() instanceof HeaderViewListAdapter) {
+					if (((HeaderViewListAdapter) parent.getAdapter())
+							.getWrappedAdapter() instanceof ListAdapter) {
+						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) parent
+								.getAdapter()).getWrappedAdapter();
+			
+try{
+						List ls = (List) ca.getItem(position -1 );
+
+						Log.i("LongClick", "Clicked");
+						clipboard_content = ls.getDes();
+						contextmenu_number = ls.getTag();
+						contextmenu_status = ls.getStatus();
+						//parent.showContextMenu();
+					
+}catch (Exception e){	
+}
+Log.i("LongClick", "Clicked");
+					}
+				}
+	
+			
+				return false;
+				
+			}
+
+				
+		});
+			registerForContextMenu(listView);
 		// Header, Footer 생성 및 등록
 		View header = getLayoutInflater().inflate(R.layout.doclist_header,
 				null, false);
@@ -156,11 +170,12 @@ public class document_read extends SherlockActivity {
 				// TODO Auto-generated method stub
 
 				clipboard_content = doc_content.getText().toString();
-				 v.showContextMenu();
+                contextmenu_number = 0;
+			//	registerForContextMenu(doc_content);
+				v.showContextMenu();
 				return true;
 			}
 		});
-		registerForContextMenu(doc_content);
 		profile_title.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -290,12 +305,12 @@ public class document_read extends SherlockActivity {
 				Paramvalue, null, 5, 0);
 	}
 
-	public void setList(int moreload, int doc_srl, String user_srl,
-			String name, String contents, String date) {
+	public void setList(int moreload, int srl, String user_srl,
+			String name, String contents, String date, int status) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
-		List p1 = new List(user_srl, name, contents, date, 0, 0);
+		List p1 = new List(user_srl, name, contents, date, srl, status);
 		if (moreload == -1)
 			m_orders.add(p1);
 		else
@@ -320,15 +335,24 @@ public class document_read extends SherlockActivity {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		Log.i("ContextMenu", "Contextmenu");
+		Log.i("ContextMenu", "Contextmenu" + v.getId());
 
 		menu.setHeaderIcon(android.R.drawable.btn_star);
 		// menu.setHeaderTitle("공지사항");
+		   if(contextmenu_number == 0) {
 		menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
-
+		   }
+		   if(contextmenu_number != 0) {
+			   menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
+			if(contextmenu_status == 4){
+			   menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.delete));
+			}
+				   }
 		super.onCreateContextMenu(menu, v, menuInfo);
 
 	}
+	
+	
 
 	@Override
 	public boolean onContextItemSelected(android.view.MenuItem item) {
@@ -341,6 +365,10 @@ public class document_read extends SherlockActivity {
 			clipboard.setText(clipboard_content);
 			break;
 
+		case 2:
+			//Delete
+			CommentStatusUpdate(String.valueOf(contextmenu_number), "5", 7);
+			break;
 		default:
 			break;
 		}
@@ -437,6 +465,80 @@ public class document_read extends SherlockActivity {
 				+ "board/comment_app_write.php", mHandler, Paramname,
 				Paramvalue, null, 4, 0);
 	}
+	
+	public void StatusUpdate(String status, int handler) {
+		// IF Sucessfull no timeout
+					setSupportProgressBarIndeterminateVisibility(true);
+		ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("kind");
+		Paramname.add("doc_srl");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+		Paramname.add("status");
+
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add("0");
+		Paramvalue.add(doc_srl);
+		Paramvalue.add(Global.getSetting("user_srl",
+				Global.getSetting("user_srl", "0")));
+		Paramvalue.add(Global.getSetting("user_srl_auth",
+				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add(status);
+	
+
+		new AsyncHttpTask(this, getString(R.string.server_path)
+				+ "board/documents_app_write.php", mHandler, Paramname, Paramvalue,
+				null, handler,0);
+	}
+	
+	public void CommentStatusUpdate(String srl, String status, int handler) {
+		// IF Sucessfull no timeout
+					setSupportProgressBarIndeterminateVisibility(true);
+		ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("kind");
+		Paramname.add("comment_srl");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+		Paramname.add("status");
+
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add("0");
+		Paramvalue.add(srl);
+		Paramvalue.add(Global.getSetting("user_srl",
+				Global.getSetting("user_srl", "0")));
+		Paramvalue.add(Global.getSetting("user_srl_auth",
+				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add(status);
+	
+
+		new AsyncHttpTask(this, getString(R.string.server_path)
+				+ "board/comment_app_write.php", mHandler, Paramname, Paramvalue,
+				null, handler,0);
+	}
+	
+	public void DeleteAlert() {
+		// Alert
+		AlertDialog.Builder builder = new AlertDialog.Builder(document_read.this);
+		builder.setMessage(getString(R.string.delete_des)).setTitle(
+				getString(R.string.delete));
+		builder.setPositiveButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						if (Globalvariable.okbutton == true) {
+							// Set ok button disable
+							StatusUpdate("5" ,6);
+						}
+					}
+				});
+		builder.setNegativeButton(getString(R.string.no),null);
+		builder.show();
+
+	}
 
 	private class ListAdapter extends ArrayAdapter<List> {
 
@@ -504,16 +606,16 @@ public class document_read extends SherlockActivity {
 		private String Description;
 		private String Date;
 		private int Tag;
-		private int Position;
+		private int status;
 
 		public List(String _user_Srl, String _Title, String _Description,
-				String _Date, int _Tag, int _Position) {
+				String _Date, int _Tag, int _Status) {
 			this.user_srl = _user_Srl;
 			this.Title = _Title;
 			this.Description = _Description;
 			this.Date = _Date;
 			this.Tag = _Tag;
-			this.Position = _Position;
+			this.status = _Status;
 		}
 
 		public String getUserSrl() {
@@ -536,8 +638,8 @@ public class document_read extends SherlockActivity {
 			return Tag;
 		}
 
-		public int getPos() {
-			return Position;
+		public int getStatus() {
+			return status;
 		}
 
 	}
@@ -545,8 +647,8 @@ public class document_read extends SherlockActivity {
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			setSupportProgressBarIndeterminateVisibility(false);
-			// IF Sucessfull no timeout
 
+			
 			if (msg.what == -1) {
 				Global.ConnectionError(document_read.this);
 			}
@@ -565,11 +667,19 @@ public class document_read extends SherlockActivity {
 					String date = array[5];
 					String status = array[6];
 					String privacy = array[7];
-					String comments = array[8];
+				      comments = array[8];
 					String recommend = array[9];
 					String negative = array[10];
+					you_doc_status = Integer.parseInt(array[11]);
 
-					getSupportActionBar().setTitle(name);
+					
+					//SetTitled
+					if(title.matches("null")){
+						getSupportActionBar().setTitle(name);
+					}else{
+						
+					}
+				
 
 					getMemberInfo(user_srl);
 
@@ -592,6 +702,8 @@ public class document_read extends SherlockActivity {
 					doc_content.setText(Global.getValue(content));
 					// Set comment
 					getCommentsList(getStartComment(comments_count), 10);
+					//Load menu again
+					invalidateOptionsMenu();
 
 				} catch (Exception e) {
 
@@ -653,12 +765,11 @@ public class document_read extends SherlockActivity {
 				String result = msg.obj.toString();
 				comment_edittext.setEnabled(true);
 				if (result.matches("comment_write_succeed")) {
-					setCommentsCount(comments_count + 1);
+				//	setCommentsCount(comments_count + 1);
 					previous_count = 1;
 					m_adapter.clear();
-					getCommentsList(getStartComment(comments_count), 10);
-					m_adapter.notifyDataSetChanged();
 					comment_edittext.setText(null);
+					getDoc();
 					listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 				} else {
 					Global.ConnectionError(document_read.this);
@@ -676,7 +787,7 @@ public class document_read extends SherlockActivity {
 
 					for (int i = 0; i < cmt.length; i++) {
 						String[] array = cmt[i].split("/LINE/.");
-					//	Global.dumpArray(array);
+						Global.dumpArray(array);
 						// srl//user_srl//name//content//date//status/privacy
 						String srl = array[0];
 						String user_srl = array[1];
@@ -685,6 +796,7 @@ public class document_read extends SherlockActivity {
 						String date = array[4];
 						String status = array[5];
 						String privacy = array[6];
+						String you_status = array[7];
 						Log.i("user", user_srl);
 
 						if (previous_count > 1)
@@ -692,7 +804,7 @@ public class document_read extends SherlockActivity {
 						getMemberInfo(user_srl);
 						setList(moreload, Integer.parseInt(srl), user_srl,
 								name, content,
-								Global.formatTimeString(Long.parseLong(date)));
+								Global.formatTimeString(Long.parseLong(date)), Integer.parseInt(you_status));
 						m_adapter.notifyDataSetChanged();
 					}
 					seePreviousComments(comments_count);
@@ -700,9 +812,41 @@ public class document_read extends SherlockActivity {
 
 				}
 			}
+			
+			//DeleteAct
+			if (msg.what == 6) {
+				Log.i("result", msg.obj.toString());
+				String result = msg.obj.toString();
+				if (result.matches("document_update_succeed")) {
+					Global.toast(getString(R.string.deleted));
+					UpdateFinishAct();
+				}else{
+					Global.toast(getString(R.string.error_des));
+				}
+
+			}
+			
+			//DeleteCommentAct
+			if (msg.what == 7) {
+				Log.i("result", msg.obj.toString());
+				String result = msg.obj.toString();
+				if (result.matches("comment_update_succeed")) {
+					Global.toast(getString(R.string.deleted));
+					refreshAct();
+				}else{
+					Global.toast(getString(R.string.error_des));
+				}
+
+			}
 
 		}
 	};
+	
+	public void UpdateFinishAct(){
+		  Intent intent = new Intent();
+		   this.setResult(RESULT_OK,intent);
+		finish();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -711,8 +855,11 @@ public class document_read extends SherlockActivity {
 
 		menu.add(0, 0, 0, getString(R.string.refresh))
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+		if(you_doc_status >= 4)
 		menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
+	//	menu.add(0, 2, 0, getString(R.string.private_content)).setShowAsAction(
+	//			MenuItem.SHOW_AS_ACTION_NEVER);
 		
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
@@ -731,11 +878,17 @@ public class document_read extends SherlockActivity {
 			return true;
 		case 0:
 			//Refresh
-			refreshAct();
+			if (Globalvariable.okbutton == true) {
+				// Set ok button disable
+				refreshAct();
+			}
+			
 			return true;
 		case 1:
 			//Delete
-			onBackPressed();
+			//Refresh
+		DeleteAlert();
+
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

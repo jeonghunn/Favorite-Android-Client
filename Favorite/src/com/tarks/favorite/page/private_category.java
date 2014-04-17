@@ -1,4 +1,4 @@
-package com.tarks.favorite.like;
+ package com.tarks.favorite.page;
 
 import java.util.ArrayList;
 import android.app.Activity;
@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+
+import com.actionbarsherlock.app.SherlockActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.global.Global;
 
-public class favorite_category extends Activity {
+public class private_category extends SherlockActivity {
 
 	// ListView
 		ListView listView;
@@ -31,7 +33,7 @@ public class favorite_category extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
       //액션바백버튼가져오기
-     //   getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
        
     
        // setList(getString(R.string.add), getString(R.string.add_des), 0);

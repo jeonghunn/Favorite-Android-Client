@@ -18,6 +18,7 @@ import javax.net.ssl.SSLSession;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -46,7 +47,8 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 
 	public AsyncHttpTask(Context cx, String urls, Handler handler,
 			ArrayList pNames, ArrayList pValues, ArrayList fe, int hnum, int Data) {
-		Log.i("Test", "asyc callec");
+		//Log.i("Test", "asyc callec");
+		Globalvariable.okbutton = false;
 		// Set handler
 		this.handler = handler;
 		// Set context
@@ -95,6 +97,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		msg.arg1 = DataContent;
 		handler.sendMessage(msg);
 		// Log.i("hey", myResult);
+		Globalvariable.okbutton = true;
 	}
 
 	public String Task(String url) {

@@ -25,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -54,7 +55,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 	private static URL connectUrl = null;
 
 	public ImageDownloader(Context cx, String urls, Handler handler, int hnum, int Data) {
-		Log.i("Test", "asyc callec");
+		Globalvariable.okbutton = false;
 		// Set handler
 		this.handler = handler;
 		// Set context
@@ -94,6 +95,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 		msg.obj = responseData;
 		msg.arg1 = DataContent;
 		handler.sendMessage(msg);
+		Globalvariable.okbutton = true;
 
 	}
 

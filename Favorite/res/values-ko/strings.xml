@@ -94,6 +94,8 @@
     <string name="send_feedback">의견 보내기</string>
     <string name="send_feedback_des">개발자에게 의견을 보냅니다.</string>
     <string name="delete">삭제</string>
+         <string name="delete_des">삭제하시겠습니까?</string>
+    <string name="deleted">삭제되었습니다.</string>
     <string name="delete_profile_photo">프로필 사진을 삭제합니다.</string>
     <string name="profile">프로필</string>
     <string name="profile_settings_des">당신의 프로필 정보를 설정해보세요.</string>
@@ -123,6 +125,8 @@
     <string name="added">추가되었습니다.</string>
     <string name="notice_added_to_favorite">당신을 좋아하는 사람으로 추가했습니다.</string>
     <string name="sign_in">로그인</string>
-         <string name="edit_profile">프로필 수정</string>
+    <string name="edit_profile">프로필 수정</string>
+    <string name="private_content">공개 수준</string>
+    <string name="user_explain">%1$s님이</string>
 
 </resources>
