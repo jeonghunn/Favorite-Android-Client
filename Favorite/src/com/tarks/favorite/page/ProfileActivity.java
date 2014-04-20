@@ -275,8 +275,7 @@ public class ProfileActivity extends SherlockActivity {
 	}
 
 	public void getMemberInfo(String user_srl) {
-		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false ) {
+		if (Global.getUpdatePossible(user_srl)) {
 			   Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
@@ -359,7 +358,7 @@ public class ProfileActivity extends SherlockActivity {
 		// Start Progressbar
 		setSupportProgressBarIndeterminateVisibility(true);
 		new ImageDownloader(this, getString(R.string.server_path)
-				+ "files/profile/" + user_srl + ".jpg", mHandler, 5,
+				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 5,
 				Integer.parseInt(user_srl));
 	}
 
@@ -402,7 +401,7 @@ public class ProfileActivity extends SherlockActivity {
 
 					if (Global.UpdateMemberFileCache(member_srl,
 							profile_update, profile_pic)) {
-						Global.SaveUserSetting(member_srl,profile_update, profile_pic);
+						Global.SaveUserSetting(member_srl,profile_update, null, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 
@@ -428,8 +427,6 @@ public class ProfileActivity extends SherlockActivity {
 				try {
 					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
 							member_srl + ".jpg");
-					Global.createThumbnail((Bitmap) msg.obj, local_path
-							+ "thumbnail/", member_srl + ".jpg");
 
 					// Set Profile
 					profile.setImageDrawable(Drawable.createFromPath(local_path
@@ -473,7 +470,7 @@ public class ProfileActivity extends SherlockActivity {
 					String profile_update = array[1];
 
 					String user_srl = String.valueOf(msg.arg1);
-					Global.SaveUserSetting(user_srl,String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
+					Global.SaveUserSetting(user_srl,null, String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -498,10 +495,8 @@ public class ProfileActivity extends SherlockActivity {
 				// Save File cache
 				try {
 					Log.i("Save", msg.arg1 + "");
-					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/",
 							msg.arg1 + ".jpg");
-					Global.createThumbnail((Bitmap) msg.obj, local_path
-							+ "thumbnail/", msg.arg1 + ".jpg");
 
 					m_adapter.notifyDataSetChanged();
 

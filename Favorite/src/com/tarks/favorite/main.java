@@ -3,15 +3,20 @@ package com.tarks.favorite;
 import java.util.ArrayList;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.page.ProfileInfo;
 import com.tarks.favorite.page.document_write;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -24,6 +29,7 @@ import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -47,6 +53,8 @@ public class main extends SherlockFragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 
+	private Menu optionsMenu;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -125,20 +133,49 @@ public class main extends SherlockFragmentActivity {
 	}
 	
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		this.optionsMenu = menu;
+		MenuItem item;
 
+
+		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		
+
+		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
+		// item.setIcon(R.drawable.ic_menu_add_bookmark);
+
+		return true;
+	}
+
+	public void Drawer(){
+		if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else {
+			mDrawerLayout.openDrawer(mDrawerList);
+		}
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		if (item.getItemId() == android.R.id.home) {
-
-			if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-				mDrawerLayout.closeDrawer(mDrawerList);
-			} else {
-				mDrawerLayout.openDrawer(mDrawerList);
-			}
+			Drawer();
+		
 		}
-
+		
+		if (item.getItemId() == 0) {
+			Intent intent1 = new Intent(main.this,
+					document_write.class);
+			intent1.putExtra("page_srl",Global.getSetting("user_srl", "0"));
+			startActivityForResult(intent1, 1);
+			return true;
+	
+		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -200,6 +237,27 @@ public class main extends SherlockFragmentActivity {
 		super.onConfigurationChanged(newConfig);
 		// Pass any configuration change to the drawer toggles
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+			Intent intent = new Intent(main.this, ProfileActivity.class);
+			  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+			startActivity(intent);	
+		}
+
+	}
+	
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(KeyEvent.KEYCODE_MENU == keyCode){
+			Drawer();
+			//TODO
+		}
+		return super.onKeyDown(keyCode, event);
+		
 	}
 
 //	@Override

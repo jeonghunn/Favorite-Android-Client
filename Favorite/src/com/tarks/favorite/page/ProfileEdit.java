@@ -203,7 +203,7 @@ public void AddList(String title, String description, int Tag){
 					v.showContextMenu();
 				}
 			});
-	        
+	         
 	        registerForContextMenu(profile);
 //	       profile_edit = (ImageButton) header.findViewById(R.id.edit);
 //	       profile_title = (TextView) header.findViewById(R.id.title);
@@ -549,11 +549,11 @@ public void AddList(String title, String description, int Tag){
 					
 					if (Global.UpdateFileCache(profile_update,
 							Global.getUser(member_srl, "profile_update"),
-							getString(R.string.server_path) + "files/profile/"
+							getString(R.string.server_path) + "files/profile/thumbnail/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")
 							&& profile_pic.matches("Y")) {
-						Global.SaveUserSetting(member_srl,profile_update, profile_pic);
+						Global.SaveUserSetting(member_srl,null, profile_update, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 

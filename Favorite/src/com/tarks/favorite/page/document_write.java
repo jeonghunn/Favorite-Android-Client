@@ -16,8 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -37,29 +35,28 @@ public class document_write extends SherlockActivity {
 
 	String content;
 	String page_srl;
+	String status = "0";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// Can use progress
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		setContentView(R.layout.document_write);
 		// 액션바백버튼가져오기
-		 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			setSupportProgressBarIndeterminateVisibility(false);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		setSupportProgressBarIndeterminateVisibility(false);
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
-
-
 
 	}
 
 	public void PostAct() {
 		// IF Sucessfull no timeout
-					setSupportProgressBarIndeterminateVisibility(true);
+		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -83,17 +80,17 @@ public class document_write extends SherlockActivity {
 		Paramvalue.add("null");
 		Paramvalue.add(Global.setValue(content));
 		Paramvalue.add("3");
-		Paramvalue.add("0");
+		Paramvalue.add(status);
 		Paramvalue.add("0");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_write.php", mHandler, Paramname, Paramvalue,
-				null, 1,0);
+				+ "board/documents_app_write.php", mHandler, Paramname,
+				Paramvalue, null, 1, 0);
 	}
-	
-	public void FinishAct(){
-		  Intent intent = new Intent();
-		   this.setResult(RESULT_OK,intent);
+
+	public void FinishAct() {
+		Intent intent = new Intent();
+		this.setResult(RESULT_OK, intent);
 		finish();
 	}
 
@@ -107,36 +104,48 @@ public class document_write extends SherlockActivity {
 
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
-				if(result.matches("document_write_succeed")) {
-				FinishAct();
-				}else{
+				if (result.matches("document_write_succeed")) {
+					FinishAct();
+				} else {
 					Log.i("Error", "Error has been");
 					Global.ConnectionError(document_write.this);
 				}
-	//			Log.i("Result","로그 정상 작동");
+				// Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString());
-			
+
 			}
 
 		}
 	};
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.accept, menu);
-		return true;
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+			// setListAdapter();
+			String result_status = data.getStringExtra("status");
+			status = result_status;
+		}
 
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		MenuItem item;
+
+		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(0, 1, 0, getString(R.string.privacy_content)).setShowAsAction(
+				MenuItem.SHOW_AS_ACTION_NEVER);
+		return true;
+
+	}
 
 	// 빽백키 상단액션바
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case  R.id.yes:
+		case 0:
 			if (Globalvariable.okbutton == true) {
 				// Set ok button disable
 				Globalvariable.okbutton = false;
@@ -145,16 +154,26 @@ public class document_write extends SherlockActivity {
 				EditText edit1 = (EditText) findViewById(R.id.editText1);
 				content = edit1.getText().toString();
 
-				if(!content.matches("")){
-				PostAct();
-				}else{
+				if (!content.matches("")) {
+					PostAct();
+				} else {
 					setSupportProgressBarIndeterminateVisibility(false);
-					Global.Infoalert(this, getString(R.string.warning), getString(R.string.no_content), getString(R.string.yes));
+					Global.Infoalert(this, getString(R.string.warning),
+							getString(R.string.no_content),
+							getString(R.string.yes));
 				}
 			}
-		
+
 			return true;
-	
+
+		case 1:
+			Intent intent1 = new Intent(document_write.this,
+					privacy_category.class);
+			intent1.putExtra("status", status);
+			startActivityForResult(intent1, 1);
+
+			return true;
+
 		case android.R.id.home:
 			onBackPressed();
 			return true;

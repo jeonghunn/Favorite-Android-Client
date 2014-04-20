@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.2913</string>
-    <string name="build">2913</string>
+    <string name="ver">1.0.0.3137</string>
+    <string name="build">3137</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -102,8 +102,8 @@
     <string name="send_feedback">Send Feedback</string>
     <string name="send_feedback_des">Send feedback to Developers</string>
     <string name="delete">Delete</string>
-     <string name="deleted">Deleted.</string>
-        <string name="delete_des">Do you want to delete?</string>
+    <string name="deleted">Deleted.</string>
+    <string name="delete_des">Do you want to delete?</string>
     <string name="delete_profile_photo">Delete profile photo.</string>
     <string name="profile">Profile</string>
     <string name="profile_settings_des">Set your profile.</string>
@@ -135,9 +135,21 @@
     <string name="notice_added_to_favorite">Added you to favorite.</string>
     <string name="ip_error_des">Your IP was blocked cause you have abnormal activity.</string>
     <string name="sign_in">Sign in</string>
-     <string name="edit_profile">Edit Profile</string>
-      <string name="private_content">Private</string>
-      <string name="user_explain">%1$s</string>
-    <string name="welcome_des">환영합니다. 다른 사람들이 나를 좋아하는지를 알려면, 몇가지 정보를 입력해주세요:)</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="user_explain">%1$s</string>
+    <string name="changed">changed.</string>
+
+    <!-- Privacy -->
+    <string name="privacy_content">Privacy</string>
+    <string name="privacy_public">Public</string>
+    <string name="privacy_users">Users</string>
+    <string name="privacy_relation">All Relation</string>
+    <string name="privacy_favorites">Favorties</string>
+    <string name="privacy_justme">Just me</string>
+    <string name="privacy_public_des">All people are can see.</string>
+    <string name="privacy_users_des">Favorite members can see.</string>
+    <string name="privacy_relation_des">favorites, and who like you can see.</string>
+    <string name="privacy_favorites_des">favorites can see.</string>
+    <string name="privacy_justme_des">You and page admin can see.</string>
 
 </resources>

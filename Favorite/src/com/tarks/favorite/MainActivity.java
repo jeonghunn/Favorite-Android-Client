@@ -377,7 +377,7 @@ public class MainActivity extends SherlockActivity {
 				// }
 
 				if (Global.UpdateMemberFileCache(user_srl, profile_update, profile_pic)) {
-					Global.SaveUserSetting(user_srl, profile_update, profile_pic);
+					Global.SaveUserSetting(user_srl, profile_update, null,  profile_pic);
 					//Download image
 					new ImageDownloader(this, getString(R.string.server_path)
 							+ "files/profile/" + user_srl + ".jpg", mHandler, 2, 0);
@@ -460,7 +460,7 @@ public class MainActivity extends SherlockActivity {
 				// }
 				// 제한사항이 없을 경우
 				
-				if(load) Log.i("Start", "True");
+		
 				if (load == true) {
 					// 로딩 화면은 종료하라.
 

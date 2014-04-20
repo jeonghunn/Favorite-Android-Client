@@ -3,6 +3,7 @@ package com.tarks.favorite.page;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.Context;
@@ -66,10 +67,12 @@ public class document_read extends SherlockActivity {
 	String doc_srl = "0";
 	String user_srl = "0";
 	String comments = "0";
+	String status = "0";
 	int comments_count = 0;
 	int previous_count = 1;
 	int contextmenu_number = 0;
 	int contextmenu_status = 0;
+	int contextmenu_you_status = 0;
 	// Edittext
 	EditText comment_edittext;
 	// ImageButton
@@ -132,15 +135,16 @@ public class document_read extends SherlockActivity {
 try{
 						List ls = (List) ca.getItem(position -1 );
 
-						Log.i("LongClick", "Clicked");
+					//	Log.i("LongClick", "Clicked");
 						clipboard_content = ls.getDes();
 						contextmenu_number = ls.getTag();
 						contextmenu_status = ls.getStatus();
+						contextmenu_you_status = ls.getYouStatus();
 						//parent.showContextMenu();
 					
 }catch (Exception e){	
 }
-Log.i("LongClick", "Clicked");
+//Log.i("LongClick", "Clicked");
 					}
 				}
 	
@@ -306,11 +310,11 @@ Log.i("LongClick", "Clicked");
 	}
 
 	public void setList(int moreload, int srl, String user_srl,
-			String name, String contents, String date, int status) {
+			String name, String contents, String date, int status, int you_status) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
-		List p1 = new List(user_srl, name, contents, date, srl, status);
+		List p1 = new List(user_srl, name, contents, date, srl, status, you_status);
 		if (moreload == -1)
 			m_orders.add(p1);
 		else
@@ -320,22 +324,10 @@ Log.i("LongClick", "Clicked");
 
 	}
 
-	public void setMoreList(int doc_srl, String user_srl, String name,
-			String contents, String date) {
-
-		// Get Profile
-		// getMemberInfo(user_srl);
-		List p1 = new List(user_srl, name, contents, date, 0, 0);
-		m_orders.add(0, p1);
-
-		// ListView listview = (ListView) findViewById(R.id.listView1);
-
-	}
-
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		Log.i("ContextMenu", "Contextmenu" + v.getId());
+
 
 		menu.setHeaderIcon(android.R.drawable.btn_star);
 		// menu.setHeaderTitle("공지사항");
@@ -344,8 +336,9 @@ Log.i("LongClick", "Clicked");
 		   }
 		   if(contextmenu_number != 0) {
 			   menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
-			if(contextmenu_status == 4){
+			if(contextmenu_you_status == 4){
 			   menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.delete));
+			   menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.privacy_content));
 			}
 				   }
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -368,6 +361,13 @@ Log.i("LongClick", "Clicked");
 		case 2:
 			//Delete
 			CommentStatusUpdate(String.valueOf(contextmenu_number), "5", 7);
+			break;
+		case 3:
+			//StatusUpdate
+			Intent intent1 = new Intent(document_read.this,
+					privacy_category.class);
+			intent1.putExtra("status", String.valueOf(contextmenu_status));
+			startActivityForResult(intent1, 2);
 			break;
 		default:
 			break;
@@ -396,8 +396,7 @@ Log.i("LongClick", "Clicked");
 	}
 
 	public void getMemberInfo(String user_srl) {
-		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
+		if (Global.getUpdatePossible(user_srl)) {
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
 			Paramname.add("user_srl");
@@ -431,7 +430,7 @@ Log.i("LongClick", "Clicked");
 		// Start Progressbar
 		setSupportProgressBarIndeterminateVisibility(true);
 		new ImageDownloader(this, getString(R.string.server_path)
-				+ "files/profile/" + user_srl + ".jpg", mHandler, 3,
+				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 3,
 				Integer.parseInt(user_srl));
 	}
 
@@ -607,15 +606,17 @@ Log.i("LongClick", "Clicked");
 		private String Date;
 		private int Tag;
 		private int status;
+		private int you_status;
 
 		public List(String _user_Srl, String _Title, String _Description,
-				String _Date, int _Tag, int _Status) {
+				String _Date, int _Tag, int _Status, int _you_status) {
 			this.user_srl = _user_Srl;
 			this.Title = _Title;
 			this.Description = _Description;
 			this.Date = _Date;
 			this.Tag = _Tag;
 			this.status = _Status;
+			this.you_status = _you_status;
 		}
 
 		public String getUserSrl() {
@@ -641,6 +642,10 @@ Log.i("LongClick", "Clicked");
 		public int getStatus() {
 			return status;
 		}
+		
+		public int getYouStatus() {
+			return you_status;
+		}
 
 	}
 
@@ -665,7 +670,7 @@ Log.i("LongClick", "Clicked");
 					String title = array[3];
 					String content = array[4];
 					String date = array[5];
-					String status = array[6];
+					 status = array[6];
 					String privacy = array[7];
 				      comments = array[8];
 					String recommend = array[9];
@@ -721,7 +726,7 @@ Log.i("LongClick", "Clicked");
 
 					String user_srl = String.valueOf(msg.arg1);
 			
-					Global.SaveUserSetting(user_srl,String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
+					Global.SaveUserSetting(user_srl, null, String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -746,11 +751,8 @@ Log.i("LongClick", "Clicked");
 				// Save File cache
 				try {
 					Log.i("Save", msg.arg1 + "");
-					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/",
 							msg.arg1 + ".jpg");
-					Global.createThumbnail((Bitmap) msg.obj, local_path
-							+ "thumbnail/", msg.arg1 + ".jpg");
-
 					m_adapter.notifyDataSetChanged();
 
 					// Set Profile
@@ -787,14 +789,14 @@ Log.i("LongClick", "Clicked");
 
 					for (int i = 0; i < cmt.length; i++) {
 						String[] array = cmt[i].split("/LINE/.");
-						Global.dumpArray(array);
+				//		Global.dumpArray(array);
 						// srl//user_srl//name//content//date//status/privacy
 						String srl = array[0];
 						String user_srl = array[1];
 						String name = array[2];
 						String content = array[3];
 						String date = array[4];
-						String status = array[5];
+						 String status = array[5];
 						String privacy = array[6];
 						String you_status = array[7];
 						Log.i("user", user_srl);
@@ -804,7 +806,7 @@ Log.i("LongClick", "Clicked");
 						getMemberInfo(user_srl);
 						setList(moreload, Integer.parseInt(srl), user_srl,
 								name, content,
-								Global.formatTimeString(Long.parseLong(date)), Integer.parseInt(you_status));
+								Global.formatTimeString(Long.parseLong(date)), Integer.parseInt(status), Integer.parseInt(you_status));
 						m_adapter.notifyDataSetChanged();
 					}
 					seePreviousComments(comments_count);
@@ -828,7 +830,7 @@ Log.i("LongClick", "Clicked");
 			
 			//DeleteCommentAct
 			if (msg.what == 7) {
-				Log.i("result", msg.obj.toString());
+			//	Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("comment_update_succeed")) {
 					Global.toast(getString(R.string.deleted));
@@ -838,8 +840,33 @@ Log.i("LongClick", "Clicked");
 				}
 
 			}
+			//Doc status update
+			if (msg.what == 8) {
+			//	Log.i("result", msg.obj.toString());
+				String result = msg.obj.toString();
+				if (result.matches("document_update_succeed")) {
+					Global.toast(getString(R.string.changed));
+					refreshAct();
+				}else{
+					Global.toast(getString(R.string.error_des));
+				}
+
+			}
+			//Comment status update
+			if (msg.what == 9) {
+		//		Log.i("result", msg.obj.toString());
+				String result = msg.obj.toString();
+				if (result.matches("comment_update_succeed")) {
+					Global.toast(getString(R.string.changed));
+					refreshAct();
+				}else{
+					Global.toast(getString(R.string.error_des));
+				}
+
+			}
 
 		}
+		
 	};
 	
 	public void UpdateFinishAct(){
@@ -855,17 +882,33 @@ Log.i("LongClick", "Clicked");
 
 		menu.add(0, 0, 0, getString(R.string.refresh))
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		if(you_doc_status >= 4)
+		if(you_doc_status >= 4){
 		menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
-	//	menu.add(0, 2, 0, getString(R.string.private_content)).setShowAsAction(
-	//			MenuItem.SHOW_AS_ACTION_NEVER);
-		
+		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
+			MenuItem.SHOW_AS_ACTION_NEVER);
+		}
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
 
 		return true;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+			// setListAdapter();
+     		String status = data.getStringExtra("status");
+			StatusUpdate(status, 8);
+		}
+		
+		if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+			// setListAdapter();
+     		String status = data.getStringExtra("status");
+     		CommentStatusUpdate(String.valueOf(contextmenu_number), status, 9);
+		}
+
 	}
 
 
@@ -889,6 +932,12 @@ Log.i("LongClick", "Clicked");
 			//Refresh
 		DeleteAlert();
 
+			return true;
+		case 2:
+			Intent intent1 = new Intent(document_read.this,
+					privacy_category.class);
+			intent1.putExtra("status", status);
+			startActivityForResult(intent1, 1);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tarks.favorite"
-    android:versionCode="13"
+    android:versionCode="15"
     android:versionName="@string/ver" >
     
      <uses-feature android:name="android.hardware.camera"></uses-feature>
@@ -92,6 +92,13 @@
             android:name=".page.ProfileInfo"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/user_info" />
+                        
+                        
+                                           <activity
+            android:name=".page.privacy_category"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/privacy_content" />
+               
                
                      <activity
             android:name="com.tarks.favorite.page.document_write"

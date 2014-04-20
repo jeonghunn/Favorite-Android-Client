@@ -686,6 +686,13 @@ public final class Global {
 		}).start();
 		return Globalvariable.okbutton;
 	}
+	
+	public static boolean getUpdatePossible(String user_srl){
+		boolean possible = false;
+		 if(getCurrentTimeStamp()
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update_thumbnail")) > 15000 || Global.CheckFileState(mod.getCacheDir().toString() + "/member/thumbnail/" +user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) possible = true ;
+		 return possible;
+	}
 
 	public static String getSetting(String setting, String default_value) {
 		SharedPreferences prefs = mod.getSharedPreferences("setting",
@@ -724,8 +731,8 @@ public final class Global {
 	}
 
  
-	public static void SaveUserSetting(String user, String profile_update, String profile_pic) {
-       // Log.i("db", "hello");
+	public static void SaveUserSetting(String user, String profile_update, String profile_update_thumbnail, String profile_pic) {
+
 		// 설정 값 저장
 		// Setting Editor
 		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
@@ -734,11 +741,16 @@ public final class Global {
         Cursor csr = mDbOpenHelper.getUserInfo(user);
       //  Log.i("DB", csr.getCount() + "count");
         if(csr.getCount() == 0){
-      	  mDbOpenHelper.insertColumn(user, profile_update, profile_pic);
+      	  mDbOpenHelper.insertColumn(user, Long.toString(getCurrentTimeStamp()), Long.toString(getCurrentTimeStamp()),  profile_pic);
      	//  Log.i("DB",  "added");
         }else{
-        	  mDbOpenHelper.updateColumn(user, profile_update, profile_pic);
-        	  Log.i("DB",  "update");
+        	if(profile_update == null){
+        	  mDbOpenHelper.updateProfileUpdateThumbnail(user, profile_update_thumbnail,profile_pic);
+        	}
+        	if(profile_update_thumbnail == null){
+          	  mDbOpenHelper.updateProfileUpdate(user, profile_update,profile_pic);
+          	}
+        	  //Log.i("DB",  "update");
         }
 
 

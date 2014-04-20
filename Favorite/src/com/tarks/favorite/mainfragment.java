@@ -249,8 +249,7 @@ public class mainfragment extends SherlockFragment implements
 	}
 	
 	public void getMemberInfo(String user_srl) {
-		if (Global.getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update")) > 15000 || Global.CheckFileState(local_path + user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) {
+		if (Global.getUpdatePossible(user_srl)) {
 Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
@@ -279,7 +278,7 @@ Log.i("Update", "Updateing");
 		// Start Progressbar
 	//	setSupportProgressBarIndeterminateVisibility(true);
 		new ImageDownloader(getActivity(), getString(R.string.server_path)
-				+ "files/profile/" + user_srl + ".jpg", mHandler, 4,
+				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 4,
 				Integer.parseInt(user_srl));
 	}
 
@@ -336,9 +335,8 @@ Log.i("Update", "Updateing");
 
 					String user_srl = String.valueOf(msg.arg1);
 			//		Log.i("Gett", user_srl + "");
-					Global.SaveUserSetting(user_srl,String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
+					Global.SaveUserSetting(user_srl, null, String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
 					
-					Global.SaveUserSetting(user_srl,profile_update, profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -362,10 +360,8 @@ Log.i("Update", "Updateing");
 			if (msg.what == 4) {
 				try {
 					Log.i("Save", msg.arg1 + "");
-					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path +  "thumbnail/",
 							msg.arg1 + ".jpg");
-					Global.createThumbnail((Bitmap) msg.obj, local_path
-							+ "thumbnail/", msg.arg1 + ".jpg");
 
 					m_adapter.notifyDataSetChanged();
 

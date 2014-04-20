@@ -300,7 +300,7 @@ setProfile(profile_pic);
 	
 	public void ProfileImageDownload() {
 		new ImageDownloader(this, getString(R.string.server_path)
-				+ "files/profile/" + member_srl + ".jpg", mHandler, 2,0);
+				+ "files/profile/thumbnail/" + member_srl + ".jpg", mHandler, 2,0);
 	}
 	
 	public void MemberInfoError() {
@@ -347,11 +347,11 @@ setProfile(profile_pic);
 					
 					if (Global.UpdateFileCache(profile_update,
 							Global.getUser(member_srl, "profile_update"),
-							getString(R.string.server_path) + "files/profile/"
+							getString(R.string.server_path) + "files/profile/thumbnail/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")
 							&& profile_pic.matches("Y")) {
-						Global.SaveUserSetting(member_srl, profile_update, profile_pic);
+						Global.SaveUserSetting(member_srl, null, profile_update, profile_pic);
 						ProfileImageDownload();
 						// Log.i("test", "Let s profile image download");
 
@@ -380,10 +380,8 @@ setProfile(profile_pic);
 			if (msg.what == 2) {
 				// Save File cache
 				try {
-					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/",
 							member_srl + ".jpg");
-					Global.createThumbnail((Bitmap) msg.obj, local_path
-							+ "thumbnail/", member_srl + ".jpg");
 
 			//		setList();
 					setProfile(profile_pic);
@@ -406,6 +404,8 @@ setProfile(profile_pic);
 	
 
 	}
+	
+
 
 
 	// 빽백키 상단액션바

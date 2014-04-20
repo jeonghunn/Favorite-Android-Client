@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbOpenHelper {
 
 	private static final String DATABASE_NAME = "favorite.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	public static SQLiteDatabase mDB;
 	private DatabaseHelper mDBHelper;
 	private Context mCtx;
@@ -54,19 +54,39 @@ public class DbOpenHelper {
 	}
 
 	// Insert DB
-	public long insertColumn(String user_srl, String profile_update, String profile_pic){
+	public long insertColumn(String user_srl, String profile_update,String profile_update_thumbnail, String profile_pic){
 		ContentValues values = new ContentValues();
 		values.put(DataBases.CreateDB.USER_SRL, user_srl);
 		values.put(DataBases.CreateDB.PROFILE_UPDATE, profile_update);
+		values.put(DataBases.CreateDB.PROFILE_UPDATE_THUMBNAIL, profile_update_thumbnail);
 		values.put(DataBases.CreateDB.PROFILE_PIC, profile_pic);
 		return mDB.insert(DataBases.CreateDB._TABLENAME, null, values);
 	}
 
 	// Update DB
-	public boolean updateColumn(String user_srl, String profile_update, String profile_pic){
+	public boolean updateColumn(String user_srl, String profile_update, String profile_update_thumbnail, String profile_pic){
 		ContentValues values = new ContentValues();
 		values.put(DataBases.CreateDB.USER_SRL, user_srl);
 		values.put(DataBases.CreateDB.PROFILE_UPDATE, profile_update);
+		values.put(DataBases.CreateDB.PROFILE_UPDATE_THUMBNAIL, profile_update_thumbnail);
+		values.put(DataBases.CreateDB.PROFILE_PIC, profile_pic);
+		return mDB.update(DataBases.CreateDB._TABLENAME, values, "user_srl="+user_srl, null) > 0;
+	}
+	
+	// Update Profile update DB
+	public boolean updateProfileUpdate(String user_srl, String profile_update, String profile_pic){
+		ContentValues values = new ContentValues();
+		values.put(DataBases.CreateDB.USER_SRL, user_srl);
+		values.put(DataBases.CreateDB.PROFILE_UPDATE, profile_update);
+		values.put(DataBases.CreateDB.PROFILE_PIC, profile_pic);
+		return mDB.update(DataBases.CreateDB._TABLENAME, values, "user_srl="+user_srl, null) > 0;
+	}
+	
+	// Update Profile update DB
+	public boolean updateProfileUpdateThumbnail(String user_srl, String profile_update_thumbnail, String profile_pic){
+		ContentValues values = new ContentValues();
+		values.put(DataBases.CreateDB.USER_SRL, user_srl);
+		values.put(DataBases.CreateDB.PROFILE_UPDATE_THUMBNAIL, profile_update_thumbnail);
 		values.put(DataBases.CreateDB.PROFILE_PIC, profile_pic);
 		return mDB.update(DataBases.CreateDB._TABLENAME, values, "user_srl="+user_srl, null) > 0;
 	}
