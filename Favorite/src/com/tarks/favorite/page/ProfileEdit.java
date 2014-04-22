@@ -548,7 +548,7 @@ public void AddList(String title, String description, int Tag){
 					
 					
 					if (Global.UpdateFileCache(profile_update,
-							Global.getUser(member_srl, "profile_update"),
+							Global.getUser(member_srl, "profile_update_thumbnail"),
 							getString(R.string.server_path) + "files/profile/thumbnail/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")
@@ -587,11 +587,11 @@ public void AddList(String title, String description, int Tag){
 	@Override
 	public void onBackPressed() {
 		try{
-	if(!edittext_name_1.getText().toString().matches(name_1) || !edittext_name_2.getText().toString().matches(name_2)){
+	if(!edittext_name_1.getText().equals(name_1) || !edittext_name_2.getText().equals(name_2)){
 		NameUpdate();
 	}
 		} catch (Exception e){
-			
+		e.printStackTrace();
 		}
 	  // Intent 생성
 	   Intent intent = new Intent();

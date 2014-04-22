@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.cardsui.MyPlayCard;
-import com.tarks.favorite.cardsui.like_card;
-import com.tarks.favorite.cardsui.profile_card;
-import com.tarks.favorite.cardsui.views.CardUI;
+import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
+import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
+
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
@@ -31,6 +31,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -59,8 +60,7 @@ public class mainfragment extends SherlockFragment implements
 
 	private ListView maListViewPerso;
 	private ScrollView sv;
-	// 카드 유아이 정의한다.
-	CardUI mCardView;
+	
 	View rootView;
 
 	// On déclare la HashMap qui contiendra les informations pour un item
@@ -74,7 +74,8 @@ public class mainfragment extends SherlockFragment implements
 	ArrayList<String> user_content_array = new ArrayList<String>();
 	ArrayList<String> user_name_array = new ArrayList<String>();
 	// ListView
-	ListView listView;
+//	ListView listView;
+	private PullToRefreshListView listView;
 	// List
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter
@@ -83,7 +84,7 @@ public class mainfragment extends SherlockFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.listview2, container, false);
+		rootView = inflater.inflate(R.layout.listview3, container, false);
 
 		// + "/member/";
 		try {
@@ -91,7 +92,7 @@ public class mainfragment extends SherlockFragment implements
 		} catch (Exception e) {
 		}
 
-		setfavorite();
+	//	setfavorite();
 
 	
 		setListAdapter();
@@ -106,9 +107,30 @@ public class mainfragment extends SherlockFragment implements
 
 		return rootView;
 	}
+	
+	public void refreshAct(){
+		//User content
+		 user_content_array.clear();
+		 user_name_array.clear();
+		m_adapter.clear();
+		loadFavorite(Global.getSetting("user_srl", "0"));
+	}
 
 	public void setListAdapter() {
-		listView = (ListView) rootView.findViewById(R.id.listView1);
+		listView = (PullToRefreshListView) rootView.findViewById(R.id.listView1);
+
+		// Set a listener to be invoked when the list should be refreshed.
+		listView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+			
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+	refreshAct();
+				
+			}
+		});
+//		listView = (ListView) rootView.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -123,28 +145,30 @@ public class mainfragment extends SherlockFragment implements
 
 						List ls = (List) ca.getItem(arg2 - 1);
 
+
 						Intent intent = new Intent(getActivity(),
 								ProfileActivity.class);
 						intent.putExtra("member_srl", ls.getUserSrl());
 						startActivity(intent);
 
+				
 					}
 				}
 
 			}
 		});
 
-		View header = getActivity().getLayoutInflater().inflate(
-				R.layout.like_card, null, false);
-		TextView favorite_tv = (TextView) header
-				.findViewById(R.id.favorite_textView);
-		TextView like_me_tv = (TextView) header
-				.findViewById(R.id.like_me_textView);
+//		View header = getActivity().getLayoutInflater().inflate(
+//				R.layout.header_alert, null, false);
+//		TextView favorite_tv = (TextView) header
+//				.findViewById(R.id.favorite_textView);
+//		TextView like_me_tv = (TextView) header
+//				.findViewById(R.id.like_me_textView);
 
-		favorite_tv.setText(favorite_result);
-		like_me_tv.setText(like_me_result);
+//		favorite_tv.setText(favorite_result);
+//		like_me_tv.setText(like_me_result);
 		// profile_edit.setOnClickListener(l)
-		listView.addHeaderView(header, null, false);
+	//	listView.addHeaderView(header, null, false);
 	//	listView.addHeaderView(header);
 		
 
@@ -157,40 +181,40 @@ public class mainfragment extends SherlockFragment implements
 		return false;
 	}
 
-	public void setfavorite() {
-		// 자신의 신분 설정값을 불러옵니다.
-		SharedPreferences prefs = getActivity().getSharedPreferences("setting",
-				getActivity().MODE_PRIVATE);
-		int like_me = Integer.parseInt(prefs.getString("like_me", "0"));
-		int favorite = Integer.parseInt(prefs.getString("favorite", "0"));
+//	public void setfavorite() {
+//		// 자신의 신분 설정값을 불러옵니다.
+//		SharedPreferences prefs = getActivity().getSharedPreferences("setting",
+//				getActivity().MODE_PRIVATE);
+//		int like_me = Integer.parseInt(prefs.getString("like_me", "0"));
+//		int favorite = Integer.parseInt(prefs.getString("favorite", "0"));
+//
+//		// Import textview
+//		TextView favorite_text = (TextView) rootView
+//				.findViewById(R.id.textView4);
+//		TextView like_me_text = (TextView) rootView
+//				.findViewById(R.id.textView3);
+//
+//		// number cut
+//		NumberFormat nf = NumberFormat.getInstance();
+//		// nf.setMaximumIntegerDigits(5); //최대수 지정
+//		like_me_result = nf.format(like_me);
+//		favorite_result = nf.format(favorite);
+//
+//		if (like_me > 9999)
+//			like_me_result = "9999+";
+//		if (favorite > 9999)
+//			favorite_result = "9999+";
+//
+//		// loadFavorite(Global.getSetting("user_srl", "0"));
+//
+//	}
 
-		// Import textview
-		TextView favorite_text = (TextView) rootView
-				.findViewById(R.id.textView4);
-		TextView like_me_text = (TextView) rootView
-				.findViewById(R.id.textView3);
-
-		// number cut
-		NumberFormat nf = NumberFormat.getInstance();
-		// nf.setMaximumIntegerDigits(5); //최대수 지정
-		like_me_result = nf.format(like_me);
-		favorite_result = nf.format(favorite);
-
-		if (like_me > 9999)
-			like_me_result = "9999+";
-		if (favorite > 9999)
-			favorite_result = "9999+";
-
-		// loadFavorite(Global.getSetting("user_srl", "0"));
-
-	}
-
-	public void setheader() {
-		like_card header = (new like_card(like_me_result, favorite_result,
-				false));
-
-		mCardView.addCard(header);
-	}
+//	public void setheader() {
+//		like_card header = (new like_card(like_me_result, favorite_result,
+//				false));
+//
+//		mCardView.addCard(header);
+//	}
 
 	public void setList(String user_srl, String title, String des) {
 		List p1 = new List(user_srl, title, des, 0);
@@ -250,7 +274,6 @@ public class mainfragment extends SherlockFragment implements
 	
 	public void getMemberInfo(String user_srl) {
 		if (Global.getUpdatePossible(user_srl)) {
-Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
 			Paramname.add("authcode");
 			Paramname.add("user_srl");
@@ -320,6 +343,7 @@ Log.i("Update", "Updateing");
 					setList(user_content_array.get(i), user_name_array.get(i), array[i]);
 					m_adapter.notifyDataSetChanged();
 				}
+				listView.onRefreshComplete();
 				} catch (Exception e){
 					
 				}

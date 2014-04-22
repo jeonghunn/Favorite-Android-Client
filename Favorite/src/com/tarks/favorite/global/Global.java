@@ -690,7 +690,7 @@ public final class Global {
 	public static boolean getUpdatePossible(String user_srl){
 		boolean possible = false;
 		 if(getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update_thumbnail")) > 15000 || Global.CheckFileState(mod.getCacheDir().toString() + "/member/thumbnail/" +user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) possible = true ;
+				- Integer.parseInt(Global.getUser(user_srl, "profile_update_thumbnail")) > 5000 || Global.CheckFileState(mod.getCacheDir().toString() + "/member/thumbnail/" +user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) possible = true ;
 		 return possible;
 	}
 

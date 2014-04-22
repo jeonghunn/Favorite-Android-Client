@@ -38,6 +38,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.CropManager;
+import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
@@ -103,6 +104,7 @@ public class ProfileInfo extends SherlockActivity {
 		 // Header, Footer 생성 및 등록
        View header = getLayoutInflater().inflate(R.layout.profile_avatar_layout, null, false);
        profile = (ImageView) header.findViewById(R.id.profile_img);
+       ImageButton profile_button = (ImageButton) header.findViewById(R.id.edit_info);
        profile_edit = (ImageButton) header.findViewById(R.id.edit);
        profile_title = (TextView) header.findViewById(R.id.title);
        profile_des = (TextView) header.findViewById(R.id.description);
@@ -110,6 +112,18 @@ public class ProfileInfo extends SherlockActivity {
 				+ member_srl + ".jpg"));
        
   //     profile_edit.setOnClickListener(l)
+       profile_button.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Log.i("Clicked", "Profile");
+				Intent intent = new Intent(ProfileInfo.this,
+						GalleryView.class);
+				intent.putExtra("path",local_path
+						+ member_srl + ".jpg");
+				startActivity(intent);
+			}
+		});
        profile_edit.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -346,7 +360,7 @@ setProfile(profile_pic);
 					
 					
 					if (Global.UpdateFileCache(profile_update,
-							Global.getUser(member_srl, "profile_update"),
+							Global.getUser(member_srl, "profile_update_thumbnail"),
 							getString(R.string.server_path) + "files/profile/thumbnail/"
 									+ member_srl + ".jpg", local_path,
 							member_srl + ".jpg")

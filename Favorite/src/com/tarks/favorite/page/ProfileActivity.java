@@ -58,6 +58,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.CropManager;
 import com.tarks.favorite.MainActivity;
+import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.main;
 import com.tarks.favorite.R.drawable;
@@ -131,6 +132,7 @@ public class ProfileActivity extends SherlockActivity {
 					+ member_srl + ".jpg"));
 		} catch (Exception e) {
 		}
+		
 
 		getProfileInfo();
 
@@ -182,7 +184,7 @@ public class ProfileActivity extends SherlockActivity {
 	}
 
 	public void setListAdapter() {
-		profile = (ImageView) findViewById(R.id.image_header);
+	//	profile = (ImageView) findViewById(R.id.image_header);
 		listView = (ListView) findViewById(android.R.id.list);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 

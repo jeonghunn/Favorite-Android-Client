@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.3137</string>
-    <string name="build">3137</string>
+    <string name="ver">1.0.0.3240</string>
+    <string name="build">3240</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -138,6 +138,10 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="user_explain">%1$s</string>
     <string name="changed">changed.</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="favorites">Favorites</string>
+    <string name="attach">Attach</string>
+    <string name="photo">Photo</string>
 
     <!-- Privacy -->
     <string name="privacy_content">Privacy</string>
@@ -145,11 +149,11 @@
     <string name="privacy_users">Users</string>
     <string name="privacy_relation">All Relation</string>
     <string name="privacy_favorites">Favorties</string>
-    <string name="privacy_justme">Just me</string>
+    <string name="privacy_justme">Secret</string>
     <string name="privacy_public_des">All people are can see.</string>
     <string name="privacy_users_des">Favorite members can see.</string>
     <string name="privacy_relation_des">favorites, and who like you can see.</string>
     <string name="privacy_favorites_des">favorites can see.</string>
-    <string name="privacy_justme_des">You and page admin can see.</string>
+    <string name="privacy_justme_des">You, writer and page admin can see.</string>
 
 </resources>

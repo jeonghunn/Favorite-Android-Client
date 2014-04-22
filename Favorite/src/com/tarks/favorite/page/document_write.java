@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +24,9 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
+import com.tarks.favorite.CropManager;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
@@ -36,6 +41,12 @@ public class document_write extends SherlockActivity {
 	String content;
 	String page_srl;
 	String status = "0";
+	
+	int REQ_CODE_PICK_PICTURE = 2;
+	int IMAGE_EDIT = 3;
+	int CAMERA_PIC_REQUEST = 4;
+	// IMG
+	Uri mImageUri;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +54,6 @@ public class document_write extends SherlockActivity {
 
 		// Can use progress
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
 		setContentView(R.layout.document_write);
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -125,6 +135,42 @@ public class document_write extends SherlockActivity {
 			String result_status = data.getStringExtra("status");
 			status = result_status;
 		}
+		
+		if (requestCode == REQ_CODE_PICK_PICTURE) {
+			if (resultCode == Activity.RESULT_OK) {
+				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
+				Intent intent = new Intent(document_write.this, CropManager.class);
+				intent.putExtra("uri", data.getData());
+				startActivityForResult(intent, IMAGE_EDIT);
+
+			}
+		}
+
+		if (requestCode == IMAGE_EDIT) {
+			// Log.i("Imageresult", "itsok");
+			if (resultCode == Activity.RESULT_OK) {
+				byte[] b = Globalvariable.image;
+//				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+//				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
+//				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
+//				// Profile changed
+//				profile_changed = true;
+//				// Set global image null
+//				Globalvariable.image = null;
+			}
+		}
+
+		if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
+			// ImageView imageView;
+			// ... some code to inflate/create/find appropriate ImageView to
+			// place grabbed image
+			// profile_bitmap = Global.grabImage(mImageUri);
+			Intent intent = new Intent(document_write.this, CropManager.class);
+			intent.putExtra("uri", mImageUri);
+			startActivityForResult(intent, IMAGE_EDIT);
+		}
+		
+		
 
 	}
 
@@ -132,20 +178,34 @@ public class document_write extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		MenuItem item;
+		
+//	    SubMenu subMenu1 = menu.addSubMenu(getString(R.string.attach));
+//        subMenu1.add(0, 1001, 0, "사진 촬영");
+//        subMenu1.add(0, 1002, 0, "갤러리에서 선택");
+//        subMenu1.add(0, 1003, 0, "파일 첨부");
+//        subMenu1.add(0, 1004, 0, "목록");
+//
+//        MenuItem subMenu1Item = subMenu1.getItem();
+      
 
-		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0, 1, 0, getString(R.string.privacy_content)).setShowAsAction(
+		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
+//		  subMenu1Item.setIcon(R.drawable.ic_attach);
+	//        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.write)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
 		return true;
 
 	}
+	
+
 
 	// 빽백키 상단액션바
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case 0:
+		case 1:
 			if (Globalvariable.okbutton == true) {
 				// Set ok button disable
 				Globalvariable.okbutton = false;
@@ -166,11 +226,44 @@ public class document_write extends SherlockActivity {
 
 			return true;
 
-		case 1:
+		case 2:
 			Intent intent1 = new Intent(document_write.this,
 					privacy_category.class);
 			intent1.putExtra("status", status);
 			startActivityForResult(intent1, 1);
+
+			return true;
+		
+		case 1001:
+			int w,
+			h;
+			// Intent cameraIntent = new
+			// Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			// startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);
+
+			Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+			File photo;
+			try {
+				// place where to store camera taken picture
+				photo = Global.createTemporaryFile("picture", ".jpg");
+				photo.delete();
+			} catch (Exception e) {
+				Global.toast(getString(R.string.no_storage_error));
+				return false;
+			}
+			mImageUri = Uri.fromFile(photo);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+			// start camera intent
+			this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
+			return true;
+
+			
+		case 1002:
+			Intent i = new Intent(Intent.ACTION_PICK);
+			i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+			i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images
+			// 결과를 리턴하는 Activity 호출
+			startActivityForResult(i, REQ_CODE_PICK_PICTURE);
 
 			return true;
 

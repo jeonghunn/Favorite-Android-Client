@@ -94,7 +94,7 @@
     <string name="send_feedback">의견 보내기</string>
     <string name="send_feedback_des">개발자에게 의견을 보냅니다.</string>
     <string name="delete">삭제</string>
-         <string name="delete_des">삭제하시겠습니까?</string>
+    <string name="delete_des">삭제하시겠습니까?</string>
     <string name="deleted">삭제되었습니다.</string>
     <string name="delete_profile_photo">프로필 사진을 삭제합니다.</string>
     <string name="profile">프로필</string>
@@ -121,27 +121,30 @@
     <string name="notice_new_document">새로운 글을 남겼습니다.</string>
     <string name="notice_new_comment">댓글을 달았습니다.</string>
     <string name="add">추가</string>
-    <string name="favorite_add_des">좋아하는 사람(페이지)으로 추가하시겠습니까?</string>
+    <string name="favorite_add_des">즐겨찾기에 추가하시겠습니까?</string>
     <string name="added">추가되었습니다.</string>
     <string name="notice_added_to_favorite">당신을 좋아하는 사람으로 추가했습니다.</string>
     <string name="sign_in">로그인</string>
     <string name="edit_profile">프로필 수정</string>
-       <string name="changed">변경되었습니다.</string>
+    <string name="changed">변경되었습니다.</string>
     <string name="user_explain">%1$s님이</string>
-      <string name="ip_error_des">비정상적인 활동 내역으로 IP가 차단되었습니다.</string>
+    <string name="ip_error_des">비정상적인 활동 내역으로 IP가 차단되었습니다.</string>
+    <string name="my_favorites">즐겨찾기</string>
+    <string name="favorites">즐겨찾기</string>
+      <string name="attach">첨부</string>
+          <string name="photo">사진</string>
     <!-- Privacy -->
- <string name="privacy_content">공개 수준</string>
- 
+    <string name="privacy_content">공개 수준</string>
     <string name="privacy_public">전체 공개</string>
     <string name="privacy_users">사용자</string>
     <string name="privacy_relation">모든 관계</string>
-     <string name="privacy_favorites">좋아하는 사람</string>
-     <string name="privacy_justme">나만 보기</string>
-
+    <string name="privacy_favorites">즐겨찾기</string>
+    <string name="privacy_justme">비밀</string>
     <string name="privacy_public_des">모든 사람이 볼 수 있습니다.</string>
     <string name="privacy_users_des">Favorite의 회원만이 볼 수 있습니다.</string>
     <string name="privacy_relation_des">좋아하거나, 상대방이 당신을 좋아한다고 등록한 사람만이 볼 수 있습니다.</string>
-     <string name="privacy_favorites_des">당신이 좋아하는 사람만 볼 수 있습니다.</string>
-          <string name="privacy_favorites_page_des">당신이 좋아하는 사람만 볼 수 있습니다.</string>
-     <string name="privacy_justme_des">당신 및 글 작성자 등 최소한의 사람만 볼 수 있습니다.</string>
+    <string name="privacy_favorites_des">당신이 좋아하는 사람만 볼 수 있습니다.</string>
+    <string name="privacy_favorites_page_des">당신이 좋아하는 사람만 볼 수 있습니다.</string>
+    <string name="privacy_justme_des">당신 및 글 작성자 등 최소한의 사람만 볼 수 있습니다.</string>
+
 </resources>
