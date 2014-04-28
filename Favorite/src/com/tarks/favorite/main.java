@@ -48,12 +48,14 @@ public class main extends SherlockFragmentActivity {
 	//String[] subtitle;
 	int[] icon;
 	Fragment fragment1 = new mainfragment();
-	Fragment fragment2 = new Fragment2();
-	Fragment fragment3 = new Fragment3();
+	Fragment fragment2 = new PageNowFragment();
+	//Fragment fragment3 = new Fragment3();
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 
 	private Menu optionsMenu;
+	
+	int NowPosition;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,14 +69,14 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 
 		// Generate title
-		title = new String[] { Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.favorites), "Title Fragment 2",
+		title = new String[] { Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.favorites), getString(R.string.pages),
 				getString(R.string.setting) };
 
 		// Generate subtitle
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 		// Generate icon
-		icon = new int[] {R.drawable.drawer_profile , R.drawable.home , R.drawable.settings,
+		icon = new int[] {R.drawable.drawer_profile , R.drawable.home , R.drawable.ic_list,
 				R.drawable.settings };
 
 	
@@ -128,7 +130,7 @@ public class main extends SherlockFragmentActivity {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		if (savedInstanceState == null) {
-			selectItem(0);
+			selectItem(1);
 		}
 	}
 	
@@ -201,14 +203,17 @@ public class main extends SherlockFragmentActivity {
 		// Locate Position
 		switch (position) {
 		case 0:
+			ft.remove(fragment1);
 			ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 1:
+			setTitle(getString(R.string.my_favorites));
 			ft.replace(R.id.content_frame, fragment1);
+		//((mainfragment) fragment1).refreshAct();
 			break;
 		case 2:
-//			Intent intent = new Intent(main.this, ProfileActivity.class);
-//			startActivity(intent);
+			setTitle(getString(R.string.right_now));
+			ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 3:
 			Intent intent = new Intent(main.this, setting.class);
@@ -218,7 +223,7 @@ public class main extends SherlockFragmentActivity {
 		}
 		ft.commit();
 		mDrawerList.setItemChecked(position, true);
-
+        NowPosition = position;
 		// Get the title followed by the position
 		//setTitle(title[position]);
 		// Close drawer
@@ -257,6 +262,16 @@ public class main extends SherlockFragmentActivity {
 			//TODO
 		}
 		return super.onKeyDown(keyCode, event);
+		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(NowPosition > 1){
+			selectItem(1);
+		}else{
+			this.moveTaskToBack(true);
+		}
 		
 	}
 

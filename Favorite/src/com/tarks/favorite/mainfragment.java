@@ -100,7 +100,7 @@ public class mainfragment extends SherlockFragment implements
 		m_adapter = new ListAdapter(getActivity(), R.layout.profile_list,
 				m_orders);
 		listView.setAdapter(m_adapter);
-		loadFavorite(Global.getSetting("user_srl", "0"));
+	//	loadFavorite(Global.getSetting("user_srl", "0"));
 		// Set Favorite
 
 		// Import ListView
@@ -345,7 +345,7 @@ public class mainfragment extends SherlockFragment implements
 				}
 				listView.onRefreshComplete();
 				} catch (Exception e){
-					
+					listView.onRefreshComplete();
 				}
 			}
 			
@@ -486,5 +486,17 @@ public class mainfragment extends SherlockFragment implements
 		}
 
 	}
+	
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(m_adapter.isEmpty()) refreshAct();
+    }
+ 
 
 }

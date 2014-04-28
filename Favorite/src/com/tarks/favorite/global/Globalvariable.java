@@ -2,6 +2,7 @@ package com.tarks.favorite.global;
 
 import com.tarks.favorite.ModApplication;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 public final class Globalvariable {
@@ -9,6 +10,7 @@ public final class Globalvariable {
 
 	//image byte
 	public static byte[] image;
+	public static Bitmap imagebitmap;
 	
 	//temp
 	public static String temp_id;

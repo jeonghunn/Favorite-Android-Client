@@ -2,6 +2,7 @@ package com.tarks.favorite.global;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,13 +12,18 @@ import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
@@ -631,6 +637,200 @@ public final class Global {
 		Uri contentUri = Uri.fromFile(f);
 		mediaScanIntent.setData(contentUri);
 		mod.sendBroadcast(mediaScanIntent);
+	}
+	
+	 public static void recycleBitmap(ImageView iv) {
+		 try{
+	        Drawable d = iv.getDrawable();
+	        if (d instanceof BitmapDrawable) {
+	            Bitmap b = ((BitmapDrawable)d).getBitmap();
+	            b.recycle();
+	        } // 현재로서는 BitmapDrawable 이외의 drawable 들에 대한 직접적인 메모리 해제는 불가능하다.
+	         
+	        d.setCallback(null);
+		 }catch(Exception e){}
+	    }
+	
+//	 public static String getRealPathURI(Uri uriThatYouCurrentlyHave){
+//		// Will return "image:x*"
+//		 String wholeID = DocumentsContract.getDocumentId(uriThatYouCurrentlyHave);
+//
+//		 // Split at colon, use second item in the array
+//		 String id = wholeID.split()[1];
+//
+//		 String[] column = { MediaStore.Images.Media.DATA };     
+//
+//		 // where id is equal to             
+//		 String sel = MediaStore.Images.Media._ID + "=?";
+//
+//		 Cursor cursor = mod.getContentResolver().
+//		                           query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+//		                           column, sel, new String[]{ id }, null);
+//
+//		 String filePath = "";
+//
+//		 int columnIndex = cursor.getColumnIndex(column[0]);
+//
+//		 if (cursor.moveToFirst()) {
+//		     filePath = cursor.getString(columnIndex);
+//		 }   
+//
+//		 cursor.close();
+//		 
+//		 return filePath;
+//	 }
+//	 
+	 public static String getPath(final Context context, final Uri uri) {
+
+		    final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+		    // DocumentProvider
+		    if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+		        // ExternalStorageProvider
+		        if (isExternalStorageDocument(uri)) {
+		            final String docId = DocumentsContract.getDocumentId(uri);
+		            final String[] split = docId.split(":");
+		            final String type = split[0];
+
+		            if ("primary".equalsIgnoreCase(type)) {
+		                return Environment.getExternalStorageDirectory() + "/" + split[1];
+		            }
+
+		            // TODO handle non-primary volumes
+		        }
+		        // DownloadsProvider
+		        else if (isDownloadsDocument(uri)) {
+
+		            final String id = DocumentsContract.getDocumentId(uri);
+		            final Uri contentUri = ContentUris.withAppendedId(
+		                    Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+		            return getDataColumn(context, contentUri, null, null);
+		        }
+		        // MediaProvider
+		        else if (isMediaDocument(uri)) {
+		            final String docId = DocumentsContract.getDocumentId(uri);
+		            final String[] split = docId.split(":");
+		            final String type = split[0];
+
+		            Uri contentUri = null;
+		            if ("image".equals(type)) {
+		                contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+		            } else if ("video".equals(type)) {
+		                contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+		            } else if ("audio".equals(type)) {
+		                contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+		            }
+
+		            final String selection = "_id=?";
+		            final String[] selectionArgs = new String[] {
+		                    split[1]
+		            };
+
+		            return getDataColumn(context, contentUri, selection, selectionArgs);
+		        }
+		    }
+		    // MediaStore (and general)
+		    else if ("content".equalsIgnoreCase(uri.getScheme())) {
+		        return getDataColumn(context, uri, null, null);
+		    }
+		    // File
+		    else if ("file".equalsIgnoreCase(uri.getScheme())) {
+		        return uri.getPath();
+		    }
+
+		    return null;
+		}
+	 
+	 public static String getDataColumn(Context context, Uri uri, String selection,
+		        String[] selectionArgs) {
+
+		    Cursor cursor = null;
+		    final String column = "_data";
+		    final String[] projection = {
+		            column
+		    };
+
+		    try {
+		        cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+		                null);
+		        if (cursor != null && cursor.moveToFirst()) {
+		            final int column_index = cursor.getColumnIndexOrThrow(column);
+		            return cursor.getString(column_index);
+		        }
+		    } finally {
+		        if (cursor != null)
+		            cursor.close();
+		    }
+		    return null;
+		}
+
+
+		/**
+		 * @param uri The Uri to check.
+		 * @return Whether the Uri authority is ExternalStorageProvider.
+		 */
+		public static boolean isExternalStorageDocument(Uri uri) {
+		    return "com.android.externalstorage.documents".equals(uri.getAuthority());
+		}
+
+		/**
+		 * @param uri The Uri to check.
+		 * @return Whether the Uri authority is DownloadsProvider.
+		 */
+		public static boolean isDownloadsDocument(Uri uri) {
+		    return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+		}
+
+		/**
+		 * @param uri The Uri to check.
+		 * @return Whether the Uri authority is MediaProvider.
+		 */
+		public static boolean isMediaDocument(Uri uri) {
+		    return "com.android.providers.media.documents".equals(uri.getAuthority());
+		}
+	 
+	 public static String getRealPathFromURI(Context context, Uri contentUri) {
+		  Cursor cursor = null;
+		  try { 
+			  Log.i("test", contentUri.toString());
+		    String[] proj = { MediaStore.Images.Media.DATA };
+		    cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+		    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		    cursor.moveToFirst();
+		    return cursor.getString(column_index);
+		  } finally {
+		    if (cursor != null) {
+		      cursor.close();
+		    }
+		  }
+		}
+
+	
+	@SuppressWarnings("null")
+	public static Bitmap UriToBitmapCompress(Uri image_uri){
+		Bitmap bm = null;
+		ContentResolver cr = mod.getContentResolver();
+		// image size
+	     int[] imagesize;
+		try {
+			imagesize = getIMGSize(cr, image_uri);
+	
+
+		  InputStream in = cr.openInputStream(image_uri);
+			BitmapFactory.Options option = new BitmapFactory.Options();
+			option.inPurgeable = true;
+			
+			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
+			if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*4;
+			if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*8;
+			//  BitmapFactory.decodeStream(in, null, option);
+			bm = BitmapFactory.decodeStream(in,null, option);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+return bm;
 	}
 
 	// Make temporary file

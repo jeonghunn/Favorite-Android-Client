@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -44,6 +45,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
+import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
@@ -57,17 +59,20 @@ import com.tarks.favorite.start.join;
 public class document_read extends SherlockActivity {
 
 	String local_path;
+	String externel_path ;
 	// Profile
 	ImageView profile;
 	TextView profile_title;
 	TextView profile_des;
 	TextView comment_count;
 	TextView doc_content;
+	ListView header_listView;
 	// Member srl
 	String doc_srl = "0";
 	String user_srl = "0";
 	String comments = "0";
 	String status = "0";
+	String AttachFileName;
 	int comments_count = 0;
 	int previous_count = 1;
 	int contextmenu_number = 0;
@@ -84,8 +89,10 @@ public class document_read extends SherlockActivity {
 	ListView listView;
 
 	// List
+	ArrayList<HeaderList> header_m_orders = new ArrayList<HeaderList>();
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter
+	HeaderListAdapter header_m_adapter;
 	ListAdapter m_adapter;
 	// ClipBoard
 	CharSequence clipboard_content;
@@ -105,6 +112,7 @@ public class document_read extends SherlockActivity {
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
+		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
 		Log.i("Doc srl", doc_srl + "");
 		try {
 			local_path = getCacheDir().toString() + "/member/";
@@ -112,6 +120,7 @@ public class document_read extends SherlockActivity {
 		}
 
 	loadView();
+
 	}
 	
 	
@@ -162,11 +171,40 @@ try{
 		profile = (ImageView) header.findViewById(R.id.img);
 		profile_title = (TextView) header.findViewById(R.id.title);
 		profile_des = (TextView) header.findViewById(R.id.description);
+		header_listView = (ListView) header.findViewById(R.id.header_listview);
 		doc_content = (TextView) header.findViewById(R.id.content);
 		comment_count = (TextView) header.findViewById(R.id.comment_count);
+		header_listView.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+
+						HeaderListAdapter ca = (HeaderListAdapter) arg0
+								.getAdapter();
+
+						HeaderList ls = (HeaderList) ca.getItem(arg2);
+
+						try{
+						if(ls.getPath().endsWith("jpg")){
+						Intent intent = new Intent(document_read.this,
+								GalleryView.class);
+						intent.putExtra("path",
+								String.valueOf(ls.getPath()));
+						startActivity(intent);
+						}else{
+							Uri uri = Uri
+									.parse(ls.getPath());
+							Intent it = new Intent(Intent.ACTION_VIEW, uri);
+							startActivity(it);
+						}
+						}catch (Exception e){}
+
+			}
+		});
 		// profile_edit.setOnClickListener(l)
-
+		header_m_adapter = new HeaderListAdapter(this, R.layout.doc_header_list, header_m_orders);
+		header_listView.setAdapter(header_m_adapter);
 		doc_content.setOnLongClickListener(new OnLongClickListener() {
 
 			@Override
@@ -240,6 +278,7 @@ try{
 		m_adapter = new ListAdapter(this, R.layout.comment_list, m_orders);
 		listView.setAdapter(m_adapter);
 		getDoc();
+		
 		//
 	}
 	
@@ -247,6 +286,7 @@ try{
 		 comments_count = 0;
 		 previous_count = 1;
 		 m_adapter.clear();
+		 header_m_adapter.clear();
 		 getDoc();
 		 
 		
@@ -273,7 +313,7 @@ try{
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(doc_srl);
 		Paramvalue
-				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//recommend//negative");
+				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//attach//recommend//negative");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "board/documents_app_read.php", mHandler, Paramname,
@@ -319,6 +359,19 @@ try{
 			m_orders.add(p1);
 		else
 			m_orders.add(moreload, p1);
+
+		// ListView listview = (ListView) findViewById(R.id.listView1);
+
+	}
+	
+	public void setHeaderList(String path, String title, String des) {
+
+		// Get Profile
+		// getMemberInfo(user_srl);
+		HeaderList p1 = new HeaderList(path, title, des);
+
+			header_m_orders.add(p1);
+
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
@@ -433,6 +486,16 @@ try{
 				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 3,
 				Integer.parseInt(user_srl));
 	}
+	
+	public void ImageDownload(String url) {
+		// Start Progressbar
+		setSupportProgressBarIndeterminateVisibility(true);
+		int index = url.lastIndexOf("/");
+		String fileName = url.substring(index+1);
+		AttachFileName = fileName;
+		new ImageDownloader(this, url, mHandler, 11,
+				Integer.parseInt(user_srl));
+	}
 
 	public void CommentPostAct() {
 		setSupportProgressBarIndeterminateVisibility(true);
@@ -519,6 +582,29 @@ try{
 				null, handler,0);
 	}
 	
+	public void AttachDownload(){
+		setSupportProgressBarIndeterminateVisibility(true);
+		ArrayList<String> Paramname = new ArrayList<String>();
+		Paramname.add("authcode");
+		Paramname.add("kind");
+		Paramname.add("doc_srl");
+		Paramname.add("user_srl");
+		Paramname.add("user_srl_auth");
+
+		ArrayList<String> Paramvalue = new ArrayList<String>();
+		Paramvalue.add("642979");
+		Paramvalue.add("5");
+		Paramvalue.add(doc_srl);
+		Paramvalue.add(Global.getSetting("user_srl",
+				Global.getSetting("user_srl", "0")));
+		Paramvalue.add(Global.getSetting("user_srl_auth",
+				Global.getSetting("user_srl_auth", "null")));
+		
+		new AsyncHttpTask(this, getString(R.string.server_path)
+				+ "board/documents_app_read.php", mHandler, Paramname,
+				Paramvalue, null, 10, 0);
+	}
+	
 	public void DeleteAlert() {
 		// Alert
 		AlertDialog.Builder builder = new AlertDialog.Builder(document_read.this);
@@ -538,6 +624,16 @@ try{
 		builder.show();
 
 	}
+//	@Override
+//    protected void onDestroy() {
+//      //  Log.d("OOMTEST", "onDestroy");
+//         
+//        Global.recycleBitmap(profile);
+//        Global.recycleBitmap(send_button);
+//        super.onDestroy();
+//    }
+
+
 
 	private class ListAdapter extends ArrayAdapter<List> {
 
@@ -598,6 +694,8 @@ try{
 		}
 	}
 
+	
+	
 	class List {
 
 		private String user_srl;
@@ -648,6 +746,105 @@ try{
 		}
 
 	}
+	
+
+	private class HeaderListAdapter extends ArrayAdapter<HeaderList> {
+
+		private ArrayList<HeaderList> items;
+
+		public HeaderListAdapter(Context context, int textViewResourceId,
+				ArrayList<HeaderList> items) {
+			super(context, textViewResourceId, items);
+			this.items = items;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			if (v == null) {
+				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				v = vi.inflate(R.layout.doc_header_list, null);
+			}
+			final HeaderList p = items.get(position);
+			if (p != null) {
+				TextView tt = (TextView) v.findViewById(R.id.title);
+				TextView bt = (TextView) v.findViewById(R.id.description);
+				ImageView image = (ImageView) v.findViewById(R.id.img);
+				ImageView thumb_image = (ImageView) v.findViewById(R.id.thumb_img);
+				if (tt != null) {
+					if(p.getTitle() != null){
+					tt.setText(p.getTitle());
+					}else{
+						tt.setVisibility(View.GONE);
+					}
+				}
+				if (bt != null) {
+					if (bt != null) {
+						if(p.getDes() != null){
+							bt.setText(p.getDes());
+						}else{
+							bt.setVisibility(View.GONE);
+
+						}
+				}
+				}
+				if (image != null && p.getPath().endsWith("jpg")) {
+					Bitmap bm = Global.UriToBitmapCompress(Uri.fromFile(new File(p.getPath())));
+					image.setImageBitmap(bm);	
+					thumb_image.setVisibility(View.GONE);
+				
+//					image.setOnClickListener(new OnClickListener() {
+//
+//						@Override
+//						public void onClick(View v) {
+//							Intent intent = new Intent(document_read.this,
+//									ProfileActivity.class);
+//							intent.putExtra("member_srl", p.getUserSrl());
+//							startActivity(intent);
+//						}
+//					});
+				}
+			}
+			return v;
+		}
+	}
+	
+	
+	class HeaderList {
+
+		private String Path;
+		private String Title;
+		private String Description;
+		private int you_status;
+
+		public HeaderList(String _Path, String _Title, String _Description) {
+			this.Path = _Path;
+			this.Title = _Title;
+			this.Description = _Description;
+			//this.you_status = _you_status;
+		}
+
+		public String getPath() {
+			return Path;
+		}
+
+		public String getTitle() {
+			return Title;
+		}
+
+		public String getDes() {
+			return Description;
+		}
+
+
+
+//		public int getYouStatus() {
+//			return you_status;
+//		}
+		
+
+	}
+
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -663,7 +860,7 @@ try{
 				try {
 					// page_srl//user_srl//name//title//content//date//status//privacy//comments//recommend//negative
 					String[] array = msg.obj.toString().split("/LINE/.");
-				//	Global.dumpArray(array);
+					Global.dumpArray(array);
 					String page_srl = array[0];
 					user_srl = array[1];
 					String name = array[2];
@@ -673,9 +870,10 @@ try{
 					 status = array[6];
 					String privacy = array[7];
 				      comments = array[8];
-					String recommend = array[9];
-					String negative = array[10];
-					you_doc_status = Integer.parseInt(array[11]);
+				      String attach = array[9];
+					String recommend = array[10];
+					String negative = array[11];
+					you_doc_status = Integer.parseInt(array[12]);
 
 					
 					//SetTitled
@@ -709,6 +907,8 @@ try{
 					getCommentsList(getStartComment(comments_count), 10);
 					//Load menu again
 					invalidateOptionsMenu();
+					
+					if(!attach.matches("0")) AttachDownload();
 
 				} catch (Exception e) {
 
@@ -863,6 +1063,43 @@ try{
 					Global.toast(getString(R.string.error_des));
 				}
 
+			}
+			
+			//Attach list download
+			if (msg.what == 10) {
+				Log.i("result", msg.obj.toString());
+				String[] array = msg.obj.toString().split("/LINE/.");
+				
+				
+				for (int i = 0; i < array.length; i++) {
+					if(array[i].endsWith("jpg")){
+						int index = array[i].lastIndexOf("/");
+						String fileName = array[i].substring(index+1);
+						
+						if(!Global.CheckFileState(externel_path + fileName)){
+							ImageDownload(array[i]);
+						}else{
+							setHeaderList(externel_path + fileName, null, null);
+							header_m_adapter.notifyDataSetChanged();
+						}
+				}else{
+				//	int index = array[i].lastIndexOf("/");
+					String name = array[i].substring(array[i].lastIndexOf("&n=") + 3, array[i].lastIndexOf("&e="));
+					String extension = array[i].substring(array[i].lastIndexOf("=") + 1, array[i].length()).toUpperCase();
+					setHeaderList(array[i],  name, extension + " " +getString(R.string.file));
+					header_m_adapter.notifyDataSetChanged();
+				}
+				}
+				
+			}
+
+			
+			if (msg.what == 11) {
+			//	Log.i("result", msg.obj.toString());
+				
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj,  externel_path, AttachFileName);
+				setHeaderList(externel_path + AttachFileName, null, null);
+				header_m_adapter.notifyDataSetChanged();
 			}
 
 		}

@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-      android:paddingBottom="4sp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="4sp" >
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -82,7 +82,11 @@
         android:text="..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
+    <ListView
+        android:id="@+id/header_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>
 
@@ -94,4 +98,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/square_black_button"
         android:text="@string/see_previous_comments" />
+
+
+
 </LinearLayout>

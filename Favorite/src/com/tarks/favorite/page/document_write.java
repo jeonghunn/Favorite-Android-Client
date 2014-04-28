@@ -27,6 +27,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.CropManager;
+import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
@@ -45,8 +46,16 @@ public class document_write extends SherlockActivity {
 	int REQ_CODE_PICK_PICTURE = 2;
 	int IMAGE_EDIT = 3;
 	int CAMERA_PIC_REQUEST = 4;
+	int FILE_CODE = 5;
+	boolean attach_exist =false;
+	int file_kind = 0;
+	Uri file_path;
+	// 1 image 2 file
 	// IMG
 	Uri mImageUri;
+	String externel_path;
+	
+	ArrayList<String> files = new ArrayList<String>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +70,7 @@ public class document_write extends SherlockActivity {
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
-
+		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
 	}
 
 	public void PostAct() {
@@ -92,10 +101,26 @@ public class document_write extends SherlockActivity {
 		Paramvalue.add("3");
 		Paramvalue.add(status);
 		Paramvalue.add("0");
+		
+	
+//Check attach exist
+	if(attach_exist){
+		String path = null;
+		if(file_kind == 1){
+		 path = getCacheDir().toString() + "/attach_image.jpg";
+		//check image already exist
+		}else{
+			path = Global.getPath(this, file_path);
+		}
+			files.add(path);
+		
+	}else{
+		files = null;
+	}
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "board/documents_app_write.php", mHandler, Paramname,
-				Paramvalue, null, 1, 0);
+				Paramvalue, files, 1, 0);
 	}
 
 	public void FinishAct() {
@@ -117,7 +142,7 @@ public class document_write extends SherlockActivity {
 				if (result.matches("document_write_succeed")) {
 					FinishAct();
 				} else {
-					Log.i("Error", "Error has been");
+				//	Log.i("Error", "Error has been");
 					Global.ConnectionError(document_write.this);
 				}
 				// Log.i("Result","로그 정상 작동");
@@ -136,28 +161,32 @@ public class document_write extends SherlockActivity {
 			status = result_status;
 		}
 		
-		if (requestCode == REQ_CODE_PICK_PICTURE) {
-			if (resultCode == Activity.RESULT_OK) {
-				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
-				Intent intent = new Intent(document_write.this, CropManager.class);
+		if (requestCode == REQ_CODE_PICK_PICTURE && resultCode == Activity.RESULT_OK) {
+				Intent intent = new Intent(document_write.this, GalleryView.class);
 				intent.putExtra("uri", data.getData());
+				intent.putExtra("edit", true);
 				startActivityForResult(intent, IMAGE_EDIT);
 
-			}
+			
 		}
 
-		if (requestCode == IMAGE_EDIT) {
+		if (requestCode == IMAGE_EDIT && resultCode == Activity.RESULT_OK) {
 			// Log.i("Imageresult", "itsok");
-			if (resultCode == Activity.RESULT_OK) {
+			
 				byte[] b = Globalvariable.image;
 //				profile_bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
 //				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
 //				profile.setImageBitmap(profile_bitmap); // 사진 선택한 사진URI로 연결하기
 //				// Profile changed
-//				profile_changed = true;
+file_kind = 1;
+				attach_exist = true;
+				invalidateOptionsMenu();
 //				// Set global image null
 //				Globalvariable.image = null;
-			}
+				
+			
+				
+			
 		}
 
 		if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
@@ -165,9 +194,27 @@ public class document_write extends SherlockActivity {
 			// ... some code to inflate/create/find appropriate ImageView to
 			// place grabbed image
 			// profile_bitmap = Global.grabImage(mImageUri);
-			Intent intent = new Intent(document_write.this, CropManager.class);
+			Intent intent = new Intent(document_write.this, GalleryView.class);
 			intent.putExtra("uri", mImageUri);
+			intent.putExtra("edit", true);
 			startActivityForResult(intent, IMAGE_EDIT);
+
+		}
+		
+		if (requestCode == FILE_CODE && resultCode == RESULT_OK) {
+			// ImageView imageView;
+			// ... some code to inflate/create/find appropriate ImageView to
+			// place grabbed image
+			// profile_bitmap = Global.grabImage(mImageUri)
+file_kind = 2;
+			file_path = data.getData();
+			 
+			Log.i("test", data.getDataString());
+		//	Log.i("file", file_path);
+			attach_exist = true;
+			invalidateOptionsMenu();
+
+
 		}
 		
 		
@@ -179,19 +226,20 @@ public class document_write extends SherlockActivity {
 
 		MenuItem item;
 		
-//	    SubMenu subMenu1 = menu.addSubMenu(getString(R.string.attach));
-//        subMenu1.add(0, 1001, 0, "사진 촬영");
-//        subMenu1.add(0, 1002, 0, "갤러리에서 선택");
-//        subMenu1.add(0, 1003, 0, "파일 첨부");
-//        subMenu1.add(0, 1004, 0, "목록");
-//
-//        MenuItem subMenu1Item = subMenu1.getItem();
+	    SubMenu subMenu1 = menu.addSubMenu(getString(R.string.attach));
+        subMenu1.add(0, 1001, 0, getString(R.string.camera));
+        subMenu1.add(0, 1002, 0, getString(R.string.choose_picture));
+        subMenu1.add(0, 1003, 0, getString(R.string.attach_file));
+       // subMenu1.add(0, 1004, 0, "목록");
+     if(attach_exist) subMenu1.add(0, 1005, 0, getString(R.string.delete));
+
+        MenuItem subMenu1Item = subMenu1.getItem();
       
 
 		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
-//		  subMenu1Item.setIcon(R.drawable.ic_attach);
-	//        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		  subMenu1Item.setIcon(R.drawable.ic_attach);
+	        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.write)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
@@ -265,6 +313,19 @@ public class document_write extends SherlockActivity {
 			// 결과를 리턴하는 Activity 호출
 			startActivityForResult(i, REQ_CODE_PICK_PICTURE);
 
+			return true;
+			
+		case 1003:
+			Intent i1 = new Intent(Intent.ACTION_GET_CONTENT);
+			 i1.setType("*/*");
+			// 결과를 리턴하는 Activity 호출
+			startActivityForResult(i1, FILE_CODE);
+
+			return true;
+			
+		case 1005:
+		attach_exist = false;
+		invalidateOptionsMenu();
 			return true;
 
 		case android.R.id.home:

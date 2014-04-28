@@ -102,22 +102,9 @@ public class CropManager extends SherlockActivity {
 	
 		Bitmap firstbm;
 
-		ContentResolver cr = getContentResolver();
-	
-		try {
-			// image size
-		     int[] imagesize = Global.getIMGSize(cr, image_uri);
-
-			  InputStream in = cr.openInputStream(image_uri);
-				BitmapFactory.Options option = new BitmapFactory.Options();
-				option.inPurgeable = true;
-				
-				if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide));
-				if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*2;
-				if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(getString(R.string.pic_size_devide))*4;
-				//  BitmapFactory.decodeStream(in, null, option);
-				bm = BitmapFactory.decodeStream(in,null, option);
-
+		bm = Global.UriToBitmapCompress(image_uri);
+		
+		
 				
 				// Initialize components of the app
 				cropImageView = (CropImageView) findViewById(R.id.CropImageView);
@@ -128,12 +115,7 @@ public class CropManager extends SherlockActivity {
 			cropImageView.setImageBitmap(bm);
 			cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES,
 					DEFAULT_ASPECT_RATIO_VALUES);
-		} catch (Exception e1){
-			e1.printStackTrace();
-		}
-		
 	
-
 	
 
 		

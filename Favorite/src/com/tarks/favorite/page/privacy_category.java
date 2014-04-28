@@ -53,7 +53,7 @@ public class privacy_category extends SherlockActivity {
         setList(getString(R.string.privacy_public), getString(R.string.privacy_public_des), 1, 0);
      //   setList(getString(R.string.privacy_users), getString(R.string.privacy_users_des), 1, 1 );        
       //  setList(getString(R.string.privacy_relation), getString(R.string.privacy_relation_des), 1, 2 );        
-        setList(getString(R.string.privacy_favorites), getString(R.string.privacy_relation_des), 1, 3 );        
+        setList(getString(R.string.privacy_favorites), getString(R.string.privacy_favorites_des), 1, 3 );        
         setList(getString(R.string.privacy_justme), getString(R.string.privacy_justme_des), 1, 4 );
         
        

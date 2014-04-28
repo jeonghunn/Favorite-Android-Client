@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.0.3240</string>
-    <string name="build">3240</string>
+    <string name="ver">1.0.0.3469</string>
+    <string name="build">3469</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -140,8 +140,13 @@
     <string name="changed">changed.</string>
     <string name="my_favorites">My Favorites</string>
     <string name="favorites">Favorites</string>
-    <string name="attach">Attach</string>
     <string name="photo">Photo</string>
+    <string name="file">File</string>
+    <string name="pages">Pages</string>
+     <string name="right_now">Right Now</string>
+    <!-- Attach Menu -->
+    <string name="attach">Attach</string>
+    <string name="attach_file">File</string>
 
     <!-- Privacy -->
     <string name="privacy_content">Privacy</string>
