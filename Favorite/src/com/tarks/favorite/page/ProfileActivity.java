@@ -529,10 +529,12 @@ public class ProfileActivity extends SherlockActivity {
 				
 				if (tt != null) {
 					tt.setText(p.getTitle());
-					
+					//Log.i("test", p.getStatus() + "kk" +p.getTitle() );
 					//Status not public
 					if(p.getStatus() > 1){
 						tt.setTextColor(Color.GRAY);
+					}else{
+						tt.setTextColor(Color.BLACK);
 					}
 					
 				}
