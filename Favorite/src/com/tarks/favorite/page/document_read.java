@@ -1,3 +1,4 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.page;
 
 import java.io.File;
@@ -5,7 +6,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,11 +14,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
-import android.text.ClipboardManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -26,6 +24,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.webkit.DownloadListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -51,6 +51,7 @@ import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
+import com.tarks.favorite.global.Filedw;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.page.ProfileActivity.List;
@@ -84,6 +85,7 @@ public class document_read extends SherlockActivity {
 	ImageButton send_button;
 	// Button
 	Button previous_comments;
+	WebView webview;
 
 	// ListView
 	ListView listView;
@@ -97,6 +99,7 @@ public class document_read extends SherlockActivity {
 	// ClipBoard
 	CharSequence clipboard_content;
 	int you_doc_status;
+	Context ct;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -109,6 +112,7 @@ public class document_read extends SherlockActivity {
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		ct = this;
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
@@ -193,10 +197,20 @@ try{
 								String.valueOf(ls.getPath()));
 						startActivity(intent);
 						}else{
-							Uri uri = Uri
-									.parse(ls.getPath());
-							Intent it = new Intent(Intent.ACTION_VIEW, uri);
-							startActivity(it);
+							webview = new WebView(ct);
+							webview.setDownloadListener(new DownloadListener(){
+								@Override
+								public void onDownloadStart(String url,
+										String userAgent,
+										String contentDisposition,
+										String mimetype, long contentLength) {
+									Global.toast(getString(R.string.start_downloading));
+									Filedw.startdownload(url, userAgent, contentDisposition, mimetype, contentLength);
+									webview.setDownloadListener(null);
+									webview = null;
+								}
+							});
+							webview.loadUrl(ls.getPath());
 						}
 						}catch (Exception e){}
 
@@ -999,7 +1013,7 @@ try{
 						 String status = array[5];
 						String privacy = array[6];
 						String you_status = array[7];
-						Log.i("user", user_srl);
+					//	Log.i("user", user_srl);
 
 						if (previous_count > 1)
 							moreload = i;
@@ -1017,7 +1031,7 @@ try{
 			
 			//DeleteAct
 			if (msg.what == 6) {
-				Log.i("result", msg.obj.toString());
+				//Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("document_update_succeed")) {
 					Global.toast(getString(R.string.deleted));
@@ -1067,7 +1081,7 @@ try{
 			
 			//Attach list download
 			if (msg.what == 10) {
-				Log.i("result", msg.obj.toString());
+				//Log.i("result", msg.obj.toString());
 				String[] array = msg.obj.toString().split("/LINE/.");
 				
 				
@@ -1113,6 +1127,22 @@ try{
 	}
 	
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+			// setListAdapter();
+     		String status = data.getStringExtra("status");
+			StatusUpdate(status, 8);
+		}
+		
+		if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+			// setListAdapter();
+     		String status = data.getStringExtra("status");
+     		CommentStatusUpdate(String.valueOf(contextmenu_number), status, 9);
+		}
+
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		MenuItem item;
@@ -1132,21 +1162,7 @@ try{
 		return true;
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-			// setListAdapter();
-     		String status = data.getStringExtra("status");
-			StatusUpdate(status, 8);
-		}
-		
-		if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
-			// setListAdapter();
-     		String status = data.getStringExtra("status");
-     		CommentStatusUpdate(String.valueOf(contextmenu_number), status, 9);
-		}
 
-	}
 
 
 	// 빽백키 상단액션바

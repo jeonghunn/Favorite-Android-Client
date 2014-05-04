@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:text="..."
+                android:text="@string/loading"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 

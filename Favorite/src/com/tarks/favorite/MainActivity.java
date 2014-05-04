@@ -1,69 +1,30 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ViewConfiguration;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.actionbarsherlock.app.SherlockActivity;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
-import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
-import com.tarks.favorite.global.Globalvariable;
+import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.start.welcome;
-import com.tarks.favorite.user.db.DbOpenHelper;
 
 public class MainActivity extends SherlockActivity {
 	// 통신 스트링
@@ -293,16 +254,67 @@ public class MainActivity extends SherlockActivity {
 			alert.show();
 
 		} else {
-			// 로딩 화면은 종료하라.
-			Toast.makeText(MainActivity.this,
-					getString(R.string.networkerrord), 0).show();
-			finish();
-			// 이동한다. 메인으로
-			Intent intent = new Intent(MainActivity.this, main.class);
-			startActivity(intent);
+			
+			
+		    	// 로딩 화면은 종료하라.
+				Toast.makeText(MainActivity.this,
+						getString(R.string.networkerrord), 0).show();
+				finish();
+				// 이동한다. 메인으로
+				Intent intent1 = new Intent(MainActivity.this, main.class);
+				startActivity(intent1);
+		    
+		
 		}
 	}
 
+	public void goProfileAct(){
+		Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+		  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
+		startActivity(intent);	
+	}
+	//Share
+	void handleSendText(Intent intent) {
+	    String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+	    if (sharedText != null) {
+	        // 전달 받은 text 를 UI 에 적용한다
+	    	finish();
+	    	goProfileAct();
+	    	Intent intent1 = new Intent(this,
+					document_write.class);
+			intent1.putExtra("page_srl", Global.getSetting("user_srl", "0") );
+			intent1.putExtra("page_name",Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")));
+			intent1.putExtra("doc_contents", sharedText);
+			startActivity(intent1);
+	    }
+	}
+
+	void handleSendImage(Intent intent) {
+	    Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+	    if (imageUri != null) {
+	        //  전달 받은 image 를 사용한다.
+	    	finish();
+	    	goProfileAct();
+	    	Intent intent1 = new Intent(this,
+					document_write.class);
+			intent1.putExtra("page_srl", Global.getSetting("user_srl", "0") );
+			intent1.putExtra("page_name",Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")));
+			intent1.putExtra("image_uri", imageUri);
+			startActivity(intent1);
+	    }
+	}
+
+	void handleSendMultipleImages(Intent intent) {
+	    ArrayList<Uri> imageUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+	    if (imageUris != null) {
+	        // 전달받은 여러개의 image 를 사용한다.
+	    }
+	}
+
+
+	
+	
+	
 	public void StartApp() {
 		try {
 			// Global.toast(infoResult);
@@ -463,12 +475,28 @@ public class MainActivity extends SherlockActivity {
 		
 				if (load == true) {
 					// 로딩 화면은 종료하라.
+					 // 인텐트를 얻어오고, 액션과 MIME 타입을 가져온다
+				    Intent intent = getIntent();
+				    String action = intent.getAction();
+				    String type = intent.getType();
 
+				    if (Intent.ACTION_SEND.equals(action) && type != null) {
+				    	Log.i("Type", type);
+				        if ("text/plain".equals(type)) {
+				            handleSendText(intent); // text 를 처리한다.
+				        } else if (type.startsWith("image/")) {
+				            handleSendImage(intent); // 단일 image 를 처리한다.
+				        }
+				    } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
+				        if (type.startsWith("image/")) {
+				            handleSendMultipleImages(intent); // 여러 image 들을 처리한다.
+				        }
+				    } else {
 					finish();
 					// 이동한다. 메인으로
-					Intent intent = new Intent(MainActivity.this, main.class);
-					startActivity(intent);
-
+					Intent intent1 = new Intent(MainActivity.this, main.class);
+					startActivity(intent1);
+				    }
 				}
 
 			}

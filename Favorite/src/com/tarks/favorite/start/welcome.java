@@ -1,26 +1,12 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.start;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.concurrent.Callable;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,19 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.tarks.favorite.CropManager;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
-import com.tarks.favorite.connect.AsyncHttpTask;
-import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
 
@@ -213,11 +190,11 @@ public class welcome extends SherlockActivity {
 				 String request_result = nf.format(request);
 				//make value
 				Resources res = getResources();
-				String value = String.format(res.getString(R.string.statistics_des), users_result, request_result); 
+		//		String value = String.format(res.getString(R.string.statistics_des), users_result, request_result); 
 			//setText
 				
 				TextView text = (TextView) findViewById(R.id.textView1);
-				text.setText(value);
+	//			text.setText(value);
 				return;
 			}
 			

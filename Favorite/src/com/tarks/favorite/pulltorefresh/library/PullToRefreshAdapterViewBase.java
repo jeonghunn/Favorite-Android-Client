@@ -1,4 +1,5 @@
 /*******************************************************************************
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
  * Copyright 2011, 2012 Chris Banes.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

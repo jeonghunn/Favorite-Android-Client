@@ -1,38 +1,23 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
-
-import java.util.ArrayList;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
-import com.tarks.favorite.page.ProfileInfo;
 import com.tarks.favorite.page.document_write;
-
+import com.tarks.favorite.page.page_create;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v4.view.GravityCompat;
@@ -45,10 +30,12 @@ public class main extends SherlockFragmentActivity {
 	ActionBarDrawerToggle mDrawerToggle;
 	MenuListAdapter mMenuAdapter;
 	String[] title;
+	int fragment_position;
 	//String[] subtitle;
 	int[] icon;
 	Fragment fragment1 = new mainfragment();
 	Fragment fragment2 = new PageNowFragment();
+	Fragment no_favorite = new no_favorite_fragment();
 	//Fragment fragment3 = new Fragment3();
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -56,6 +43,8 @@ public class main extends SherlockFragmentActivity {
 	private Menu optionsMenu;
 	
 	int NowPosition;
+	
+	String user_name;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,9 +56,9 @@ public class main extends SherlockFragmentActivity {
 
 		// Get the Title
 		mTitle = mDrawerTitle = getTitle();
-
+	user_name = Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", ""));
 		// Generate title
-		title = new String[] { Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", "")),getString(R.string.favorites), getString(R.string.pages),
+		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.pages),
 				getString(R.string.setting) };
 
 		// Generate subtitle
@@ -82,6 +71,8 @@ public class main extends SherlockFragmentActivity {
 	
 		// Locate DrawerLayout in drawer_main.xml
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		
+		
 
 		// Locate ListView in drawer_main.xml
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
@@ -132,6 +123,9 @@ public class main extends SherlockFragmentActivity {
 		if (savedInstanceState == null) {
 			selectItem(1);
 		}
+		
+		
+	
 	}
 	
 
@@ -144,8 +138,12 @@ public class main extends SherlockFragmentActivity {
 
 		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
 		
+		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		//menu.findItem(0).setVisible(fragment_position == 1);
+		menu.findItem(1).setVisible(fragment_position == 2);
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
@@ -163,7 +161,7 @@ public class main extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		
 		if (item.getItemId() == android.R.id.home) {
 			Drawer();
 		
@@ -173,6 +171,14 @@ public class main extends SherlockFragmentActivity {
 			Intent intent1 = new Intent(main.this,
 					document_write.class);
 			intent1.putExtra("page_srl",Global.getSetting("user_srl", "0"));
+			intent1.putExtra("page_name",user_name);
+			startActivityForResult(intent1, 1);
+			return true;
+	
+		}
+		
+		if (item.getItemId() == 1) {
+			Intent intent1 = new Intent(main.this, page_create.class);
 			startActivityForResult(intent1, 1);
 			return true;
 	
@@ -197,18 +203,23 @@ public class main extends SherlockFragmentActivity {
 		}
 	}
 
-	private void selectItem(int position) {
-
+	public void selectItem(int position) {
+		fragment_position = position;
+		invalidateOptionsMenu();
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		// Locate Position
 		switch (position) {
 		case 0:
-			ft.remove(fragment1);
+			//ft.remove(fragment1);
 			ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 1:
 			setTitle(getString(R.string.my_favorites));
+			if(!Global.getSetting("favorite", "0").matches("0")){
 			ft.replace(R.id.content_frame, fragment1);
+			}else{
+				ft.replace(R.id.content_frame, no_favorite);
+			}
 		//((mainfragment) fragment1).refreshAct();
 			break;
 		case 2:

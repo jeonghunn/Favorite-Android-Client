@@ -1,3 +1,4 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.fadingactionbar.view;
 
 import com.tarks.favorite.R;

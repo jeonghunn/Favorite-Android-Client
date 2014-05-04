@@ -1,3 +1,4 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 /*
  * Copyright 2013, Edmodo, Inc. 
  *

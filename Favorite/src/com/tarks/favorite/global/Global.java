@@ -1,3 +1,4 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.global;
 
 import android.app.AlertDialog;
@@ -8,50 +9,36 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.telephony.TelephonyManager;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.user.db.DbOpenHelper;
-
 import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.TimeZone;
-
-import net.coobird.thumbnailator.Thumbnails;
-
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
-import com.tarks.favorite.connect.AsyncHttpTask;
-import com.tarks.favorite.connect.ImageDownloader;
 
 public final class Global {
 
@@ -821,7 +808,8 @@ public final class Global {
 			BitmapFactory.Options option = new BitmapFactory.Options();
 			option.inPurgeable = true;
 			
-			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
+			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
+			if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
 			if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*4;
 			if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*8;
 			//  BitmapFactory.decodeStream(in, null, option);
@@ -1100,5 +1088,23 @@ return bm;
 		Email.putExtra(Intent.EXTRA_TEXT, s);
 		cx.startActivity(Intent.createChooser(Email,
 				cx.getString(R.string.choose_email_app)));
+	}
+	
+	public static void FeedbackWrite(Context cx) {
+		// System info
+		String s = "Device info:";
+		s += "\n OS Version: " + System.getProperty("os.version") + "("
+				+ android.os.Build.VERSION.INCREMENTAL + ")";
+		s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
+		s += "\n Device: " + android.os.Build.DEVICE;
+		s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
+				+ android.os.Build.PRODUCT + ")";
+
+		Intent intent1 = new Intent(cx,
+				document_write.class);
+		intent1.putExtra("page_srl", "13");
+		intent1.putExtra("page_name", cx.getString(R.string.send_feedback));
+		intent1.putExtra("doc_contents", s);
+		cx.startActivity(intent1);
 	}
 }

@@ -1,6 +1,6 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.global;
 
-import com.tarks.favorite.ModApplication;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

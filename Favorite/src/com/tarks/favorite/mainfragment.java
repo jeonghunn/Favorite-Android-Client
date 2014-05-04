@@ -1,54 +1,36 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
 
 import java.io.File;
-import java.text.NumberFormat;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
 
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
-import com.tarks.favorite.page.document_read;
-import com.tarks.favorite.page.document_write;
-import com.tarks.favorite.test.phone_number;
-import com.tarks.widget.listviewutil;
-
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
@@ -57,10 +39,6 @@ public class mainfragment extends SherlockFragment implements
 
 	// Profile image local path
 	String local_path;
-
-	private ListView maListViewPerso;
-	private ScrollView sv;
-	
 	View rootView;
 
 	// On déclare la HashMap qui contiendra les informations pour un item
@@ -86,15 +64,21 @@ public class mainfragment extends SherlockFragment implements
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.listview3, container, false);
 
+	load();
+	//	setfavorite();
+
+	
+		return rootView;
+	}
+	
+	public void load(){
+		
 		// + "/member/";
 		try {
 			local_path = getActivity().getCacheDir().toString() + "/member/";
 		} catch (Exception e) {
 		}
 
-	//	setfavorite();
-
-	
 		setListAdapter();
 
 		m_adapter = new ListAdapter(getActivity(), R.layout.profile_list,
@@ -105,7 +89,6 @@ public class mainfragment extends SherlockFragment implements
 
 		// Import ListView
 
-		return rootView;
 	}
 	
 	public void refreshAct(){
@@ -316,7 +299,7 @@ public class mainfragment extends SherlockFragment implements
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
 				
-				Log.i("Result", msg.obj.toString());
+			//	Log.i("Result", msg.obj.toString());
 				try{
 				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
@@ -336,7 +319,7 @@ public class mainfragment extends SherlockFragment implements
 			if (msg.what == 2) {
 				try{
 				String result = msg.obj.toString();
-				Log.i("Result", msg.obj.toString());
+				//Log.i("Result", msg.obj.toString());
 				String[] array = result.split("/LINE/.");
 				for (int i = 0; i < user_content_array.size(); i++) {
 					getMemberInfo(String.valueOf(user_content_array.get(i)));
@@ -383,7 +366,7 @@ public class mainfragment extends SherlockFragment implements
 			
 			if (msg.what == 4) {
 				try {
-					Log.i("Save", msg.arg1 + "");
+					//Log.i("Save", msg.arg1 + "");
 					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path +  "thumbnail/",
 							msg.arg1 + ".jpg");
 
@@ -431,8 +414,16 @@ public class mainfragment extends SherlockFragment implements
 				}
 				if (image != null) {
 
-					image.setImageDrawable(Drawable.createFromPath(local_path
-							+ "thumbnail/" + p.getUserSrl() + ".jpg"));
+					boolean state = Global.CheckFileState(local_path
+							+ "thumbnail/" + p.getUserSrl() + ".jpg");
+
+					if (state) {
+						image.setImageDrawable(Drawable
+								.createFromPath(local_path + "thumbnail/"
+										+ p.getUserSrl() + ".jpg"));
+					} else {
+						image.setImageResource(R.drawable.person);
+					}
 					image.setOnClickListener(new OnClickListener() {
 
 						@Override

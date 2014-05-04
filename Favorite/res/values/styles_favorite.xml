@@ -40,12 +40,17 @@
         <item name="backgroundStacked">@drawable/ab_stacked_solid_favorite</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_favorite</item>
         <item name="progressBarStyle">@style/ProgressBar.Favorite</item>
+         <item name="subtitleTextStyle">@style/ActionBarSubtitleStyle</item>
     </style>
 
     <style name="ActionBar.Transparent.Favorite" parent="@style/Widget.Sherlock.ActionBar">
         <item name="background">@drawable/ab_transparent_favorite</item>
         <item name="progressBarStyle">@style/ProgressBar.Favorite</item>
     </style>
+    
+     <style name="ActionBarSubtitleStyle" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Subtitle">
+    <item name="android:textColor">#FFFFFF</item>
+  </style>
 	
     <style name="PopupMenu.Favorite" parent="@style/Widget.Sherlock.ListPopupWindow">	
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_favorite</item>	

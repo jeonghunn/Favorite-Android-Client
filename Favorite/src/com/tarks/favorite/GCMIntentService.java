@@ -1,9 +1,8 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
 
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,16 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
 import com.google.android.gcm.GCMBaseIntentService;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
@@ -67,7 +59,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	            String value = bundle.getString(key);
 	         
 	         
-	            Log.d("GCMIntentService", "onMessage. key = " + key + ", value = " + value);
+	        //    Log.d("GCMIntentService", "onMessage. key = " + key + ", value = " + value);
 	            
 	            if(key.matches("collapse_key")){
 		            String[] keyarray = value.split("//");

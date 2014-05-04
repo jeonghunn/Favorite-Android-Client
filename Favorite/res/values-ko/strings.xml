@@ -2,7 +2,6 @@
 
     <string name="lang">ko</string>
     <string name="default_country">kr</string>
-    <string name="statistics_des">%1$s명의 사용자가\n%2$s명을 좋아하고 있습니다.\n그 누군가가 당신일지도 모릅니다."</string>
     <string name="menu_settings">설정</string>
     <string name="app_info">어플리케이션 정보..</string>
     <string name="yes">승인</string>
@@ -34,12 +33,12 @@
     <string name="home">홈</string>
     <string name="start">시작하기</string>
     <string name="tarks_account">Tarks 계정</string>
-    <string name="tarks_account_des">Tarks 계정으로 로그인하면 휴대폰이나 기기가 바뀌어도 계정 정보를 잃지 않습니다.</string>
+    <string name="tarks_account_des">로그인하면 휴대폰이나 기기가 바뀌어도 계정 정보를 잃지 않습니다.</string>
     <string name="id">아이디</string>
     <string name="password">비밀번호</string>
     <string name="type_id">아이디를 입력하세요.</string>
     <string name="signing_in">로그인 중입니다...</string>
-    <string name="welcome">환영합니다:)</string>
+    <string name="welcome">환영합니다</string>
     <string name="error_login">아이디 또는 비밀번호를 잘못 입력하셨거나, 없는 계정입니다.</string>
     <string name="error">오류</string>
     <string name="ok">확인</string>
@@ -133,8 +132,20 @@
     <string name="favorites">즐겨찾기</string>
     <string name="photo">사진</string>
     <string name="file">파일</string>
-        <string name="pages">페이지</string>
-          <string name="right_now">실시간</string>
+    <string name="pages">페이지</string>
+    <string name="right_now">실시간</string>
+    <string name="app_settings">어플리케이션 설정</string>
+    <string name="notification_and_sound">소리 및 알림</string>
+    <string name="welcome_des">이곳에는 당신이 즐겨찾기한 페이지가 보이는 공간입니다.\n페이지를 즐겨찾기해 원하는 소식을 받아보세요!!</string>
+    <string name="tour_page">페이지 둘러보기</string>
+    <string name="create_page">페이지 생성</string>
+       <string name="create_page_des">페이지를 생성해보세요.\n\n쉽게 커뮤니티를 만들 수 있고, 당신의 친구들과 함께 사용할 수 있습니다.</string>
+    <string name="start_downloading">다운로드 시작...</string>
+     <string name="loading">로딩 중...</string>
+
+    <!-- Permission -->
+    <string name="permission">권한</string>
+    <string name="write_permission">쓰기 권한</string>
 
     <!-- Attach MEnu -->
     <string name="attach">첨부</string>

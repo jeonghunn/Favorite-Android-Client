@@ -1,17 +1,14 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.page;
 
 import java.io.File;
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,14 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.HeaderViewListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -116,7 +110,7 @@ public class ProfileInfo extends SherlockActivity {
 
 			@Override
 			public void onClick(View v) {
-				Log.i("Clicked", "Profile");
+				//Log.i("Clicked", "Profile");
 				Intent intent = new Intent(ProfileInfo.this,
 						GalleryView.class);
 				intent.putExtra("path",local_path

@@ -1,25 +1,16 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.connect;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 import com.tarks.favorite.ModApplication;
-import com.tarks.favorite.R;
-import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -129,14 +120,14 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			// Check it is null
 			if (paramNames != null && paramValues != null) {
 				for (int i = 0; i < paramNames.size(); i++) {
-					Log.i("value", paramNames.get(i).toString());
+				//	Log.i("value", paramNames.get(i).toString());
 					out.write(twoHyphens + boundary + lineEnd); // 필드 구분자
 																// 시작
 					out.write("Content-Disposition: form-data; name=\""
 							+ paramNames.get(i) + "\"" + lineEnd);
 					out.write(lineEnd);
 					out.write(paramValues.get(i).toString());
-					Log.i("value", paramValues.get(i).toString());
+			//		Log.i("value", paramValues.get(i).toString());
 					out.write(lineEnd);
 
 				}
@@ -150,7 +141,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 					// fis = new FileInputStream(files.get(files.size()-1));
 					mFileInputStream = new FileInputStream(files.get(i)
 							.toString());
-					Log.d("Test", "mFileInputStream  is " + mFileInputStream);
+				//	Log.d("Test", "mFileInputStream  is " + mFileInputStream);
 					dos.writeBytes(twoHyphens + boundary + lineEnd);
 					dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\""
 							+ files.get(i).toString() + "\"" + lineEnd);

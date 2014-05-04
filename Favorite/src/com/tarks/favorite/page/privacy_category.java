@@ -1,20 +1,17 @@
- package com.tarks.favorite.page;
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
+package com.tarks.favorite.page;
 
 import java.util.ArrayList;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -46,7 +43,9 @@ public class privacy_category extends SherlockActivity {
      // Get Intent
      		Intent intent = getIntent();// 인텐트 받아오고
      		String status = intent.getStringExtra("status");
-     		Log.i("Status", status + "dfef");
+     		String title = intent.getStringExtra("title");
+     		
+     		if(title != null) setTitle(title);
      		selected_kind = 1;
      		selected_tag = Integer.parseInt(status);
 

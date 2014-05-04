@@ -1,39 +1,29 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.page;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.CropManager;
 import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-import com.tarks.favorite.start.join;
-import com.tarks.favorite.start.welcome;
 
 public class document_write extends SherlockActivity {
 
@@ -41,7 +31,11 @@ public class document_write extends SherlockActivity {
 
 	String content;
 	String page_srl;
+	String page_name;
 	String status = "0";
+	String doc_contents;
+	
+	EditText content_edittext;
 	
 	int REQ_CODE_PICK_PICTURE = 2;
 	int IMAGE_EDIT = 3;
@@ -70,7 +64,14 @@ public class document_write extends SherlockActivity {
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
+		page_name = intent.getStringExtra("page_name");
+		doc_contents = intent.getStringExtra("doc_contents");
+		content_edittext = (EditText) findViewById(R.id.editText1);
+		mImageUri = intent.getParcelableExtra("image_uri");
 		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
+		if(page_name != null) getSupportActionBar().setSubtitle(page_name);
+		if(doc_contents != null) content_edittext.setText(doc_contents);
+		if(mImageUri != null) confirmImage();
 	}
 
 	public void PostAct() {
@@ -152,6 +153,14 @@ public class document_write extends SherlockActivity {
 
 		}
 	};
+	
+	public void confirmImage(){
+		Intent intent = new Intent(document_write.this, GalleryView.class);
+		intent.putExtra("uri", mImageUri);
+		intent.putExtra("edit", true);
+		startActivityForResult(intent, IMAGE_EDIT);
+
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -194,11 +203,7 @@ file_kind = 1;
 			// ... some code to inflate/create/find appropriate ImageView to
 			// place grabbed image
 			// profile_bitmap = Global.grabImage(mImageUri);
-			Intent intent = new Intent(document_write.this, GalleryView.class);
-			intent.putExtra("uri", mImageUri);
-			intent.putExtra("edit", true);
-			startActivityForResult(intent, IMAGE_EDIT);
-
+			confirmImage();
 		}
 		
 		if (requestCode == FILE_CODE && resultCode == RESULT_OK) {
@@ -209,7 +214,7 @@ file_kind = 1;
 file_kind = 2;
 			file_path = data.getData();
 			 
-			Log.i("test", data.getDataString());
+		//	Log.i("test", data.getDataString());
 		//	Log.i("file", file_path);
 			attach_exist = true;
 			invalidateOptionsMenu();
@@ -240,7 +245,7 @@ file_kind = 2;
 				MenuItem.SHOW_AS_ACTION_NEVER);
 		  subMenu1Item.setIcon(R.drawable.ic_attach);
 	        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.write)
+		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.accept)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
 		return true;
@@ -259,8 +264,8 @@ file_kind = 2;
 				Globalvariable.okbutton = false;
 				Global.ButtonEnable(1);
 				setSupportProgressBarIndeterminateVisibility(true);
-				EditText edit1 = (EditText) findViewById(R.id.editText1);
-				content = edit1.getText().toString();
+			
+				content = content_edittext.getText().toString();
 
 				if (!content.matches("")) {
 					PostAct();

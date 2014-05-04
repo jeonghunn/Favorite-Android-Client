@@ -1,14 +1,9 @@
+//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import com.actionbarsherlock.app.SherlockActivity;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
 
 public class info extends SherlockActivity {
 

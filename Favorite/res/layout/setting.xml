@@ -33,8 +33,19 @@
             custom:min="0" /> -->
     </PreferenceCategory>
 
+      <PreferenceCategory
+        android:key="app_settings"
+        android:title="@string/app_settings" >
+             
+             <Preference
+            android:key="sound"
+            android:selectable="true"
+            android:title="@string/notification_and_sound" />
+             
+          </PreferenceCategory>
+     
     <PreferenceCategory
-        android:key="appinfo"
+        android:key="appinfo" 
         android:title="@string/appinfo" >
 
     <Preference

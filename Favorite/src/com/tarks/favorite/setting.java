@@ -1,15 +1,9 @@
 package com.tarks.favorite;
 
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -75,7 +69,8 @@ public class setting extends SherlockPreferenceActivity {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
-				Global.Feedback(setting.this);
+				Global.FeedbackWrite(setting.this);
+				
 
 				return false;
 			}
