@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<plurals name="like_him">
+        <item quantity="one">한 명이 좋아함</item>
+        <item quantity="other">%s명이 좋아함</item>
+        </plurals>
+        
+   <plurals name="minute">
+        <item quantity="one">일분 전</item>
+        <item quantity="other">%s분 전</item>
+        </plurals>
+        
+              <plurals name="hour">
+        <item quantity="one">한시간 전</item>
+        <item quantity="other">%s시간 전</item>
+        </plurals>
+</resources>

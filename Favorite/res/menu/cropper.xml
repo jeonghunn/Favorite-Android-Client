@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/rotate"
+        android:icon="@drawable/rotate"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/rotate"/>
+    <item
+        android:id="@+id/yes"
+        android:icon="@drawable/accept"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/ok"/>
+
+</menu>

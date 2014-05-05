@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <plurals name="like_him">
+        <item quantity="one">One Person liked</item>
+        <item quantity="other">%s People are liked</item>
+        </plurals>
+        
+          <plurals name="minute">
+        <item quantity="one">One minute ago</item>
+        <item quantity="other">%s minutes ago</item>
+        </plurals>
+        
+              <plurals name="hour">
+        <item quantity="one">One hour ago</item>
+        <item quantity="other">%s hours ago</item>
+        </plurals>
+</resources>

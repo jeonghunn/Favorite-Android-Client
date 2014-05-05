@@ -1,0 +1,47 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phone_number_form"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="등록할 좋아하는 사람의 휴대전화 번호를 입력하세요."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/phone_number_form"
+        android:layout_alignParentRight="true"
+          style="@style/ButtonSimple"
+          android:background="@drawable/black_button"
+        android:layout_alignTop="@+id/phone_number_form"
+        android:src="@drawable/people" />
+
+    <EditText
+        android:id="@+id/phone_number_form"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="23dp"
+        android:layout_toLeftOf="@+id/imageButton1"
+        android:ems="10"
+        android:maxLines="1"
+        android:singleLine="true" />
+
+</RelativeLayout>
+
+</ScrollView>

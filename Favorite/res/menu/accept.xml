@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+     <item android:id="@+id/yes"
+  android:icon="@drawable/accept"
+        android:orderInCategory="100"
+        android:title="@string/ok"
+        android:showAsAction="always|withText" />
+</menu>

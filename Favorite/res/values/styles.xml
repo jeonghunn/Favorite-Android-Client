@@ -1,0 +1,111 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+  <style name="Widget.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+    </style>
+	
+	<style name="Widget.Light" />
+	
+    <style name="Widget.Light.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    </style>
+
+    <style name="Widget.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Light.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
+    
+     <style name="Theme.Favorite.Light.Dialog" parent="@android:style/Theme.Dialog">
+    </style>
+
+    	<drawable name="ab_bg_black">#aa000000</drawable>
+
+    <style name="ButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="ButtonSimple">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+
+    <!-- CARD UI -->
+    <style name="CardText">
+        <item name="android:textSize">@dimen/card_small_text</item>
+        <item name="android:textColor">@color/card_text</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="CardLightText" parent="@style/CardText">
+        <item name="android:textColor">@color/card_light_text</item>
+    </style>
+
+    <style name="CardTitle" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_large_text</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="CardTitleBold" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_large_text</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="StackTitle" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+    </style>
+
+    <style name="Item.Top">
+        <item name="android:background">#eeeeee</item>
+    </style>
+
+    <style name="Item.Sticky">
+        <item name="android:background">#eeeeee</item>
+        <item name="android:layout_height">@dimen/sticky_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+</resources>

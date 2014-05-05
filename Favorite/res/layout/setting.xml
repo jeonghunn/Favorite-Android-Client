@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:key="root" >
+
+    <!-- 설정를 구성하는 Layout XML -->
+    <!-- @author croute -->
+    <!-- @since 2011.02.25 -->
+
+     <PreferenceCategory
+        android:key="setting_activity_pushalarm"
+        android:title="@string/user_settings" >
+
+  <!--       <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="searchmode"
+            android:summary="@string/start_by_search_mode_des"
+            android:title="@string/start_by_search_mode" /> -->
+        
+             <Preference
+            android:key="profile"
+            android:selectable="true"
+            android:summary="@string/profile_settings_des"
+            android:title="@string/profile" />
+
+
+    <!--     <com.tarks.fastengine.SeekBarDialogPreference
+            android:defaultValue="10"
+            android:dialogMessage="@string/recent_max_items_des"
+            android:max="30"
+            android:summary="@string/recent_max_items_des"
+            android:title="@string/recent_max_items"
+            custom:min="0" /> -->
+    </PreferenceCategory>
+
+      <PreferenceCategory
+        android:key="app_settings"
+        android:title="@string/app_settings" >
+             
+             <Preference
+            android:key="sound"
+            android:selectable="true"
+            android:title="@string/notification_and_sound" />
+             
+          </PreferenceCategory>
+     
+    <PreferenceCategory
+        android:key="appinfo" 
+        android:title="@string/appinfo" >
+
+    <Preference
+            android:key="notice"
+            android:selectable="true"
+            android:title="@string/notice" />
+
+ <!--        <Preference
+            android:key="help"
+            android:selectable="true"
+            android:summary="@string/help_des"
+            android:title="@string/help" /> --> -->
+
+        <Preference
+            android:key="feedback"
+            android:selectable="true"
+            android:summary="@string/send_feedback_des"
+            android:title="@string/send_feedback" />
+
+        <Preference
+            android:key="info"
+            android:selectable="true"
+            android:summary="@string/ver"
+            android:title="@string/app_info" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
