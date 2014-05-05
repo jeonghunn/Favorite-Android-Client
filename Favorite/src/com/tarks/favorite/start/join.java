@@ -537,6 +537,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						ArrayList<String> Paramname = new ArrayList<String>();
 						Paramname.add("authcode");
+					//	Paramname.add("admin");
 						Paramname.add("tarks_account");
 						Paramname.add("name_1");
 						Paramname.add("name_2");
@@ -550,6 +551,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 						ArrayList<String> Paramvalue = new ArrayList<String>();
 						Paramvalue.add("642979");
+					//	Paramname.add("1");
 						Paramvalue.add(id_auth.matches("") ? "null" : id_auth );
 						Paramvalue.add(first_name);
 						Paramvalue.add(last_name);
