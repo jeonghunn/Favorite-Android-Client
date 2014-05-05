@@ -59,14 +59,14 @@ public class main extends SherlockFragmentActivity {
 	user_name = Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", ""));
 		// Generate title
 		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.pages),
-				getString(R.string.setting) };
+				 getString(R.string.create_page), getString(R.string.setting), };
 
 		// Generate subtitle
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 		// Generate icon
 		icon = new int[] {R.drawable.drawer_profile , R.drawable.home , R.drawable.ic_list,
-				R.drawable.settings };
+				R.drawable.add ,R.drawable.settings };
 
 	
 		// Locate DrawerLayout in drawer_main.xml
@@ -227,8 +227,12 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 3:
-			Intent intent = new Intent(main.this, setting.class);
+			Intent intent = new Intent(main.this, page_create.class);
 			startActivity(intent);
+			break;
+		case 4:
+			Intent intent1 = new Intent(main.this, setting.class);
+			startActivity(intent1);
 
 			break;
 		}
