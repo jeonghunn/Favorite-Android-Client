@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.1.3724</string>
-    <string name="build">3724</string>
+    <string name="ver">1.0.4.3746</string>
+    <string name="build">3746</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -24,7 +24,6 @@
     <string name="refresh">Refresh</string>
     <string name="community">Community</string>
     <string name="moreview">More</string>
-    <string name="no_info">No Information.</string>
     <string name="contact">Contact</string>
     <string name="request">Request</string>
     <string name="sign_up">Sign up</string>

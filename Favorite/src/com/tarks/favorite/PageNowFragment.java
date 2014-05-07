@@ -404,9 +404,16 @@ public class PageNowFragment extends SherlockFragment implements
 					bt.setText(Global.getValue(p.getDes()));
 				}
 				if (image != null) {
+					boolean state = Global.CheckFileState(local_path
+							+ "thumbnail/" + p.getUserSrl() + ".jpg");
 
-					image.setImageDrawable(Drawable.createFromPath(local_path
-							+ "thumbnail/" + p.getUserSrl() + ".jpg"));
+					if (state) {
+						image.setImageDrawable(Drawable
+								.createFromPath(local_path + "thumbnail/"
+										+ p.getUserSrl() + ".jpg"));
+					} else {
+						image.setImageResource(R.drawable.person);
+					}
 					image.setOnClickListener(new OnClickListener() {
 
 						@Override
