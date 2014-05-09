@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.0.4.3746</string>
-    <string name="build">3746</string>
+    <string name="ver">1.0.5.3756</string>
+    <string name="build">3756</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -171,5 +171,17 @@
     <string name="privacy_relation_des">favorites, and who like you can see.</string>
     <string name="privacy_favorites_des">favorites can see.</string>
     <string name="privacy_justme_des">You, writer and page admin can see.</string>
+    
+    <!-- Write Permission -->
+    <string name="wr_permission_public">Public</string>
+    <string name="wr_permission_users">Users</string>
+    <string name="wr_permission_relation">All Relation</string>
+    <string name="wr_permission_favorites">Favorties</string>
+    <string name="wr_permission_justme">Just Me</string>
+    <string name="wr_permission_public_des">All people are can write.</string>
+    <string name="wr_permission_users_des">Favorite members are can write.</string>
+    <string name="wr_permission_relation_des">Favorites, and who like you can write.</string>
+    <string name="wr_permission_favorites_des">Favorites can write.</string>
+    <string name="wr_permission_justme_des">Just you can write.</string>
 
 </resources>

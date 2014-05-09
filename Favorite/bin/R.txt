@@ -835,7 +835,7 @@ int string choose_email_app 0x7f0a0080
 int string choose_picture 0x7f0a007c
 int string community 0x7f0a0028
 int string contact 0x7f0a002a
-int string contact_pick_error 0x7f0a00bd
+int string contact_pick_error 0x7f0a00c7
 int string contact_pick_error_ 0x7f0a006a
 int string copy 0x7f0a008c
 int string copyright 0x7f0a0018
@@ -851,7 +851,7 @@ int string delete_profile_photo 0x7f0a0078
 int string deleted 0x7f0a0076
 int string drawer_close 0x7f0a0060
 int string drawer_open 0x7f0a005f
-int string during_logout 0x7f0a00bc
+int string during_logout 0x7f0a00c6
 int string edit_profile 0x7f0a0096
 int string enquire 0x7f0a007f
 int string error 0x7f0a003d
@@ -877,8 +877,8 @@ int string loading 0x7f0a00a7
 int string location 0x7f0a0050
 int string location_des 0x7f0a0051
 int string logout 0x7f0a002e
-int string logout_des 0x7f0a00ba
-int string logout_really 0x7f0a00bb
+int string logout_des 0x7f0a00c4
+int string logout_really 0x7f0a00c5
 int string male 0x7f0a006e
 int string member_info_error_des 0x7f0a0085
 int string menu_settings 0x7f0a001e
@@ -893,7 +893,7 @@ int string networkerror 0x7f0a0025
 int string networkerrord 0x7f0a0026
 int string no 0x7f0a0021
 int string no_content 0x7f0a0088
-int string no_info 0x7f0a00b8
+int string no_info 0x7f0a00c2
 int string no_storage_error 0x7f0a007e
 int string noname 0x7f0a0042
 int string not_support_feature 0x7f0a0046
@@ -918,7 +918,7 @@ int string phone_number_content 0x7f0a004d
 int string phone_number_des 0x7f0a004c
 int string photo 0x7f0a009b
 int string pic_size_devide 0x7f0a0016
-int string plan 0x7f0a00b7
+int string plan 0x7f0a00c1
 int string privacy_content 0x7f0a00ac
 int string privacy_favorites 0x7f0a00b0
 int string privacy_favorites_des 0x7f0a00b5
@@ -959,7 +959,7 @@ int string sign_in 0x7f0a0095
 int string sign_up 0x7f0a002c
 int string signing_in 0x7f0a003a
 int string skip 0x7f0a0047
-int string special_user 0x7f0a00b9
+int string special_user 0x7f0a00c3
 int string start 0x7f0a0034
 int string start_downloading 0x7f0a00a6
 int string tarks_account 0x7f0a0035
@@ -978,6 +978,16 @@ int string warning 0x7f0a008d
 int string welcome 0x7f0a003b
 int string welcome_des 0x7f0a00a1
 int string who_favorited_me 0x7f0a005d
+int string wr_permission_favorites 0x7f0a00ba
+int string wr_permission_favorites_des 0x7f0a00bf
+int string wr_permission_justme 0x7f0a00bb
+int string wr_permission_justme_des 0x7f0a00c0
+int string wr_permission_public 0x7f0a00b7
+int string wr_permission_public_des 0x7f0a00bc
+int string wr_permission_relation 0x7f0a00b9
+int string wr_permission_relation_des 0x7f0a00be
+int string wr_permission_users 0x7f0a00b8
+int string wr_permission_users_des 0x7f0a00bd
 int string write 0x7f0a0081
 int string write_permission 0x7f0a00a9
 int string yes 0x7f0a0020

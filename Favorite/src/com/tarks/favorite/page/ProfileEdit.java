@@ -690,6 +690,7 @@ public class ProfileEdit extends SherlockActivity {
 					privacy_category.class);
 			intent2.putExtra("status", write_status);
 			intent2.putExtra("title", getString(R.string.write_permission));
+			intent2.putExtra("kind", "write_permission");
 
 			startActivityForResult(intent2, 10005);
 			return true;
