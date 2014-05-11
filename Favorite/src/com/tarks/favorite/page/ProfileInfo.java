@@ -111,11 +111,13 @@ public class ProfileInfo extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				//Log.i("Clicked", "Profile");
+				if(profile_pic.matches("Y")){
 				Intent intent = new Intent(ProfileInfo.this,
 						GalleryView.class);
 				intent.putExtra("path",local_path
 						+ member_srl + ".jpg");
 				startActivity(intent);
+				}
 			}
 		});
        profile_edit.setOnClickListener(new OnClickListener() {

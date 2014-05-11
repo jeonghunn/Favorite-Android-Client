@@ -10,12 +10,18 @@ import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListe
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
+import com.tarks.favorite.contacts.Contact;
+import com.tarks.favorite.contacts.ContactsArray;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,7 +39,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class PageNowFragment extends SherlockFragment implements
+public class contacts_fragment extends SherlockFragment implements
 		OnItemLongClickListener {
 
 	// Profile image local path
@@ -41,12 +47,8 @@ public class PageNowFragment extends SherlockFragment implements
 	
 	View rootView;
 
-	// On déclare la HashMap qui contiendra les informations pour un item
-	HashMap<String, String> map;
 
-	// Like me or favorite
-	String like_me_result;
-	String favorite_result;
+	String cnumbers = "";
 	
 	//User content
 	ArrayList<String> user_content_array = new ArrayList<String>();
@@ -72,7 +74,17 @@ public class PageNowFragment extends SherlockFragment implements
 
 	//	setfavorite();
 
+	ContactsArray contactsarray;
 	
+	contactsarray = new ContactsArray();
+	
+	ArrayList<Contact> contacts = contactsarray.getContactList(getActivity());
+	
+	   for(int i=0 ; i<contacts.size() ; i++){ 
+		  cnumbers = cnumbers + (i != 0 ?  "//" : "") +  contacts.get(i).getPhonenum().substring(contacts.get(i).getPhonenum().indexOf("-") + 1, contacts.get(i).getPhonenum().length()).replaceAll("-", "");
+       }
+
+
 		setListAdapter();
 
 		m_adapter = new ListAdapter(getActivity(), R.layout.profile_list,
@@ -91,7 +103,7 @@ public class PageNowFragment extends SherlockFragment implements
 		 user_content_array.clear();
 		 user_name_array.clear();
 		m_adapter.clear();
-		loadPages(Global.getSetting("user_srl", "0"));
+		loadPages(cnumbers);
 	}
 
 	public void setListAdapter() {
@@ -136,19 +148,6 @@ public class PageNowFragment extends SherlockFragment implements
 			}
 		});
 
-//		View header = getActivity().getLayoutInflater().inflate(
-//				R.layout.header_alert, null, false);
-//		TextView favorite_tv = (TextView) header
-//				.findViewById(R.id.favorite_textView);
-//		TextView like_me_tv = (TextView) header
-//				.findViewById(R.id.like_me_textView);
-
-//		favorite_tv.setText(favorite_result);
-//		like_me_tv.setText(like_me_result);
-		// profile_edit.setOnClickListener(l)
-	//	listView.addHeaderView(header, null, false);
-	//	listView.addHeaderView(header);
-		
 
 	}
 
@@ -159,40 +158,6 @@ public class PageNowFragment extends SherlockFragment implements
 		return false;
 	}
 
-//	public void setfavorite() {
-//		// 자신의 신분 설정값을 불러옵니다.
-//		SharedPreferences prefs = getActivity().getSharedPreferences("setting",
-//				getActivity().MODE_PRIVATE);
-//		int like_me = Integer.parseInt(prefs.getString("like_me", "0"));
-//		int favorite = Integer.parseInt(prefs.getString("favorite", "0"));
-//
-//		// Import textview
-//		TextView favorite_text = (TextView) rootView
-//				.findViewById(R.id.textView4);
-//		TextView like_me_text = (TextView) rootView
-//				.findViewById(R.id.textView3);
-//
-//		// number cut
-//		NumberFormat nf = NumberFormat.getInstance();
-//		// nf.setMaximumIntegerDigits(5); //최대수 지정
-//		like_me_result = nf.format(like_me);
-//		favorite_result = nf.format(favorite);
-//
-//		if (like_me > 9999)
-//			like_me_result = "9999+";
-//		if (favorite > 9999)
-//			favorite_result = "9999+";
-//
-//		// loadFavorite(Global.getSetting("user_srl", "0"));
-//
-//	}
-
-//	public void setheader() {
-//		like_card header = (new like_card(like_me_result, favorite_result,
-//				false));
-//
-//		mCardView.addCard(header);
-//	}
 
 	public void setList(String user_srl, String title, String des) {
 		List p1 = new List(user_srl, title, des, 0);
@@ -200,27 +165,27 @@ public class PageNowFragment extends SherlockFragment implements
 
 	}
 
-	public void loadPages(String user_srl) {
+	public void loadPages(String phonenumbers) {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
+		Paramname.add("kind");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
-		Paramname.add("start_num");
-		Paramname.add("pages_number");
+		Paramname.add("value");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("642979");
+		Paramvalue.add("phone_numbers");
 		Paramvalue.add(Global.getSetting("user_srl",
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
-		Paramvalue.add("0");
-		Paramvalue.add("30");
+		Paramvalue.add(phonenumbers);
 
 		new AsyncHttpTask(getActivity(), getString(R.string.server_path)
 				+ "member/page_read_app.php", mHandler, Paramname,
-				Paramvalue, null, 1, Integer.parseInt(user_srl));
+				Paramvalue, null, 1,0);
 
 	}
 	
@@ -280,6 +245,36 @@ public class PageNowFragment extends SherlockFragment implements
 				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 4,
 				Integer.parseInt(user_srl));
 	}
+	
+//	public void nocontactsalert(){
+//		// Show Alert
+//		AlertDialog.Builder alert = new AlertDialog.Builder(
+//				getActivity());
+//		alert.setTitle(getString(R.string.error));
+//		alert.setMessage(getString(R.string.server_connection_error_des));
+//		alert.setIcon(R.drawable.ic_launcher);
+//		alert.setPositiveButton(getString(R.string.check_service_status),
+//				new DialogInterface.OnClickListener() {
+//
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//						Uri uri = Uri
+//								.parse("https://sites.google.com/site/tarksservicesstatus/");
+//						Intent it = new Intent(Intent.ACTION_VIEW, uri);
+//						startActivity(it);
+//					}
+//				});
+//		alert.setNegativeButton(getString(R.string.yes),
+//				new DialogInterface.OnClickListener() {
+//
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//					
+//
+//					}
+//				});
+//		alert.show();
+//	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -312,7 +307,7 @@ public class PageNowFragment extends SherlockFragment implements
 			if (msg.what == 2) {
 				try{
 				String result = msg.obj.toString();
-				//Log.i("Result", msg.obj.toString());
+			//	Log.i("Result", msg.obj.toString());
 				String[] array = result.split("/LINE/.");
 				for (int i = 0; i < user_content_array.size(); i++) {
 					getMemberInfo(String.valueOf(user_content_array.get(i)));

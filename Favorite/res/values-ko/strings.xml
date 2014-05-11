@@ -16,7 +16,7 @@
     <string name="community">커뮤니티</string>
     <string name="moreview">더보기</string>
     <string name="no_info">정보가 없습니다.</string>
-    <string name="contact">연락</string>
+    <string name="contacts">연락처</string>
     <string name="request">신청</string>
     <string name="sign_up">등록</string>
     <string name="user_info_des">사용자 정보를 입력하십시오.</string>
@@ -139,10 +139,14 @@
     <string name="welcome_des">이곳에는 당신이 즐겨찾기한 페이지가 보이는 공간입니다.\n페이지를 즐겨찾기해 원하는 소식을 받아보세요!!</string>
     <string name="tour_page">페이지 둘러보기</string>
     <string name="create_page">페이지 생성</string>
-       <string name="create_page_des">페이지를 생성해보세요.\n\n쉽게 커뮤니티를 만들 수 있고, 당신의 친구들과 함께 사용할 수 있습니다.</string>
+    <string name="create_page_des">페이지를 생성해보세요.\n\n쉽게 커뮤니티를 만들 수 있고, 당신의 친구들과 함께 사용할 수 있습니다.</string>
     <string name="start_downloading">다운로드 시작...</string>
-     <string name="loading">로딩 중...</string>
-         <string name="page_name">페이지 이름</string>
+    <string name="loading">로딩 중...</string>
+    <string name="find_pages_by_contacts">내 연락처를 이용하여 페이지 찾기</string>
+    <string name="invite_message">Favorite에 가입해 다양한 커뮤니티에 참여해보세요:) \nhttps://play.google.com/store/apps/details?id=com.tarks.favorite</string>
+    <string name="page_name">페이지 이름</string>
+    <string name="invite">초대</string>
+    <string name="cancel_writing_des">글 작성중입니다. 이 글 작성을 취소하고 나가시겠습니까?</string>
 
     <!-- Permission -->
     <string name="permission">권한</string>
@@ -164,7 +168,7 @@
     <string name="privacy_favorites_des">당신이 즐겨찾기한 사용자만 볼 수 있습니다.</string>
     <string name="privacy_justme_des">당신 및 글 작성자 등 최소한의 사람만 볼 수 있습니다.</string>
 
-     <!-- Write Permission -->
+    <!-- Write Permission -->
     <string name="wr_permission_public">전체</string>
     <string name="wr_permission_users">사용자만</string>
     <string name="wr_permission_relation">모든 관계</string>
@@ -175,4 +179,5 @@
     <string name="wr_permission_relation_des">즐겨찾기에 있거나, 상대방이 날 즐겨찾기에 추가한 경우 쓸 수 있습니다.</string>
     <string name="wr_permission_favorites_des">즐겨찾기에 추가한 경우에만 쓸 수 있습니다.</string>
     <string name="wr_permission_justme_des">당신만 쓸 수 있습니다.</string>
+
 </resources>

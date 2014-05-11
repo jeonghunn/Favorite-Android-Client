@@ -19,6 +19,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
@@ -1107,4 +1108,5 @@ return bm;
 		intent1.putExtra("doc_contents", s);
 		cx.startActivity(intent1);
 	}
+	
 }

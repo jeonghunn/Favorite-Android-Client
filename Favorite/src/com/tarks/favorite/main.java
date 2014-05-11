@@ -35,6 +35,8 @@ public class main extends SherlockFragmentActivity {
 	int[] icon;
 	Fragment fragment1 = new mainfragment();
 	Fragment fragment2 = new PageNowFragment();
+	
+	Fragment contacts_fragment = new contacts_fragment();
 	Fragment no_favorite = new no_favorite_fragment();
 	//Fragment fragment3 = new Fragment3();
 	private CharSequence mDrawerTitle;
@@ -58,15 +60,15 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 	user_name = Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", ""));
 		// Generate title
-		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.pages),
-				 getString(R.string.create_page), getString(R.string.setting), };
+		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.contacts), getString(R.string.pages),
+				 getString(R.string.create_page),  getString(R.string.setting), };
 
 		// Generate subtitle
 		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
 		//		"Subtitle Fragment 3" };
 		// Generate icon
-		icon = new int[] {R.drawable.drawer_profile , R.drawable.home , R.drawable.ic_list,
-				R.drawable.add ,R.drawable.settings };
+		icon = new int[] {R.drawable.drawer_profile , R.drawable.home ,R.drawable.people_white, R.drawable.ic_list,
+				R.drawable.add  ,R.drawable.settings };
 
 	
 		// Locate DrawerLayout in drawer_main.xml
@@ -142,8 +144,13 @@ public class main extends SherlockFragmentActivity {
 		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-		//menu.findItem(0).setVisible(fragment_position == 1);
-		menu.findItem(1).setVisible(fragment_position == 2);
+		
+		menu.add(0, 200, 0, getString(R.string.invite))
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		menu.findItem(0).setVisible(fragment_position == 1 || fragment_position != 2);
+		menu.findItem(1).setVisible(fragment_position == 3);
+		menu.findItem(200).setVisible(fragment_position == 2);
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
@@ -180,6 +187,18 @@ public class main extends SherlockFragmentActivity {
 		if (item.getItemId() == 1) {
 			Intent intent1 = new Intent(main.this, page_create.class);
 			startActivityForResult(intent1, 1);
+			return true;
+	
+		}
+		
+		if (item.getItemId() == 200) {
+			// Send email
+			Intent share = new Intent(Intent.ACTION_SEND);
+			share.setType("text/plain");
+			share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.invite));
+			share.putExtra(Intent.EXTRA_TEXT, getString(R.string.invite_message));
+			startActivity(Intent.createChooser(share,
+					getString(R.string.invite)));
 			return true;
 	
 		}
@@ -223,14 +242,18 @@ public class main extends SherlockFragmentActivity {
 		//((mainfragment) fragment1).refreshAct();
 			break;
 		case 2:
+			setTitle(getString(R.string.contacts));
+			ft.replace(R.id.content_frame, contacts_fragment);
+			break;
+		case 3:
 			setTitle(getString(R.string.right_now));
 			ft.replace(R.id.content_frame, fragment2);
 			break;
-		case 3:
+		case 4:
 			Intent intent = new Intent(main.this, page_create.class);
 			startActivity(intent);
 			break;
-		case 4:
+		case 5:
 			Intent intent1 = new Intent(main.this, setting.class);
 			startActivity(intent1);
 

@@ -4,6 +4,8 @@ package com.tarks.favorite.page;
 import java.io.File;
 import java.util.ArrayList;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.net.Uri;
@@ -128,6 +130,23 @@ public class document_write extends SherlockActivity {
 		Intent intent = new Intent();
 		this.setResult(RESULT_OK, intent);
 		finish();
+	}
+	
+	public void CancelWritingAlert(){
+		// Alert
+		AlertDialog.Builder builder = new AlertDialog.Builder(document_write.this);
+		builder.setMessage(getString(R.string.cancel_writing_des)).setTitle(
+				getString(R.string.warning));
+		builder.setPositiveButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+						
+					}
+				});
+		builder.setNegativeButton(getString(R.string.no),null);
+		builder.show();
 	}
 
 	protected Handler mHandler = new Handler() {
@@ -340,6 +359,17 @@ file_kind = 2;
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+	
+	@Override
+	public void onBackPressed() {
+		
+		if(content_edittext.getText().toString().matches("")){
+			finish();
+		}else{
+			CancelWritingAlert();
+		}
+		
 	}
 
 }
