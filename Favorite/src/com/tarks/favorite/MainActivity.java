@@ -5,7 +5,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +30,12 @@ import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.start.welcome;
 
 public class MainActivity extends SherlockActivity {
+	
+	
+	public static MainActivity INSTANCE = null;
+	
 	// 통신 스트링
+	
 
 	String sVersion; // 웹페이지에서 가져온 버젼이 저장됨
 	String myId, myPWord, myTitle, mySubject, myResult;
@@ -47,6 +55,7 @@ public class MainActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
+		INSTANCE = this;
 		
 		try {
 	        ViewConfiguration config = ViewConfiguration.get(this);
@@ -504,6 +513,19 @@ public class MainActivity extends SherlockActivity {
 			Global.ConnectionError(this);
 		}
 
+	}
+	
+	/**
+	 * Restart the application.
+	 */
+	public void restartApplication() {
+		Intent mStartActivity = new Intent(this, MainActivity.class);
+		PendingIntent intent = PendingIntent.getActivity(this.getBaseContext(),
+				0, mStartActivity, getIntent().getFlags());
+		AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 300, intent);
+		//System.exit(2);
+		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 	protected Handler mHandler = new Handler() {

@@ -36,7 +36,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 	// ModApplication
 	static ModApplication mod = ModApplication.getInstance();
 
-	// Upload
+	// Uploa
 	private static FileInputStream mFileInputStream = null;
 	private static URL connectUrl = null;
 

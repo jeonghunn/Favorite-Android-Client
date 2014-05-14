@@ -159,7 +159,6 @@ public class tarks_account_login extends SherlockActivity {
 			// Check okbutton
 			if (Globalvariable.okbutton == true) {
 				Globalvariable.okbutton = false;
-				Global.ButtonEnable(1);
 				edit1 = (EditText) findViewById(R.id.editText1);
 				s1 = edit1.getText().toString();
 

@@ -11,7 +11,13 @@ import com.tarks.favorite.page.page_create;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -24,6 +30,7 @@ import android.support.v4.view.GravityCompat;
 
 public class main extends SherlockFragmentActivity {
 
+	
 	// Declare Variables
 	DrawerLayout mDrawerLayout;
 	ListView mDrawerList;
@@ -130,6 +137,38 @@ public class main extends SherlockFragmentActivity {
 	
 	}
 	
+	public void ChangeUserAlert(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				main.this);
+		builder.setMessage(getString(R.string.change_user_default_des)).setTitle(
+				getString(R.string.change_user));
+		builder.setPositiveButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+					ChangeUserAct();
+					}
+				});
+		builder.setNegativeButton(getString(R.string.no), null);
+		builder.show();
+	
+	}
+	
+	public void ChangeUserAct(){
+		// Setting Editor
+					SharedPreferences edit = getSharedPreferences("setting",
+							MODE_PRIVATE);
+					SharedPreferences.Editor editor = edit.edit();
+					editor.putString("default_user", "Y");
+					editor.putString("user_srl", Global.getSetting("default_user_srl", "0"));
+					editor.putString("user_srl_auth", Global.getSetting("default_user_srl_auth", "null"));
+
+					//Commit
+					editor.commit();
+					
+					MainActivity.INSTANCE.restartApplication();		
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,12 +183,20 @@ public class main extends SherlockFragmentActivity {
 		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
+		menu.add(0, 100, 0, getString(R.string.change_user))
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
 		
 		menu.add(0, 200, 0, getString(R.string.invite))
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		menu.findItem(0).setVisible(fragment_position == 1 || fragment_position != 2);
 		menu.findItem(1).setVisible(fragment_position == 3);
+		
+		//User change
+		menu.findItem(100).setVisible(Global.getSetting("default_user", "Y").matches("N"));
+		
+		//Invite
 		menu.findItem(200).setVisible(fragment_position == 2);
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
@@ -189,6 +236,13 @@ public class main extends SherlockFragmentActivity {
 			startActivityForResult(intent1, 1);
 			return true;
 	
+		}
+		
+		
+		if (item.getItemId() == 100) {
+			try{
+			ChangeUserAlert();
+			}catch (Exception e){ System.exit(0);}
 		}
 		
 		if (item.getItemId() == 200) {
@@ -266,6 +320,17 @@ public class main extends SherlockFragmentActivity {
 		//setTitle(title[position]);
 		// Close drawer
 		mDrawerLayout.closeDrawer(mDrawerList);
+	}
+	
+	/**
+	 * Restart the application.
+	 */
+	public void restartApplication() {
+		PendingIntent intent = PendingIntent.getActivity(this.getBaseContext(),
+				0, new Intent(getIntent()), getIntent().getFlags());
+		AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 2000, intent);
+		System.exit(2);
 	}
 
 	@Override

@@ -1,7 +1,9 @@
 //This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.global;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -99,6 +101,7 @@ public final class Global {
 		return regId;
 
 	}
+	
 
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");
@@ -808,7 +811,7 @@ public final class Global {
 		  InputStream in = cr.openInputStream(image_uri);
 			BitmapFactory.Options option = new BitmapFactory.Options();
 			option.inPurgeable = true;
-			
+			option.inDither = true;
 			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
 			if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
 			if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*4;

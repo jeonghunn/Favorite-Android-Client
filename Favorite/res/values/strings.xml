@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.1.0.3829</string>
-    <string name="build">3829</string>
+    <string name="ver">1.2.0.3886</string>
+    <string name="build">3886</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -155,6 +155,9 @@
     <string name="invite">Invite</string>
     <string name="invite_message">Join Favorite to find your communities. :)\nhttps://play.google.com/store/apps/details?id=com.tarks.favorite</string>
     <string name="cancel_writing_des">You are writing now. Are you sure you want to cancel this post?</string>
+    <string name="change_user">Change User</string>
+    <string name="change_user_des">You will write posts and comments by this page. \nRestart to Continue.</string>
+    <string name="change_user_default_des">Go back to your default user. \nRestart to Continue.</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>

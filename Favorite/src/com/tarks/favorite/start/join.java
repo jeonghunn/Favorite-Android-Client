@@ -495,7 +495,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			if (Globalvariable.okbutton == true) {
 				// Set ok button disable
 				Globalvariable.okbutton = false;
-				Global.ButtonEnable(1);
 
 				// import EditText
 				EditText edit1 = (EditText) findViewById(R.id.editText1);

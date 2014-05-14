@@ -1683,14 +1683,17 @@ containing a value of this type.
         /**  Attach Menu 
  Attach MEnu 
          */
-        public static final int attach=0x7f0a00ae;
-        public static final int attach_file=0x7f0a00af;
+        public static final int attach=0x7f0a00b1;
+        public static final int attach_file=0x7f0a00b2;
         public static final int birthday=0x7f0a004e;
         public static final int birthday_des=0x7f0a004f;
         public static final int blank_error=0x7f0a006b;
         public static final int build=0x7f0a0015;
         public static final int camera=0x7f0a007d;
         public static final int cancel_writing_des=0x7f0a00ab;
+        public static final int change_user=0x7f0a00ac;
+        public static final int change_user_default_des=0x7f0a00ae;
+        public static final int change_user_des=0x7f0a00ad;
         public static final int changed=0x7f0a0098;
         public static final int check_how_many_people_are_favorite_me=0x7f0a005e;
         public static final int check_result=0x7f0a005a;
@@ -1702,7 +1705,7 @@ containing a value of this type.
         public static final int choose_email_app=0x7f0a0080;
         public static final int choose_picture=0x7f0a007c;
         public static final int community=0x7f0a0028;
-        public static final int contact_pick_error=0x7f0a00cb;
+        public static final int contact_pick_error=0x7f0a00ce;
         public static final int contact_pick_error_=0x7f0a006a;
         public static final int contacts=0x7f0a002a;
         public static final int copy=0x7f0a008c;
@@ -1719,7 +1722,7 @@ containing a value of this type.
         public static final int deleted=0x7f0a0076;
         public static final int drawer_close=0x7f0a0060;
         public static final int drawer_open=0x7f0a005f;
-        public static final int during_logout=0x7f0a00ca;
+        public static final int during_logout=0x7f0a00cd;
         public static final int edit_profile=0x7f0a0096;
         public static final int enquire=0x7f0a007f;
         public static final int error=0x7f0a003d;
@@ -1748,8 +1751,8 @@ containing a value of this type.
         public static final int location=0x7f0a0050;
         public static final int location_des=0x7f0a0051;
         public static final int logout=0x7f0a002e;
-        public static final int logout_des=0x7f0a00c8;
-        public static final int logout_really=0x7f0a00c9;
+        public static final int logout_des=0x7f0a00cb;
+        public static final int logout_really=0x7f0a00cc;
         public static final int male=0x7f0a006e;
         public static final int member_info_error_des=0x7f0a0085;
         public static final int menu_settings=0x7f0a001e;
@@ -1764,7 +1767,7 @@ containing a value of this type.
         public static final int networkerrord=0x7f0a0026;
         public static final int no=0x7f0a0021;
         public static final int no_content=0x7f0a0088;
-        public static final int no_info=0x7f0a00c6;
+        public static final int no_info=0x7f0a00c9;
         public static final int no_storage_error=0x7f0a007e;
         public static final int noname=0x7f0a0042;
         public static final int not_support_feature=0x7f0a0046;
@@ -1785,28 +1788,28 @@ containing a value of this type.
         /**  Permission 
  Permission 
          */
-        public static final int permission=0x7f0a00ac;
+        public static final int permission=0x7f0a00af;
         public static final int permission_denied=0x7f0a0044;
         public static final int phone_number=0x7f0a0040;
         public static final int phone_number_content=0x7f0a004d;
         public static final int phone_number_des=0x7f0a004c;
         public static final int photo=0x7f0a009b;
         public static final int pic_size_devide=0x7f0a0016;
-        public static final int plan=0x7f0a00c5;
+        public static final int plan=0x7f0a00c8;
         /**  Privacy 
  Privacy 
          */
-        public static final int privacy_content=0x7f0a00b0;
-        public static final int privacy_favorites=0x7f0a00b4;
-        public static final int privacy_favorites_des=0x7f0a00b9;
-        public static final int privacy_justme=0x7f0a00b5;
-        public static final int privacy_justme_des=0x7f0a00ba;
-        public static final int privacy_public=0x7f0a00b1;
-        public static final int privacy_public_des=0x7f0a00b6;
-        public static final int privacy_relation=0x7f0a00b3;
-        public static final int privacy_relation_des=0x7f0a00b8;
-        public static final int privacy_users=0x7f0a00b2;
-        public static final int privacy_users_des=0x7f0a00b7;
+        public static final int privacy_content=0x7f0a00b3;
+        public static final int privacy_favorites=0x7f0a00b7;
+        public static final int privacy_favorites_des=0x7f0a00bc;
+        public static final int privacy_justme=0x7f0a00b8;
+        public static final int privacy_justme_des=0x7f0a00bd;
+        public static final int privacy_public=0x7f0a00b4;
+        public static final int privacy_public_des=0x7f0a00b9;
+        public static final int privacy_relation=0x7f0a00b6;
+        public static final int privacy_relation_des=0x7f0a00bb;
+        public static final int privacy_users=0x7f0a00b5;
+        public static final int privacy_users_des=0x7f0a00ba;
         public static final int profile=0x7f0a0079;
         public static final int profile_settings_des=0x7f0a007a;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
@@ -1838,7 +1841,7 @@ containing a value of this type.
         public static final int sign_up=0x7f0a002c;
         public static final int signing_in=0x7f0a003a;
         public static final int skip=0x7f0a0047;
-        public static final int special_user=0x7f0a00c7;
+        public static final int special_user=0x7f0a00ca;
         public static final int start=0x7f0a0034;
         public static final int start_downloading=0x7f0a00a6;
         public static final int tarks_account=0x7f0a0035;
@@ -1857,21 +1860,21 @@ containing a value of this type.
         public static final int welcome=0x7f0a003b;
         public static final int welcome_des=0x7f0a00a1;
         public static final int who_favorited_me=0x7f0a005d;
-        public static final int wr_permission_favorites=0x7f0a00be;
-        public static final int wr_permission_favorites_des=0x7f0a00c3;
-        public static final int wr_permission_justme=0x7f0a00bf;
-        public static final int wr_permission_justme_des=0x7f0a00c4;
+        public static final int wr_permission_favorites=0x7f0a00c1;
+        public static final int wr_permission_favorites_des=0x7f0a00c6;
+        public static final int wr_permission_justme=0x7f0a00c2;
+        public static final int wr_permission_justme_des=0x7f0a00c7;
         /**  Write Permission 
  Write Permission 
          */
-        public static final int wr_permission_public=0x7f0a00bb;
-        public static final int wr_permission_public_des=0x7f0a00c0;
-        public static final int wr_permission_relation=0x7f0a00bd;
-        public static final int wr_permission_relation_des=0x7f0a00c2;
-        public static final int wr_permission_users=0x7f0a00bc;
-        public static final int wr_permission_users_des=0x7f0a00c1;
+        public static final int wr_permission_public=0x7f0a00be;
+        public static final int wr_permission_public_des=0x7f0a00c3;
+        public static final int wr_permission_relation=0x7f0a00c0;
+        public static final int wr_permission_relation_des=0x7f0a00c5;
+        public static final int wr_permission_users=0x7f0a00bf;
+        public static final int wr_permission_users_des=0x7f0a00c4;
         public static final int write=0x7f0a0081;
-        public static final int write_permission=0x7f0a00ad;
+        public static final int write_permission=0x7f0a00b0;
         public static final int yes=0x7f0a0020;
     }
     public static final class style {
