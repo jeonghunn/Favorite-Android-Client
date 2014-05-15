@@ -101,7 +101,6 @@ public final class Global {
 		return regId;
 
 	}
-	
 
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");

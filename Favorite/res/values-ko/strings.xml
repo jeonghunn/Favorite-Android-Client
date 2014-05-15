@@ -150,6 +150,7 @@
     <string name="change_user">사용자 전환</string>
     <string name="change_user_des">이 페이지를 기준으로 글을 작성하고, 댓글을 달게 됩니다. \n계속하면 어플리케이션이 재시작 됩니다.</string>
     <string name="change_user_default_des">기존 계정으로 돌아갑니다. \n계속하면 어플리케이션이 재시작 됩니다.</string>
+      <string name="popularity">인기</string>
 
     <!-- Permission -->
     <string name="permission">권한</string>

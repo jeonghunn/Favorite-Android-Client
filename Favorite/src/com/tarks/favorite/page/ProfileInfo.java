@@ -226,9 +226,8 @@ setProfile(profile_pic);
 		
 		self_profile = your_status == 4;
 		setProfileList(Integer.parseInt(like_me), profile_pic);
-
 		if(!tarks_account.matches("null")) AddList(getString(R.string.tarks_account) , tarks_account);
-		if(!gender.matches("null")) AddList(getString(R.string.gender) , gender.matches("1") ? getString(R.string.male) : getString(R.string.female));
+		if(!gender.matches("0")) AddList(getString(R.string.gender) , gender.matches("1") ? getString(R.string.male) : getString(R.string.female));
 		if(!birthday.matches("null") && !birthday.matches("0")) AddList(getString(R.string.birthday) , birthday);
 		if(!join_day.matches("null")) AddList(getString(R.string.join) , Global.getDate(join_day));
 		if(!phone_number.matches("null")) AddList(getString(R.string.phone_number) , "+" + country_code + phone_number);

@@ -41,7 +41,7 @@ public class main extends SherlockFragmentActivity {
 	//String[] subtitle;
 	int[] icon;
 	Fragment fragment1 = new mainfragment();
-	Fragment fragment2 = new PageNowFragment();
+	Fragment fragment2 = new PagePopularFragment();
 	
 	Fragment contacts_fragment = new contacts_fragment();
 	Fragment no_favorite = new no_favorite_fragment();
@@ -300,7 +300,7 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, contacts_fragment);
 			break;
 		case 3:
-			setTitle(getString(R.string.right_now));
+			setTitle(getString(R.string.popularity));
 			ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 4:
