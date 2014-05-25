@@ -151,7 +151,9 @@
     <string name="change_user_des">이 페이지를 기준으로 글을 작성하고, 댓글을 달게 됩니다. \n계속하면 어플리케이션이 재시작 됩니다.</string>
     <string name="change_user_default_des">기존 계정으로 돌아갑니다. \n계속하면 어플리케이션이 재시작 됩니다.</string>
       <string name="popularity">인기</string>
-
+           <string name="no_contact_des">연락처에 Favorite 사용자가 없습니다. 친구들을 초대해보세요!</string>
+   <string name="page_delete_des">페이지를 삭제합니다. 계속하면 이 페이지는 삭제되며 이 페이지에 작성되었던 글과 댓글 등 모든 자료는 삭제되며 복구할 수 없습니다. 계속하시겠습니까?</string>
+           
     <!-- Permission -->
     <string name="permission">권한</string>
     <string name="write_permission">쓰기 권한</string>

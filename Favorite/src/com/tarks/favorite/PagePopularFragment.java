@@ -257,6 +257,7 @@ public class PagePopularFragment extends SherlockFragment implements
 					}
 				// Global.dumpArray(array);
 				loadUsers(user_content_array);
+				
 				}catch(Exception e){
 					
 				}
@@ -277,6 +278,7 @@ public class PagePopularFragment extends SherlockFragment implements
 				} catch (Exception e){
 					listView.onRefreshComplete();
 				}
+			
 			}
 			
 			if (msg.what == 3) {

@@ -86,6 +86,7 @@ public class ProfileActivity extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//	      getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고

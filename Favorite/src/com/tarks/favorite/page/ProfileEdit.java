@@ -5,7 +5,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -325,7 +327,7 @@ public class ProfileEdit extends SherlockActivity {
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "member/profile_update_app.php", mHandler, Paramname,
-				Paramvalue, files, 2, 0);
+				Paramvalue, files, 2, Integer.valueOf(value));
 
 	}
 
@@ -375,6 +377,25 @@ public class ProfileEdit extends SherlockActivity {
 		Global.Infoalert(this, getString(R.string.error),
 				getString(R.string.member_info_error_des),
 				getString(R.string.yes));
+	}
+	
+	public void deleteAlert(){
+		// Show Alert
+		AlertDialog.Builder alert = new AlertDialog.Builder(
+				this);
+		alert.setTitle(getString(R.string.warning));
+		alert.setMessage(getString(R.string.page_delete_des));
+		alert.setPositiveButton(getString(R.string.delete),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+
+						ProfileInfoUpdate("status", "5");
+					}
+				});
+		alert.setNegativeButton(getString(R.string.no), null);
+		alert.show();
+		
 	}
 
 	@Override
@@ -623,7 +644,15 @@ public class ProfileEdit extends SherlockActivity {
 			}
 
 			if (msg.what == 2) {
-				Global.toast(getString(R.string.changed));
+				if(msg.arg1 != 5){
+					Global.toast(getString(R.string.changed));
+				}else{
+					Global.toast(getString(R.string.deleted));
+					Intent intent = new Intent();
+					setResult(RESULT_OK, intent);
+					finish();
+				}
+				
 				refreshAct();
 			}
 
@@ -665,6 +694,9 @@ public class ProfileEdit extends SherlockActivity {
 
 		MenuItem subMenu1Item = subMenu1.getItem();
 		subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
+	if(!Global.getSetting("user_srl", "0").matches(member_srl))	menu.add(0, 1, 0, getString(R.string.delete))
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
@@ -678,6 +710,9 @@ public class ProfileEdit extends SherlockActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			onBackPressed();
+			return true;
+		case 1:
+		deleteAlert();
 			return true;
 		case 1001:
 			Intent intent1 = new Intent(ProfileEdit.this,

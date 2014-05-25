@@ -84,7 +84,6 @@ public class contacts_fragment extends SherlockFragment implements
 		  cnumbers = cnumbers + (i != 0 ?  "//" : "") +  contacts.get(i).getPhonenum().substring(contacts.get(i).getPhonenum().indexOf("-") + 1, contacts.get(i).getPhonenum().length()).replaceAll("-", "");
        }
 
-
 		setListAdapter();
 
 		m_adapter = new ListAdapter(getActivity(), R.layout.profile_list,
@@ -246,35 +245,28 @@ public class contacts_fragment extends SherlockFragment implements
 				Integer.parseInt(user_srl));
 	}
 	
-//	public void nocontactsalert(){
-//		// Show Alert
-//		AlertDialog.Builder alert = new AlertDialog.Builder(
-//				getActivity());
-//		alert.setTitle(getString(R.string.error));
-//		alert.setMessage(getString(R.string.server_connection_error_des));
-//		alert.setIcon(R.drawable.ic_launcher);
-//		alert.setPositiveButton(getString(R.string.check_service_status),
-//				new DialogInterface.OnClickListener() {
-//
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//						Uri uri = Uri
-//								.parse("https://sites.google.com/site/tarksservicesstatus/");
-//						Intent it = new Intent(Intent.ACTION_VIEW, uri);
-//						startActivity(it);
-//					}
-//				});
-//		alert.setNegativeButton(getString(R.string.yes),
-//				new DialogInterface.OnClickListener() {
-//
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//					
-//
-//					}
-//				});
-//		alert.show();
-//	}
+	public void NoContactAlert(){
+		// Show Alert
+		AlertDialog.Builder alert = new AlertDialog.Builder(
+				getActivity());
+		alert.setTitle(getString(R.string.notification));
+		alert.setMessage(getString(R.string.no_contact_des));
+		alert.setPositiveButton(getString(R.string.invite),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+
+						Intent share = new Intent(Intent.ACTION_SEND);
+						share.setType("text/plain");
+						share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.invite));
+						share.putExtra(Intent.EXTRA_TEXT, getString(R.string.invite_message));
+						startActivity(Intent.createChooser(share,
+								getString(R.string.invite)));
+					}
+				});
+		alert.setNegativeButton(getString(R.string.no), null);
+		alert.show();
+	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -288,9 +280,11 @@ public class contacts_fragment extends SherlockFragment implements
 				String result = msg.obj.toString();
 				
 				//Log.i("Result", msg.obj.toString());
+				if(!result.matches("null")){
 				try{
 				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
+				 Global.dumpArray(profile);
 					for (int i = 0; i < profile.length; i++) {
 						 String[] users = profile[i].split("/LINE/.");
 						user_content_array.add(users[0]);
@@ -298,8 +292,13 @@ public class contacts_fragment extends SherlockFragment implements
 					}
 				// Global.dumpArray(array);
 				loadUsers(user_content_array);
+				//Log.i("listview", listView.getChildCount() + "dfdfdfdf");
 				}catch(Exception e){
 					
+				}
+				}else{
+					listView.onRefreshComplete();
+					NoContactAlert();
 				}
               
 			}
@@ -307,7 +306,7 @@ public class contacts_fragment extends SherlockFragment implements
 			if (msg.what == 2) {
 				try{
 				String result = msg.obj.toString();
-			//	Log.i("Result", msg.obj.toString());
+				//Log.i("Result", msg.obj.toString());
 				String[] array = result.split("/LINE/.");
 				for (int i = 0; i < user_content_array.size(); i++) {
 					getMemberInfo(String.valueOf(user_content_array.get(i)));

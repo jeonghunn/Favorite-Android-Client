@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.3.0.3916</string>
-    <string name="build">3916</string>
+    <string name="ver">1.4.0.3971</string>
+    <string name="build">3971</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -158,7 +158,9 @@
     <string name="change_user">Change User</string>
     <string name="change_user_des">You will write posts and comments by this page. \nRestart to Continue.</string>
     <string name="change_user_default_des">Go back to your default user. \nRestart to Continue.</string>
-      <string name="popularity">Popularity</string>
+    <string name="popularity">Popularity</string>
+    <string name="no_contact_des">No users by contacts. You can invite your friends.</string>
+    <string name="page_delete_des">Delete this page. If continue this, page will be delete with posts and comments can not restore. Continue?</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>
@@ -185,7 +187,6 @@
     <string name="wr_permission_users">Users</string>
     <string name="wr_permission_relation">All Relation</string>
     <string name="wr_permission_favorites">Favorties</string>
-    
     <string name="wr_permission_justme">Just Me</string>
     <string name="wr_permission_public_des">All people are can write.</string>
     <string name="wr_permission_users_des">Favorite members are can write.</string>

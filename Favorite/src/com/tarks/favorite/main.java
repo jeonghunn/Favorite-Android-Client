@@ -246,7 +246,6 @@ public class main extends SherlockFragmentActivity {
 		}
 		
 		if (item.getItemId() == 200) {
-			// Send email
 			Intent share = new Intent(Intent.ACTION_SEND);
 			share.setType("text/plain");
 			share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.invite));
