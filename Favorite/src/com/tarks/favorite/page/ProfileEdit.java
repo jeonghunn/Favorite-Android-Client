@@ -170,7 +170,7 @@ public class ProfileEdit extends SherlockActivity {
 		// Phone Number : 4
 
 		AddList(getString(R.string.tarks_account), tarks_account, 1);
-		AddList(getString(R.string.gender),
+		if(!gender.matches("0")) AddList(getString(R.string.gender),
 				gender.matches("1") ? getString(R.string.male)
 						: getString(R.string.female), 2);
 		AddList(getString(R.string.birthday), birthday, 3);

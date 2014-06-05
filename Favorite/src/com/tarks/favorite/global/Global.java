@@ -811,8 +811,11 @@ public final class Global {
 			BitmapFactory.Options option = new BitmapFactory.Options();
 			option.inPurgeable = true;
 			option.inDither = true;
-			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
-			if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
+if(android.os.Build.VERSION.SDK_INT < 14){
+	if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
+	if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
+}
+			
 			if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*4;
 			if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*8;
 			//  BitmapFactory.decodeStream(in, null, option);
@@ -1078,7 +1081,7 @@ return bm;
 		String s = "Device info:";
 		s += "\n OS Version: " + System.getProperty("os.version") + "("
 				+ android.os.Build.VERSION.INCREMENTAL + ")";
-		s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
+		s += "\n OS API Level: " + android.os.Build.VERSION.SDK_INT;
 		s += "\n Device: " + android.os.Build.DEVICE;
 		s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
 				+ android.os.Build.PRODUCT + ")";
@@ -1098,7 +1101,7 @@ return bm;
 		String s = "Device info:";
 		s += "\n OS Version: " + System.getProperty("os.version") + "("
 				+ android.os.Build.VERSION.INCREMENTAL + ")";
-		s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
+		s += "\n OS API Level: " + android.os.Build.VERSION.SDK_INT;
 		s += "\n Device: " + android.os.Build.DEVICE;
 		s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
 				+ android.os.Build.PRODUCT + ")";
