@@ -4,15 +4,16 @@ package com.tarks.favorite;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
-
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -34,8 +36,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class mainfragment extends SherlockFragment implements
-		OnItemLongClickListener {
+public class mainfragment extends SherlockFragment  {
 
 	// Profile image local path
 	String local_path;
@@ -113,6 +114,8 @@ public class mainfragment extends SherlockFragment implements
 				
 			}
 		});
+
+
 //		listView = (ListView) rootView.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -140,29 +143,12 @@ public class mainfragment extends SherlockFragment implements
 
 			}
 		});
-
-//		View header = getActivity().getLayoutInflater().inflate(
-//				R.layout.header_alert, null, false);
-//		TextView favorite_tv = (TextView) header
-//				.findViewById(R.id.favorite_textView);
-//		TextView like_me_tv = (TextView) header
-//				.findViewById(R.id.like_me_textView);
-
-//		favorite_tv.setText(favorite_result);
-//		like_me_tv.setText(like_me_result);
-		// profile_edit.setOnClickListener(l)
-	//	listView.addHeaderView(header, null, false);
-	//	listView.addHeaderView(header);
+		
 		
 
+
 	}
 
-	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 //	public void setfavorite() {
 //		// 자신의 신분 설정값을 불러옵니다.
@@ -217,7 +203,7 @@ public class mainfragment extends SherlockFragment implements
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("642979");
-		Paramvalue.add("2");
+		Paramvalue.add("favorite_read");
 		Paramvalue.add("3");
 		Paramvalue.add(Global.getSetting("user_srl",
 				Global.getSetting("user_srl", "0")));
@@ -226,7 +212,7 @@ public class mainfragment extends SherlockFragment implements
 		Paramvalue.add(user_srl);
 
 		new AsyncHttpTask(getActivity(), getString(R.string.server_path)
-				+ "favorite/favorite_app_read.php", mHandler, Paramname,
+				+ "favorite/favorite_app.php", mHandler, Paramname,
 				Paramvalue, null, 1, Integer.parseInt(user_srl));
 
 	}
@@ -488,6 +474,8 @@ public class mainfragment extends SherlockFragment implements
         super.onResume();
         if(m_adapter.isEmpty()) refreshAct();
     }
+
+	
  
 
 }

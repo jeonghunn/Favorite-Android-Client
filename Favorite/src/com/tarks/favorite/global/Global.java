@@ -161,13 +161,10 @@ public final class Global {
 		}
 	}
 
-	
 	public static String[] NameBuilder(String name_1, String name_2) {
 		return NameBuilder(mod.getString(R.string.lang), name_1, name_2);
 	}
 
-	
-	
 	// Make name
 	public static String[] NameBuilder(String lang, String name_1, String name_2) {
 		String[] name = new String[2];
@@ -347,27 +344,29 @@ public final class Global {
 			}
 		}
 	}
-	
-	public static String arraylistToString(ArrayList <String> array,  String delimiter){
-	//	String str;
-		 StringBuilder sb = new StringBuilder();
-		  for(String str : array){
-	            sb.append(str).append(delimiter); //separating contents using semi colon
-	        }
+
+	public static String arraylistToString(ArrayList<String> array,
+			String delimiter) {
+		// String str;
+		StringBuilder sb = new StringBuilder();
+		for (String str : array) {
+			sb.append(str).append(delimiter); // separating contents using semi
+												// colon
+		}
 		return sb.toString();
-		
+
 	}
-	
+
 	public static String arrayToString(String[] array, String delimiter) {
-	    StringBuilder arTostr = new StringBuilder();
-	    if (array.length > 0) {
-	        arTostr.append(array[0]);
-	        for (int i=1; i<array.length; i++) {
-	            arTostr.append(delimiter);
-	            arTostr.append(array[i]);
-	        }
-	    }
-	    return arTostr.toString();
+		StringBuilder arTostr = new StringBuilder();
+		if (array.length > 0) {
+			arTostr.append(array[0]);
+			for (int i = 1; i < array.length; i++) {
+				arTostr.append(delimiter);
+				arTostr.append(array[i]);
+			}
+		}
+		return arTostr.toString();
 	}
 
 	// Bitmap to uri
@@ -382,7 +381,8 @@ public final class Global {
 	public static boolean UpdateMemberFileCache(String user_srl,
 			String new_update, String profile_pic) {
 		String local_path = mod.getCacheDir().toString() + "/member/";
-		if (Global.UpdateFileCache(new_update, Global.getUser(user_srl, "profile_update"),
+		if (Global.UpdateFileCache(new_update,
+				Global.getUser(user_srl, "profile_update"),
 				mod.getString(R.string.server_path) + "files/profile/"
 						+ user_srl + ".jpg", local_path, user_srl + ".jpg")
 				&& profile_pic.matches("Y"))
@@ -628,203 +628,217 @@ public final class Global {
 		mediaScanIntent.setData(contentUri);
 		mod.sendBroadcast(mediaScanIntent);
 	}
-	
-	 public static void recycleBitmap(ImageView iv) {
-		 try{
-	        Drawable d = iv.getDrawable();
-	        if (d instanceof BitmapDrawable) {
-	            Bitmap b = ((BitmapDrawable)d).getBitmap();
-	            b.recycle();
-	        } // 현재로서는 BitmapDrawable 이외의 drawable 들에 대한 직접적인 메모리 해제는 불가능하다.
-	         
-	        d.setCallback(null);
-		 }catch(Exception e){}
-	    }
-	
-//	 public static String getRealPathURI(Uri uriThatYouCurrentlyHave){
-//		// Will return "image:x*"
-//		 String wholeID = DocumentsContract.getDocumentId(uriThatYouCurrentlyHave);
-//
-//		 // Split at colon, use second item in the array
-//		 String id = wholeID.split()[1];
-//
-//		 String[] column = { MediaStore.Images.Media.DATA };     
-//
-//		 // where id is equal to             
-//		 String sel = MediaStore.Images.Media._ID + "=?";
-//
-//		 Cursor cursor = mod.getContentResolver().
-//		                           query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-//		                           column, sel, new String[]{ id }, null);
-//
-//		 String filePath = "";
-//
-//		 int columnIndex = cursor.getColumnIndex(column[0]);
-//
-//		 if (cursor.moveToFirst()) {
-//		     filePath = cursor.getString(columnIndex);
-//		 }   
-//
-//		 cursor.close();
-//		 
-//		 return filePath;
-//	 }
-//	 
-	 public static String getPath(final Context context, final Uri uri) {
 
-		    final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+	public static void recycleBitmap(ImageView iv) {
+		try {
+			Drawable d = iv.getDrawable();
+			if (d instanceof BitmapDrawable) {
+				Bitmap b = ((BitmapDrawable) d).getBitmap();
+				b.recycle();
+			} // 현재로서는 BitmapDrawable 이외의 drawable 들에 대한 직접적인 메모리 해제는 불가능하다.
 
-		    // DocumentProvider
-		    if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-		        // ExternalStorageProvider
-		        if (isExternalStorageDocument(uri)) {
-		            final String docId = DocumentsContract.getDocumentId(uri);
-		            final String[] split = docId.split(":");
-		            final String type = split[0];
-
-		            if ("primary".equalsIgnoreCase(type)) {
-		                return Environment.getExternalStorageDirectory() + "/" + split[1];
-		            }
-
-		            // TODO handle non-primary volumes
-		        }
-		        // DownloadsProvider
-		        else if (isDownloadsDocument(uri)) {
-
-		            final String id = DocumentsContract.getDocumentId(uri);
-		            final Uri contentUri = ContentUris.withAppendedId(
-		                    Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
-
-		            return getDataColumn(context, contentUri, null, null);
-		        }
-		        // MediaProvider
-		        else if (isMediaDocument(uri)) {
-		            final String docId = DocumentsContract.getDocumentId(uri);
-		            final String[] split = docId.split(":");
-		            final String type = split[0];
-
-		            Uri contentUri = null;
-		            if ("image".equals(type)) {
-		                contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-		            } else if ("video".equals(type)) {
-		                contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-		            } else if ("audio".equals(type)) {
-		                contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-		            }
-
-		            final String selection = "_id=?";
-		            final String[] selectionArgs = new String[] {
-		                    split[1]
-		            };
-
-		            return getDataColumn(context, contentUri, selection, selectionArgs);
-		        }
-		    }
-		    // MediaStore (and general)
-		    else if ("content".equalsIgnoreCase(uri.getScheme())) {
-		        return getDataColumn(context, uri, null, null);
-		    }
-		    // File
-		    else if ("file".equalsIgnoreCase(uri.getScheme())) {
-		        return uri.getPath();
-		    }
-
-		    return null;
+			d.setCallback(null);
+		} catch (Exception e) {
 		}
-	 
-	 public static String getDataColumn(Context context, Uri uri, String selection,
-		        String[] selectionArgs) {
+	}
 
-		    Cursor cursor = null;
-		    final String column = "_data";
-		    final String[] projection = {
-		            column
-		    };
+	// public static String getRealPathURI(Uri uriThatYouCurrentlyHave){
+	// // Will return "image:x*"
+	// String wholeID =
+	// DocumentsContract.getDocumentId(uriThatYouCurrentlyHave);
+	//
+	// // Split at colon, use second item in the array
+	// String id = wholeID.split()[1];
+	//
+	// String[] column = { MediaStore.Images.Media.DATA };
+	//
+	// // where id is equal to
+	// String sel = MediaStore.Images.Media._ID + "=?";
+	//
+	// Cursor cursor = mod.getContentResolver().
+	// query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+	// column, sel, new String[]{ id }, null);
+	//
+	// String filePath = "";
+	//
+	// int columnIndex = cursor.getColumnIndex(column[0]);
+	//
+	// if (cursor.moveToFirst()) {
+	// filePath = cursor.getString(columnIndex);
+	// }
+	//
+	// cursor.close();
+	//
+	// return filePath;
+	// }
+	//
+	public static String getPath(final Context context, final Uri uri) {
 
-		    try {
-		        cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
-		                null);
-		        if (cursor != null && cursor.moveToFirst()) {
-		            final int column_index = cursor.getColumnIndexOrThrow(column);
-		            return cursor.getString(column_index);
-		        }
-		    } finally {
-		        if (cursor != null)
-		            cursor.close();
-		    }
-		    return null;
+		final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+		// DocumentProvider
+		if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+			// ExternalStorageProvider
+			if (isExternalStorageDocument(uri)) {
+				final String docId = DocumentsContract.getDocumentId(uri);
+				final String[] split = docId.split(":");
+				final String type = split[0];
+
+				if ("primary".equalsIgnoreCase(type)) {
+					return Environment.getExternalStorageDirectory() + "/"
+							+ split[1];
+				}
+
+				// TODO handle non-primary volumes
+			}
+			// DownloadsProvider
+			else if (isDownloadsDocument(uri)) {
+
+				final String id = DocumentsContract.getDocumentId(uri);
+				final Uri contentUri = ContentUris.withAppendedId(
+						Uri.parse("content://downloads/public_downloads"),
+						Long.valueOf(id));
+
+				return getDataColumn(context, contentUri, null, null);
+			}
+			// MediaProvider
+			else if (isMediaDocument(uri)) {
+				final String docId = DocumentsContract.getDocumentId(uri);
+				final String[] split = docId.split(":");
+				final String type = split[0];
+
+				Uri contentUri = null;
+				if ("image".equals(type)) {
+					contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+				} else if ("video".equals(type)) {
+					contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+				} else if ("audio".equals(type)) {
+					contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+				}
+
+				final String selection = "_id=?";
+				final String[] selectionArgs = new String[] { split[1] };
+
+				return getDataColumn(context, contentUri, selection,
+						selectionArgs);
+			}
+		}
+		// MediaStore (and general)
+		else if ("content".equalsIgnoreCase(uri.getScheme())) {
+			return getDataColumn(context, uri, null, null);
+		}
+		// File
+		else if ("file".equalsIgnoreCase(uri.getScheme())) {
+			return uri.getPath();
 		}
 
+		return null;
+	}
 
-		/**
-		 * @param uri The Uri to check.
-		 * @return Whether the Uri authority is ExternalStorageProvider.
-		 */
-		public static boolean isExternalStorageDocument(Uri uri) {
-		    return "com.android.externalstorage.documents".equals(uri.getAuthority());
-		}
+	public static String getDataColumn(Context context, Uri uri,
+			String selection, String[] selectionArgs) {
 
-		/**
-		 * @param uri The Uri to check.
-		 * @return Whether the Uri authority is DownloadsProvider.
-		 */
-		public static boolean isDownloadsDocument(Uri uri) {
-		    return "com.android.providers.downloads.documents".equals(uri.getAuthority());
-		}
+		Cursor cursor = null;
+		final String column = "_data";
+		final String[] projection = { column };
 
-		/**
-		 * @param uri The Uri to check.
-		 * @return Whether the Uri authority is MediaProvider.
-		 */
-		public static boolean isMediaDocument(Uri uri) {
-		    return "com.android.providers.media.documents".equals(uri.getAuthority());
+		try {
+			cursor = context.getContentResolver().query(uri, projection,
+					selection, selectionArgs, null);
+			if (cursor != null && cursor.moveToFirst()) {
+				final int column_index = cursor.getColumnIndexOrThrow(column);
+				return cursor.getString(column_index);
+			}
+		} finally {
+			if (cursor != null)
+				cursor.close();
 		}
-	 
-	 public static String getRealPathFromURI(Context context, Uri contentUri) {
-		  Cursor cursor = null;
-		  try { 
-			  Log.i("test", contentUri.toString());
-		    String[] proj = { MediaStore.Images.Media.DATA };
-		    cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-		    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-		    cursor.moveToFirst();
-		    return cursor.getString(column_index);
-		  } finally {
-		    if (cursor != null) {
-		      cursor.close();
-		    }
-		  }
-		}
+		return null;
+	}
 
-	
+	/**
+	 * @param uri
+	 *            The Uri to check.
+	 * @return Whether the Uri authority is ExternalStorageProvider.
+	 */
+	public static boolean isExternalStorageDocument(Uri uri) {
+		return "com.android.externalstorage.documents".equals(uri
+				.getAuthority());
+	}
+
+	/**
+	 * @param uri
+	 *            The Uri to check.
+	 * @return Whether the Uri authority is DownloadsProvider.
+	 */
+	public static boolean isDownloadsDocument(Uri uri) {
+		return "com.android.providers.downloads.documents".equals(uri
+				.getAuthority());
+	}
+
+	/**
+	 * @param uri
+	 *            The Uri to check.
+	 * @return Whether the Uri authority is MediaProvider.
+	 */
+	public static boolean isMediaDocument(Uri uri) {
+		return "com.android.providers.media.documents".equals(uri
+				.getAuthority());
+	}
+
+	public static String getRealPathFromURI(Context context, Uri contentUri) {
+		Cursor cursor = null;
+		try {
+			Log.i("test", contentUri.toString());
+			String[] proj = { MediaStore.Images.Media.DATA };
+			cursor = context.getContentResolver().query(contentUri, proj, null,
+					null, null);
+			int column_index = cursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			return cursor.getString(column_index);
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
+		}
+	}
+
 	@SuppressWarnings("null")
-	public static Bitmap UriToBitmapCompress(Uri image_uri){
+	public static Bitmap UriToBitmapCompress(Uri image_uri) {
 		Bitmap bm = null;
 		ContentResolver cr = mod.getContentResolver();
 		// image size
-	     int[] imagesize;
+		int[] imagesize;
 		try {
 			imagesize = getIMGSize(cr, image_uri);
-	
 
-		  InputStream in = cr.openInputStream(image_uri);
+			InputStream in = cr.openInputStream(image_uri);
 			BitmapFactory.Options option = new BitmapFactory.Options();
 			option.inPurgeable = true;
 			option.inDither = true;
-if(android.os.Build.VERSION.SDK_INT < 14){
-	if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
-	if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;
-}
-			
-			if(imagesize[1] > 4096)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*4;
-			if(imagesize[1] > 8192)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*8;
-			//  BitmapFactory.decodeStream(in, null, option);
-			bm = BitmapFactory.decodeStream(in,null, option);
+			if (android.os.Build.VERSION.SDK_INT < 14) {
+				if (imagesize[1] > 1024)
+					option.inSampleSize = Integer.parseInt(mod
+							.getString(R.string.pic_size_devide)) * 1;
+			}
+
+			if (imagesize[1] > 2048)
+				option.inSampleSize = Integer.parseInt(mod
+						.getString(R.string.pic_size_devide)) * 2;
+			if (imagesize[1] > 4096)
+				option.inSampleSize = Integer.parseInt(mod
+						.getString(R.string.pic_size_devide)) * 4;
+			if (imagesize[1] > 8192)
+				option.inSampleSize = Integer.parseInt(mod
+						.getString(R.string.pic_size_devide)) * 8;
+			// BitmapFactory.decodeStream(in, null, option);
+			bm = BitmapFactory.decodeStream(in, null, option);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-return bm;
+		return bm;
 	}
 
 	// Make temporary file
@@ -880,12 +894,17 @@ return bm;
 		}).start();
 		return Globalvariable.okbutton;
 	}
-	
-	public static boolean getUpdatePossible(String user_srl){
+
+	public static boolean getUpdatePossible(String user_srl) {
 		boolean possible = false;
-		 if(getCurrentTimeStamp()
-				- Integer.parseInt(Global.getUser(user_srl, "profile_update_thumbnail")) > 5000 || Global.CheckFileState(mod.getCacheDir().toString() + "/member/thumbnail/" +user_srl +  ".jpg")  == false && Global.getUser(user_srl, "profile_pic").matches("Y")) possible = true ;
-		 return possible;
+		if (getCurrentTimeStamp()
+				- Integer.parseInt(Global.getUser(user_srl,
+						"profile_update_thumbnail")) > 5000
+				|| Global.CheckFileState(mod.getCacheDir().toString()
+						+ "/member/thumbnail/" + user_srl + ".jpg") == false
+				&& Global.getUser(user_srl, "profile_pic").matches("Y"))
+			possible = true;
+		return possible;
 	}
 
 	public static String getSetting(String setting, String default_value) {
@@ -895,63 +914,63 @@ return bm;
 	}
 
 	public static String getUser(String user_srl, String value) {
-    //    Log.i("db", "helloget");
-		  // DB Create and Open
+		// Log.i("db", "helloget");
+		// DB Create and Open
 		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
-        mDbOpenHelper.open();
-        String pu ;
-        Cursor csr = mDbOpenHelper.getUserInfo(user_srl);
-    //    Log.i("DB", csr.getCount() + "count");
-     
-        if(csr.getCount() == 0){
-        	 pu = "0";
-        }else{
-        	   pu = csr.getString(csr.getColumnIndex(value));
-        }
+		mDbOpenHelper.open();
+		String pu;
+		Cursor csr = mDbOpenHelper.getUserInfo(user_srl);
+		// Log.i("DB", csr.getCount() + "count");
 
-        
+		if (csr.getCount() == 0) {
+			pu = "0";
+		} else {
+			pu = csr.getString(csr.getColumnIndex(value));
+		}
 
-        //if(pu == null){
-      	
-     // }
+		// if(pu == null){
 
-        
-        csr.close();
-       // Log.i("DB", pu + "ddddd");
+		// }
 
-      	mDbOpenHelper.close();
+		csr.close();
+		// Log.i("DB", pu + "ddddd");
+
+		mDbOpenHelper.close();
 
 		return pu;
 	}
 
- 
-	public static void SaveUserSetting(String user, String profile_update, String profile_update_thumbnail, String profile_pic) {
+	public static void SaveUserSetting(String user, String profile_update,
+			String profile_update_thumbnail, String profile_pic) {
 
 		// 설정 값 저장
 		// Setting Editor
 		DbOpenHelper mDbOpenHelper = new DbOpenHelper(mod);
-        mDbOpenHelper.open();
-        
-        Cursor csr = mDbOpenHelper.getUserInfo(user);
-      //  Log.i("DB", csr.getCount() + "count");
-        if(csr.getCount() == 0){
-      	  mDbOpenHelper.insertColumn(user, Long.toString(getCurrentTimeStamp()), Long.toString(getCurrentTimeStamp()),  profile_pic);
-     	//  Log.i("DB",  "added");
-        }else{
-        	if(profile_update == null){
-        	  mDbOpenHelper.updateProfileUpdateThumbnail(user, profile_update_thumbnail,profile_pic);
-        	}
-        	if(profile_update_thumbnail == null){
-          	  mDbOpenHelper.updateProfileUpdate(user, profile_update,profile_pic);
-          	}
-        	  //Log.i("DB",  "update");
-        }
+		mDbOpenHelper.open();
 
+		Cursor csr = mDbOpenHelper.getUserInfo(user);
+		// Log.i("DB", csr.getCount() + "count");
+		if (csr.getCount() == 0) {
+			mDbOpenHelper.insertColumn(user,
+					Long.toString(getCurrentTimeStamp()),
+					Long.toString(getCurrentTimeStamp()), profile_pic);
+			// Log.i("DB", "added");
+		} else {
+			if (profile_update == null) {
+				mDbOpenHelper.updateProfileUpdateThumbnail(user,
+						profile_update_thumbnail, profile_pic);
+			}
+			if (profile_update_thumbnail == null) {
+				mDbOpenHelper.updateProfileUpdate(user, profile_update,
+						profile_pic);
+			}
+			// Log.i("DB", "update");
+		}
 
-    //    Log.i("db", profile_update);
+		// Log.i("db", profile_update);
 
-        csr.close();
-      	mDbOpenHelper.close();
+		csr.close();
+		mDbOpenHelper.close();
 
 	}
 
@@ -1095,7 +1114,7 @@ return bm;
 		cx.startActivity(Intent.createChooser(Email,
 				cx.getString(R.string.choose_email_app)));
 	}
-	
+
 	public static void FeedbackWrite(Context cx) {
 		// System info
 		String s = "Device info:";
@@ -1106,12 +1125,11 @@ return bm;
 		s += "\n Model (and Product): " + android.os.Build.MODEL + " ("
 				+ android.os.Build.PRODUCT + ")";
 
-		Intent intent1 = new Intent(cx,
-				document_write.class);
+		Intent intent1 = new Intent(cx, document_write.class);
 		intent1.putExtra("page_srl", "13");
 		intent1.putExtra("page_name", cx.getString(R.string.send_feedback));
 		intent1.putExtra("doc_contents", s);
 		cx.startActivity(intent1);
 	}
-	
+
 }

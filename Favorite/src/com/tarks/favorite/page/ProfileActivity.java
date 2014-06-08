@@ -735,6 +735,8 @@ public class ProfileActivity extends SherlockActivity {
 
 		menu.add(0, 100, 0, getString(R.string.change_user)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
+		
+		
 
 		menu.add(0, 2, 0, getString(R.string.information)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
@@ -789,7 +791,7 @@ public class ProfileActivity extends SherlockActivity {
 		case 2:
 			Intent intent2 = new Intent(ProfileActivity.this, ProfileInfo.class);
 			intent2.putExtra("member_srl", member_srl);
-			startActivity(intent2);
+			startActivityForResult(intent2, 1);
 			return true;
 		case 100:
 			getPageAuthCode(member_srl);

@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.4.0.3990</string>
-    <string name="build">3990</string>
+    <string name="ver">1.5.0.4040</string>
+    <string name="build">4040</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -161,6 +161,9 @@
     <string name="popularity">Popularity</string>
     <string name="no_contact_des">No users by contacts. You can invite your friends.</string>
     <string name="page_delete_des">Delete this page. If continue this, page will be delete with posts and comments can not restore. Continue?</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="completed">Completed</string>
+    <string name="delete_favorite_des">Unfavorite this page. You will no loger get updates from this page. Are you sure to you want to Continue?</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>

@@ -284,7 +284,7 @@ try{
 								- (previous_count - 1) * 10 : 10);
 				if (getStartComment(comments_count) == 0)
 					previous_comments.setVisibility(View.GONE);
-				listView.smoothScrollToPosition(0);
+			//	listView.smoothScrollToPosition(0);
 			//	Log.i("Count", getStartComment(comments_count) + "");
 			}
 
