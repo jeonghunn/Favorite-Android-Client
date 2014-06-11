@@ -21,14 +21,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
@@ -287,7 +284,6 @@ public class mainfragment extends SherlockFragment  {
 				
 			//	Log.i("Result", msg.obj.toString());
 				try{
-				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
 					for (int i = 0; i < profile.length; i++) {
 						 String[] users = profile[i].split("/LINE/.");

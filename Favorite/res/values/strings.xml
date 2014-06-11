@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.5.0.4040</string>
-    <string name="build">4040</string>
+    <string name="ver">1.5.1.4062</string>
+    <string name="build">4062</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -164,6 +164,7 @@
     <string name="unfavorite">Unfavorite</string>
     <string name="completed">Completed</string>
     <string name="delete_favorite_des">Unfavorite this page. You will no loger get updates from this page. Are you sure to you want to Continue?</string>
+     <string name="search">Search</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>

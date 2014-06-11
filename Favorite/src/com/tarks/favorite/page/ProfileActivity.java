@@ -9,9 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,7 +39,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
-import com.tarks.favorite.main;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;

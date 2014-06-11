@@ -3,8 +3,6 @@ package com.tarks.favorite;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;

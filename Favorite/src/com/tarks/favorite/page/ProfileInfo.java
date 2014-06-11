@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,24 +24,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.CropManager;
 import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
-import com.tarks.favorite.global.Globalvariable;
-import com.tarks.favorite.page.ProfileActivity.List;
-import com.tarks.favorite.start.join;
-import com.tarks.widget.listviewutil;
 
 public class ProfileInfo extends SherlockActivity {
 
@@ -445,7 +435,6 @@ public class ProfileInfo extends SherlockActivity {
 			}
 
 			if (msg.what == 3) {
-				Log.i("Serverlog", msg.obj.toString() + "dfdfdfdf");
 				if(msg.obj.toString().matches("favorite_delete_succeed")){
 					Global.toast(getString(R.string.completed));
 					setProfileInfo();

@@ -156,7 +156,9 @@
     <string name="unfavorite">즐겨찾기 해제</string>
     <string name="completed">완료</string>
     <string name="delete_favorite_des">이 페이지의 즐겨찾기를 해제합니다. 해제하면 이 페이지를 통한 새로운 소식을 받아보실 수 없습니다. 계속하시겠습니까?</string>
-
+     <string name="search">검색</string>
+    
+    
     <!-- Permission -->
     <string name="permission">권한</string>
     <string name="write_permission">쓰기 권한</string>

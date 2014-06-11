@@ -17,37 +17,27 @@
  *******************************************************************************/
 package com.tarks.favorite;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.SubMenu;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.Random;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Window;
 import com.actionbarsherlock.widget.ShareActionProvider;
 import com.tarks.favorite.global.Global;
-import com.tarks.favorite.global.Globalvariable;
 import com.tarks.favorite.photoview.PhotoViewAttacher;
 import com.tarks.favorite.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 import com.tarks.favorite.photoview.PhotoViewAttacher.OnPhotoTapListener;

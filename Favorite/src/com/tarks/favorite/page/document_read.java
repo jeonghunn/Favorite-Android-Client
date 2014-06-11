@@ -39,23 +39,16 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
-
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.GalleryView;
-import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Filedw;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-import com.tarks.favorite.page.ProfileActivity.List;
-import com.tarks.favorite.start.join;
 
 public class document_read extends SherlockActivity {
 
@@ -149,7 +142,7 @@ try{
 						List ls = (List) ca.getItem(position -1 );
 
 					//	Log.i("LongClick", "Clicked");
-						clipboard_content = ls.getDes();
+						clipboard_content = Global.getValue(ls.getDes());
 						contextmenu_number = ls.getTag();
 						contextmenu_status = ls.getStatus();
 						contextmenu_you_status = ls.getYouStatus();

@@ -177,11 +177,15 @@ public class main extends SherlockFragmentActivity {
 		MenuItem item;
 
 
+		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
+//		menu.add(0, 2, 0, getString(R.string.search)).setIcon(R.drawable.search)
+//		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
 		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		
-		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		menu.add(0, 100, 0, getString(R.string.change_user))
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

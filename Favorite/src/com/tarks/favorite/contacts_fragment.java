@@ -3,7 +3,6 @@ package com.tarks.favorite;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -14,18 +13,15 @@ import com.tarks.favorite.contacts.Contact;
 import com.tarks.favorite.contacts.ContactsArray;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -282,7 +278,6 @@ public class contacts_fragment extends SherlockFragment implements
 				//Log.i("Result", msg.obj.toString());
 				if(!result.matches("null")){
 				try{
-				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
 				 Global.dumpArray(profile);
 					for (int i = 0; i < profile.length; i++) {

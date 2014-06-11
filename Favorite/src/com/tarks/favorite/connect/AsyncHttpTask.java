@@ -15,11 +15,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	private Handler handler;
-	private Exception exception;
 	int DataContent;
 	String responseData;
 	String fileName;
