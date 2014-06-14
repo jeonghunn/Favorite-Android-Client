@@ -180,7 +180,7 @@ public class MainActivity extends SherlockActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 		builder.setMessage(getString(R.string.permission_denied)).setTitle(
 				getString(R.string.error));
-		builder.setPositiveButton(getString(R.string.check_service_status),
+		builder.setPositiveButton(getString(R.string.enquire),
 				new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {

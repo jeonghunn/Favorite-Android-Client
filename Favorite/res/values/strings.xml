@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.5.1.4062</string>
-    <string name="build">4062</string>
+    <string name="ver">1.5.2.4122</string>
+    <string name="build">4122</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -61,13 +61,8 @@
     <string name="phone_number_des">Find by phone number</string>
     <string name="phone_number_content">Enter your phone number to find who was favorited you.</string>
     <string name="birthday">Birthday</string>
-    <string name="birthday_des">Find by Birthday</string>
     <string name="location">Location</string>
-    <string name="location_des">Find by location</string>
     <string name="school">School</string>
-    <string name="school_des">Find by School</string>
-    <string name="favorite_">Favorite</string>
-    <string name="favorite_des">How many people are favorite me? Check it now.</string>
     <string name="find">Find</string>
     <string name="message">Message</string>
     <string name="add_favorite">Add Favorite</string>
@@ -75,8 +70,6 @@
     <string name="check_result">Check result</string>
     <string name="test_result">%2$s people like %1$s.</string>
     <string name="asky">ASKY</string>
-    <string name="who_favorited_me">Who favorited me?</string>
-    <string name="check_how_many_people_are_favorite_me">Check how many people are favorite me.</string>
     <string name="drawer_open">Open menu</string>
     <string name="drawer_close">Close menu</string>
     <string name="my_favorite_people">My Favorites</string>
@@ -85,9 +78,6 @@
     <string name="check_with_kakaotalk">Check with KakaoTalk</string>
     <string name="check_with_facebook">Check with Facebook</string>
     <string name="check_with_twitter">Check with Twitter</string>
-    <string name="people_are_like_you">People are like you.</string>
-    <string name="peek">Peek</string>
-    <string name="peek_des">Peeking the last name that people like me.</string>
     <string name="contact_pick_error.">Contact is not available.</string>
     <string name="blank_error">No value on textfield.</string>
     <string name="server_connection_error_des">Server connection has been error. Maybe checking or server problem. More details click \'Service status\'.</string>
@@ -164,7 +154,8 @@
     <string name="unfavorite">Unfavorite</string>
     <string name="completed">Completed</string>
     <string name="delete_favorite_des">Unfavorite this page. You will no loger get updates from this page. Are you sure to you want to Continue?</string>
-     <string name="search">Search</string>
+    <string name="search">Search</string>
+    <string name="doc_error_des">This post does not exist.</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>

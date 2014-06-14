@@ -53,7 +53,7 @@ import com.tarks.favorite.global.Globalvariable;
 public class document_read extends SherlockActivity {
 
 	String local_path;
-	String externel_path ;
+	String externel_path;
 	// Profile
 	ImageView profile;
 	TextView profile_title;
@@ -109,23 +109,22 @@ public class document_read extends SherlockActivity {
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
-		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
+		externel_path = getExternalCacheDir().getAbsolutePath() + "/";
 		Log.i("Doc srl", doc_srl + "");
 		try {
 			local_path = getCacheDir().toString() + "/member/";
 		} catch (Exception e) {
 		}
 
-	loadView();
+		loadView();
 
 	}
-	
-	
-	public void loadView(){
+
+	public void loadView() {
 		// Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
-		
-		 listView.setOnItemLongClickListener( new OnItemLongClickListener(){
+
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
@@ -137,31 +136,29 @@ public class document_read extends SherlockActivity {
 							.getWrappedAdapter() instanceof ListAdapter) {
 						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) parent
 								.getAdapter()).getWrappedAdapter();
-			
-try{
-						List ls = (List) ca.getItem(position -1 );
 
-					//	Log.i("LongClick", "Clicked");
-						clipboard_content = Global.getValue(ls.getDes());
-						contextmenu_number = ls.getTag();
-						contextmenu_status = ls.getStatus();
-						contextmenu_you_status = ls.getYouStatus();
-						//parent.showContextMenu();
-					
-}catch (Exception e){	
-}
-//Log.i("LongClick", "Clicked");
+						try {
+							List ls = (List) ca.getItem(position - 1);
+
+							// Log.i("LongClick", "Clicked");
+							clipboard_content = Global.getValue(ls.getDes());
+							contextmenu_number = ls.getTag();
+							contextmenu_status = ls.getStatus();
+							contextmenu_you_status = ls.getYouStatus();
+							// parent.showContextMenu();
+
+						} catch (Exception e) {
+						}
+						// Log.i("LongClick", "Clicked");
 					}
 				}
-	
-			
+
 				return false;
-				
+
 			}
 
-				
 		});
-			registerForContextMenu(listView);
+		registerForContextMenu(listView);
 		// Header, Footer 생성 및 등록
 		View header = getLayoutInflater().inflate(R.layout.doclist_header,
 				null, false);
@@ -177,40 +174,42 @@ try{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 
-						HeaderListAdapter ca = (HeaderListAdapter) arg0
-								.getAdapter();
+				HeaderListAdapter ca = (HeaderListAdapter) arg0.getAdapter();
 
-						HeaderList ls = (HeaderList) ca.getItem(arg2);
+				HeaderList ls = (HeaderList) ca.getItem(arg2);
 
-						try{
-						if(ls.getPath().endsWith("jpg")){
+				try {
+					if (ls.getPath().endsWith("jpg")) {
 						Intent intent = new Intent(document_read.this,
 								GalleryView.class);
-						intent.putExtra("path",
-								String.valueOf(ls.getPath()));
+						intent.putExtra("path", String.valueOf(ls.getPath()));
 						startActivity(intent);
-						}else{
-							webview = new WebView(ct);
-							webview.setDownloadListener(new DownloadListener(){
-								@Override
-								public void onDownloadStart(String url,
-										String userAgent,
-										String contentDisposition,
-										String mimetype, long contentLength) {
-									Global.toast(getString(R.string.start_downloading));
-									Filedw.startdownload(url, userAgent, contentDisposition, mimetype, contentLength);
-									webview.setDownloadListener(null);
-									webview = null;
-								}
-							});
-							webview.loadUrl(ls.getPath());
-						}
-						}catch (Exception e){}
+					} else {
+						webview = new WebView(ct);
+						webview.setDownloadListener(new DownloadListener() {
+							@Override
+							public void onDownloadStart(String url,
+									String userAgent,
+									String contentDisposition, String mimetype,
+									long contentLength) {
+								Global.toast(getString(R.string.start_downloading));
+								Filedw.startdownload(url, userAgent,
+										contentDisposition, mimetype,
+										contentLength);
+								webview.setDownloadListener(null);
+								webview = null;
+							}
+						});
+						webview.loadUrl(ls.getPath());
+					}
+				} catch (Exception e) {
+				}
 
 			}
 		});
 		// profile_edit.setOnClickListener(l)
-		header_m_adapter = new HeaderListAdapter(this, R.layout.doc_header_list, header_m_orders);
+		header_m_adapter = new HeaderListAdapter(this,
+				R.layout.doc_header_list, header_m_orders);
 		header_listView.setAdapter(header_m_adapter);
 		doc_content.setOnLongClickListener(new OnLongClickListener() {
 
@@ -219,8 +218,8 @@ try{
 				// TODO Auto-generated method stub
 
 				clipboard_content = doc_content.getText().toString();
-                contextmenu_number = 0;
-			//	registerForContextMenu(doc_content);
+				contextmenu_number = 0;
+				// registerForContextMenu(doc_content);
 				v.showContextMenu();
 				return true;
 			}
@@ -277,27 +276,26 @@ try{
 								- (previous_count - 1) * 10 : 10);
 				if (getStartComment(comments_count) == 0)
 					previous_comments.setVisibility(View.GONE);
-			//	listView.smoothScrollToPosition(0);
-			//	Log.i("Count", getStartComment(comments_count) + "");
+				// listView.smoothScrollToPosition(0);
+				// Log.i("Count", getStartComment(comments_count) + "");
 			}
 
 		});
 		m_adapter = new ListAdapter(this, R.layout.comment_list, m_orders);
 		listView.setAdapter(m_adapter);
 		getDoc();
-		
+
 		//
 	}
-	
-	public void refreshAct(){
-		 comments_count = 0;
-		 previous_count = 1;
-		 m_adapter.clear();
-		 header_m_adapter.clear();
-		 getDoc();
-		 
-		
-	} 
+
+	public void refreshAct() {
+		comments_count = 0;
+		previous_count = 1;
+		m_adapter.clear();
+		header_m_adapter.clear();
+		getDoc();
+
+	}
 
 	public void getDoc() {
 		// Start Progressbar
@@ -356,12 +354,13 @@ try{
 				Paramvalue, null, 5, 0);
 	}
 
-	public void setList(int moreload, int srl, String user_srl,
-			String name, String contents, String date, int status, int you_status) {
+	public void setList(int moreload, int srl, String user_srl, String name,
+			String contents, String date, int status, int you_status) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
-		List p1 = new List(user_srl, name, contents, date, srl, status, you_status);
+		List p1 = new List(user_srl, name, contents, date, srl, status,
+				you_status);
 		if (moreload == -1)
 			m_orders.add(p1);
 		else
@@ -370,15 +369,14 @@ try{
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
 	}
-	
+
 	public void setHeaderList(String path, String title, String des) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
 		HeaderList p1 = new HeaderList(path, title, des);
 
-			header_m_orders.add(p1);
-
+		header_m_orders.add(p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
@@ -388,24 +386,22 @@ try{
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 
-
 		menu.setHeaderIcon(android.R.drawable.btn_star);
 		// menu.setHeaderTitle("공지사항");
-		   if(contextmenu_number == 0) {
-		menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
-		   }
-		   if(contextmenu_number != 0) {
-			   menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
-			if(contextmenu_you_status == 4){
-			   menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.delete));
-			   menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.privacy_content));
+		if (contextmenu_number == 0) {
+			menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
+		}
+		if (contextmenu_number != 0) {
+			menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.copy));
+			if (contextmenu_you_status == 4) {
+				menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.delete));
+				menu.add(Menu.NONE, 3, Menu.NONE,
+						getString(R.string.privacy_content));
 			}
-				   }
+		}
 		super.onCreateContextMenu(menu, v, menuInfo);
 
 	}
-	
-	
 
 	@Override
 	public boolean onContextItemSelected(android.view.MenuItem item) {
@@ -413,17 +409,18 @@ try{
 		switch (item.getItemId()) {
 		case 1:
 			ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-//			ClipData clip = ClipData.newPlainText("content", clipboard_content);
-//			clipboard.setPrimaryClip(clip);
+			// ClipData clip = ClipData.newPlainText("content",
+			// clipboard_content);
+			// clipboard.setPrimaryClip(clip);
 			clipboard.setText(clipboard_content);
 			break;
 
 		case 2:
-			//Delete
+			// Delete
 			CommentStatusUpdate(String.valueOf(contextmenu_number), "5", 7);
 			break;
 		case 3:
-			//StatusUpdate
+			// StatusUpdate
 			Intent intent1 = new Intent(document_read.this,
 					privacy_category.class);
 			intent1.putExtra("status", String.valueOf(contextmenu_status));
@@ -476,7 +473,7 @@ try{
 			new AsyncHttpTask(this, getString(R.string.server_path)
 					+ "member/profile_info.php", mHandler, Paramname,
 					Paramvalue, null, 2, Integer.parseInt(user_srl));
-		
+
 		}
 	}
 
@@ -493,21 +490,20 @@ try{
 				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 3,
 				Integer.parseInt(user_srl));
 	}
-	
+
 	public void ImageDownload(String url) {
 		// Start Progressbar
 		setSupportProgressBarIndeterminateVisibility(true);
 		int index = url.lastIndexOf("/");
-		String fileName = url.substring(index+1);
+		String fileName = url.substring(index + 1);
 		AttachFileName = fileName;
-		new ImageDownloader(this, url, mHandler, 11,
-				Integer.parseInt(user_srl));
+		new ImageDownloader(this, url, mHandler, 11, Integer.parseInt(user_srl));
 	}
 
 	public void CommentPostAct() {
 		setSupportProgressBarIndeterminateVisibility(true);
 		comment_edittext.setEnabled(false);
-		
+
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -534,10 +530,10 @@ try{
 				+ "board/comment_app_write.php", mHandler, Paramname,
 				Paramvalue, null, 4, 0);
 	}
-	
+
 	public void StatusUpdate(String status, int handler) {
 		// IF Sucessfull no timeout
-					setSupportProgressBarIndeterminateVisibility(true);
+		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -555,16 +551,15 @@ try{
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(status);
-	
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_write.php", mHandler, Paramname, Paramvalue,
-				null, handler,0);
+				+ "board/documents_app_write.php", mHandler, Paramname,
+				Paramvalue, null, handler, 0);
 	}
-	
+
 	public void CommentStatusUpdate(String srl, String status, int handler) {
 		// IF Sucessfull no timeout
-					setSupportProgressBarIndeterminateVisibility(true);
+		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
 		Paramname.add("kind");
@@ -582,14 +577,13 @@ try{
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(status);
-	
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/comment_app_write.php", mHandler, Paramname, Paramvalue,
-				null, handler,0);
+				+ "board/comment_app_write.php", mHandler, Paramname,
+				Paramvalue, null, handler, 0);
 	}
-	
-	public void AttachDownload(){
+
+	public void AttachDownload() {
 		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -606,15 +600,16 @@ try{
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
-		
+
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "board/documents_app_read.php", mHandler, Paramname,
 				Paramvalue, null, 10, 0);
 	}
-	
+
 	public void DeleteAlert() {
 		// Alert
-		AlertDialog.Builder builder = new AlertDialog.Builder(document_read.this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				document_read.this);
 		builder.setMessage(getString(R.string.delete_des)).setTitle(
 				getString(R.string.delete));
 		builder.setPositiveButton(getString(R.string.yes),
@@ -623,24 +618,23 @@ try{
 					public void onClick(DialogInterface dialog, int which) {
 						if (Globalvariable.okbutton == true) {
 							// Set ok button disable
-							StatusUpdate("5" ,6);
+							StatusUpdate("5", 6);
 						}
 					}
 				});
-		builder.setNegativeButton(getString(R.string.no),null);
+		builder.setNegativeButton(getString(R.string.no), null);
 		builder.show();
 
 	}
-//	@Override
-//    protected void onDestroy() {
-//      //  Log.d("OOMTEST", "onDestroy");
-//         
-//        Global.recycleBitmap(profile);
-//        Global.recycleBitmap(send_button);
-//        super.onDestroy();
-//    }
 
-
+	// @Override
+	// protected void onDestroy() {
+	// // Log.d("OOMTEST", "onDestroy");
+	//
+	// Global.recycleBitmap(profile);
+	// Global.recycleBitmap(send_button);
+	// super.onDestroy();
+	// }
 
 	private class ListAdapter extends ArrayAdapter<List> {
 
@@ -678,11 +672,12 @@ try{
 
 					boolean state = Global.CheckFileState(local_path
 							+ "thumbnail/" + p.getUserSrl() + ".jpg");
-					
-					if(state){
-					image.setImageDrawable(Drawable.createFromPath(local_path
-							+ "thumbnail/" + p.getUserSrl() + ".jpg"));
-					}else{
+
+					if (state) {
+						image.setImageDrawable(Drawable
+								.createFromPath(local_path + "thumbnail/"
+										+ p.getUserSrl() + ".jpg"));
+					} else {
 						image.setImageResource(R.drawable.person);
 					}
 					image.setOnClickListener(new OnClickListener() {
@@ -701,8 +696,6 @@ try{
 		}
 	}
 
-	
-	
 	class List {
 
 		private String user_srl;
@@ -747,13 +740,12 @@ try{
 		public int getStatus() {
 			return status;
 		}
-		
+
 		public int getYouStatus() {
 			return you_status;
 		}
 
 	}
-	
 
 	private class HeaderListAdapter extends ArrayAdapter<HeaderList> {
 
@@ -777,46 +769,47 @@ try{
 				TextView tt = (TextView) v.findViewById(R.id.title);
 				TextView bt = (TextView) v.findViewById(R.id.description);
 				ImageView image = (ImageView) v.findViewById(R.id.img);
-				ImageView thumb_image = (ImageView) v.findViewById(R.id.thumb_img);
+				ImageView thumb_image = (ImageView) v
+						.findViewById(R.id.thumb_img);
 				if (tt != null) {
-					if(p.getTitle() != null){
-					tt.setText(p.getTitle());
-					}else{
+					if (p.getTitle() != null) {
+						tt.setText(p.getTitle());
+					} else {
 						tt.setVisibility(View.GONE);
 					}
 				}
 				if (bt != null) {
 					if (bt != null) {
-						if(p.getDes() != null){
+						if (p.getDes() != null) {
 							bt.setText(p.getDes());
-						}else{
+						} else {
 							bt.setVisibility(View.GONE);
 
 						}
-				}
+					}
 				}
 				if (image != null && p.getPath().endsWith("jpg")) {
-					Bitmap bm = Global.UriToBitmapCompress(Uri.fromFile(new File(p.getPath())));
-					image.setImageBitmap(bm);	
+					Bitmap bm = Global.UriToBitmapCompress(Uri
+							.fromFile(new File(p.getPath())));
+					image.setImageBitmap(bm);
 					thumb_image.setVisibility(View.GONE);
-				
-//					image.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//							Intent intent = new Intent(document_read.this,
-//									ProfileActivity.class);
-//							intent.putExtra("member_srl", p.getUserSrl());
-//							startActivity(intent);
-//						}
-//					});
+
+					// image.setOnClickListener(new OnClickListener() {
+					//
+					// @Override
+					// public void onClick(View v) {
+					// Intent intent = new Intent(document_read.this,
+					// ProfileActivity.class);
+					// intent.putExtra("member_srl", p.getUserSrl());
+					// startActivity(intent);
+					// }
+					// });
 				}
 			}
 			return v;
 		}
 	}
-	
-	
+
 	class HeaderList {
 
 		private String Path;
@@ -828,7 +821,7 @@ try{
 			this.Path = _Path;
 			this.Title = _Title;
 			this.Description = _Description;
-			//this.you_status = _you_status;
+			// this.you_status = _you_status;
 		}
 
 		public String getPath() {
@@ -843,21 +836,16 @@ try{
 			return Description;
 		}
 
-
-
-//		public int getYouStatus() {
-//			return you_status;
-//		}
-		
+		// public int getYouStatus() {
+		// return you_status;
+		// }
 
 	}
-
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			setSupportProgressBarIndeterminateVisibility(false);
 
-			
 			if (msg.what == -1) {
 				Global.ConnectionError(document_read.this);
 			}
@@ -867,41 +855,40 @@ try{
 				try {
 					// page_srl//user_srl//name//title//content//date//status//privacy//comments//recommend//negative
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+					// Global.dumpArray(array);
 					String page_srl = array[0];
 					user_srl = array[1];
 					String name = array[2];
 					String title = array[3];
 					String content = array[4];
 					String date = array[5];
-					 status = array[6];
+					status = array[6];
 					String privacy = array[7];
-				      comments = array[8];
-				      String attach = array[9];
+					comments = array[8];
+					String attach = array[9];
 					String recommend = array[10];
 					String negative = array[11];
 					you_doc_status = Integer.parseInt(array[12]);
 
-					
-					//SetTitled
-					if(title.matches("null")){
+					// SetTitled
+					if (title.matches("null")) {
 						getSupportActionBar().setTitle(name);
-					}else{
-						
+					} else {
+						getSupportActionBar().setTitle(title);
 					}
-				
 
 					getMemberInfo(user_srl);
 
 					// Profiile
-					
+
 					boolean state = Global.CheckFileState(local_path
-							+ "thumbnail/" +user_srl + ".jpg");
-					
-					if(state){
-					profile.setImageDrawable(Drawable.createFromPath(local_path
-							+ "thumbnail/" +user_srl + ".jpg"));
-					}else{
+							+ "thumbnail/" + user_srl + ".jpg");
+
+					if (state) {
+						profile.setImageDrawable(Drawable
+								.createFromPath(local_path + "thumbnail/"
+										+ user_srl + ".jpg"));
+					} else {
 						profile.setImageResource(R.drawable.person);
 					}
 
@@ -912,13 +899,19 @@ try{
 					doc_content.setText(Global.getValue(content));
 					// Set comment
 					getCommentsList(getStartComment(comments_count), 10);
-					//Load menu again
+					// Load menu again
 					invalidateOptionsMenu();
-					
-					if(!attach.matches("0")) AttachDownload();
+
+					if (!attach.matches("0"))
+						AttachDownload();
 
 				} catch (Exception e) {
-
+//					Global.Infoalert(document_read.this, getString(R.string.error),
+//							getString(R.string.doc_error_des),
+//							getString(R.string.yes));
+					
+					Global.toast(getString(R.string.doc_error_des));
+					finish();
 				}
 			}
 
@@ -927,13 +920,15 @@ try{
 				try {
 
 					String[] array = msg.obj.toString().split("/LINE/.");
-				//	Global.dumpArray(array);
+					// Global.dumpArray(array);
 					String profile_pic = array[0];
 					String profile_update = array[1];
 
 					String user_srl = String.valueOf(msg.arg1);
-			
-					Global.SaveUserSetting(user_srl, null, String.valueOf(Global.getCurrentTimeStamp()), profile_pic);
+
+					Global.SaveUserSetting(user_srl, null,
+							String.valueOf(Global.getCurrentTimeStamp()),
+							profile_pic);
 
 					if (profile_pic.matches("Y")) {
 						// Global.SaveUserSetting(user_srl, profile_update);
@@ -957,9 +952,8 @@ try{
 			if (msg.what == 3) {
 				// Save File cache
 				try {
-					Log.i("Save", msg.arg1 + "");
-					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path + "thumbnail/",
-							msg.arg1 + ".jpg");
+					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path
+							+ "thumbnail/", msg.arg1 + ".jpg");
 					m_adapter.notifyDataSetChanged();
 
 					// Set Profile
@@ -974,7 +968,7 @@ try{
 				String result = msg.obj.toString();
 				comment_edittext.setEnabled(true);
 				if (result.matches("comment_write_succeed")) {
-				//	setCommentsCount(comments_count + 1);
+					// setCommentsCount(comments_count + 1);
 					previous_count = 1;
 					m_adapter.clear();
 					comment_edittext.setText(null);
@@ -996,24 +990,26 @@ try{
 
 					for (int i = 0; i < cmt.length; i++) {
 						String[] array = cmt[i].split("/LINE/.");
-				//		Global.dumpArray(array);
+						// Global.dumpArray(array);
 						// srl//user_srl//name//content//date//status/privacy
 						String srl = array[0];
 						String user_srl = array[1];
 						String name = array[2];
 						String content = array[3];
 						String date = array[4];
-						 String status = array[5];
+						String status = array[5];
 						String privacy = array[6];
 						String you_status = array[7];
-					//	Log.i("user", user_srl);
+						// Log.i("user", user_srl);
 
 						if (previous_count > 1)
 							moreload = i;
 						getMemberInfo(user_srl);
 						setList(moreload, Integer.parseInt(srl), user_srl,
 								name, content,
-								Global.formatTimeString(Long.parseLong(date)), Integer.parseInt(status), Integer.parseInt(you_status));
+								Global.formatTimeString(Long.parseLong(date)),
+								Integer.parseInt(status),
+								Integer.parseInt(you_status));
 						m_adapter.notifyDataSetChanged();
 					}
 					seePreviousComments(comments_count);
@@ -1021,132 +1017,136 @@ try{
 
 				}
 			}
-			
-			//DeleteAct
+
+			// DeleteAct
 			if (msg.what == 6) {
-				//Log.i("result", msg.obj.toString());
+				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("document_update_succeed")) {
 					Global.toast(getString(R.string.deleted));
 					UpdateFinishAct();
-				}else{
+				} else {
 					Global.toast(getString(R.string.error_des));
 				}
 
 			}
-			
-			//DeleteCommentAct
+
+			// DeleteCommentAct
 			if (msg.what == 7) {
-			//	Log.i("result", msg.obj.toString());
+				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("comment_update_succeed")) {
 					Global.toast(getString(R.string.deleted));
 					refreshAct();
-				}else{
+				} else {
 					Global.toast(getString(R.string.error_des));
 				}
 
 			}
-			//Doc status update
+			// Doc status update
 			if (msg.what == 8) {
-			//	Log.i("result", msg.obj.toString());
+				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("document_update_succeed")) {
 					Global.toast(getString(R.string.changed));
 					refreshAct();
-				}else{
+				} else {
 					Global.toast(getString(R.string.error_des));
 				}
 
 			}
-			//Comment status update
+			// Comment status update
 			if (msg.what == 9) {
-		//		Log.i("result", msg.obj.toString());
+				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
 				if (result.matches("comment_update_succeed")) {
 					Global.toast(getString(R.string.changed));
 					refreshAct();
-				}else{
+				} else {
 					Global.toast(getString(R.string.error_des));
 				}
 
 			}
-			
-			//Attach list download
+
+			// Attach list download
 			if (msg.what == 10) {
-				//Log.i("result", msg.obj.toString());
+				// Log.i("result", msg.obj.toString());
 				String[] array = msg.obj.toString().split("/LINE/.");
-				
-				
+
 				for (int i = 0; i < array.length; i++) {
-					if(array[i].endsWith("jpg")){
+					if (array[i].endsWith("jpg")) {
 						int index = array[i].lastIndexOf("/");
-						String fileName = array[i].substring(index+1);
-						
-						if(!Global.CheckFileState(externel_path + fileName)){
+						String fileName = array[i].substring(index + 1);
+
+						if (!Global.CheckFileState(externel_path + fileName)) {
 							ImageDownload(array[i]);
-						}else{
+						} else {
 							setHeaderList(externel_path + fileName, null, null);
 							header_m_adapter.notifyDataSetChanged();
 						}
-				}else{
-				//	int index = array[i].lastIndexOf("/");
-					String name = array[i].substring(array[i].lastIndexOf("&n=") + 3, array[i].lastIndexOf("&e="));
-					String extension = array[i].substring(array[i].lastIndexOf("=") + 1, array[i].length()).toUpperCase();
-					setHeaderList(array[i],  name, extension + " " +getString(R.string.file));
-					header_m_adapter.notifyDataSetChanged();
+					} else {
+						// int index = array[i].lastIndexOf("/");
+						String name = array[i].substring(
+								array[i].lastIndexOf("&n=") + 3,
+								array[i].lastIndexOf("&e="));
+						String extension = array[i].substring(
+								array[i].lastIndexOf("=") + 1,
+								array[i].length()).toUpperCase();
+						setHeaderList(array[i], name, extension + " "
+								+ getString(R.string.file));
+						header_m_adapter.notifyDataSetChanged();
+					}
 				}
-				}
-				
+
 			}
 
-			
 			if (msg.what == 11) {
-			//	Log.i("result", msg.obj.toString());
-				
-				Global.SaveBitmapToFileCache((Bitmap) msg.obj,  externel_path, AttachFileName);
+				// Log.i("result", msg.obj.toString());
+
+				Global.SaveBitmapToFileCache((Bitmap) msg.obj, externel_path,
+						AttachFileName);
 				setHeaderList(externel_path + AttachFileName, null, null);
 				header_m_adapter.notifyDataSetChanged();
 			}
 
 		}
-		
+
 	};
-	
-	public void UpdateFinishAct(){
-		  Intent intent = new Intent();
-		   this.setResult(RESULT_OK,intent);
+
+	public void UpdateFinishAct() {
+		Intent intent = new Intent();
+		this.setResult(RESULT_OK, intent);
 		finish();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 			// setListAdapter();
-     		String status = data.getStringExtra("status");
+			String status = data.getStringExtra("status");
 			StatusUpdate(status, 8);
 		}
-		
+
 		if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
 			// setListAdapter();
-     		String status = data.getStringExtra("status");
-     		CommentStatusUpdate(String.valueOf(contextmenu_number), status, 9);
+			String status = data.getStringExtra("status");
+			CommentStatusUpdate(String.valueOf(contextmenu_number), status, 9);
 		}
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		MenuItem item;
 
-		menu.add(0, 0, 0, getString(R.string.refresh))
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		if(you_doc_status >= 4){
-		menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
+		menu.add(0, 0, 0, getString(R.string.refresh)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
-		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
-			MenuItem.SHOW_AS_ACTION_NEVER);
+		if (you_doc_status >= 4) {
+			menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
+					MenuItem.SHOW_AS_ACTION_NEVER);
+			menu.add(0, 2, 0, getString(R.string.privacy_content))
+					.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 		}
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
@@ -1154,9 +1154,6 @@ try{
 
 		return true;
 	}
-	
-
-
 
 	// 빽백키 상단액션바
 	@Override
@@ -1166,17 +1163,17 @@ try{
 			onBackPressed();
 			return true;
 		case 0:
-			//Refresh
+			// Refresh
 			if (Globalvariable.okbutton == true) {
 				// Set ok button disable
 				refreshAct();
 			}
-			
+
 			return true;
 		case 1:
-			//Delete
-			//Refresh
-		DeleteAlert();
+			// Delete
+			// Refresh
+			DeleteAlert();
 
 			return true;
 		case 2:

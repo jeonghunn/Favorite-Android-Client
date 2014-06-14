@@ -318,7 +318,7 @@ public class mainfragment extends SherlockFragment  {
 				try {
 
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+		//			Global.dumpArray(array);
 					String profile_pic = array[0];
 					String profile_update = array[1];
 

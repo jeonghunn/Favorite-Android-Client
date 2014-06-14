@@ -72,8 +72,6 @@ public class page_create extends SherlockActivity {
 	String reg_id;
 	String myId, myPWord, myTitle, mySubject, myResult;
 	String infoResult;
-	// press back key
-	private boolean mIsBackKeyPressed = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -138,8 +136,6 @@ public class page_create extends SherlockActivity {
 			break;
 
 		case 2:
-			int w,
-			h;
 			// Intent cameraIntent = new
 			// Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			// startActivityForResult(cameraIntent , CAMERA_PIC_REQUEST);

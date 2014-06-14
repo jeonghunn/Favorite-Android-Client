@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/black_button"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="100" >
 
@@ -19,6 +18,7 @@
             android:id="@+id/img"
             android:layout_width="50sp"
             android:layout_height="50sp"
+            android:layout_marginTop="6sp"
             android:adjustViewBounds="true"
             android:baselineAlignBottom="true"
             android:contentDescription="Color Stripe"
@@ -28,6 +28,7 @@
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="0dip"
+                    android:gravity="center_vertical"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_weight="90"
@@ -46,11 +47,10 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="4"
+                android:maxLines="10"
                 android:ellipsize="end"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dip"
-                android:layout_marginRight="48dip"
                 android:text="No Info"
                 android:textColor="#8C8C8C"
                 android:textSize="16sp" />

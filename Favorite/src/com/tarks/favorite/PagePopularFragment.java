@@ -19,7 +19,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -246,9 +245,8 @@ public class PagePopularFragment extends SherlockFragment implements
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
 				
-				Log.i("Result",result);
+		//		Log.i("Result",result);
 				try{
-				ArrayList<String> ar = new ArrayList<String>();
 				 String[] profile = result.split("/PFILE/.");
 					for (int i = 0; i < profile.length; i++) {
 						 String[] users = profile[i].split("/LINE/.");
@@ -285,7 +283,7 @@ public class PagePopularFragment extends SherlockFragment implements
 				try {
 
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String profile_pic = array[0];
 					String profile_update = array[1];
 
