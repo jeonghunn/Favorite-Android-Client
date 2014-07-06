@@ -544,7 +544,6 @@ public class MainActivity extends SherlockActivity {
 			if (msg.what == 1) {
 				try{
 				infoResult = msg.obj.toString();
-				Log.i("InfoResult", infoResult + "null");
 				StartApp();
 				} catch (Exception e){}
 

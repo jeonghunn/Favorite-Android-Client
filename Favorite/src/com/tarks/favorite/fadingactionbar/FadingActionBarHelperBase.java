@@ -62,7 +62,7 @@ public abstract class FadingActionBarHelperBase {
     private boolean mFirstGlobalLayoutPerformed;
     private FrameLayout mMarginView;
     private View mListViewBackgroundView;
-    private boolean mLockListView;
+    public static boolean mLockListView = false;
     Context cx;
 
     public final <T extends FadingActionBarHelperBase> T actionBarBackground(int drawableResId) {
@@ -291,11 +291,9 @@ public abstract class FadingActionBarHelperBase {
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         	
         	   int count = totalItemCount - visibleItemCount;
-   
     	    if(firstVisibleItem >= count && totalItemCount != 0
     	      && mLockListView == false )
     	    {
-    	      Log.i("로그", "Loading next items");
     	      addItems(totalItemCount);
     	    }  
     	  
@@ -320,7 +318,6 @@ public abstract class FadingActionBarHelperBase {
   	  {
   	    // 아이템을 추가하는 동안 중복 요청을 방지하기 위해 락을 걸어둡니다.
   	    mLockListView = true;
-
   	    Runnable run = new Runnable()
   	    {
   	      @Override
@@ -330,14 +327,13 @@ public abstract class FadingActionBarHelperBase {
   	    //	getDocList(String.valueOf(size));
     			if(cx != null) {
     				//((ProfileActivity) cx).setFadingActionBar();
-    				Log.i("DOC", size + "");
     			//	((ProfileActivity) cx).getDocList(String.valueOf(size - 1));
     				((ProfileActivity) cx).MoreLoad(String.valueOf(size - 1));
     			}
   	        // 모든 데이터를 로드하여 적용하였다면 어댑터에 알리고
   	        // 리스트뷰의 락을 해제합니다.
   	     //   m_adapter.notifyDataSetChanged();
-  	        mLockListView = false;
+    		 
   	      }
   	    };
   	    

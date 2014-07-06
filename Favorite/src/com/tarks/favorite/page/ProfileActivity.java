@@ -41,8 +41,10 @@ import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
+import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.global.Globalvariable;
 
 public class ProfileActivity extends SherlockActivity {
 
@@ -66,7 +68,7 @@ public class ProfileActivity extends SherlockActivity {
 	// FadingActionbar
 	FadingActionBarHelper helper;
 	// Menu state
-	boolean add_menu_state = false;
+	private boolean add_menu_state = false;
 	// List
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter
@@ -83,7 +85,7 @@ public class ProfileActivity extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//	      getSupportActionBar().setDisplayShowHomeEnabled(false);
+		// getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
@@ -242,8 +244,6 @@ public class ProfileActivity extends SherlockActivity {
 	}
 
 	public void MoreLoad(String number) {
-		// Log.i("ListView", listView.getLastVisiblePosition() + "");
-		// Log.i("ListViewCount", listView.getCount() + "");
 		if (listView.getLastVisiblePosition() >= listView.getCount() - 1
 				&& listView.getChildAt(0).getTop() != 0) {
 			getDocList(number);
@@ -300,7 +300,7 @@ public class ProfileActivity extends SherlockActivity {
 				Paramvalue, null, 6, Integer.parseInt(user_srl));
 
 	}
-	
+
 	public void getPageAuthCode(String user_srl) {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
@@ -320,8 +320,8 @@ public class ProfileActivity extends SherlockActivity {
 		Paramvalue.add(user_srl);
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "member/page_auth_app.php", mHandler, Paramname,
-				Paramvalue, null, 7, Integer.parseInt(user_srl));
+				+ "member/page_auth_app.php", mHandler, Paramname, Paramvalue,
+				null, 7, Integer.parseInt(user_srl));
 
 	}
 
@@ -366,11 +366,9 @@ public class ProfileActivity extends SherlockActivity {
 				getString(R.string.member_info_error_des),
 				getString(R.string.yes));
 	}
-	
-	
-	public void ChangeUserAlert(final String user_srl){
-		
-		
+
+	public void ChangeUserAlert(final String user_srl) {
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(
 				ProfileActivity.this);
 		builder.setMessage(getString(R.string.change_user_des)).setTitle(
@@ -379,35 +377,31 @@ public class ProfileActivity extends SherlockActivity {
 				new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
-					ChangeUserAct(user_srl);
+						ChangeUserAct(user_srl);
 					}
 				});
 		builder.setNegativeButton(getString(R.string.no), null);
 		builder.show();
-	
-		
+
 	}
-	
-	public void ChangeUserAct(String user_srl){
+
+	public void ChangeUserAct(String user_srl) {
 		// Setting Editor
-		SharedPreferences edit = getSharedPreferences("setting",
-				MODE_PRIVATE);
+		SharedPreferences edit = getSharedPreferences("setting", MODE_PRIVATE);
 		SharedPreferences.Editor editor = edit.edit();
 		editor.putString("default_user", "N");
 		editor.putString("default_user_srl", Global.getSetting("user_srl", "0"));
-		editor.putString("default_user_srl_auth", Global.getSetting("user_srl_auth", "null"));
+		editor.putString("default_user_srl_auth",
+				Global.getSetting("user_srl_auth", "null"));
 		editor.putString("user_srl", member_srl);
 		editor.putString("user_srl_auth", user_srl);
 
-		
-
-		//Commit
+		// Commit
 		editor.commit();
-		
-		MainActivity.INSTANCE.restartApplication();	
+
+		MainActivity.INSTANCE.restartApplication();
 
 	}
-
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -422,7 +416,7 @@ public class ProfileActivity extends SherlockActivity {
 
 				try {
 					String[] array = msg.obj.toString().split("/LINE/.");
-					Global.dumpArray(array);
+				//	Global.dumpArray(array);
 					String tarks_account = array[0];
 					write_status = Integer.parseInt(array[1]);
 					page_admin = Integer.parseInt(array[2]);
@@ -499,7 +493,11 @@ public class ProfileActivity extends SherlockActivity {
 						setList(Integer.parseInt(srl), user_srl, name, content,
 								Integer.parseInt(status));
 						m_adapter.notifyDataSetChanged();
+			
+
 					}
+					//Unlock listview
+					FadingActionBarHelperBase.mLockListView = false;
 				} catch (Exception e) {
 
 				}
@@ -568,7 +566,7 @@ public class ProfileActivity extends SherlockActivity {
 				// Log.i("Result", msg.obj.toString());
 
 			}
-			
+
 			if (msg.what == 7) {
 				ChangeUserAlert(msg.obj.toString());
 
@@ -732,8 +730,6 @@ public class ProfileActivity extends SherlockActivity {
 
 		menu.add(0, 100, 0, getString(R.string.change_user)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
-		
-		
 
 		menu.add(0, 2, 0, getString(R.string.information)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);

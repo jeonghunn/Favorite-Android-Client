@@ -4,6 +4,7 @@ package com.tarks.favorite;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -12,6 +13,7 @@ import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,8 +51,8 @@ public class PagePopularFragment extends SherlockFragment implements
 	String favorite_result;
 	
 	//User content
-	ArrayList<String> user_content_array = new ArrayList<String>();
-	ArrayList<String> user_name_array = new ArrayList<String>();
+	private ArrayList<String> user_srl_array = new ArrayList<String>();
+	private ArrayList<String> user_name_array = new ArrayList<String>();
 	// ListView
 //	ListView listView;
 	private PullToRefreshListView listView;
@@ -87,7 +90,7 @@ public class PagePopularFragment extends SherlockFragment implements
 	
 	public void refreshAct(){
 		//User content
-		 user_content_array.clear();
+		 user_srl_array.clear();
 		 user_name_array.clear();
 		m_adapter.clear();
 		loadPages(Global.getSetting("user_srl", "0"));
@@ -145,10 +148,25 @@ public class PagePopularFragment extends SherlockFragment implements
 		return false;
 	}
 	
-	public void setList(String user_srl, String title, String des) {
-		List p1 = new List(user_srl, title, des, 0);
-		m_orders.add(p1);
-
+	private void setListView(String result){
+		
+		try{
+			String[] array = result.split("/LINE/.", user_srl_array.size() +1);
+			for (int i = 0; i < user_srl_array.size(); i++) {
+				getMemberInfo(String.valueOf(user_srl_array.get(i)));
+				setList(user_srl_array.get(i), user_name_array.get(i), array[i]);
+			}
+		
+			listView.onRefreshComplete();
+		}catch(Exception e){
+			listView.onRefreshComplete();
+		}
+		
+	}
+	
+	private void setList(String user_srl, String title, String des) {
+		m_orders.add(new List(user_srl, title, des, 0));
+		m_adapter.notifyDataSetChanged();
 	}
 
 	public void loadPages(String user_srl) {
@@ -245,16 +263,17 @@ public class PagePopularFragment extends SherlockFragment implements
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
 				
-		//		Log.i("Result",result);
+			//	Log.i("Result",result);
 				try{
 				 String[] profile = result.split("/PFILE/.");
 					for (int i = 0; i < profile.length; i++) {
 						 String[] users = profile[i].split("/LINE/.");
-						user_content_array.add(users[0]);
+						user_srl_array.add(users[0]);
 						user_name_array.add(users[1]);
+					//	Log.i("Result",users[0] +  "ddf");
 					}
-				// Global.dumpArray(array);
-				loadUsers(user_content_array);
+			//	 Global.dumpArray(profile);
+				loadUsers(user_srl_array);
 				
 				}catch(Exception e){
 					
@@ -263,19 +282,7 @@ public class PagePopularFragment extends SherlockFragment implements
 			}
 			
 			if (msg.what == 2) {
-				try{
-				String result = msg.obj.toString();
-				//Log.i("Result", msg.obj.toString());
-				String[] array = result.split("/LINE/.");
-				for (int i = 0; i < user_content_array.size(); i++) {
-					getMemberInfo(String.valueOf(user_content_array.get(i)));
-					setList(user_content_array.get(i), user_name_array.get(i), array[i]);
-					m_adapter.notifyDataSetChanged();
-				}
-				listView.onRefreshComplete();
-				} catch (Exception e){
-					listView.onRefreshComplete();
-				}
+	          setListView(msg.obj.toString());
 			
 			}
 			

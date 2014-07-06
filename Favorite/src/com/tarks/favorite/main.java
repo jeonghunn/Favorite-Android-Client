@@ -1,6 +1,8 @@
 //This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite;
 
+import java.lang.reflect.Field;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -8,6 +10,7 @@ import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
 import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.page.page_create;
+
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
@@ -22,6 +25,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ViewDragHelper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -81,8 +85,37 @@ public class main extends SherlockFragmentActivity {
 		// Locate DrawerLayout in drawer_main.xml
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		
+		//Drag margin
+		Field mDragger;
+		try {
+			mDragger = mDrawerLayout.getClass().getDeclaredField(
+			        "mLeftDragger");
 		
+		mDragger.setAccessible(true);
+		ViewDragHelper draggerObj = (ViewDragHelper) mDragger
+		        .get(mDrawerLayout);
 
+		Field mEdgeSize = draggerObj.getClass().getDeclaredField(
+		        "mEdgeSize");
+		mEdgeSize.setAccessible(true);
+		int edge = mEdgeSize.getInt(draggerObj);
+
+		mEdgeSize.setInt(draggerObj, edge * 5);
+
+		
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//mRightDragger for right obviously
+ catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		// Locate ListView in drawer_main.xml
 		mDrawerList = (ListView) findViewById(R.id.listview_drawer);
 		
