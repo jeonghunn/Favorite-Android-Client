@@ -100,7 +100,7 @@ public class main extends SherlockFragmentActivity {
 		mEdgeSize.setAccessible(true);
 		int edge = mEdgeSize.getInt(draggerObj);
 
-		mEdgeSize.setInt(draggerObj, edge * 5);
+		mEdgeSize.setInt(draggerObj, edge * 2);
 
 		
 		} catch (NoSuchFieldException e) {
