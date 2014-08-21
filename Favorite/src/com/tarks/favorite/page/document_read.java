@@ -788,7 +788,7 @@ public class document_read extends SherlockActivity {
 						}
 					}
 				}
-				if (image != null && p.getPath().endsWith("jpg")) {
+				if (image != null && p.getPath().endsWith("jpg") || p.getPath().endsWith("jpeg")) {
 					Bitmap bm = Global.UriToBitmapCompress(Uri
 							.fromFile(new File(p.getPath())));
 					image.setImageBitmap(bm);
@@ -1074,7 +1074,7 @@ public class document_read extends SherlockActivity {
 				String[] array = msg.obj.toString().split("/LINE/.");
 
 				for (int i = 0; i < array.length; i++) {
-					if (array[i].endsWith("jpg")) {
+					if (array[i].endsWith("jpg") || array[i].endsWith("jpeg")) {
 						int index = array[i].lastIndexOf("/");
 						String fileName = array[i].substring(index + 1);
 

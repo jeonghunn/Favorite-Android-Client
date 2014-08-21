@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/black_button"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="100" >
 
@@ -19,6 +18,7 @@
             android:id="@+id/img"
             android:layout_width="40sp"
             android:layout_height="40sp"
+            android:layout_marginTop="6sp"
             android:adjustViewBounds="true"
             android:baselineAlignBottom="true"
             android:contentDescription="Color Stripe"
@@ -47,21 +47,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:autoLink="all"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
-                android:text="No Info"
-                android:textColor="#8C8C8C"
+                android:autoLink="all"
+                android:textColor="#5D5D5D"
                 android:textSize="12sp" />
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"
-            android:textColor="#8C8C8C"
-            android:textSize="10sp" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:layout_marginLeft="9sp"
+                android:text="00"
+                android:textColor="#8C8C8C"
+                android:textSize="10sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

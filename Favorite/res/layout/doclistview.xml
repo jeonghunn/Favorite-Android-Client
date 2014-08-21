@@ -16,19 +16,6 @@
 
     </ListView>
 
-    <EditText
-        android:id="@+id/comment_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-         android:paddingLeft="5sp"
-        android:layout_below="@+id/listView1"
-        android:background="#FFFFFF"
-        android:hint="@string/type_a_comment"
-        android:layout_toLeftOf="@+id/send"
-        android:ems="10" />
-
     <ImageButton
         android:id="@+id/send"
         android:layout_width="wrap_content"
@@ -37,5 +24,21 @@
         android:layout_alignParentRight="true"
          android:background="@drawable/orange_button"
          android:src="@drawable/send" />
+
+    <EditText
+        android:id="@+id/comment_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/send"
+        android:background="#FFFFFF"
+        android:ems="10"
+             android:paddingTop="14sp"
+        android:paddingBottom="14sp"
+        android:hint="@string/type_a_comment"
+        android:paddingLeft="5sp" >
+
+    </EditText>
 
 </RelativeLayout>
