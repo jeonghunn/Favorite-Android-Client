@@ -295,10 +295,11 @@ public abstract class FadingActionBarHelperBase {
     	      && mLockListView == false )
     	    {
     	      addItems(totalItemCount);
+    	//       Log.i("ADDITEM", "Add Item called");
     	    }  
     	  
     	    
-        
+ 
         
             View topChild = view.getChildAt(0);
             if (topChild == null) {

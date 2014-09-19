@@ -44,7 +44,6 @@ import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
-import com.tarks.favorite.global.Globalvariable;
 
 public class ProfileActivity extends SherlockActivity {
 
@@ -144,10 +143,6 @@ public class ProfileActivity extends SherlockActivity {
 				null, 1, 0);
 	}
 
-	// public void onResume(){
-	// super.onResume();
-	//
-	// }
 
 	public void setFadingActionBar() {
 		helper = new FadingActionBarHelper()

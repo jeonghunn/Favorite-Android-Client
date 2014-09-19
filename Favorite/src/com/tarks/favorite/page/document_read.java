@@ -1037,7 +1037,11 @@ public class document_read extends SherlockActivity {
 				String result = msg.obj.toString();
 				if (result.matches("comment_update_succeed")) {
 					Global.toast(getString(R.string.deleted));
-					refreshAct();
+					previous_count = 1;
+					m_adapter.clear();
+					comment_edittext.setText(null);
+					getDoc();
+					listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 				} else {
 					Global.toast(getString(R.string.error_des));
 				}
