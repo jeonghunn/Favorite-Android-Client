@@ -85,7 +85,7 @@ public class page_create extends SherlockActivity {
 
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 
 		// Define profile imageview

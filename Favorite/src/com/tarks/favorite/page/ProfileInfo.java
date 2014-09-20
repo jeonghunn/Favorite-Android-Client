@@ -70,7 +70,7 @@ public class ProfileInfo extends SherlockActivity {
 		setContentView(R.layout.listview);
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		Load();
 
 	}

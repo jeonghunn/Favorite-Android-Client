@@ -20,7 +20,7 @@ public class setting extends SherlockPreferenceActivity {
 		super.onCreate(savedInstanceState);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		addPreferencesFromResource(R.layout.setting);
 
 

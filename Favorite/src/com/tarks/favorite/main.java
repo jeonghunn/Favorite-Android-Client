@@ -65,7 +65,6 @@ public class main extends SherlockFragmentActivity {
 		// Get the view from drawer_main.xml
 		setContentView(R.layout.main);
 		
-		
 
 		// Get the Title
 		mTitle = mDrawerTitle = getTitle();
@@ -140,7 +139,7 @@ public class main extends SherlockFragmentActivity {
 		// Enable ActionBar app icon to behave as action to toggle nav drawer
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,

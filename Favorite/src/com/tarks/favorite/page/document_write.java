@@ -63,6 +63,7 @@ public class document_write extends SherlockActivity {
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setSupportProgressBarIndeterminateVisibility(false);
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		page_srl = intent.getStringExtra("page_srl");
@@ -70,7 +71,9 @@ public class document_write extends SherlockActivity {
 		doc_contents = intent.getStringExtra("doc_contents");
 		content_edittext = (EditText) findViewById(R.id.editText1);
 		mImageUri = intent.getParcelableExtra("image_uri");
+	try{
 		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
+	}catch(Exception e){Global.toast(getString(R.string.no_storage_error));}
 		if(page_name != null) getSupportActionBar().setSubtitle(page_name);
 		if(doc_contents != null) content_edittext.setText(doc_contents);
 		if(mImageUri != null) confirmImage();

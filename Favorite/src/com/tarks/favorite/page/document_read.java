@@ -52,36 +52,36 @@ import com.tarks.favorite.global.Globalvariable;
 
 public class document_read extends SherlockActivity {
 
-	String local_path;
-	String externel_path;
+	private String local_path;
+	private String externel_path;
 	// Profile
-	ImageView profile;
-	TextView profile_title;
-	TextView profile_des;
-	TextView comment_count;
-	TextView doc_content;
-	ListView header_listView;
+	private ImageView profile;
+	private TextView profile_title;
+	private TextView profile_des;
+	private TextView comment_count;
+	private TextView doc_content;
+	private ListView header_listView;
 	// Member srl
-	String doc_srl = "0";
-	String user_srl = "0";
-	String comments = "0";
-	String status = "0";
-	String AttachFileName;
-	int comments_count = 0;
-	int previous_count = 1;
-	int contextmenu_number = 0;
-	int contextmenu_status = 0;
-	int contextmenu_you_status = 0;
+	private String doc_srl = "0";
+	private String user_srl = "0";
+	private String comments = "0";
+	private String status = "0";
+	private String AttachFileName;
+	private int comments_count = 0;
+	private int previous_count = 1;
+	private int contextmenu_number = 0;
+	private int contextmenu_status = 0;
+	private int contextmenu_you_status = 0;
 	// Edittext
-	EditText comment_edittext;
+	private EditText comment_edittext;
 	// ImageButton
-	ImageButton send_button;
+	private ImageButton send_button;
 	// Button
-	Button previous_comments;
-	WebView webview;
+	private Button previous_comments;
+	private WebView webview;
 
 	// ListView
-	ListView listView;
+	private ListView listView;
 
 	// List
 	ArrayList<HeaderList> header_m_orders = new ArrayList<HeaderList>();
@@ -104,14 +104,16 @@ public class document_read extends SherlockActivity {
 		setContentView(R.layout.doclistview);
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		ct = this;
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
-		externel_path = getExternalCacheDir().getAbsolutePath() + "/";
+	
 		Log.i("Doc srl", doc_srl + "");
 		try {
+			externel_path = getExternalCacheDir().getAbsolutePath() + "/";
 			local_path = getCacheDir().toString() + "/member/";
 		} catch (Exception e) {
 		}
@@ -1106,9 +1108,10 @@ public class document_read extends SherlockActivity {
 
 			if (msg.what == 11) {
 				// Log.i("result", msg.obj.toString());
-
+try{
 				Global.SaveBitmapToFileCache((Bitmap) msg.obj, externel_path,
 						AttachFileName);
+}catch(Exception e){Global.toast(getString(R.string.no_storage_error));}
 				setHeaderList(externel_path + AttachFileName, null, null);
 				header_m_adapter.notifyDataSetChanged();
 			}
