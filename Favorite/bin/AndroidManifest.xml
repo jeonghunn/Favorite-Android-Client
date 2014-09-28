@@ -117,6 +117,7 @@
         <activity
             android:name=".page.privacy_category"
             android:icon="@drawable/ic_launcher_simple"
+            android:theme="@android:style/Theme.Dialog"
             android:label="@string/privacy_content" />
         <activity
             android:name="com.tarks.favorite.page.page_create"

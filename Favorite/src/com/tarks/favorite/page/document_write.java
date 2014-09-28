@@ -265,7 +265,7 @@ file_kind = 2;
 
 		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
-		  subMenu1Item.setIcon(R.drawable.ic_attach);
+		  subMenu1Item.setIcon(R.drawable.ic_file_light);
 	        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.accept)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
@@ -293,7 +293,7 @@ file_kind = 2;
 					PostAct();
 				} else {
 					setSupportProgressBarIndeterminateVisibility(false);
-					Global.Infoalert(this, getString(R.string.warning),
+					Global.Infoalert(this, getString(R.string.no),
 							getString(R.string.no_content),
 							getString(R.string.yes));
 				}

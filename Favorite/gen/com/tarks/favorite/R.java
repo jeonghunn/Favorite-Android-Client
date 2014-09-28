@@ -1174,7 +1174,7 @@ containing a value of this type.
     public static final class drawable {
         public static final int ab_background=0x7f020000;
         public static final int ab_background_textured_favorite=0x7f020001;
-        public static final int ab_bg_black=0x7f0200d1;
+        public static final int ab_bg_black=0x7f0200d4;
         public static final int ab_bottom_solid_favorite=0x7f020002;
         public static final int ab_solid_favorite=0x7f020003;
         public static final int ab_stacked_solid_favorite=0x7f020004;
@@ -1322,66 +1322,69 @@ containing a value of this type.
         public static final int green_button=0x7f020092;
         public static final int home=0x7f020093;
         public static final int ic_action_refresh=0x7f020094;
-        public static final int ic_attach=0x7f020095;
-        public static final int ic_attach_dark=0x7f020096;
-        public static final int ic_drawer=0x7f020097;
+        public static final int ic_attach_dark=0x7f020095;
+        public static final int ic_drawer=0x7f020096;
+        public static final int ic_file_light=0x7f020097;
         public static final int ic_launcher=0x7f020098;
         public static final int ic_launcher_simple=0x7f020099;
         public static final int ic_list=0x7f02009a;
-        public static final int ic_stat_favorite_white=0x7f02009b;
-        public static final int indicator_arrow=0x7f02009c;
-        public static final int indicator_bg_bottom=0x7f02009d;
-        public static final int indicator_bg_top=0x7f02009e;
-        public static final int kakaostory=0x7f02009f;
-        public static final int kakaotalk=0x7f0200a0;
-        public static final int list_back=0x7f0200a1;
-        public static final int list_focused_favorite=0x7f0200a2;
-        public static final int list_selector=0x7f0200a3;
-        public static final int map_dark=0x7f0200a4;
-        public static final int menu_dropdown_panel_favorite=0x7f0200a5;
-        public static final int message=0x7f0200a6;
-        public static final int orange_button=0x7f0200a7;
-        public static final int people=0x7f0200a8;
-        public static final int people_white=0x7f0200a9;
-        public static final int person=0x7f0200aa;
-        public static final int photo_spinner=0x7f0200ab;
-        public static final int photo_spinner_normal=0x7f0200ac;
-        public static final int photo_spinner_pressed=0x7f0200ad;
-        public static final int pressed_background_favorite=0x7f0200ae;
-        public static final int profile=0x7f0200af;
-        public static final int profile_camera=0x7f0200b0;
-        public static final int progress_bg_favorite=0x7f0200b1;
-        public static final int progress_horizontal_favorite=0x7f0200b2;
-        public static final int progress_primary_favorite=0x7f0200b3;
-        public static final int progress_secondary_favorite=0x7f0200b4;
-        public static final int purple_button=0x7f0200b5;
-        public static final int red_button=0x7f0200b6;
-        public static final int rotate=0x7f0200b7;
-        public static final int selectable_background_cardbank=0x7f0200b8;
-        public static final int selectable_background_favorite=0x7f0200b9;
-        public static final int send=0x7f0200ba;
-        public static final int settings=0x7f0200bb;
-        public static final int spinner_ab_default_favorite=0x7f0200bc;
-        public static final int spinner_ab_disabled_favorite=0x7f0200bd;
-        public static final int spinner_ab_focused_favorite=0x7f0200be;
-        public static final int spinner_ab_pressed_favorite=0x7f0200bf;
-        public static final int spinner_background_ab_favorite=0x7f0200c0;
-        public static final int square_black_button=0x7f0200c1;
-        public static final int tab_indicator_ab_favorite=0x7f0200c2;
-        public static final int tab_selected_favorite=0x7f0200c3;
-        public static final int tab_selected_focused_favorite=0x7f0200c4;
-        public static final int tab_selected_pressed_favorite=0x7f0200c5;
-        public static final int tab_unselected_favorite=0x7f0200c6;
-        public static final int tab_unselected_focused_favorite=0x7f0200c7;
-        public static final int tab_unselected_pressed_favorite=0x7f0200c8;
-        public static final int tabs_pattern=0x7f0200c9;
-        public static final int tarks_white=0x7f0200ca;
-        public static final int transparent=0x7f0200cb;
-        public static final int twitter=0x7f0200cc;
-        public static final int welcome_background=0x7f0200cd;
-        public static final int write=0x7f0200ce;
-        public static final int write_dark=0x7f0200cf;
-        public static final int yellow_button=0x7f0200d0;
+        public static final int ic_menu_light=0x7f02009b;
+        public static final int ic_overflow_light=0x7f02009c;
+        public static final int ic_share_light=0x7f02009d;
+        public static final int ic_stat_favorite_white=0x7f02009e;
+        public static final int indicator_arrow=0x7f02009f;
+        public static final int indicator_bg_bottom=0x7f0200a0;
+        public static final int indicator_bg_top=0x7f0200a1;
+        public static final int kakaostory=0x7f0200a2;
+        public static final int kakaotalk=0x7f0200a3;
+        public static final int list_back=0x7f0200a4;
+        public static final int list_focused_favorite=0x7f0200a5;
+        public static final int list_selector=0x7f0200a6;
+        public static final int map_dark=0x7f0200a7;
+        public static final int menu_dropdown_panel_favorite=0x7f0200a8;
+        public static final int message=0x7f0200a9;
+        public static final int orange_button=0x7f0200aa;
+        public static final int people=0x7f0200ab;
+        public static final int people_white=0x7f0200ac;
+        public static final int person=0x7f0200ad;
+        public static final int photo_spinner=0x7f0200ae;
+        public static final int photo_spinner_normal=0x7f0200af;
+        public static final int photo_spinner_pressed=0x7f0200b0;
+        public static final int pressed_background_favorite=0x7f0200b1;
+        public static final int profile=0x7f0200b2;
+        public static final int profile_camera=0x7f0200b3;
+        public static final int progress_bg_favorite=0x7f0200b4;
+        public static final int progress_horizontal_favorite=0x7f0200b5;
+        public static final int progress_primary_favorite=0x7f0200b6;
+        public static final int progress_secondary_favorite=0x7f0200b7;
+        public static final int purple_button=0x7f0200b8;
+        public static final int red_button=0x7f0200b9;
+        public static final int rotate=0x7f0200ba;
+        public static final int selectable_background_cardbank=0x7f0200bb;
+        public static final int selectable_background_favorite=0x7f0200bc;
+        public static final int send=0x7f0200bd;
+        public static final int settings=0x7f0200be;
+        public static final int spinner_ab_default_favorite=0x7f0200bf;
+        public static final int spinner_ab_disabled_favorite=0x7f0200c0;
+        public static final int spinner_ab_focused_favorite=0x7f0200c1;
+        public static final int spinner_ab_pressed_favorite=0x7f0200c2;
+        public static final int spinner_background_ab_favorite=0x7f0200c3;
+        public static final int square_black_button=0x7f0200c4;
+        public static final int tab_indicator_ab_favorite=0x7f0200c5;
+        public static final int tab_selected_favorite=0x7f0200c6;
+        public static final int tab_selected_focused_favorite=0x7f0200c7;
+        public static final int tab_selected_pressed_favorite=0x7f0200c8;
+        public static final int tab_unselected_favorite=0x7f0200c9;
+        public static final int tab_unselected_focused_favorite=0x7f0200ca;
+        public static final int tab_unselected_pressed_favorite=0x7f0200cb;
+        public static final int tabs_pattern=0x7f0200cc;
+        public static final int tarks_white=0x7f0200cd;
+        public static final int transparent=0x7f0200ce;
+        public static final int twitter=0x7f0200cf;
+        public static final int welcome_background=0x7f0200d0;
+        public static final int write=0x7f0200d1;
+        public static final int write_dark=0x7f0200d2;
+        public static final int yellow_button=0x7f0200d3;
     }
     public static final class id {
         public static final int CropImageView=0x7f050054;
@@ -1868,10 +1871,11 @@ containing a value of this type.
     }
     public static final class style {
         public static final int ActionBar_Solid_Favorite=0x7f0b006b;
-        public static final int ActionBar_Transparent_Favorite=0x7f0b006c;
-        public static final int ActionBarSubtitleStyle=0x7f0b006d;
-        public static final int ActionBarTabStyle_Favorite=0x7f0b0070;
-        public static final int ActionButton_CloseMode_Favorite=0x7f0b0073;
+        public static final int ActionBar_Transparent_Favorite=0x7f0b006d;
+        public static final int ActionBarOverflowStyle=0x7f0b006c;
+        public static final int ActionBarSubtitleStyle=0x7f0b006e;
+        public static final int ActionBarTabStyle_Favorite=0x7f0b0071;
+        public static final int ActionButton_CloseMode_Favorite=0x7f0b0074;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -1894,9 +1898,9 @@ containing a value of this type.
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0b0059;
-        public static final int AppTheme=0x7f0b0075;
-        public static final int AppTheme_Light_TranslucentActionBar=0x7f0b0077;
-        public static final int AppTheme_TranslucentActionBar=0x7f0b0076;
+        public static final int AppTheme=0x7f0b0076;
+        public static final int AppTheme_Light_TranslucentActionBar=0x7f0b0078;
+        public static final int AppTheme_TranslucentActionBar=0x7f0b0077;
         public static final int ButtonSimple=0x7f0b0061;
         public static final int ButtonText=0x7f0b0060;
         public static final int CardLightText=0x7f0b0063;
@@ -1905,13 +1909,13 @@ containing a value of this type.
         public static final int CardText=0x7f0b0062;
         public static final int CardTitle=0x7f0b0064;
         public static final int CardTitleBold=0x7f0b0065;
-        public static final int DropDownListView_Favorite=0x7f0b006f;
-        public static final int DropDownNav_Favorite=0x7f0b0071;
+        public static final int DropDownListView_Favorite=0x7f0b0070;
+        public static final int DropDownNav_Favorite=0x7f0b0072;
         public static final int Item=0x7f0b0067;
         public static final int Item_Sticky=0x7f0b0069;
         public static final int Item_Top=0x7f0b0068;
-        public static final int PopupMenu_Favorite=0x7f0b006e;
-        public static final int ProgressBar_Favorite=0x7f0b0072;
+        public static final int PopupMenu_Favorite=0x7f0b006f;
+        public static final int ProgressBar_Favorite=0x7f0b0073;
         public static final int Sherlock___TextAppearance_Small=0x7f0b0046;
         public static final int Sherlock___Theme=0x7f0b0051;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0b0053;
@@ -1955,7 +1959,7 @@ containing a value of this type.
         /**  this style is only referenced in a Light.DarkActionBar based theme 
  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Favorite_Widget=0x7f0b0074;
+        public static final int Theme_Favorite_Widget=0x7f0b0075;
         public static final int Theme_Sherlock=0x7f0b0054;
         public static final int Theme_Sherlock_Light=0x7f0b0055;
         public static final int Theme_Sherlock_Light_DarkActionBar=0x7f0b0056;

@@ -2,6 +2,8 @@
 package com.tarks.favorite.page;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +23,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.R;
 import com.tarks.favorite.global.Global;
 
-public class privacy_category extends SherlockActivity {
+public class privacy_category extends Activity {
 
 	// ListView
 	ListView listView;
@@ -38,7 +40,8 @@ public class privacy_category extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listview);
 		// 액션바백버튼가져오기
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	//	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		// getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
@@ -193,17 +196,17 @@ public class privacy_category extends SherlockActivity {
 
 	}
 
-	// 빽백키 상단액션바
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			onBackPressed();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
+//	// 빽백키 상단액션바
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case android.R.id.home:
+//			onBackPressed();
+//			return true;
+//		default:
+//			return super.onOptionsItemSelected(item);
+//		}
+//
+//	}
 
 }

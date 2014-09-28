@@ -18,6 +18,7 @@
     <item android:id="@+id/menu_item_share_action_provider_action_bar"
         android:showAsAction="always"
         android:title="@string/share"
+        android:icon="@drawable/ic_share_light"
         android:actionProviderClass="com.actionbarsherlock.widget.ShareActionProvider" />
 
     <!-- XXX: For now, ShareActionProviders must be displayed on the action bar -->

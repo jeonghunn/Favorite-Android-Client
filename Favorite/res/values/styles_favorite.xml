@@ -29,6 +29,7 @@
         <item name="actionModeBackground">@drawable/cab_background_top_favorite</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_favorite</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Favorite</item>
+          <item name="actionOverflowButtonStyle">@style/ActionBarOverflowStyle</item>
 
                 <!-- Light.DarkActionBar specific -->
         <item name="actionBarWidgetTheme">@style/Theme.Favorite.Widget</item>
@@ -41,7 +42,12 @@
         <item name="backgroundSplit">@drawable/ab_bottom_solid_favorite</item>
         <item name="progressBarStyle">@style/ProgressBar.Favorite</item>
          <item name="subtitleTextStyle">@style/ActionBarSubtitleStyle</item>
+    
     </style>
+    
+    <style name="ActionBarOverflowStyle" parent="@style/Widget.Sherlock.Light.ActionButton.Overflow">
+    <item name="android:src">@drawable/ic_overflow_light</item>
+</style>
 
     <style name="ActionBar.Transparent.Favorite" parent="@style/Widget.Sherlock.ActionBar">
         <item name="background">@drawable/ab_transparent_favorite</item>

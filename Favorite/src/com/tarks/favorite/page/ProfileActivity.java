@@ -726,12 +726,14 @@ public class ProfileActivity extends SherlockActivity {
 		menu.add(0, 100, 0, getString(R.string.change_user)).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
 
-		menu.add(0, 2, 0, getString(R.string.information)).setShowAsAction(
+		
+		menu.add(0, 2, 0, getString(R.string.information)).setIcon(R.drawable.ic_menu_light).setShowAsAction(
 				MenuItem.SHOW_AS_ACTION_NEVER);
 
 		menu.findItem(0).setVisible(add_menu_state);
 		menu.findItem(1).setVisible(write_status <= your_status);
 		menu.findItem(100).setVisible(page_admin == user_srl);
+		if(title != null && title.length() < 20) menu.findItem(2).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
 
