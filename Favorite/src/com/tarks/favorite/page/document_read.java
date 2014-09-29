@@ -111,7 +111,7 @@ public class document_read extends SherlockActivity {
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
 	
-		Log.i("Doc srl", doc_srl + "");
+		Log.i("Doc srl", doc_srl);
 		try {
 			externel_path = getExternalCacheDir().getAbsolutePath() + "/";
 			local_path = getCacheDir().toString() + "/member/";
@@ -452,6 +452,7 @@ public class document_read extends SherlockActivity {
 	public void setCommentsCount(int count) {
 		comments_count = count;
 		comment_count.setText(String.valueOf(count));
+		if(count != 0) comment_count.setVisibility(View.VISIBLE);
 	}
 
 	public void getMemberInfo(String user_srl) {
