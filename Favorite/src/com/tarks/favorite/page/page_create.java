@@ -218,7 +218,7 @@ public class page_create extends SherlockActivity {
 	
 	// Call connection Error
 	public void ConnectionError() {
-		Global.ConnectionError(this);
+		Global.ConnectionError();
 	}
 
 	protected Handler mHandler = new Handler() {

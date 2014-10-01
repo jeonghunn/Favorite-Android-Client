@@ -148,16 +148,22 @@ public final class Global {
 	}
 
 	// Default Connection Error
-	public static void ConnectionError(Context cx) {
+	public static void ConnectionError() {
+//		if (InternetConnection(1) == true || InternetConnection(0) == true) {
+//			Infoalert(cx, cx.getString(R.string.error),
+//					cx.getString(R.string.error_des),
+//					cx.getString(R.string.yes));
+//		} else {
+//			Infoalert(cx, cx.getString(R.string.networkerror),
+//					cx.getString(R.string.networkerrord),
+//					cx.getString(R.string.yes));
+//
+//		}
+		
 		if (InternetConnection(1) == true || InternetConnection(0) == true) {
-			Infoalert(cx, cx.getString(R.string.error),
-					cx.getString(R.string.error_des),
-					cx.getString(R.string.yes));
-		} else {
-			Infoalert(cx, cx.getString(R.string.networkerror),
-					cx.getString(R.string.networkerrord),
-					cx.getString(R.string.yes));
-
+			toast(mod.getString(R.string.error_des), false);
+		}else{
+			toast(mod.getString(R.string.networkerrord), false);
 		}
 	}
 

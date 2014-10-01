@@ -70,7 +70,7 @@ public class tarks_account_login extends SherlockActivity {
 	}
 	
 	public void ConnectionError(){
-		Global.ConnectionError(this);
+		Global.ConnectionError();
 	}
 
 	protected Handler mHandler = new Handler() {

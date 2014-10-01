@@ -285,7 +285,7 @@ public class PageNowFragment extends SherlockFragment implements
 			// IF Sucessfull no timeout
 			// rootView.setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError(getActivity());
+				Global.ConnectionError();
 			}
 
 			if (msg.what == 1) {

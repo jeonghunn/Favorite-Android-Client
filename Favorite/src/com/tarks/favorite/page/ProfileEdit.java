@@ -578,7 +578,7 @@ public class ProfileEdit extends SherlockActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileEdit.this);
+				Global.ConnectionError();
 			}
 
 			if (msg.what == 1) {

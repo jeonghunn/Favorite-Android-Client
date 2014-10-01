@@ -357,7 +357,7 @@ public class ProfileInfo extends SherlockActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileInfo.this);
+				Global.ConnectionError();
 			}
 
 			if (msg.what == 1) {
@@ -440,7 +440,7 @@ public class ProfileInfo extends SherlockActivity {
 					setProfileInfo();
 					profile_changed = true;
 				}else{
-					Global.ConnectionError(ProfileInfo.this);
+					Global.ConnectionError();
 				}
 
 			}

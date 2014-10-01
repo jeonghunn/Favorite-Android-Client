@@ -404,7 +404,7 @@ public class ProfileActivity extends SherlockActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileActivity.this);
+				Global.ConnectionError();
 			}
 
 			if (msg.what == 1) {
@@ -555,7 +555,7 @@ public class ProfileActivity extends SherlockActivity {
 					add_menu_state = false;
 					invalidateOptionsMenu();
 				} else {
-					Global.ConnectionError(ProfileActivity.this);
+					Global.ConnectionError();
 				}
 				// Log.i("Result","로그 정상 작동");
 				// Log.i("Result", msg.obj.toString());
