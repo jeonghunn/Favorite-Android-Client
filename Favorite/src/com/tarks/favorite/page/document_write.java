@@ -3,11 +3,11 @@ package com.tarks.favorite.page;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -157,7 +158,7 @@ public class document_write extends SherlockActivity {
 			// IF Sucessfull no timeout
 			setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError();
+				Global.ConnectionError(document_write.this);
 			}
 
 			if (msg.what == 1) {
@@ -166,7 +167,7 @@ public class document_write extends SherlockActivity {
 					FinishAct();
 				} else {
 				//	Log.i("Error", "Error has been");
-					Global.ConnectionError();
+					Global.ConnectionError(document_write.this);
 				}
 				// Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString());

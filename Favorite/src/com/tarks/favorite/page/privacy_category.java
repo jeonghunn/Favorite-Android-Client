@@ -52,8 +52,12 @@ public class privacy_category extends Activity {
 		if (title != null)
 			setTitle(title);
 		selected_kind = 1;
+		
+		try{
 		selected_tag = Integer.parseInt(status);
-
+		}catch (Exception e){
+			
+		}
 		if (kind == null) {
 			setList(getString(R.string.privacy_public),
 					getString(R.string.privacy_public_des), 1, 0);

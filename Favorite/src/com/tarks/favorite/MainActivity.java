@@ -508,7 +508,7 @@ public class MainActivity extends SherlockActivity {
 
 			}
 		} catch (Exception e) {
-			Global.ConnectionError();
+			Global.ConnectionError(this);
 		}
 
 	}

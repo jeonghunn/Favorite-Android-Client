@@ -276,7 +276,7 @@ public class mainfragment extends SherlockFragment  {
 			// IF Sucessfull no timeout
 			// rootView.setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError();
+				Global.ConnectionError(getActivity());
 			}
 
 			if (msg.what == 1) {

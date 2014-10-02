@@ -578,7 +578,7 @@ public class ProfileEdit extends SherlockActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError();
+				Global.ConnectionError(ProfileEdit.this);
 			}
 
 			if (msg.what == 1) {
@@ -638,7 +638,7 @@ public class ProfileEdit extends SherlockActivity {
 					setList();
 
 				} catch (Exception e) {
-					MemberInfoError();
+					//MemberInfoError();
 					e.printStackTrace();
 				}
 			}

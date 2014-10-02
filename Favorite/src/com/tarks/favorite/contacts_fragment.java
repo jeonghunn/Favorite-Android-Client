@@ -269,7 +269,7 @@ public class contacts_fragment extends SherlockFragment implements
 			// IF Sucessfull no timeout
 			// rootView.setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError();
+				Global.ConnectionError(getActivity());
 			}
 
 			if (msg.what == 1) {

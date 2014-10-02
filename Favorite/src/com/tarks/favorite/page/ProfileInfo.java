@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,11 +20,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -125,8 +130,39 @@ public class ProfileInfo extends SherlockActivity {
 
 		listView.addHeaderView(header);
 
-		m_adapter = new ListAdapter(this, R.layout.list, m_orders);
 
+
+		
+	
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
+					if (((HeaderViewListAdapter) arg0.getAdapter())
+							.getWrappedAdapter() instanceof ListAdapter) {
+						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
+								.getAdapter()).getWrappedAdapter();
+
+						List ls = (List) ca.getItem(arg2 - 1);
+
+						
+						//Phone Number
+					if(ls.getCategory().matches("phone_number")){
+						Intent intent = new Intent(Intent.ACTION_DIAL);
+						intent.setData(Uri.parse("tel:" + ls.getDes()));
+						startActivity(intent); 
+					}
+
+					}
+				}
+
+			}
+		});
+		
+		m_adapter = new ListAdapter(this, R.layout.list, m_orders);
 		setProfileInfo();
 
 	}
@@ -193,6 +229,8 @@ public class ProfileInfo extends SherlockActivity {
 
 	public void setList() {
 
+	
+				
 		String tarks_account = array[0];
 		String admin = array[1];
 		String name_1 = array[2];
@@ -214,22 +252,29 @@ public class ProfileInfo extends SherlockActivity {
 		self_profile = your_status == 4;
 		setProfileList(Integer.parseInt(like_me), profile_pic);
 		if (!tarks_account.matches("null"))
-			AddList(getString(R.string.tarks_account), tarks_account);
+			AddList(getString(R.string.tarks_account), tarks_account, "tarks_account");
 		if (!gender.matches("0"))
 			AddList(getString(R.string.gender),
 					gender.matches("1") ? getString(R.string.male)
-							: getString(R.string.female));
+							: getString(R.string.female), "gender");
 		if (!birthday.matches("null") && !birthday.matches("0"))
-			AddList(getString(R.string.birthday), birthday);
+			AddList(getString(R.string.birthday), birthday, "birthday");
 		if (!join_day.matches("null"))
-			AddList(getString(R.string.join), Global.getDate(join_day));
-		if (!phone_number.matches("null"))
-			AddList(getString(R.string.phone_number), "+" + country_code
-					+ phone_number);
+			AddList(getString(R.string.join), Global.getDate(join_day), "join_day");
+		if (!phone_number.matches("null")){
+			String plus_mark = "+";
+			if(country_code.matches("0")) plus_mark = "";
+			
+			AddList(getString(R.string.phone_number), plus_mark + country_code
+					+ phone_number, "phone_number");
+		}
+
 		// if(!tarks_account.matches("null"))
 		// AddList(getString(R.string.tarks_account) , tarks_account);
 		// if(!tarks_account.matches("null"))
 		// AddList(getString(R.string.tarks_account) , tarks_account);
+		
+		
 
 		listView.setAdapter(m_adapter);
 
@@ -279,8 +324,8 @@ public class ProfileInfo extends SherlockActivity {
 
 	}
 
-	public void AddList(String title, String description) {
-		List p1 = new List(title, description);
+	public void AddList(String title, String description, String category) {
+		List p1 = new List(title, description, category);
 		m_orders.add(p1);
 	}
 
@@ -323,10 +368,12 @@ public class ProfileInfo extends SherlockActivity {
 
 		private String Title;
 		private String Description;
-
-		public List(String _Title, String _Description) {
+		private String category;
+		
+		public List(String _Title, String _Description, String _Category) {
 			this.Title = _Title;
 			this.Description = _Description;
+			this.category = _Category;
 		}
 
 		public String getTitle() {
@@ -335,6 +382,10 @@ public class ProfileInfo extends SherlockActivity {
 
 		public String getDes() {
 			return Description;
+		}
+		
+		public String getCategory() {
+			return category;
 		}
 
 	}
@@ -357,7 +408,7 @@ public class ProfileInfo extends SherlockActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError();
+				Global.ConnectionError(ProfileInfo.this);
 			}
 
 			if (msg.what == 1) {
@@ -417,7 +468,7 @@ public class ProfileInfo extends SherlockActivity {
 
 				} catch (Exception e) {
 					MemberInfoError();
-
+					e.printStackTrace();
 				}
 			}
 
@@ -440,7 +491,7 @@ public class ProfileInfo extends SherlockActivity {
 					setProfileInfo();
 					profile_changed = true;
 				}else{
-					Global.ConnectionError();
+					Global.ConnectionError(ProfileInfo.this);
 				}
 
 			}

@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -20,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
@@ -29,8 +32,10 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.user.db.DbOpenHelper;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -39,6 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
+
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
@@ -115,11 +121,31 @@ public final class Global {
 	// Show Information alert
 	public static void Infoalert(Context context, String title, String message,
 			String button) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setMessage(message).setPositiveButton(button, null)
-				.setTitle(title);
-		builder.show();
 
+		try {
+
+			if (Globalvariable.alert_status == true) {
+				Globalvariable.alert_status = false;
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setMessage(message).setPositiveButton(button, null)
+						.setTitle(title);
+
+				// Dialog Dismiss시 Event 받기
+				builder.setOnDismissListener(new OnDismissListener() {
+
+					@Override
+					public void onDismiss(DialogInterface dialog) {
+						Globalvariable.alert_status = true;
+					}
+				});
+
+				builder.show();
+
+			}
+
+		} catch (Exception e) {
+			Globalvariable.alert_status = true;
+		}
 	}
 
 	// 배열을 화면에, 요소별로 알기 쉽게 출력
@@ -148,23 +174,23 @@ public final class Global {
 	}
 
 	// Default Connection Error
-	public static void ConnectionError() {
-//		if (InternetConnection(1) == true || InternetConnection(0) == true) {
-//			Infoalert(cx, cx.getString(R.string.error),
-//					cx.getString(R.string.error_des),
-//					cx.getString(R.string.yes));
-//		} else {
-//			Infoalert(cx, cx.getString(R.string.networkerror),
-//					cx.getString(R.string.networkerrord),
-//					cx.getString(R.string.yes));
-//
-//		}
-		
+	public static void ConnectionError(Context cx) {
 		if (InternetConnection(1) == true || InternetConnection(0) == true) {
-			toast(mod.getString(R.string.error_des), false);
-		}else{
-			toast(mod.getString(R.string.networkerrord), false);
+			Infoalert(cx, cx.getString(R.string.error),
+					cx.getString(R.string.error_des),
+					cx.getString(R.string.yes));
+		} else {
+			Infoalert(cx, cx.getString(R.string.networkerror),
+					cx.getString(R.string.networkerrord),
+					cx.getString(R.string.yes));
+
 		}
+		//
+		// if (InternetConnection(1) == true || InternetConnection(0) == true) {
+		// toast(mod.getString(R.string.error_des), false);
+		// }else{
+		// toast(mod.getString(R.string.networkerrord), false);
+		// }
 	}
 
 	public static String[] NameBuilder(String name_1, String name_2) {

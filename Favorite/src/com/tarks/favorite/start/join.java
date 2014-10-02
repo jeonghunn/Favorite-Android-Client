@@ -441,7 +441,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 	// Call connection Error
 	public void ConnectionError() {
-		Global.ConnectionError();
+		Global.ConnectionError(this);
 	}
 
 	protected Handler mHandler = new Handler() {

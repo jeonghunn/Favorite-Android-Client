@@ -25,6 +25,9 @@ public final class Globalvariable {
 	
 	//Image uri
 	public static Uri image_uri;
+
+	//Alert true
+	public static boolean alert_status = true;
 	
 
 }
