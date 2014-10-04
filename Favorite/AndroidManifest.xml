@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tarks.favorite"
-    android:versionCode="41"
+    android:versionCode="42"
     android:versionName="@string/ver" >
 
     <uses-feature android:name="android.hardware.camera" >
@@ -101,6 +101,11 @@
             android:name=".GalleryView"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/photo" />
+        
+          <activity
+            android:name=".webview"
+            android:icon="@drawable/ic_launcher_simple"
+            android:theme="@style/Theme.Sherlock.NoActionBar" />
         <activity
             android:name="com.tarks.favorite.page.ProfileActivity"
             android:icon="@drawable/ic_launcher_simple"

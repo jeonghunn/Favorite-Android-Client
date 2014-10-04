@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.6.0.4512</string>
-    <string name="build">4512</string>
+    <string name="ver">1.7.0.4547</string>
+    <string name="build">4547</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -24,6 +24,7 @@
     <string name="refresh">Refresh</string>
     <string name="community">Community</string>
     <string name="moreview">More</string>
+    <string name="details">Details</string>
     <string name="contacts">Contacts</string>
     <string name="request">Request</string>
     <string name="sign_up">Sign up</string>
@@ -117,7 +118,6 @@
     <string name="notice_new_document">Wrote new document</string>
     <string name="notice_new_comment">Commented on a post</string>
     <string name="add">Add</string>
-    <string name="added">Added</string>
     <string name="favorite_add_des">Do you want to add to favorite?</string>
     <string name="added">Added.</string>
     <string name="notice_added_to_favorite">Added you to favorite.</string>

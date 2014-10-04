@@ -15,6 +15,7 @@
     <string name="refresh">새로고침</string>
     <string name="community">커뮤니티</string>
     <string name="moreview">더보기</string>
+      <string name="details">자세히</string>
     <string name="no_info">정보가 없습니다.</string>
     <string name="contacts">연락처</string>
     <string name="request">신청</string>

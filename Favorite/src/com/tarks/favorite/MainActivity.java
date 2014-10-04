@@ -3,6 +3,7 @@ package com.tarks.favorite;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -19,6 +20,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
@@ -201,29 +203,7 @@ public class MainActivity extends SherlockActivity {
 
 	}
 
-	public void IPError() {
-		// Alert
-		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-		builder.setMessage(getString(R.string.ip_error_des)).setTitle(
-				getString(R.string.error));
-		builder.setPositiveButton(getString(R.string.enquire),
-				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						Global.Feedback(MainActivity.this);
-					}
-				});
-		builder.setNegativeButton(getString(R.string.yes),
-				new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog, int which) {
-
-						finish();
-
-					}
-				});
-		builder.show();
-	}
 
 	public void ConnectionError() {
 		// If No Network Connection
@@ -232,33 +212,13 @@ public class MainActivity extends SherlockActivity {
 		// Check Network Connection
 		if (Global.InternetConnection(1) == true
 				|| Global.InternetConnection(0) == true) {
-			// Show Alert
-			AlertDialog.Builder alert = new AlertDialog.Builder(
-					MainActivity.this);
-			alert.setTitle(getString(R.string.error));
-			alert.setMessage(getString(R.string.server_connection_error_des));
-			alert.setIcon(R.drawable.ic_launcher);
-			alert.setPositiveButton(getString(R.string.check_service_status),
-					new DialogInterface.OnClickListener() {
-
-						public void onClick(DialogInterface dialog, int which) {
-
-							Uri uri = Uri
-									.parse("https://sites.google.com/site/tarksservicesstatus/");
-							Intent it = new Intent(Intent.ACTION_VIEW, uri);
-							startActivity(it);
-						}
-					});
-			alert.setNegativeButton(getString(R.string.yes),
-					new DialogInterface.OnClickListener() {
-
-						public void onClick(DialogInterface dialog, int which) {
-
-							finish();
-
-						}
-					});
-			alert.show();
+			
+			 Intent intent = new Intent(MainActivity.this, webview.class);
+			  intent.putExtra("url", getString(R.string.server_path)); 
+	 	    	 startActivity(intent); 
+	 	    	 
+	 	    	 finish();
+		
 
 		} else {
 			
@@ -330,12 +290,7 @@ public class MainActivity extends SherlockActivity {
 				load = false;
 				ConnectionError();
 			}
-			// Check IP Error
-			if (infoResult.matches("ip_error")) {
-				load = false;
-				IPError();
-			}
-
+			
 			if (infoResult.startsWith("/LINE/.")) {
 				// Account Changed
 				// Alert
@@ -508,7 +463,7 @@ public class MainActivity extends SherlockActivity {
 
 			}
 		} catch (Exception e) {
-			Global.ConnectionError(this);
+		ConnectionError();
 		}
 
 	}
@@ -534,13 +489,10 @@ public class MainActivity extends SherlockActivity {
 			}
 
 			if (msg.what == -1) {
-				ConnectionError();
+				Global.ConnectionError(MainActivity.this);
 			}
 
-			if (msg.what == 0) {
-				ConnectionError();
-			}
-
+		
 			if (msg.what == 1) {
 				try{
 				infoResult = msg.obj.toString();

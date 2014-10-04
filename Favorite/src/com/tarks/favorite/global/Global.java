@@ -33,6 +33,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.tarks.favorite.webview;
 import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.user.db.DbOpenHelper;
 
@@ -127,9 +128,18 @@ public final class Global {
 			if (Globalvariable.alert_status == true) {
 				Globalvariable.alert_status = false;
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				
+				
+				
+				
 				builder.setMessage(message).setPositiveButton(button, null)
 						.setTitle(title);
 
+		
+				builder.show();
+				
+				//Check OS
+				if (Build.VERSION.SDK_INT >= 17) {
 				// Dialog Dismiss시 Event 받기
 				builder.setOnDismissListener(new OnDismissListener() {
 
@@ -138,8 +148,11 @@ public final class Global {
 						Globalvariable.alert_status = true;
 					}
 				});
+				
+				}else{
+					Globalvariable.alert_status = true;
+				}
 
-				builder.show();
 
 			}
 
@@ -147,7 +160,8 @@ public final class Global {
 			Globalvariable.alert_status = true;
 		}
 	}
-
+	
+	
 	// 배열을 화면에, 요소별로 알기 쉽게 출력
 	public static void dumpArray(String[] array) {
 		for (int i = 0; i < array.length; i++)
@@ -179,6 +193,8 @@ public final class Global {
 			Infoalert(cx, cx.getString(R.string.error),
 					cx.getString(R.string.error_des),
 					cx.getString(R.string.yes));
+			
+			
 		} else {
 			Infoalert(cx, cx.getString(R.string.networkerror),
 					cx.getString(R.string.networkerrord),
