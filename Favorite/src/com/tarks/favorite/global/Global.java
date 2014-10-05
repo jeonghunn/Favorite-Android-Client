@@ -135,9 +135,6 @@ public final class Global {
 				builder.setMessage(message).setPositiveButton(button, null)
 						.setTitle(title);
 
-		
-				builder.show();
-				
 				//Check OS
 				if (Build.VERSION.SDK_INT >= 17) {
 				// Dialog Dismiss시 Event 받기
@@ -152,6 +149,11 @@ public final class Global {
 				}else{
 					Globalvariable.alert_status = true;
 				}
+				
+		
+				builder.show();
+				
+			
 
 
 			}
