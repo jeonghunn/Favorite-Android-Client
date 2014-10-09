@@ -3,6 +3,7 @@ package com.tarks.favorite;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -39,6 +42,9 @@ public class tarks_account_login extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.tarks_account);
 		setSupportProgressBarIndeterminateVisibility(false);
+		// 액션바백버튼가져오기
+				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+				 getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// define edittext
 		edit1 = (EditText) findViewById(R.id.editText1);
@@ -69,8 +75,31 @@ public class tarks_account_login extends SherlockActivity {
 		});
 	}
 	
-	public void ConnectionError(){
-		Global.ConnectionError(this);
+	public void ConnectionError() {
+		// If No Network Connection
+		// Check Internet Connection
+
+		// Check Network Connection
+		if (Global.InternetConnection(1) == true
+				|| Global.InternetConnection(0) == true) {
+			
+			 Intent intent = new Intent(tarks_account_login.this, webview.class);
+			  intent.putExtra("url", getString(R.string.server_path)); 
+	 	    	 startActivity(intent); 
+	 	    	 
+	 	    	 finish();
+		
+
+		} else {
+			
+			
+		    	// 로딩 화면은 종료하라.
+				Toast.makeText(tarks_account_login.this,
+						getString(R.string.networkerrord), 0).show();
+		
+		    
+		
+		}
 	}
 
 	protected Handler mHandler = new Handler() {
@@ -155,10 +184,12 @@ public class tarks_account_login extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
+		case android.R.id.home:
+			onBackPressed();
+			return true;
 		case R.id.yes:
 			// Check okbutton
 			if (Globalvariable.okbutton == true) {
-				Globalvariable.okbutton = false;
 				edit1 = (EditText) findViewById(R.id.editText1);
 				s1 = edit1.getText().toString();
 

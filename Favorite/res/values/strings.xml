@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.7.0.4550</string>
-    <string name="build">4550</string>
+    <string name="ver">1.8.0.4613</string>
+    <string name="build">4613</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -24,6 +24,7 @@
     <string name="refresh">Refresh</string>
     <string name="community">Community</string>
     <string name="moreview">More</string>
+    <string name="alert">Alert</string>
     <string name="details">Details</string>
     <string name="contacts">Contacts</string>
     <string name="request">Request</string>
@@ -37,7 +38,6 @@
     <string name="home">Home</string>
     <string name="start">Start</string>
     <string name="tarks_account">Tarks Account</string>
-    <string name="tarks_account_des">If you login to Tarks account, you can keep user information when you change the devices.</string>
     <string name="id">Id</string>
     <string name="password">Password</string>
     <string name="type_id">Enter your Id.</string>
@@ -156,6 +156,11 @@
     <string name="delete_favorite_des">Unfavorite this page. You will no loger get updates from this page. Are you sure to you want to Continue?</string>
     <string name="search">Search</string>
     <string name="doc_error_des">This post does not exist.</string>
+
+    <!-- Welcome -->
+    <string name="welcome_subtitle"></string>
+    <string name="sign_in_without_account">Sign in without Account</string>
+    <string name="beta_service_des">베타 서비스입니다.</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>

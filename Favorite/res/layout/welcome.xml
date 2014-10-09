@@ -1,52 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#dd7600"
-    android:layout_height="match_parent" >
-
-    <Button
-        android:id="@+id/button1"
-        style="@style/ButtonText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/black_button"
-        android:ems="5"
-        android:text="@string/start" />
+    android:layout_height="match_parent"
+    android:background="#ff9800" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="136dp"
         android:gravity="center"
         android:text="@string/welcome"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="113dp"
-        android:src="@drawable/favorite_simple" />
-
     <Button
         android:id="@+id/tarks_login"
         style="@style/ButtonText"
+           android:layout_marginTop="3sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:background="@drawable/black_button"
         android:ems="5"
         android:text="@string/sign_in" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="가장 다채로운 커뮤니티 어플리케이션"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tarks_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:ems="5"
+        android:text="@string/sign_up"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

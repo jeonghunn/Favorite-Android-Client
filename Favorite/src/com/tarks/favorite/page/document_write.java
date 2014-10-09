@@ -294,7 +294,7 @@ file_kind = 2;
 					PostAct();
 				} else {
 					setSupportProgressBarIndeterminateVisibility(false);
-					Global.Infoalert(this, getString(R.string.no),
+					Global.Infoalert(this, getString(R.string.alert),
 							getString(R.string.no_content),
 							getString(R.string.yes));
 				}

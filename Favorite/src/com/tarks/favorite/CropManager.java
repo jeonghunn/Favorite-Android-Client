@@ -59,6 +59,7 @@ public class CropManager extends SherlockActivity {
 
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// get intent
 		Intent intent = getIntent();// 인텐트 받아오고

@@ -21,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -301,7 +302,7 @@ public class mainfragment extends SherlockFragment  {
 			if (msg.what == 2) {
 				try{
 				String result = msg.obj.toString();
-				//Log.i("Result", msg.obj.toString());
+			//	Log.i("Result", msg.obj.toString());
 				String[] array = result.split("/LINE/.");
 				for (int i = 0; i < user_content_array.size(); i++) {
 					getMemberInfo(String.valueOf(user_content_array.get(i)));

@@ -15,6 +15,7 @@
     <string name="refresh">새로고침</string>
     <string name="community">커뮤니티</string>
     <string name="moreview">더보기</string>
+          <string name="alert">알림</string>
       <string name="details">자세히</string>
     <string name="no_info">정보가 없습니다.</string>
     <string name="contacts">연락처</string>
@@ -34,7 +35,6 @@
     <string name="home">홈</string>
     <string name="start">시작하기</string>
     <string name="tarks_account">Tarks 계정</string>
-    <string name="tarks_account_des">로그인하면 휴대폰이나 기기가 바뀌어도 계정 정보를 잃지 않습니다.</string>
     <string name="id">아이디</string>
     <string name="password">비밀번호</string>
     <string name="type_id">아이디를 입력하세요.</string>
@@ -136,6 +136,11 @@
     <string name="delete_favorite_des">이 페이지의 즐겨찾기를 해제합니다. 해제하면 이 페이지를 통한 새로운 소식을 받아보실 수 없습니다. 계속하시겠습니까?</string>
     <string name="search">검색</string>
      <string name="doc_error_des">존재하지 않는 글입니다.</string>
+     
+         <!-- Welcome -->
+          <string name="welcome_subtitle">다채로운 커뮤니티 어플리케이션</string>
+    <string name="sign_in_without_account">계정 없이 로그인</string>
+     <string name="beta_service_des">베타 서비스입니다.</string>
 
     <!-- Permission -->
     <string name="permission">권한</string>

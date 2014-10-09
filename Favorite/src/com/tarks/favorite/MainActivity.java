@@ -76,7 +76,7 @@ public class MainActivity extends SherlockActivity {
 		SharedPreferences prefs = getSharedPreferences("setting", MODE_PRIVATE);
 		String frist_use = prefs.getString("frist_use_app", "true");
 
-		ConnectTimeout();
+	//	ConnectTimeout();
 
 		// Check Network Connection
 		try {
@@ -139,39 +139,39 @@ public class MainActivity extends SherlockActivity {
 
 	}
 
-	public void ConnectTimeout() {
-		new Thread(new Runnable() {
-			public void run() {
-				int time = 0;
-				while (true) {
-
-					try {
-						// 15 seconds
-						if (time != 14) {
-							Thread.sleep(1000);
-							time = time + 1;
-							Log.i("Timeout", time + "load");
-							if (ConnectTimeout == false) {
-								break;
-							}
-						} else {
-							if (this != null) {
-								Message msg = mHandler.obtainMessage();
-								msg.arg1 = 0;
-								mHandler.sendMessage(msg);
-							}
-							break;
-						}
-						// break;
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-			}
-		}).start();
-	}
+//	public void ConnectTimeout() {
+//		new Thread(new Runnable() {
+//			public void run() {
+//				int time = 0;
+//				while (true) {
+//
+//					try {
+//						// 15 seconds
+//						if (time != 14) {
+//							Thread.sleep(1000);
+//							time = time + 1;
+//							Log.i("Timeout", time + "load");
+//							if (ConnectTimeout == false) {
+//								break;
+//							}
+//						} else {
+//							if (this != null) {
+//								Message msg = mHandler.obtainMessage();
+//								msg.arg1 = 0;
+//								mHandler.sendMessage(msg);
+//							}
+//							break;
+//						}
+//						// break;
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//
+//				}
+//			}
+//		}).start();
+//	}
 
 	public void BreakTimeout() {
 		ConnectTimeout = false;
@@ -454,15 +454,19 @@ public class MainActivity extends SherlockActivity {
 				            handleSendMultipleImages(intent); // 여러 image 들을 처리한다.
 				        }
 				    } else {
-					finish();
+					
 					// 이동한다. 메인으로
 					Intent intent1 = new Intent(MainActivity.this, main.class);
 					startActivity(intent1);
+					overridePendingTransition(0,0);
+					
+					finish();
 				    }
 				}
 
 			}
 		} catch (Exception e) {
+			BreakTimeout();
 		ConnectionError();
 		}
 
@@ -484,12 +488,16 @@ public class MainActivity extends SherlockActivity {
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			// IF Sucessfull no timeout
-			if (msg.what != 0) {
-				BreakTimeout();
-			}
+			
+			
+			
+//			if (msg.what != 0) {
+//				BreakTimeout();
+//			}
 
 			if (msg.what == -1) {
-				Global.ConnectionError(MainActivity.this);
+			//	BreakTimeout();
+				ConnectionError();
 			}
 
 		

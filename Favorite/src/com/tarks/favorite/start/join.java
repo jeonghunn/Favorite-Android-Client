@@ -167,6 +167,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// get ID
 
@@ -493,8 +494,6 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 			return true;
 		case R.id.yes:
 			if (Globalvariable.okbutton == true) {
-				// Set ok button disable
-				Globalvariable.okbutton = false;
 
 				// import EditText
 				EditText edit1 = (EditText) findViewById(R.id.editText1);

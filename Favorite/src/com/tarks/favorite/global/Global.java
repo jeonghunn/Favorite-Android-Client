@@ -47,8 +47,10 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
+import com.tarks.favorite.main;
 
 public final class Global {
 
@@ -210,6 +212,8 @@ public final class Global {
 		// toast(mod.getString(R.string.networkerrord), false);
 		// }
 	}
+	
+	
 
 	public static String[] NameBuilder(String name_1, String name_2) {
 		return NameBuilder(mod.getString(R.string.lang), name_1, name_2);

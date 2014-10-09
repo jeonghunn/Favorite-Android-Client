@@ -261,7 +261,7 @@ public class ProfileInfo extends SherlockActivity {
 			AddList(getString(R.string.birthday), birthday, "birthday");
 		if (!join_day.matches("null"))
 			AddList(getString(R.string.join), Global.getDate(join_day), "join_day");
-		if (!phone_number.matches("null")){
+		if (!phone_number.matches("null") && !phone_number.matches("0") && !phone_number.matches("")){
 			String plus_mark = "+";
 			if(country_code.matches("0")) plus_mark = "";
 			
