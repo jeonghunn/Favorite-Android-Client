@@ -29,12 +29,12 @@
         android:text="@string/sign_in" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/welcome_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:text="가장 다채로운 커뮤니티 어플리케이션"
+        android:text="@string/welcome_subtitle"
         android:textColor="#FFFFFF" />
 
     <Button

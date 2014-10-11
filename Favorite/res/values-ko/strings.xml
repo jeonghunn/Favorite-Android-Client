@@ -138,8 +138,8 @@
      <string name="doc_error_des">존재하지 않는 글입니다.</string>
      
          <!-- Welcome -->
-          <string name="welcome_subtitle">다채로운 커뮤니티 어플리케이션</string>
-    <string name="sign_in_without_account">계정 없이 로그인</string>
+          <string name="welcome_subtitle">가장 다채로운 커뮤니티 어플리케이션</string>
+    <string name="sign_up_without_id">ID 없이 회원가입</string>
      <string name="beta_service_des">베타 서비스입니다.</string>
 
     <!-- Permission -->

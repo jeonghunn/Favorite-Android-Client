@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.8.0.4613</string>
-    <string name="build">4613</string>
+    <string name="ver">1.8.0.4623</string>
+    <string name="build">4623</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -158,9 +158,9 @@
     <string name="doc_error_des">This post does not exist.</string>
 
     <!-- Welcome -->
-    <string name="welcome_subtitle"></string>
-    <string name="sign_in_without_account">Sign in without Account</string>
-    <string name="beta_service_des">베타 서비스입니다.</string>
+    <string name="welcome_subtitle">Most Colorful Community Application</string>
+    <string name="sign_up_without_id">Sign up Without ID</string>
+    <string name="beta_service_des">Beta Service</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>
