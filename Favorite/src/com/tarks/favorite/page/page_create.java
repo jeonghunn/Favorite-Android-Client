@@ -326,8 +326,6 @@ public class page_create extends SherlockActivity {
 		case R.id.yes:
 		
 			if (Globalvariable.okbutton == true) {
-				// Set ok button disable
-				Globalvariable.okbutton = false;
 
 			createAct();
 				
