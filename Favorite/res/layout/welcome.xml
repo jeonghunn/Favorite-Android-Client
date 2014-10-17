@@ -26,7 +26,7 @@
         android:layout_centerVertical="true"
         android:background="@drawable/black_button"
         android:ems="5"
-        android:text="@string/sign_in" />
+        android:text="@string/start" />
 
     <TextView
         android:id="@+id/welcome_subtitle"
@@ -45,8 +45,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:background="@null"
-        android:ems="5"
-        android:text="@string/sign_up"
+        android:ems="8"
+        android:text="@string/sign_up_without_id"
         android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/beta_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Beta Service" />
 
 </RelativeLayout>

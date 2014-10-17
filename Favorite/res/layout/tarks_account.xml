@@ -48,6 +48,6 @@
         android:layout_toRightOf="@+id/button1"
         android:background="@drawable/orange_button"
           android:textColor="#FFFFFF"
-        android:text="@string/join"/>
+        android:text="@string/sign_up"/>
 
 </RelativeLayout>

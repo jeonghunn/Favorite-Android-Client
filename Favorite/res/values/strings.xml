@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.8.0.4629</string>
-    <string name="build">4629</string>
+    <string name="ver">1.8.0.4660</string>
+    <string name="build">4660</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -156,11 +156,12 @@
     <string name="delete_favorite_des">Unfavorite this page. You will no loger get updates from this page. Are you sure to you want to Continue?</string>
     <string name="search">Search</string>
     <string name="doc_error_des">This post does not exist.</string>
+    <string name="continu">Continue</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">Most Colorful Community Application</string>
+    <string name="sign_up_without_id_des">You can not access your account when you change your device or reinstall application. Continue?</string>
     <string name="sign_up_without_id">Sign up Without ID</string>
-    <string name="beta_service_des">Beta Service</string>
 
     <!-- Permission -->
     <string name="permission">Permission</string>
