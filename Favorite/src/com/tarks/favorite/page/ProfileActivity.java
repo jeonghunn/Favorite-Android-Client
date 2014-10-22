@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import android.view.Window;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +19,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,7 +40,6 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
@@ -44,6 +47,7 @@ import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
+import com.tarks.favorite.ui.SystemBarTintManager;
 
 public class ProfileActivity extends SherlockActivity {
 
@@ -76,6 +80,9 @@ public class ProfileActivity extends SherlockActivity {
 	private Menu optionsMenu;
 	private String[] member;
 
+	//Tint
+	private SystemBarTintManager tintManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,7 +92,16 @@ public class ProfileActivity extends SherlockActivity {
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		 getSupportActionBar().setDisplayShowHomeEnabled(false);
+		 
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+				setTranslucentStatus(true);
+			}
 
+			 tintManager = new SystemBarTintManager(this);
+			tintManager.setStatusBarTintEnabled(true);
+			tintManager.setNavigationBarTintEnabled(true);
+			tintManager.setTintColor(Color.parseColor("#00fd9800"));
+			
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		member_srl = intent.getStringExtra("member_srl");
@@ -94,7 +110,25 @@ public class ProfileActivity extends SherlockActivity {
 		load();
 
 	}
-
+	
+	
+	public void setStatusBarColor(int alpha){
+		tintManager.setTintColor(Color.argb(alpha, 253, 152, 0));
+	}
+	
+	@TargetApi(19) 
+	private void setTranslucentStatus(boolean on) {
+		Window win = getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
+	}
+	
 	public void load() {
 		setFadingActionBar();
 		// local_path = getCacheDir().toString()
@@ -116,6 +150,8 @@ public class ProfileActivity extends SherlockActivity {
 
 		getDocList("0");
 	}
+	
+	
 
 	public void getProfileInfo() {
 		// Start Progressbar
@@ -154,6 +190,8 @@ public class ProfileActivity extends SherlockActivity {
 		helper.initContext(this);
 
 	}
+	
+	
 
 	public void setListAdapter() {
 		// profile = (ImageView) findViewById(R.id.image_header);

@@ -362,7 +362,7 @@ public abstract class FadingActionBarHelperBase {
         float ratio = (float) Math.min(Math.max(scrollPosition, 0), headerHeight) / headerHeight;
         int newAlpha = (int) (ratio * 255);
         mActionBarBackgroundDrawable.setAlpha(newAlpha);
-
+    	((ProfileActivity) cx).setStatusBarColor(newAlpha);
         addParallaxEffect(scrollPosition);
     }
 

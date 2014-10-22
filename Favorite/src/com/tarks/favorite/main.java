@@ -45,7 +45,7 @@ public class main extends SherlockFragmentActivity {
 	//String[] subtitle;
 	int[] icon;
 	Fragment fragment1 = new mainfragment();
-	Fragment fragment2 = new PagePopularFragment();
+	//Fragment fragment2 = new PagePopularFragment();
 	
 	Fragment contacts_fragment = new contacts_fragment();
 	Fragment no_favorite = new no_favorite_fragment();
@@ -72,13 +72,6 @@ public class main extends SherlockFragmentActivity {
 		// Generate title
 		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.contacts), getString(R.string.pages),
 				 getString(R.string.create_page),  getString(R.string.setting), };
-
-		// Generate subtitle
-		//subtitle = new String[] { "Subtitle Fragment 1", "Subtitle Fragment 2",
-		//		"Subtitle Fragment 3" };
-		// Generate icon
-		icon = new int[] {R.drawable.drawer_profile , R.drawable.home ,R.drawable.people_white, R.drawable.ic_list,
-				R.drawable.add  ,R.drawable.settings };
 
 	
 		// Locate DrawerLayout in drawer_main.xml
@@ -336,7 +329,7 @@ public class main extends SherlockFragmentActivity {
 			break;
 		case 3:
 			setTitle(getString(R.string.popularity));
-			ft.replace(R.id.content_frame, fragment2);
+		//	ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 4:
 			Intent intent = new Intent(main.this, page_create.class);
