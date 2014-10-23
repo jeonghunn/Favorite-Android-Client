@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
@@ -21,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +34,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class mainfragment extends SherlockFragment  {
+public class mainfragment extends Fragment  {
 
 	// Profile image local path
 	String local_path;

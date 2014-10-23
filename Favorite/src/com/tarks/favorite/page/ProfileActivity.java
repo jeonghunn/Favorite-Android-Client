@@ -19,12 +19,17 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -35,21 +40,19 @@ import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
-import com.tarks.favorite.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
+import com.tarks.favorite.fadingactionbar.extras.actionbarcompat.FadingActionBarHelper;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.ui.SystemBarTintManager;
 
-public class ProfileActivity extends SherlockActivity {
+public class ProfileActivity extends ActionBarActivity {
 
 	// Profile image local path
 	String local_path;
@@ -72,7 +75,7 @@ public class ProfileActivity extends SherlockActivity {
 	FadingActionBarHelper helper;
 	// Menu state
 	private boolean add_menu_state = false;
-	// List
+	// Listi
 	ArrayList<List> m_orders = new ArrayList<List>();
 	// Define ListAdapter
 	ListAdapter m_adapter;
@@ -82,13 +85,16 @@ public class ProfileActivity extends SherlockActivity {
 
 	//Tint
 	private SystemBarTintManager tintManager;
+	
+	//ProgressBar
+	private ProgressBar pb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+	
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		 getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -102,6 +108,9 @@ public class ProfileActivity extends SherlockActivity {
 			tintManager.setNavigationBarTintEnabled(true);
 			tintManager.setTintColor(Color.parseColor("#00fd9800"));
 			
+//ProgressBar
+			
+			
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		member_srl = intent.getStringExtra("member_srl");
@@ -111,6 +120,20 @@ public class ProfileActivity extends SherlockActivity {
 
 	}
 	
+	
+	private void setProgressBar(){
+		
+		 pb = (ProgressBar) findViewById(R.id.progressBar1);
+		pb.setVisibility(View.INVISIBLE);
+	}
+	
+	private void showProgressBar(){
+		if(pb != null) pb.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideProgressBar(){
+		if(pb != null) pb.setVisibility(View.INVISIBLE);
+	}
 	
 	public void setStatusBarColor(int alpha){
 		tintManager.setTintColor(Color.argb(alpha, 253, 152, 0));
@@ -131,6 +154,7 @@ public class ProfileActivity extends SherlockActivity {
 	
 	public void load() {
 		setFadingActionBar();
+		setProgressBar();
 		// local_path = getCacheDir().toString()
 		// + "/member/";
 		try {
@@ -155,7 +179,7 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void getProfileInfo() {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
+		showProgressBar();
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -247,7 +271,7 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void getDocList(String startdoc) {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
+		showProgressBar();
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
@@ -381,14 +405,14 @@ public class ProfileActivity extends SherlockActivity {
 
 	public void ProfileImageDownload() {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
+		showProgressBar();
 		new ImageDownloader(this, getString(R.string.server_path)
 				+ "files/profile/" + member_srl + ".jpg", mHandler, 2, 0);
 	}
 
 	public void ProfileUserImageDownload(String user_srl) {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
+		showProgressBar();
 		new ImageDownloader(this, getString(R.string.server_path)
 				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 5,
 				Integer.parseInt(user_srl));
@@ -438,7 +462,7 @@ public class ProfileActivity extends SherlockActivity {
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			setSupportProgressBarIndeterminateVisibility(false);
+			hideProgressBar();
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {

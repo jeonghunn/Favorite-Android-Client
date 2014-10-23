@@ -1,4 +1,4 @@
-/*//This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
+/*
  * Copyright (C) 2013 Manuel Peinado
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,56 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tarks.favorite.fadingactionbar.extras.actionbarsherlock;
+package com.tarks.favorite.fadingactionbar.extras.actionbarcompat;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.tarks.favorite.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.page.ProfileActivity;
+
 
 public final class FadingActionBarHelper extends FadingActionBarHelperBase {
 
     private ActionBar mActionBar;
     private Context mContext = null;
-
+    
     @Override
     public void initActionBar(Activity activity) {
         mActionBar = getActionBar(activity);
         super.initActionBar(activity);
     }
-    
-    
-    @Override
-    public void initContext(Context context) {
-    	   this.mContext = context;
-    	   super.initContext(context);
-       
-    
-    }
 
     private ActionBar getActionBar(Activity activity) {
-        if (activity instanceof SherlockActivity) {
-            return ((SherlockActivity) activity).getSupportActionBar();
-        }
-        if (activity instanceof SherlockFragmentActivity) {
-            return ((SherlockFragmentActivity) activity).getSupportActionBar();
-        }
-        if (activity instanceof SherlockListActivity) {
-            return ((SherlockListActivity) activity).getSupportActionBar();
+        if (activity instanceof ActionBarActivity) {
+            return ((ActionBarActivity) activity).getSupportActionBar();
         }
         ActionBar actionBar = getActionBarWithReflection(activity, "getSupportActionBar");
         if (actionBar == null) {
-            throw new RuntimeException("Activity should derive from one of the ActionBarSherlock activities "
+            throw new RuntimeException("Activity should derive from ActionBarActivity "
                 + "or implement a method called getSupportActionBar");
         }
         return actionBar;
@@ -83,10 +65,11 @@ public final class FadingActionBarHelper extends FadingActionBarHelperBase {
         mActionBar.setBackgroundDrawable(drawable);
     }
 
-    @Override
-    public void getDocList(String number) {
+	@Override
+	protected void getDocList(String number) {
     	Log.i("DOCN", number);
         ((ProfileActivity) mContext).getDocList(number);
         return;
-     }
+
+	}
 }

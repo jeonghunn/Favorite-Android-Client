@@ -17,12 +17,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,11 +36,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.SubMenu;
-import com.actionbarsherlock.view.Window;
+
 import com.tarks.favorite.CropManager;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
@@ -43,7 +44,7 @@ import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
-public class ProfileEdit extends SherlockActivity {
+public class ProfileEdit extends ActionBarActivity {
 
 	ImageView profile;
 

@@ -30,7 +30,7 @@
 
     <uses-sdk
         android:minSdkVersion="10"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="21" />
 
     <application
         android:name="com.tarks.favorite.ModApplication"
@@ -38,7 +38,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:launchMode="singleTask"
-        android:theme="@style/Theme.Favorite" >
+         android:theme="@style/AppTheme" 
+       >
 
         <!-- 알림 서비스(시작) -->
         <receiver
@@ -57,7 +58,7 @@
         <activity
             android:name="com.tarks.favorite.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Sherlock.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -105,7 +106,7 @@
           <activity
             android:name=".webview"
             android:icon="@drawable/ic_launcher_simple"
-            android:theme="@style/Theme.Sherlock.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.tarks.favorite.page.ProfileActivity"
             android:icon="@drawable/ic_launcher_simple"
@@ -143,7 +144,7 @@
         <activity
             android:name=".start.welcome"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Sherlock.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.tarks.favorite.tarks_account_login"
             android:label="@string/sign_in"/>

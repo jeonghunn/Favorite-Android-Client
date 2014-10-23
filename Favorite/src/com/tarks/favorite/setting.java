@@ -4,23 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
 import com.tarks.favorite.page.ProfileInfo;
 
 @SuppressWarnings("deprecation")
-public class setting extends SherlockPreferenceActivity {
+public class setting extends PreferenceActivity {
 	private boolean mIsBackKeyPressed = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		 getSupportActionBar().setDisplayShowHomeEnabled(false);
+//
+//		getActionBar().setDisplayHomeAsUpEnabled(true);
+//		 getActionBar().setDisplayShowHomeEnabled(false);
 		addPreferencesFromResource(R.layout.setting);
 
 

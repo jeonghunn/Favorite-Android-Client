@@ -2,20 +2,22 @@
 package com.tarks.favorite;
 
 import java.io.ByteArrayOutputStream;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import com.tarks.favorite.cropper.CropImageView;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
-import com.actionbarsherlock.view.Menu;
 
-public class CropManager extends SherlockActivity {
+public class CropManager extends ActionBarActivity {
 
 	// Static final constants
 	private static final int DEFAULT_ASPECT_RATIO_VALUES = 10;
@@ -195,7 +197,7 @@ public class CropManager extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getSupportMenuInflater();
+		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.cropper, menu);
 		return true;
 

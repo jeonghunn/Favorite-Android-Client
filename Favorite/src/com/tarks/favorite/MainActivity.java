@@ -17,11 +17,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
@@ -29,7 +29,7 @@ import com.tarks.favorite.page.ProfileActivity;
 import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.start.welcome;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends ActionBarActivity {
 	
 	
 	public static MainActivity INSTANCE = null;

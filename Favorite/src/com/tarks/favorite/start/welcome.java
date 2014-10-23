@@ -12,13 +12,13 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.tarks_account_login;
@@ -28,7 +28,7 @@ import com.tarks.favorite.global.Globalvariable;
 
 
 
-public class welcome extends SherlockActivity {
+public class welcome extends ActionBarActivity {
 	Button bt;
     String myId, myResult;
 	Message msg;

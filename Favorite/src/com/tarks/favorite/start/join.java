@@ -3,6 +3,7 @@ package com.tarks.favorite.start;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,21 +14,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.Window;
+
 import com.tarks.favorite.CropManager;
 import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
@@ -36,7 +39,7 @@ import com.tarks.favorite.connect.ImageDownloader;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
-public class join extends SherlockActivity implements OnCheckedChangeListener {
+public class join extends ActionBarActivity implements OnCheckedChangeListener {
 	// Imageview
 	ImageView profile;
 	// bitmap
@@ -160,7 +163,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 		super.onCreate(savedInstanceState);
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+	//	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.join);
 		// no show progress now
 		setSupportProgressBarIndeterminateVisibility(false);
@@ -478,12 +481,15 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+	//	this.optionsMenu = menu;
+		MenuItem item;
 
-		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.accept, menu);
+
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
+
 		return true;
-
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -492,7 +498,7 @@ public class join extends SherlockActivity implements OnCheckedChangeListener {
 		case android.R.id.home:
 			onBackPressed();
 			return true;
-		case R.id.yes:
+		case 1:
 			if (Globalvariable.okbutton == true) {
 
 				// import EditText

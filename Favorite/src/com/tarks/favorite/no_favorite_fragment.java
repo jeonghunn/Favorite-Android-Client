@@ -2,15 +2,16 @@
 package com.tarks.favorite;
 
 
-import com.actionbarsherlock.app.SherlockFragment;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class no_favorite_fragment extends SherlockFragment  {
+public class no_favorite_fragment extends Fragment  {
 
 	View rootView;
 

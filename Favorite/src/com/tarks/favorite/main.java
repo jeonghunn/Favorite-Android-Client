@@ -3,14 +3,12 @@ package com.tarks.favorite;
 
 import java.lang.reflect.Field;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.page.ProfileActivity;
 import com.tarks.favorite.page.document_write;
 import com.tarks.favorite.page.page_create;
-
+import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
@@ -27,12 +25,14 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v4.view.GravityCompat;
 
-public class main extends SherlockFragmentActivity {
+public class main extends ActionBarActivity {
 
 	
 	// Declare Variables
@@ -130,9 +130,9 @@ public class main extends SherlockFragmentActivity {
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 		// Enable ActionBar app icon to behave as action to toggle nav drawer
-		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		 getSupportActionBar().setDisplayShowHomeEnabled(false);
+	//	getSupportActionBar().setHomeButtonEnabled(true);
+	//	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	//	 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -312,7 +312,7 @@ public class main extends SherlockFragmentActivity {
 		switch (position) {
 		case 0:
 			//ft.remove(fragment1);
-			ft.replace(R.id.content_frame, fragment1);
+		//	ft.replace(R.id.content_frame, fragment1);
 			break;
 		case 1:
 			setTitle(getString(R.string.my_favorites));

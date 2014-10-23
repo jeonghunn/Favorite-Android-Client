@@ -16,9 +16,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.WindowCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnLongClickListener;
@@ -38,10 +42,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
@@ -50,7 +50,7 @@ import com.tarks.favorite.global.Filedw;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
-public class document_read extends SherlockActivity {
+public class document_read extends ActionBarActivity {
 
 	private String local_path;
 	private String externel_path;
@@ -99,7 +99,7 @@ public class document_read extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+	//	requestWindowFeature(WindowCompat.);
 
 		setContentView(R.layout.doclistview);
 		// 액션바백버튼가져오기

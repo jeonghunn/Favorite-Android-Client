@@ -24,25 +24,31 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+
+
+
+
+
 
 import java.io.File;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Window;
-import com.actionbarsherlock.widget.ShareActionProvider;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
+
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.photoview.PhotoViewAttacher;
 import com.tarks.favorite.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 import com.tarks.favorite.photoview.PhotoViewAttacher.OnPhotoTapListener;
 
-public class GalleryView extends SherlockActivity {
+public class GalleryView extends ActionBarActivity {
 
 //    static final String PHOTO_TAP_TOAST_STRING = "Photo Tap! X: %.2f %% Y:%.2f %%";
  //   static final String SCALE_TOAST_STRING = "Scaled to: %.2ff";
@@ -118,18 +124,18 @@ public class GalleryView extends SherlockActivity {
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
  }else{
 		// Inflate your menu.
-		getSupportMenuInflater().inflate(R.menu.share_action_provider, menu);
+		getMenuInflater().inflate(R.menu.share_action_provider, menu);
 
 		// Set file with share history to the provider and set the share intent.
 		MenuItem actionItem = menu
 				.findItem(R.id.menu_item_share_action_provider_action_bar);
-		ShareActionProvider actionProvider = (ShareActionProvider) actionItem
-				.getActionProvider();
-		actionProvider
-				.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
-		// Note that you can set/change the intent any time,
-		// say when the user has selected an image.
-		actionProvider.setShareIntent(createShareIntent());
+//		ShareActionProvider actionProvider = (ShareActionProvider) actionItem
+//				.getActionProvider();
+//		actionProvider
+//				.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
+//		// Note that you can set/change the intent any time,
+//		// say when the user has selected an image.
+//		actionProvider.setShareIntent(createShareIntent());
  }
 
 		return true;

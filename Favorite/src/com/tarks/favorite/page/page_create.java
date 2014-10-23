@@ -3,6 +3,7 @@ package com.tarks.favorite.page;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,25 +13,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.Window;
+
 import com.tarks.favorite.CropManager;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
-public class page_create extends SherlockActivity {
+public class page_create extends ActionBarActivity {
 	// Imageview
 	ImageView profile;
 	// bitmap
@@ -309,12 +311,16 @@ public class page_create extends SherlockActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+	//	this.optionsMenu = menu;
+		MenuItem item;
 
-		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.accept, menu);
+
+		menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept)
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+
 		return true;
-
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -323,7 +329,7 @@ public class page_create extends SherlockActivity {
 		case android.R.id.home:
 			onBackPressed();
 			return true;
-		case R.id.yes:
+		case 1:
 		
 			if (Globalvariable.okbutton == true) {
 

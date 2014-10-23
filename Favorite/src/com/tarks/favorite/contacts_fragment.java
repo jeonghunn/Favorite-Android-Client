@@ -3,7 +3,6 @@ package com.tarks.favorite;
 
 import java.io.File;
 import java.util.ArrayList;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
@@ -22,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +35,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class contacts_fragment extends SherlockFragment implements
+public class contacts_fragment extends Fragment implements
 		OnItemLongClickListener {
 
 	// Profile image local path

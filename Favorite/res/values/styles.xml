@@ -12,12 +12,10 @@
         -->
     </style>
 
-  <style name="Widget.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+  <style name="Widget.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
     </style>
 	
-	<style name="Widget.Light" />
-	
-    <style name="Widget.Light.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    <style name="Widget.Light.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
     </style>
 
     <style name="Widget.ActionBar.Transparent">
@@ -30,8 +28,7 @@
         <item name="background">@android:color/transparent</item>
     </style>
     
-     <style name="Theme.Favorite.Light.Dialog" parent="@android:style/Theme.Dialog">
-    </style>
+
 
     	<drawable name="ab_bg_black">#aa000000</drawable>
 

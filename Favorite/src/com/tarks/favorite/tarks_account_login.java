@@ -10,23 +10,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.internal.view.SupportMenuItem;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.R;
 import com.tarks.favorite.connect.AsyncHttpTask;
 import com.tarks.favorite.global.Global;
 import com.tarks.favorite.global.Globalvariable;
 
-public class tarks_account_login extends SherlockActivity {
+public class tarks_account_login extends ActionBarActivity {
 	Button bt;
 	Button bt2;
 	String myId, myPWord, myTitle, mySubject;
@@ -39,7 +39,7 @@ public class tarks_account_login extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.tarks_account);
 		setSupportProgressBarIndeterminateVisibility(false);
 		// 액션바백버튼가져오기
@@ -171,14 +171,18 @@ public class tarks_account_login extends SherlockActivity {
 				Paramvalue, null, 1,0);
 	}
 
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+	//	this.optionsMenu = menu;
+	//	ActionMenuItem item = null;
 
-		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.accept, menu);
+
+		
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
 		return true;
-
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -187,7 +191,7 @@ public class tarks_account_login extends SherlockActivity {
 		case android.R.id.home:
 			onBackPressed();
 			return true;
-		case R.id.yes:
+		case 1:
 			// Check okbutton
 			if (Globalvariable.okbutton == true) {
 				edit1 = (EditText) findViewById(R.id.editText1);
