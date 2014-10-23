@@ -70,7 +70,7 @@ public class main extends SherlockFragmentActivity {
 		mTitle = mDrawerTitle = getTitle();
 	user_name = Global.NameMaker(getString(R.string.lang), Global.getSetting("name_1", ""), Global.getSetting("name_2", ""));
 		// Generate title
-		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.contacts), getString(R.string.pages),
+		title = new String[] { user_name ,getString(R.string.favorites), getString(R.string.contacts), getString(R.string.find_page),
 				 getString(R.string.create_page),  getString(R.string.setting), };
 
 	
@@ -328,7 +328,7 @@ public class main extends SherlockFragmentActivity {
 			ft.replace(R.id.content_frame, contacts_fragment);
 			break;
 		case 3:
-			setTitle(getString(R.string.popularity));
+		//	setTitle(getString(R.string.popularity));
 		//	ft.replace(R.id.content_frame, fragment2);
 			break;
 		case 4:

@@ -15,8 +15,8 @@
     <string name="refresh">새로고침</string>
     <string name="community">커뮤니티</string>
     <string name="moreview">더보기</string>
-          <string name="alert">알림</string>
-      <string name="details">자세히</string>
+    <string name="alert">알림</string>
+    <string name="details">자세히</string>
     <string name="no_info">정보가 없습니다.</string>
     <string name="contacts">연락처</string>
     <string name="request">신청</string>
@@ -135,11 +135,12 @@
     <string name="completed">완료</string>
     <string name="delete_favorite_des">이 페이지의 즐겨찾기를 해제합니다. 해제하면 이 페이지를 통한 새로운 소식을 받아보실 수 없습니다. 계속하시겠습니까?</string>
     <string name="search">검색</string>
-     <string name="doc_error_des">존재하지 않는 글입니다.</string>
-         <string name="continu">계속</string>
-     
-         <!-- Welcome -->
-          <string name="welcome_subtitle">가장 다채로운 커뮤니티 어플리케이션</string>
+    <string name="doc_error_des">존재하지 않는 글입니다.</string>
+    <string name="continu">계속</string>
+    <string name="find_page">페이지 찾기</string>
+
+    <!-- Welcome -->
+    <string name="welcome_subtitle">가장 다채로운 커뮤니티 어플리케이션</string>
     <string name="sign_up_without_id_des">ID 없이 진행하면 기기를 바꾸거나 앱을 재설치할 때 이전의 사용자 정보는 되찾을 수 없습니다.</string>
     <string name="sign_up_without_id">아이디 없이 가입</string>
 

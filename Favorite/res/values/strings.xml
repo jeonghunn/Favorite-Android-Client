@@ -157,6 +157,8 @@
     <string name="search">Search</string>
     <string name="doc_error_des">This post does not exist.</string>
     <string name="continu">Continue</string>
+    <string name="find_page">Find Page</string>
+    <string name="page_code">Page Code</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">Most Colorful Community Application</string>
