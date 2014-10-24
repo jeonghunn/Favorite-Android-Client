@@ -80,7 +80,7 @@ public class page_create extends ActionBarActivity {
 
 		super.onCreate(savedInstanceState);
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+	//	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.create_page);
 		// no show progress now
 		setSupportProgressBarIndeterminateVisibility(false);

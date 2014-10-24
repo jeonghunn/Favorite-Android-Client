@@ -3,6 +3,14 @@ package com.tarks.favorite;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -120,14 +128,14 @@ public class MainActivity extends ActionBarActivity {
 		String user_srl_auth = Global.getSetting("user_srl_auth", "");
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
+		Paramname.add("apiv");
 		Paramname.add("lang");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
 		Paramname.add("member_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
+		Paramvalue.add("1");
 		Paramvalue.add(getString(R.string.lang));
 		Paramvalue.add(user_srl);
 		Paramvalue.add(user_srl_auth);
@@ -279,8 +287,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 
-	
-	
+
 	
 	public void StartApp() {
 		try {
@@ -290,8 +297,9 @@ public class MainActivity extends ActionBarActivity {
 				load = false;
 				ConnectionError();
 			}
-			
-			if (infoResult.startsWith("/LINE/.")) {
+		Map<String, String> resultmap = Global.getJSONArray(infoResult);
+		
+			if (resultmap == null) {
 				// Account Changed
 				// Alert
 				AlertDialog.Builder alert = new AlertDialog.Builder(
@@ -329,19 +337,35 @@ public class MainActivity extends ActionBarActivity {
 					PermissionError();
 				}
 				// Log.i("Result value",infoResult);
-				String[] array = infoResult.split("/LINE/.");
-				// Global.dumpArray(array);
+//				String[] array = infoResult.split("/LINE/.");
+//				// Global.dumpArray(array);
+//
+//				String tarks_account = array[0];
+//				String name_1 = array[1];
+//				String name_2 = array[2];
+//				String permission = array[3];
+//				String profile_pic = array[4];
+//				String profile_update = array[5];
+//				String reg_id = array[6];
+//				String key = array[7];
+//				String like_me = array[8];
+//				String favorite = array[9];
 
-				String tarks_account = array[0];
-				String name_1 = array[1];
-				String name_2 = array[2];
-				String permission = array[3];
-				String profile_pic = array[4];
-				String profile_update = array[5];
-				String reg_id = array[6];
-				String key = array[7];
-				String like_me = array[8];
-				String favorite = array[9];
+//				Set<Entry<String, Integer>> set = resultmap.entrySet();
+//				Iterator<Entry<String, Integer>> it = set.iterator();
+	
+				String tarks_account = resultmap.get("tarks_account").toString();
+				String name_1 = resultmap.get("name_1").toString();
+				String name_2 = resultmap.get("name_2").toString();
+				String permission = resultmap.get("permission").toString();
+				String profile_pic = resultmap.get("profile_pic").toString();
+				String profile_update = resultmap.get("profile_update").toString();
+				String reg_id = resultmap.get("reg_id").toString();
+				String key = resultmap.get("key").toString();
+				String like_me = resultmap.get("like_me").toString();
+				String favorite = resultmap.get("favorite").toString();
+
+				Log.i("asdf", tarks_account + "adsf");
 
 				// if(!profile_update.matches(Global.getSetting("profile_update",
 				// "") || getCacheDir().toString(), "/profile.jpg")){

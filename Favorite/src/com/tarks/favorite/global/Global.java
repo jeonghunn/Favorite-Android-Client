@@ -44,7 +44,15 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.android.gcm.GCMRegistrar;
 import com.tarks.favorite.MainActivity;
@@ -111,6 +119,110 @@ public final class Global {
 
 	}
 
+//	public static String[][] jsonParserList(String pRecvServerPage) {
+//
+//		Log.i("서버에서 받은 전체 내용 : ", pRecvServerPage);
+//
+//		try {
+//			JSONObject json = new JSONObject(pRecvServerPage);
+//			JSONArray jArr = json.getJSONArray("");
+//
+//			// 받아온 pRecvServerPage를 분석하는 부분
+//			String[] jsonName = { "msg1", "msg2", "msg3" };
+//			String[][] parseredData = new String[jArr.length()][jsonName.length];
+//			for (int i = 0; i < jArr.length(); i++) {
+//				json = jArr.getJSONObject(i);
+//				if (json != null) {
+//					for (int j = 0; j < jsonName.length; j++) {
+//						parseredData[i][j] = json.getString(jsonName[j]);
+//					}
+//				}
+//			}
+//
+//			// 분해 된 데이터를 확인하기 위한 부분
+//			for (int i = 0; i < parseredData.length; i++) {
+//				Log.i("JSON을 분석한 데이터 " + i + " : ", parseredData[i][0]);
+//				Log.i("JSON을 분석한 데이터 " + i + " : ", parseredData[i][1]);
+//				Log.i("JSON을 분석한 데이터 " + i + " : ", parseredData[i][2]);
+//			}
+//
+//			return parseredData;
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+
+	public static Map getJSONArray(String content) {
+		// JSONArray array = Global.jsonParserList(content);
+
+		// JSONObject jsonRoot = null;
+
+		try {
+
+			JSONArray array = new JSONArray(content);
+			Map<String, String> mp = null;
+
+			JSONObject jsonRoot = null;
+			for (int i = 0; i < array.length(); i++) {
+				jsonRoot = array.getJSONObject(i);
+				mp = Global.jsonToMap(jsonRoot);
+			
+			}
+			Log.i("Result", mp.toString());
+			return mp;
+		} catch (Exception e) {
+			Log.e("JSON Combine", ":::::array Error " + e.toString());
+		}
+		return null;
+
+	}
+
+	public static Map jsonToMap(JSONObject json) throws JSONException {
+		Map<String, Object> retMap = new HashMap<String, Object>();
+
+		if (json != JSONObject.NULL) {
+			retMap = toMap(json);
+		}
+		return retMap;
+	}
+
+	public static Map toMap(JSONObject object) throws JSONException {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Iterator<String> keysItr = object.keys();
+		while (keysItr.hasNext()) {
+			String key = keysItr.next();
+			Object value = object.get(key);
+
+			if (value instanceof JSONArray) {
+				value = toList((JSONArray) value);
+			}
+
+			else if (value instanceof JSONObject) {
+				value = toMap((JSONObject) value);
+			}
+			map.put(key, value);
+		}
+		return map;
+	}
+
+	public static List toList(JSONArray array) throws JSONException {
+		List<Object> list = new ArrayList<Object>();
+		for (int i = 0; i < array.length(); i++) {
+			Object value = array.get(i);
+			if (value instanceof JSONArray) {
+				value = toList((JSONArray) value);
+			}
+
+			else if (value instanceof JSONObject) {
+				value = toMap((JSONObject) value);
+			}
+			list.add(value);
+		}
+		return list;
+	}
+
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");
 		Toast.makeText(mod, str,
@@ -130,33 +242,26 @@ public final class Global {
 			if (Globalvariable.alert_status == true) {
 				Globalvariable.alert_status = false;
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				
-				
-				
-				
+
 				builder.setMessage(message).setPositiveButton(button, null)
 						.setTitle(title);
 
-				//Check OS
+				// Check OS
 				if (Build.VERSION.SDK_INT >= 17) {
-				// Dialog Dismiss시 Event 받기
-				builder.setOnDismissListener(new OnDismissListener() {
+					// Dialog Dismiss시 Event 받기
+					builder.setOnDismissListener(new OnDismissListener() {
 
-					@Override
-					public void onDismiss(DialogInterface dialog) {
-						Globalvariable.alert_status = true;
-					}
-				});
-				
-				}else{
+						@Override
+						public void onDismiss(DialogInterface dialog) {
+							Globalvariable.alert_status = true;
+						}
+					});
+
+				} else {
 					Globalvariable.alert_status = true;
 				}
-				
-		
-				builder.show();
-				
-			
 
+				builder.show();
 
 			}
 
@@ -164,8 +269,7 @@ public final class Global {
 			Globalvariable.alert_status = true;
 		}
 	}
-	
-	
+
 	// 배열을 화면에, 요소별로 알기 쉽게 출력
 	public static void dumpArray(String[] array) {
 		for (int i = 0; i < array.length; i++)
@@ -197,8 +301,7 @@ public final class Global {
 			Infoalert(cx, cx.getString(R.string.error),
 					cx.getString(R.string.error_des),
 					cx.getString(R.string.yes));
-			
-			
+
 		} else {
 			Infoalert(cx, cx.getString(R.string.networkerror),
 					cx.getString(R.string.networkerrord),
@@ -212,8 +315,6 @@ public final class Global {
 		// toast(mod.getString(R.string.networkerrord), false);
 		// }
 	}
-	
-	
 
 	public static String[] NameBuilder(String name_1, String name_2) {
 		return NameBuilder(mod.getString(R.string.lang), name_1, name_2);
