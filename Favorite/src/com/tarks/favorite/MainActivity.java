@@ -5,12 +5,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -297,7 +292,9 @@ public class MainActivity extends ActionBarActivity {
 				load = false;
 				ConnectionError();
 			}
-		Map<String, String> resultmap = Global.getJSONArray(infoResult);
+		Map<String, String> resultmap = null;
+		resultmap = Global.getJSONArray(infoResult);
+	
 		
 			if (resultmap == null) {
 				// Account Changed

@@ -161,15 +161,15 @@ public final class Global {
 		try {
 
 			JSONArray array = new JSONArray(content);
-			Map<String, String> mp = null;
+			Map<String, Object> mp = new HashMap<String, Object>();
 
 			JSONObject jsonRoot = null;
 			for (int i = 0; i < array.length(); i++) {
 				jsonRoot = array.getJSONObject(i);
-				mp = Global.jsonToMap(jsonRoot);
-			
+				mp.putAll(jsonToMap(jsonRoot, mp));
+			//map.put(mp.get(0).toString(), mp.get(1).toString());
 			}
-			Log.i("Result", mp.toString());
+			Log.i("Result",  mp.toString());
 			return mp;
 		} catch (Exception e) {
 			Log.e("JSON Combine", ":::::array Error " + e.toString());
@@ -178,8 +178,8 @@ public final class Global {
 
 	}
 
-	public static Map jsonToMap(JSONObject json) throws JSONException {
-		Map<String, Object> retMap = new HashMap<String, Object>();
+	public static Map jsonToMap(JSONObject json, Map retMap) throws JSONException {
+//		Map<String, Object> retMap = new HashMap<String, Object>();
 
 		if (json != JSONObject.NULL) {
 			retMap = toMap(json);
