@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -351,18 +350,16 @@ public class MainActivity extends ActionBarActivity {
 //				Set<Entry<String, Integer>> set = resultmap.entrySet();
 //				Iterator<Entry<String, Integer>> it = set.iterator();
 	
-				String tarks_account = resultmap.get("tarks_account").toString();
-				String name_1 = resultmap.get("name_1").toString();
-				String name_2 = resultmap.get("name_2").toString();
-				String permission = resultmap.get("permission").toString();
-				String profile_pic = resultmap.get("profile_pic").toString();
-				String profile_update = resultmap.get("profile_update").toString();
-				String reg_id = resultmap.get("reg_id").toString();
-				String key = resultmap.get("key").toString();
-				String like_me = resultmap.get("like_me").toString();
-				String favorite = resultmap.get("favorite").toString();
-
-				Log.i("asdf", tarks_account + "adsf");
+				String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+				String name_1 = String.valueOf(resultmap.get("name_1"));
+				String name_2 = String.valueOf(resultmap.get("name_2"));
+				String permission = String.valueOf(resultmap.get("permission"));
+				String profile_pic = String.valueOf(resultmap.get("profile_pic"));
+				String profile_update = String.valueOf(resultmap.get("profile_update"));
+				String reg_id = String.valueOf(resultmap.get("reg_id"));
+				String key = String.valueOf(resultmap.get("key"));
+				String like_me = String.valueOf(resultmap.get("like_me"));
+				String favorite = String.valueOf(resultmap.get("favorite"));
 
 				// if(!profile_update.matches(Global.getSetting("profile_update",
 				// "") || getCacheDir().toString(), "/profile.jpg")){
