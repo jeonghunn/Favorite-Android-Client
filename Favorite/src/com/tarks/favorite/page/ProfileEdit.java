@@ -96,7 +96,7 @@ public class ProfileEdit extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// Can use progress
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		setContentView(R.layout.listview);
 		// 액션바백버튼가져오기
@@ -114,7 +114,7 @@ public class ProfileEdit extends ActionBarActivity {
 
 	public void getUseInfo() {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
+	//	setSupportProgressBarIndeterminateVisibility(true);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("authcode");
