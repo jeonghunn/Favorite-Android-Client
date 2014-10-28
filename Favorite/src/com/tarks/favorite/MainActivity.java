@@ -137,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
 		Paramvalue
 				.add("tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
-		new AsyncHttpTask(this, getString(R.string.server_path) + "load.php",
+		new AsyncHttpTask(this, getString(R.string.server_path) + "api.php?a=load_app",
 				mHandler, Paramname, Paramvalue, null, 1,0);
 
 	}
@@ -286,7 +286,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void StartApp() {
 		try {
-			// Global.toast(infoResult);
+			Log.i("Result", infoResult);
 			// Check mySql Error
 			if (infoResult.matches("db_error")) {
 				load = false;
