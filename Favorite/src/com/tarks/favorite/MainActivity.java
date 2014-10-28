@@ -24,12 +24,13 @@ import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 
-import com.tarks.favorite.connect.AsyncHttpTask;
-import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.global.Global;
-import com.tarks.favorite.page.ProfileActivity;
-import com.tarks.favorite.page.document_write;
-import com.tarks.favorite.start.welcome;
+import com.tarks.favorite.core.connect.AsyncHttpTask;
+import com.tarks.favorite.core.connect.ImageDownloader;
+import com.tarks.favorite.core.global.Global;
+import com.tarks.favorite.ui.webview;
+import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.document_write;
+import com.tarks.favorite.ui.start.welcome;
 
 public class MainActivity extends ActionBarActivity {
 	

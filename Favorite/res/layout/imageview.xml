@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.tarks.favorite.photoview.PhotoView
+        <com.tarks.favorite.ui.photoview.PhotoView
             android:id="@+id/iv_photo"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />

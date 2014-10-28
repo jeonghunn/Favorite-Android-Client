@@ -5,13 +5,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase;
-import com.tarks.favorite.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.tarks.favorite.pulltorefresh.library.PullToRefreshListView;
-import com.tarks.favorite.connect.AsyncHttpTask;
-import com.tarks.favorite.connect.ImageDownloader;
-import com.tarks.favorite.global.Global;
-import com.tarks.favorite.page.ProfileActivity;
+import com.tarks.favorite.core.connect.AsyncHttpTask;
+import com.tarks.favorite.core.connect.ImageDownloader;
+import com.tarks.favorite.core.global.Global;
+import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshBase;
+import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshListView;
+import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 import android.content.Context;
 import android.content.Intent;

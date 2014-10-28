@@ -3,6 +3,7 @@ package com.tarks.favorite;
 
 import java.util.Iterator;
 import java.util.Set;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,10 +14,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
 import com.google.android.gcm.GCMBaseIntentService;
-import com.tarks.favorite.global.Global;
-import com.tarks.favorite.page.ProfileActivity;
-import com.tarks.favorite.page.document_read;
+import com.tarks.favorite.core.global.Global;
+import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.document_read;
 
 //메세지의 고유 ID(?)정도로 생각하면 됩니다. 메세지의 중복수신을 막기 위해 랜덤값을 지정합니다
 

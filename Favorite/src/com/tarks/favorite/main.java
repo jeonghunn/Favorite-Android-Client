@@ -3,10 +3,15 @@ package com.tarks.favorite;
 
 import java.lang.reflect.Field;
 
-import com.tarks.favorite.global.Global;
-import com.tarks.favorite.page.ProfileActivity;
-import com.tarks.favorite.page.document_write;
-import com.tarks.favorite.page.page_create;
+import com.tarks.favorite.core.global.Global;
+import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.document_write;
+import com.tarks.favorite.ui.page.page_create;
+import com.tarks.favorite.ui.MenuListAdapter;
+import com.tarks.favorite.ui.contacts_fragment;
+import com.tarks.favorite.ui.no_favorite_fragment;
+import com.tarks.favorite.ui.setting;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -44,11 +50,13 @@ public class main extends ActionBarActivity {
 	int fragment_position;
 	//String[] subtitle;
 	int[] icon;
-	Fragment fragment1 = new mainfragment();
+	private Fragment fragment1 = new mainfragment();
 	//Fragment fragment2 = new PagePopularFragment();
 	
-	Fragment contacts_fragment = new contacts_fragment();
-	Fragment no_favorite = new no_favorite_fragment();
+	private Fragment contacts_fragment = new contacts_fragment();
+	private Fragment no_favorite = new no_favorite_fragment();
+	//Setting
+	private PreferenceFragment setting_fragment = new setting();
 	//Fragment fragment3 = new Fragment3();
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -336,9 +344,12 @@ public class main extends ActionBarActivity {
 			startActivity(intent);
 			break;
 		case 5:
-			Intent intent1 = new Intent(main.this, setting.class);
-			startActivity(intent1);
+//			Intent intent1 = new Intent(main.this, setting.class);
+//			startActivity(intent1);
+       //     ft.replace(R.id.content_frame, new setting());
+			//getFragmentManager().beginTransaction().replace(android.R.id.content, setting_fragment).commit();
 
+			
 			break;
 		}
 		ft.commit();

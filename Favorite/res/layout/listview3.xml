@@ -5,7 +5,7 @@
 
    
 
-    <com.tarks.favorite.pulltorefresh.library.PullToRefreshListView
+    <com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/listView1"
    android:layout_width="fill_parent"
         android:layout_height="fill_parent"
