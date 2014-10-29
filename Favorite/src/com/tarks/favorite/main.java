@@ -14,6 +14,7 @@ import com.tarks.favorite.ui.setting;
 import com.tarks.favorite.ui.setting_fragment;
 
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.KeyEvent;
@@ -139,14 +139,12 @@ public class main extends ActionBarActivity {
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 		// Enable ActionBar app icon to behave as action to toggle nav drawer
-	//	getSupportActionBar().setHomeButtonEnabled(true);
-	//	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-	//	 getSupportActionBar().setDisplayShowHomeEnabled(false);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		 getSupportActionBar().setDisplayShowHomeEnabled(false);
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
+		mDrawerToggle = new ActionBarDrawerToggle(this , mDrawerLayout, R.drawable.ic_menu_light, R.drawable.ic_arrow_back_white) {
 
 			public void onDrawerClosed(View view) {
 				// TODO Auto-generated method stub
@@ -160,6 +158,8 @@ public class main extends ActionBarActivity {
 				super.onDrawerOpened(drawerView);
 			}
 		};
+		
+		
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
@@ -403,7 +403,10 @@ public class main extends ActionBarActivity {
 	
 	@Override
 	public void onBackPressed() {
-		if(NowPosition > 1){
+		if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+			mDrawerLayout.closeDrawer(GravityCompat.START);
+		}
+		else if(NowPosition > 1){
 			selectItem(1);
 		}else{
 			this.moveTaskToBack(true);
