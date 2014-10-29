@@ -11,6 +11,7 @@ import com.tarks.favorite.ui.MenuListAdapter;
 import com.tarks.favorite.ui.contacts_fragment;
 import com.tarks.favorite.ui.no_favorite_fragment;
 import com.tarks.favorite.ui.setting;
+import com.tarks.favorite.ui.setting_fragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.FragmentActivity;
@@ -56,7 +57,7 @@ public class main extends ActionBarActivity {
 	private Fragment contacts_fragment = new contacts_fragment();
 	private Fragment no_favorite = new no_favorite_fragment();
 	//Setting
-	private PreferenceFragment setting_fragment = new setting();
+	private PreferenceFragment setting_fragment = new setting_fragment();
 	//Fragment fragment3 = new Fragment3();
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -344,10 +345,9 @@ public class main extends ActionBarActivity {
 			startActivity(intent);
 			break;
 		case 5:
-//			Intent intent1 = new Intent(main.this, setting.class);
-//			startActivity(intent1);
-       //     ft.replace(R.id.content_frame, new setting());
-			//getFragmentManager().beginTransaction().replace(android.R.id.content, setting_fragment).commit();
+			Intent intent1 = new Intent(main.this, setting.class);
+			startActivity(intent1);
+     
 
 			
 			break;

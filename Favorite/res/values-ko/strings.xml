@@ -55,7 +55,7 @@
     <string name="join">회원가입</string>
     <string name="user_info_des">거의 다 끝났습니다. 이름을 입력해 주세요.\n계속하면 Favortie 사용약관에 동의하는 것입니다.\n\nhttp://tarks.net/favorite_agreement</string>
     <string name="name_1">성</string>
-    <string name="name_2">이름</string>
+    <string name="name_2">이름(성 제외)</string>
     <string name="find">찾기</string>
     <string name="message">메세지</string>
     <string name="contact_pick_error">사용할수 없는 연락처입니다.</string>

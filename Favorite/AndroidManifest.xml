@@ -146,7 +146,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.tarks.favorite.tarks_account_login"
+            android:name="com.tarks.favorite.ui.tarks_account_login"
             android:label="@string/sign_in"/>
         <activity
             android:name="com.tarks.favorite.ui.start.join"
