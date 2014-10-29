@@ -41,8 +41,13 @@ import android.widget.Toast;
 
 
 
+
+
+
 import java.io.File;
 
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
 
@@ -72,7 +77,7 @@ public class GalleryView extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
         setContentView(R.layout.imageview);
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
@@ -124,22 +129,21 @@ public class GalleryView extends ActionBarActivity {
 		
 	  
  if(edit_mode){
-		menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	 
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS |  MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
  }else{
-		// Inflate your menu.
-		getMenuInflater().inflate(R.menu.share_action_provider, menu);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 2, 0, getString(R.string.share)).setIcon(R.drawable.ic_share_light), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 
+	 // Inflate your menu.
+	//	getMenuInflater().inflate(R.menu.share_action_provider, menu);
 		// Set file with share history to the provider and set the share intent.
-		MenuItem actionItem = menu
-				.findItem(R.id.menu_item_share_action_provider_action_bar);
-//		ShareActionProvider actionProvider = (ShareActionProvider) actionItem
-//				.getActionProvider();
-//		actionProvider
-//				.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
-//		// Note that you can set/change the intent any time,
-//		// say when the user has selected an image.
-//		actionProvider.setShareIntent(createShareIntent());
+//				MenuItem actionItem = menu.findItem(R.id.menu_item_share_action_provider_action_bar);
+//				ShareActionProvider actionProvider = (ShareActionProvider) actionItem.getActionProvider();
+//				actionProvider.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
+//				// Note that you can set/change the intent any time,
+//				// say when the user has selected an image.
+//				actionProvider.setShareIntent(createShareIntent());
+		
  }
 
 		return true;
@@ -167,6 +171,14 @@ public class GalleryView extends ActionBarActivity {
 	    			   finish();
 	    			   
 	    			   return true;
+	    			   
+	    			   
+	    case 2:
+		
+			startActivity(Intent.createChooser(createShareIntent(),	getString(R.string.share)));
+			
+			
+	    	return true;
 	        case android.R.id.home:
 	            onBackPressed();
 	            return true;

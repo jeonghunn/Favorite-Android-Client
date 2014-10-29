@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
@@ -73,7 +75,8 @@ public class PageInfo extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// Can use progress
-		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+     //   supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
+		//supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.listview);
 		// 액션바백버튼가져오기
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
