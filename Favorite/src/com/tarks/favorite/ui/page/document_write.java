@@ -3,6 +3,7 @@ package com.tarks.favorite.ui.page;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import android.view.SubMenu;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+
 import com.tarks.favorite.ui.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
@@ -250,7 +253,7 @@ file_kind = 2;
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		MenuItem item;
+	
 		
 	    SubMenu subMenu1 = menu.addSubMenu(getString(R.string.attach));
         subMenu1.add(0, 1001, 0, getString(R.string.camera));
@@ -261,14 +264,11 @@ file_kind = 2;
 
         MenuItem subMenu1Item = subMenu1.getItem();
       
-
-		menu.add(0, 2, 0, getString(R.string.privacy_content)).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 2, 0, getString(R.string.privacy_content)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
+	
 		  subMenu1Item.setIcon(R.drawable.ic_file_light);
-	        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.accept)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
+		  MenuItemCompat.setShowAsAction(subMenu1Item, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 
 	}

@@ -23,7 +23,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import com.tarks.favorite.ui.fadingactionbar.FadingActionBarHelperBase;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 
 
 public final class FadingActionBarHelper extends FadingActionBarHelperBase {
@@ -67,7 +67,7 @@ public final class FadingActionBarHelper extends FadingActionBarHelperBase {
 	@Override
 	protected void getDocList(String number) {
     	Log.i("DOCN", number);
-        ((ProfileActivity) mContext).getDocList(number);
+        ((PageActivity) mContext).getDocList(number);
         return;
 
 	}

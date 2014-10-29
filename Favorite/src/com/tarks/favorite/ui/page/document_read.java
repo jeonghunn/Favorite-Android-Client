@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -481,7 +482,7 @@ public class document_read extends ActionBarActivity {
 	}
 
 	public void GoPage(String user_srl) {
-		Intent intent = new Intent(document_read.this, ProfileActivity.class);
+		Intent intent = new Intent(document_read.this, PageActivity.class);
 		intent.putExtra("member_srl", user_srl);
 		startActivity(intent);
 	}
@@ -688,7 +689,7 @@ public class document_read extends ActionBarActivity {
 						@Override
 						public void onClick(View v) {
 							Intent intent = new Intent(document_read.this,
-									ProfileActivity.class);
+									PageActivity.class);
 							intent.putExtra("member_srl", p.getUserSrl());
 							startActivity(intent);
 						}
@@ -1146,15 +1147,11 @@ try{
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		MenuItem item;
-
-		menu.add(0, 0, 0, getString(R.string.refresh)).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 0, 0, getString(R.string.refresh)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
 		if (you_doc_status >= 4) {
-			menu.add(0, 1, 0, getString(R.string.delete)).setShowAsAction(
-					MenuItem.SHOW_AS_ACTION_NEVER);
-			menu.add(0, 2, 0, getString(R.string.privacy_content))
-					.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+			MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.delete)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
+			MenuItemCompat.setShowAsAction(	menu.add(0, 2, 0, getString(R.string.privacy_content)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
+		
 		}
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);

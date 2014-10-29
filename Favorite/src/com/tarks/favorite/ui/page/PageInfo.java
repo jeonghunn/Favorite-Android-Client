@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +40,7 @@ import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.connect.ImageDownloader;
 import com.tarks.favorite.core.global.Global;
 
-public class ProfileInfo extends ActionBarActivity {
+public class PageInfo extends ActionBarActivity {
 
 	String local_path;
 	String member_srl = "0";
@@ -111,7 +112,7 @@ public class ProfileInfo extends ActionBarActivity {
 			public void onClick(View v) {
 				// Log.i("Clicked", "Profile");
 				if (profile_pic.matches("Y")) {
-					Intent intent = new Intent(ProfileInfo.this,
+					Intent intent = new Intent(PageInfo.this,
 							GalleryView.class);
 					intent.putExtra("path", local_path + member_srl + ".jpg");
 					startActivity(intent);
@@ -123,7 +124,7 @@ public class ProfileInfo extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent1 = new Intent(ProfileInfo.this, ProfileEdit.class);
+				Intent intent1 = new Intent(PageInfo.this, PageEdit.class);
 				intent1.putExtra("member_srl", member_srl);
 				startActivityForResult(intent1, 1);
 			}
@@ -416,9 +417,9 @@ public class ProfileInfo extends ActionBarActivity {
 				2, 0);
 	}
 
-	public void MemberInfoError() {
+	public void PageInfoError() {
 		Global.Infoalert(this, getString(R.string.error),
-				getString(R.string.member_info_error_des),
+				getString(R.string.unknown_info_error_des),
 				getString(R.string.yes));
 	}
 
@@ -428,7 +429,7 @@ public class ProfileInfo extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileInfo.this);
+				Global.ConnectionError(PageInfo.this);
 			}
 
 			if (msg.what == 1) {
@@ -504,7 +505,7 @@ public class ProfileInfo extends ActionBarActivity {
 					invalidateOptionsMenu(); // refreshmenu
 
 				} catch (Exception e) {
-					MemberInfoError();
+					PageInfoError();
 					e.printStackTrace();
 				}
 			}
@@ -528,7 +529,7 @@ public class ProfileInfo extends ActionBarActivity {
 					setProfileInfo();
 					profile_changed = true;
 				}else{
-					Global.ConnectionError(ProfileInfo.this);
+					Global.ConnectionError(PageInfo.this);
 				}
 
 			}
@@ -550,10 +551,9 @@ public class ProfileInfo extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		// this.optionsMenu = menu;
-		MenuItem item;
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.unfavorite)), MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 
-		menu.add(0, 1, 0, getString(R.string.unfavorite)).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
+
 
 		menu.findItem(1).setVisible(me_status == 3);
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);

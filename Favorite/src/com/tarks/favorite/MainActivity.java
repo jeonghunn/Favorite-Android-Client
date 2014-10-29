@@ -28,7 +28,7 @@ import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.connect.ImageDownloader;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.ui.webview;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.page.document_write;
 import com.tarks.favorite.ui.start.welcome;
 
@@ -239,7 +239,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void goProfileAct(){
-		Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+		Intent intent = new Intent(MainActivity.this, PageActivity.class);
 		  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 		startActivity(intent);	
 	}

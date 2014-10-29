@@ -2519,7 +2519,6 @@ containing a value of this type.
         public static final int logout_des=0x7f0a00d2;
         public static final int logout_really=0x7f0a00d3;
         public static final int male=0x7f0a0067;
-        public static final int member_info_error_des=0x7f0a007e;
         public static final int menu_settings=0x7f0a0020;
         public static final int message=0x7f0a0055;
         public static final int moreview=0x7f0a002b;
@@ -2618,6 +2617,7 @@ containing a value of this type.
         public static final int type_a_comment=0x7f0a007f;
         public static final int type_id=0x7f0a003c;
         public static final int unfavorite=0x7f0a00ab;
+        public static final int unknown_info_error_des=0x7f0a007e;
         public static final int user_explain=0x7f0a0090;
         public static final int user_info=0x7f0a007c;
         public static final int user_info_des=0x7f0a004c;

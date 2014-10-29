@@ -15,7 +15,7 @@
  */
 package com.tarks.favorite.ui.fadingactionbar;
 
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -45,7 +45,7 @@ public class FadingActionBarHelper extends FadingActionBarHelperBase {
     }
     
     public void getDocList(String number) {
-       ((ProfileActivity) mContext).getDocList(number);
+       ((PageActivity) mContext).getDocList(number);
        return;
     }
  

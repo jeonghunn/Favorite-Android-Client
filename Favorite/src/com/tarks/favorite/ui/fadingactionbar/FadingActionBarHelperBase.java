@@ -40,7 +40,7 @@ import com.tarks.favorite.R;
 import com.tarks.favorite.ui.fadingactionbar.view.ObservableScrollView;
 import com.tarks.favorite.ui.fadingactionbar.view.ObservableWebViewWithHeader;
 import com.tarks.favorite.ui.fadingactionbar.view.OnScrollChangedCallback;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 
 @SuppressWarnings("unchecked")
 public abstract class FadingActionBarHelperBase {
@@ -329,7 +329,7 @@ public abstract class FadingActionBarHelperBase {
     			if(cx != null) {
     				//((ProfileActivity) cx).setFadingActionBar();
     			//	((ProfileActivity) cx).getDocList(String.valueOf(size - 1));
-    				((ProfileActivity) cx).MoreLoad(String.valueOf(size - 1));
+    				((PageActivity) cx).MoreLoad(String.valueOf(size - 1));
     			}
   	        // 모든 데이터를 로드하여 적용하였다면 어댑터에 알리고
   	        // 리스트뷰의 락을 해제합니다.
@@ -362,7 +362,7 @@ public abstract class FadingActionBarHelperBase {
         float ratio = (float) Math.min(Math.max(scrollPosition, 0), headerHeight) / headerHeight;
         int newAlpha = (int) (ratio * 255);
         mActionBarBackgroundDrawable.setAlpha(newAlpha);
-    	((ProfileActivity) cx).setStatusBarColor(newAlpha);
+    	((PageActivity) cx).setStatusBarColor(newAlpha);
         addParallaxEffect(scrollPosition);
     }
 

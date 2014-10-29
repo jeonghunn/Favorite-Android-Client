@@ -3,6 +3,7 @@ package com.tarks.favorite.ui.page;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -42,7 +44,7 @@ import com.tarks.favorite.core.connect.ImageDownloader;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.core.global.Globalvariable;
 
-public class ProfileEdit extends ActionBarActivity {
+public class PageEdit extends ActionBarActivity {
 
 	ImageView profile;
 
@@ -374,7 +376,7 @@ public class ProfileEdit extends ActionBarActivity {
 
 	public void MemberInfoError() {
 		Global.Infoalert(this, getString(R.string.error),
-				getString(R.string.member_info_error_des),
+				getString(R.string.unknown_info_error_des),
 				getString(R.string.yes));
 	}
 	
@@ -448,7 +450,7 @@ public class ProfileEdit extends ActionBarActivity {
 			mImageUri = Uri.fromFile(photo);
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
 			// start camera intent
-			ProfileEdit.this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
+			PageEdit.this.startActivityForResult(intent, CAMERA_PIC_REQUEST);
 			break;
 
 		case 3:
@@ -469,7 +471,7 @@ public class ProfileEdit extends ActionBarActivity {
 		if (requestCode == REQ_CODE_PICK_PICTURE) {
 			if (resultCode == Activity.RESULT_OK) {
 				// Log.i("datasetdata", data.getData().toString() + "ssdsd");
-				Intent intent = new Intent(ProfileEdit.this, CropManager.class);
+				Intent intent = new Intent(PageEdit.this, CropManager.class);
 				intent.putExtra("uri", data.getData());
 				startActivityForResult(intent, IMAGE_EDIT);
 
@@ -493,7 +495,7 @@ public class ProfileEdit extends ActionBarActivity {
 		}
 
 		if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
-			Intent intent = new Intent(ProfileEdit.this, CropManager.class);
+			Intent intent = new Intent(PageEdit.this, CropManager.class);
 			intent.putExtra("uri", mImageUri);
 			startActivityForResult(intent, IMAGE_EDIT);
 		}
@@ -577,7 +579,7 @@ public class ProfileEdit extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileEdit.this);
+				Global.ConnectionError(PageEdit.this);
 			}
 
 			if (msg.what == 1) {
@@ -637,7 +639,7 @@ public class ProfileEdit extends ActionBarActivity {
 					setList();
 
 				} catch (Exception e) {
-					//MemberInfoError();
+					//PageInfoError();
 					e.printStackTrace();
 				}
 			}
@@ -692,10 +694,9 @@ public class ProfileEdit extends ActionBarActivity {
 		subMenu1.add(0, 1002, 0, getString(R.string.write_permission));
 
 		MenuItem subMenu1Item = subMenu1.getItem();
-		subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(subMenu1Item, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 		
-	if(!Global.getSetting("user_srl", "0").matches(member_srl))	menu.add(0, 1, 0, getString(R.string.delete))
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+	if(!Global.getSetting("user_srl", "0").matches(member_srl))MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.delete)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
@@ -714,13 +715,13 @@ public class ProfileEdit extends ActionBarActivity {
 		deleteAlert();
 			return true;
 		case 1001:
-			Intent intent1 = new Intent(ProfileEdit.this,
+			Intent intent1 = new Intent(PageEdit.this,
 					privacy_category.class);
 			intent1.putExtra("status", status);
 			startActivityForResult(intent1, 10004);
 			return true;
 		case 1002:
-			Intent intent2 = new Intent(ProfileEdit.this,
+			Intent intent2 = new Intent(PageEdit.this,
 					privacy_category.class);
 			intent2.putExtra("status", write_status);
 			intent2.putExtra("title", getString(R.string.write_permission));

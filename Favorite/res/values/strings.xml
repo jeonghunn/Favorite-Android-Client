@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.4904</string>
-    <string name="build">4904</string>
+    <string name="ver">1.9.0.4924</string>
+    <string name="build">4924</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
@@ -106,7 +106,7 @@
     <string name="information">Information</string>
     <string name="user_info">User Information</string>
     <string name="gender">Gender</string>
-    <string name="member_info_error_des">Unknown member information.</string>
+    <string name="unknown_info_error_des">Sorry, this page doesn\'t exist.</string>
     <string name="type_a_comment">Type a comment.</string>
     <string name="a_moment_ago">a moment ago</string>
     <string name="no_content">Content is Empty.</string>

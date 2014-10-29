@@ -10,8 +10,8 @@ import android.view.MenuItem;
 
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.global.Global;
-import com.tarks.favorite.ui.page.ProfileActivity;
-import com.tarks.favorite.ui.page.ProfileInfo;
+import com.tarks.favorite.ui.page.PageActivity;
+import com.tarks.favorite.ui.page.PageInfo;
 
 public class setting_fragment extends PreferenceFragment {
 
@@ -31,7 +31,7 @@ public class setting_fragment extends PreferenceFragment {
 		profile.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent intent =  new Intent(getActivity(), ProfileInfo.class);
+				Intent intent =  new Intent(getActivity(), PageInfo.class);
 				  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 				startActivity(intent);	
 
@@ -44,7 +44,7 @@ public class setting_fragment extends PreferenceFragment {
 		notice.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent intent = new Intent(getActivity(), ProfileActivity.class);
+				Intent intent = new Intent(getActivity(), PageActivity.class);
 				  intent.putExtra("member_srl", "9");
 				startActivity(intent);	
 				return false;

@@ -991,7 +991,6 @@ int string logout 0x7f0a0032
 int string logout_des 0x7f0a00d2
 int string logout_really 0x7f0a00d3
 int string male 0x7f0a0067
-int string member_info_error_des 0x7f0a007e
 int string menu_settings 0x7f0a0020
 int string message 0x7f0a0055
 int string moreview 0x7f0a002b
@@ -1082,6 +1081,7 @@ int string tour_page 0x7f0a009b
 int string type_a_comment 0x7f0a007f
 int string type_id 0x7f0a003c
 int string unfavorite 0x7f0a00ab
+int string unknown_info_error_des 0x7f0a007e
 int string user_explain 0x7f0a0090
 int string user_info 0x7f0a007c
 int string user_info_des 0x7f0a004c

@@ -17,7 +17,7 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.tarks.favorite.core.global.Global;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.page.document_read;
 
 //메세지의 고유 ID(?)정도로 생각하면 됩니다. 메세지의 중복수신을 막기 위해 랜덤값을 지정합니다
@@ -99,7 +99,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			      	   intent.putExtra("doc_srl", number);
 	    		}
 	    		if(kind.matches("3")){
-	    			intent = new Intent(GCMIntentService.this, ProfileActivity.class);
+	    			intent = new Intent(GCMIntentService.this, PageActivity.class);
 			      	   intent.putExtra("member_srl", send_user_srl);
 	    		}
 	    		// Because clicking the notification opens a new ("special") activity, there's

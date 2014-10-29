@@ -4,7 +4,7 @@ package com.tarks.favorite;
 import java.lang.reflect.Field;
 
 import com.tarks.favorite.core.global.Global;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.page.document_write;
 import com.tarks.favorite.ui.page.page_create;
 import com.tarks.favorite.ui.MenuListAdapter;
@@ -38,6 +38,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 
 public class main extends ActionBarActivity {
 
@@ -57,8 +58,7 @@ public class main extends ActionBarActivity {
 	private Fragment contacts_fragment = new contacts_fragment();
 	private Fragment no_favorite = new no_favorite_fragment();
 	//Setting
-	private PreferenceFragment setting_fragment = new setting_fragment();
-	//Fragment fragment3 = new Fragment3();
+	private PreferenceFragment setting_fragment;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 
@@ -210,23 +210,17 @@ public class main extends ActionBarActivity {
 		this.optionsMenu = menu;
 		MenuItem item;
 
+		
 
-		menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add)
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.create_page)).setIcon(R.drawable.add), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 100, 0, getString(R.string.change_user)), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 		
 //		menu.add(0, 2, 0, getString(R.string.search)).setIcon(R.drawable.search)
 //		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		
-		menu.add(0, 0, 0, getString(R.string.write)).setIcon(R.drawable.write)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
 		
 
-		menu.add(0, 100, 0, getString(R.string.change_user))
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		
-		
-		menu.add(0, 200, 0, getString(R.string.invite))
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		menu.findItem(0).setVisible(fragment_position == 1 || fragment_position != 2);
 		menu.findItem(1).setVisible(fragment_position == 3);
@@ -234,8 +228,7 @@ public class main extends ActionBarActivity {
 		//User change
 		menu.findItem(100).setVisible(Global.getSetting("default_user", "Y").matches("N"));
 		
-		//Invite
-		menu.findItem(200).setVisible(fragment_position == 2);
+
 
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
@@ -304,7 +297,7 @@ public class main extends ActionBarActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			if(position == 0){
-				Intent intent = new Intent(main.this, ProfileActivity.class);
+				Intent intent = new Intent(main.this, PageActivity.class);
 				  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 				startActivity(intent);	
 			}else selectItem(position);
@@ -345,6 +338,7 @@ public class main extends ActionBarActivity {
 			startActivity(intent);
 			break;
 		case 5:
+			setting_fragment = new setting_fragment();
 			Intent intent1 = new Intent(main.this, setting.class);
 			startActivity(intent1);
      
@@ -390,7 +384,7 @@ public class main extends ActionBarActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-			Intent intent = new Intent(main.this, ProfileActivity.class);
+			Intent intent = new Intent(main.this, PageActivity.class);
 			  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 			startActivity(intent);	
 		}

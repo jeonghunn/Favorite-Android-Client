@@ -8,7 +8,7 @@ import java.util.HashMap;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.connect.ImageDownloader;
 import com.tarks.favorite.core.global.Global;
-import com.tarks.favorite.ui.page.ProfileActivity;
+import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshBase;
 import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshListView;
 import com.tarks.favorite.ui.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -131,7 +131,7 @@ public class mainfragment extends Fragment  {
 
 
 						Intent intent = new Intent(getActivity(),
-								ProfileActivity.class);
+								PageActivity.class);
 						intent.putExtra("member_srl", ls.getUserSrl());
 						startActivity(intent);
 
@@ -412,7 +412,7 @@ public class mainfragment extends Fragment  {
 						@Override
 						public void onClick(View v) {
 							Intent intent = new Intent(getActivity(),
-									ProfileActivity.class);
+									PageActivity.class);
 							intent.putExtra("member_srl", p.getUserSrl());
 							startActivity(intent);
 						}

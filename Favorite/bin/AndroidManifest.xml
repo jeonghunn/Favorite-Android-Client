@@ -108,16 +108,16 @@
             android:icon="@drawable/ic_launcher_simple"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.tarks.favorite.ui.page.ProfileActivity"
+            android:name="com.tarks.favorite.ui.page.PageActivity"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.TranslucentActionBar" />
         <activity
-            android:name="com.tarks.favorite.ui.page.ProfileEdit"
+            android:name="com.tarks.favorite.ui.page.PageEdit"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/edit_profile" />
         <activity
-            android:name="com.tarks.favorite.ui.page.ProfileInfo"
+            android:name="com.tarks.favorite.ui.page.PageInfo"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/user_info" />
         <activity

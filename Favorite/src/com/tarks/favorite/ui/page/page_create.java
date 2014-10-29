@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -234,7 +235,7 @@ public class page_create extends ActionBarActivity {
 			// Join Activity
 			if (msg.what == 1) {
 				finish();
-				Intent intent = new Intent(page_create.this, ProfileActivity.class);
+				Intent intent = new Intent(page_create.this, PageActivity.class);
 				  intent.putExtra("member_srl", msg.obj.toString());
 				startActivity(intent);	
 
@@ -315,10 +316,7 @@ public class page_create extends ActionBarActivity {
 	//	this.optionsMenu = menu;
 		MenuItem item;
 
-
-		menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept)
-		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 
 		return true;
 	}

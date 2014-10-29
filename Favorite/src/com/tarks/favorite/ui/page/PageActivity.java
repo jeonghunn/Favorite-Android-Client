@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -52,7 +53,7 @@ import com.tarks.favorite.ui.SystemBarTintManager;
 import com.tarks.favorite.ui.fadingactionbar.FadingActionBarHelperBase;
 import com.tarks.favorite.ui.fadingactionbar.extras.actionbarcompat.FadingActionBarHelper;
 
-public class ProfileActivity extends ActionBarActivity {
+public class PageActivity extends ActionBarActivity {
 
 	// Profile image local path
 	String local_path;
@@ -234,7 +235,7 @@ public class ProfileActivity extends ActionBarActivity {
 
 						List ls = (List) ca.getItem(arg2 - 1);
 
-						Intent intent = new Intent(ProfileActivity.this,
+						Intent intent = new Intent(PageActivity.this,
 								document_read.class);
 						intent.putExtra("doc_srl",
 								String.valueOf(ls.getDocSrl()));
@@ -418,16 +419,16 @@ public class ProfileActivity extends ActionBarActivity {
 				Integer.parseInt(user_srl));
 	}
 
-	public void MemberInfoError() {
+	public void PageInfoError() {
 		Global.Infoalert(this, getString(R.string.error),
-				getString(R.string.member_info_error_des),
+				getString(R.string.unknown_info_error_des),
 				getString(R.string.yes));
 	}
 
 	public void ChangeUserAlert(final String user_srl) {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(
-				ProfileActivity.this);
+				PageActivity.this);
 		builder.setMessage(getString(R.string.change_user_des)).setTitle(
 				getString(R.string.change_user));
 		builder.setPositiveButton(getString(R.string.yes),
@@ -466,7 +467,7 @@ public class ProfileActivity extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(ProfileActivity.this);
+				Global.ConnectionError(PageActivity.this);
 			}
 
 			if (msg.what == 1) {
@@ -512,7 +513,7 @@ public class ProfileActivity extends ActionBarActivity {
 					}
 					invalidateOptionsMenu();
 				} catch (Exception e) {
-					MemberInfoError();
+					PageInfoError();
 
 				}
 			}
@@ -588,7 +589,7 @@ public class ProfileActivity extends ActionBarActivity {
 						file_thum.delete();
 					}
 				} catch (Exception e) {
-					// MemberInfoError();
+					// PageInfoError();
 
 				}
 			}
@@ -617,7 +618,7 @@ public class ProfileActivity extends ActionBarActivity {
 					add_menu_state = false;
 					invalidateOptionsMenu();
 				} else {
-					Global.ConnectionError(ProfileActivity.this);
+					Global.ConnectionError(PageActivity.this);
 				}
 				// Log.i("Result","로그 정상 작동");
 				// Log.i("Result", msg.obj.toString());
@@ -690,8 +691,8 @@ public class ProfileActivity extends ActionBarActivity {
 
 						@Override
 						public void onClick(View v) {
-							Intent intent = new Intent(ProfileActivity.this,
-									ProfileActivity.class);
+							Intent intent = new Intent(PageActivity.this,
+									PageActivity.class);
 							intent.putExtra("member_srl", p.getUserSrl());
 							startActivity(intent);
 						}
@@ -778,24 +779,18 @@ public class ProfileActivity extends ActionBarActivity {
 		super.onCreateOptionsMenu(menu);
 		this.optionsMenu = menu;
 		MenuItem item;
-
-		menu.add(0, 0, 0, getString(R.string.add_favorite))
-				.setIcon(R.drawable.add)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.write)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-		menu.add(0, 100, 0, getString(R.string.change_user)).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
-
 		
-		menu.add(0, 2, 0, getString(R.string.information)).setIcon(R.drawable.ic_menu_light).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 0, 0, getString(R.string.add_favorite)).setIcon(R.drawable.add), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.write)).setIcon(R.drawable.write), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 100, 0, getString(R.string.change_user)), MenuItemCompat.SHOW_AS_ACTION_NEVER);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 2, 0, getString(R.string.information)).setIcon(R.drawable.ic_menu_light), MenuItemCompat.SHOW_AS_ACTION_NEVER);
+		
 
 		menu.findItem(0).setVisible(add_menu_state);
 		menu.findItem(1).setVisible(write_status <= your_status);
 		menu.findItem(100).setVisible(page_admin == user_srl);
-		if(title != null && title.length() < 20) menu.findItem(2).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		if(title != null && title.length() < 20) MenuItemCompat.setShowAsAction(menu.findItem(2), MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+
 		// item = menu.add(0, 1, 0, R.string.Main_MenuAddBookmark);
 		// item.setIcon(R.drawable.ic_menu_add_bookmark);
 
@@ -819,7 +814,7 @@ public class ProfileActivity extends ActionBarActivity {
 		case 0:
 			// Alert
 			AlertDialog.Builder builder = new AlertDialog.Builder(
-					ProfileActivity.this);
+					PageActivity.this);
 			builder.setMessage(getString(R.string.favorite_add_des)).setTitle(
 					getString(R.string.add_favorite));
 			builder.setPositiveButton(getString(R.string.yes),
@@ -833,7 +828,7 @@ public class ProfileActivity extends ActionBarActivity {
 			builder.show();
 			return true;
 		case 1:
-			Intent intent1 = new Intent(ProfileActivity.this,
+			Intent intent1 = new Intent(PageActivity.this,
 					document_write.class);
 			intent1.putExtra("page_srl", member_srl);
 			intent1.putExtra("page_name", title);
@@ -841,7 +836,7 @@ public class ProfileActivity extends ActionBarActivity {
 
 			return true;
 		case 2:
-			Intent intent2 = new Intent(ProfileActivity.this, ProfileInfo.class);
+			Intent intent2 = new Intent(PageActivity.this, PageInfo.class);
 			intent2.putExtra("member_srl", member_srl);
 			startActivityForResult(intent2, 1);
 			return true;
