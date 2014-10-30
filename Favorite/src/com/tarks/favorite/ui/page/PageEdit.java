@@ -3,6 +3,7 @@ package com.tarks.favorite.ui.page;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -91,6 +92,8 @@ public class PageEdit extends ActionBarActivity {
 
 	// Profile picture changed
 	boolean profile_changed = false;
+	
+	private Map<String, String> resultmap;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -117,47 +120,50 @@ public class PageEdit extends ActionBarActivity {
 	//	setSupportProgressBarIndeterminateVisibility(true);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
+		Paramname.add("apiv");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
 		Paramname.add("profile_user_srl");
 		Paramname.add("member_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
+		Paramvalue.add("1");
 		Paramvalue.add(Global.getSetting("user_srl",
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(member_srl);
 		Paramvalue
-				.add("tarks_account//status//write_status//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite");
+				.add("tarks_account//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite//rel_you_status//rel_me_status");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
+				+ "api.php?a=page_info", mHandler, Paramname, Paramvalue,
 				null, 1, 0);
 	}
 
 	public void setList() {
+		
 
-		String tarks_account = array[0];
-		String status = array[1];
-		String write_status = array[2];
-		String admin = array[3];
-		String name_1 = array[4];
-		String name_2 = array[5];
-		String gender = array[6];
-		String birthday = array[7];
-		String country_code = array[8];
-		String phone_number = array[9];
-		String join_day = array[10];
-		String profile_pic = array[11];
-		String profile_update = array[12];
-		String lang = array[13];
-		String country = array[14];
-		String like_me = array[15];
-		String favorite = array[16];
 
+		String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+		String admin = String.valueOf(resultmap.get("admin"));
+		String name_1 = String.valueOf(resultmap.get("name_1"));
+		String name_2 = String.valueOf(resultmap.get("name_2"));
+		String gender = String.valueOf(resultmap.get("gender"));
+		String birthday = String.valueOf(resultmap.get("birthday"));
+		String country_code = String.valueOf(resultmap.get("country_code"));
+		String phone_number = String.valueOf(resultmap.get("phone_number"));
+		String join_day = String.valueOf(resultmap.get("join_day"));
+		String profile_pic = String.valueOf(resultmap.get("profile_pic"));
+		String profile_update = String.valueOf(resultmap.get("profile_update"));
+		String lang = String.valueOf(resultmap.get("lang"));
+		String country = String.valueOf(resultmap.get("country"));
+		String like_me = String.valueOf(resultmap.get("like_me"));
+		String favorite = String.valueOf(resultmap.get("favorite"));
+		int your_status =  Integer.parseInt(String.valueOf(resultmap.get("rel_you_status")));
+		int me_status = Integer.parseInt(String.valueOf(resultmap.get("rel_me_status")));
+		
+		
 		if (tarks_account.matches("null"))
 			tarks_account = getString(R.string.add);
 		if (birthday.matches("0"))
@@ -585,26 +591,25 @@ public class PageEdit extends ActionBarActivity {
 			if (msg.what == 1) {
 
 				try {
-					array = msg.obj.toString().split("/LINE/.");
-					// Global.dumpArray(array);
-
-					String tarks_account = array[0];
-					status = array[1];
-					write_status = array[2];
-					String admin = array[3];
-					name_1 = array[4];
-					name_2 = array[5];
-					String gender = array[6];
-					String birthday = array[7];
-					String country_code = array[8];
-					String phone_number = array[9];
-					String join_day = array[10];
-					String profile_pic = array[11];
-					String profile_update = array[12];
-					lang = array[13];
-					String country = array[14];
-					String like_me = array[15];
-					String favorite = array[16];
+					resultmap = Global.getJSONArray(msg.obj.toString());
+					
+					String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+					String admin = String.valueOf(resultmap.get("admin"));
+					String name_1 = String.valueOf(resultmap.get("name_1"));
+					String name_2 = String.valueOf(resultmap.get("name_2"));
+					String gender = String.valueOf(resultmap.get("gender"));
+					String birthday = String.valueOf(resultmap.get("birthday"));
+					String country_code = String.valueOf(resultmap.get("country_code"));
+					String phone_number = String.valueOf(resultmap.get("phone_number"));
+					String join_day = String.valueOf(resultmap.get("join_day"));
+					String profile_pic = String.valueOf(resultmap.get("profile_pic"));
+					String profile_update = String.valueOf(resultmap.get("profile_update"));
+					String lang = String.valueOf(resultmap.get("lang"));
+					String country = String.valueOf(resultmap.get("country"));
+					String like_me = String.valueOf(resultmap.get("like_me"));
+					String favorite = String.valueOf(resultmap.get("favorite"));
+					int your_status =  Integer.parseInt(String.valueOf(resultmap.get("rel_you_status")));
+					int me_status = Integer.parseInt(String.valueOf(resultmap.get("rel_me_status")));
 
 					String[] name = Global.NameBuilder(name_1, name_2);
 					edittext_name_1.setText(name[0]);
