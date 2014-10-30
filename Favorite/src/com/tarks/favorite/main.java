@@ -338,7 +338,7 @@ public class main extends ActionBarActivity {
 			startActivity(intent);
 			break;
 		case 5:
-			setting_fragment = new setting_fragment();
+			
 			Intent intent1 = new Intent(main.this, setting.class);
 			startActivity(intent1);
      

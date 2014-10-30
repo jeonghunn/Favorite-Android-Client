@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 
@@ -12,7 +13,7 @@ import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.page.PageInfo;
 
-public class setting_fragment extends PreferenceFragment {
+public class setting_compat extends PreferenceActivity {
 
 
 	@Override
@@ -30,7 +31,7 @@ public class setting_fragment extends PreferenceFragment {
 		profile.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent intent =  new Intent(getActivity(), PageInfo.class);
+				Intent intent =  new Intent(setting_compat.this, PageInfo.class);
 				  intent.putExtra("member_srl", Global.getSetting("user_srl", "0"));
 				startActivity(intent);	
 
@@ -43,7 +44,7 @@ public class setting_fragment extends PreferenceFragment {
 		notice.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent intent = new Intent(getActivity(), PageActivity.class);
+				Intent intent = new Intent(setting_compat.this, PageActivity.class);
 				  intent.putExtra("member_srl", "9");
 				startActivity(intent);	
 				return false;
@@ -69,7 +70,7 @@ public class setting_fragment extends PreferenceFragment {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
-				Global.FeedbackWrite(getActivity());
+				Global.FeedbackWrite(setting_compat.this);
 				
 
 				return false;
@@ -81,7 +82,7 @@ public class setting_fragment extends PreferenceFragment {
 		info.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				startActivity(new Intent(getActivity(), info.class));
+				startActivity(new Intent(setting_compat.this, info.class));
 				return false;
 			}
 		});
