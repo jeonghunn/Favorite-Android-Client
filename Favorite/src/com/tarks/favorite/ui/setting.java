@@ -16,13 +16,14 @@ public class setting extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //액션바백버튼가져오기
-        if (android.os.Build.VERSION.SDK_INT > 1) {
+        if (android.os.Build.VERSION.SDK_INT > 10) {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
         getFragmentManager().beginTransaction().replace(android.R.id.content,
                 new setting_fragment()).commit();
         }else{
         	Intent intent1 = new Intent(setting.this, setting_compat.class);
 			startActivity(intent1);
+			finish();
         }
        
     }

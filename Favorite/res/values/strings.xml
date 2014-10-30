@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.4953</string>
-    <string name="build">4953</string>
+    <string name="ver">1.9.0.4955</string>
+    <string name="build">4955</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
