@@ -72,6 +72,9 @@
         android:clickable="true"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/write_dark"/>
+        android:layout_marginTop="7sp"
+        android:layout_marginBottom="7sp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_create_grey"/>
 
 </LinearLayout>

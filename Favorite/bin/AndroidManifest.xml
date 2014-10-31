@@ -128,7 +128,7 @@
         <activity
             android:name="com.tarks.favorite.ui.page.privacy_category"
             android:icon="@drawable/ic_launcher_simple"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/Theme.Favorite.Light.Dialog"
             android:label="@string/privacy_content" />
         <activity
             android:name="com.tarks.favorite.ui.page.page_create"
