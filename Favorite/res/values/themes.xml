@@ -6,6 +6,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 <item name="colorPrimary">@color/favorite_color</item>
 <item name="colorAccent">@color/favorite_color</item>
+<item name="colorPrimaryDark">@color/favorite_dark_color</item>
         <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
         <item name="actionBarStyle">@style/Widget.ActionBar</item>
     </style>

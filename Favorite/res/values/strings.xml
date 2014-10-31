@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.4982</string>
-    <string name="build">4982</string>
+    <string name="ver">1.9.0.4990</string>
+    <string name="build">4990</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -150,7 +150,7 @@
     <string name="change_user_des">You will write posts and comments by this page. \nRestart to Continue.</string>
     <string name="change_user_default_des">Go back to your default user. \nRestart to Continue.</string>
     <string name="popularity">Popularity</string>
-    <string name="no_contact_des">No users by contacts. You can invite your friends.</string>
+    <string name="no_contact_des">No users in contacts. You can invite your friends.</string>
     <string name="page_delete_des">Delete this page. If continue this, page will be delete with posts and comments can not restore. Continue?</string>
     <string name="unfavorite">Unfavorite</string>
     <string name="completed">Completed</string>
