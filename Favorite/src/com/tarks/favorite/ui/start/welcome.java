@@ -73,17 +73,9 @@ public class welcome extends ActionBarActivity {
 
 					}
 				});
-		builder.setNegativeButton(getString(R.string.no),
-				new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog, int which) {
-
-						finish();
-
-					}
-				});
+		builder.setNegativeButton(getString(R.string.no),null);
+				
 		builder.show();
-
 	}
 
 
