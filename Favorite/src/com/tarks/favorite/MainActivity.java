@@ -124,6 +124,7 @@ public class MainActivity extends ActionBarActivity {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("apiv");
+		Paramname.add("a");
 		Paramname.add("lang");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
@@ -131,13 +132,14 @@ public class MainActivity extends ActionBarActivity {
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("1");
+		Paramvalue.add("load_app");
 		Paramvalue.add(getString(R.string.lang));
 		Paramvalue.add(user_srl);
 		Paramvalue.add(user_srl_auth);
 		Paramvalue
 				.add("tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
-		new AsyncHttpTask(this, getString(R.string.server_path) + "api.php?a=load_app",
+		new AsyncHttpTask(this, getString(R.string.server_path) + "api.php",
 				mHandler, Paramname, Paramvalue, null, 1,0);
 
 	}

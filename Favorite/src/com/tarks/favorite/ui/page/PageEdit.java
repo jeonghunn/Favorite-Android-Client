@@ -121,13 +121,15 @@ public class PageEdit extends ActionBarActivity {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("apiv");
+		Paramname.add("a");
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
-		Paramname.add("profile_user_srl");
+		Paramname.add("page_srl");
 		Paramname.add("member_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("1");
+		Paramvalue.add("page_info");
 		Paramvalue.add(Global.getSetting("user_srl",
 				Global.getSetting("user_srl", "0")));
 		Paramvalue.add(Global.getSetting("user_srl_auth",
@@ -137,7 +139,7 @@ public class PageEdit extends ActionBarActivity {
 				.add("tarks_account//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite//rel_you_status//rel_me_status");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "api.php?a=page_info", mHandler, Paramname, Paramvalue,
+				+ "api.php", mHandler, Paramname, Paramvalue,
 				null, 1, 0);
 	}
 
