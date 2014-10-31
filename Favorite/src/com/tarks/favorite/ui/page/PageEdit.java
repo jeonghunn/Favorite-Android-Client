@@ -136,7 +136,7 @@ public class PageEdit extends ActionBarActivity {
 				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(member_srl);
 		Paramvalue
-				.add("tarks_account//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite//rel_you_status//rel_me_status");
+		.add("tarks_account//status//write_status//admin//name_1//name_2//gender//birthday//country_code//phone_number//join_day//profile_pic//profile_update//lang//country//like_me//favorite//rel_you_status//rel_me_status");
 
 		new AsyncHttpTask(this, getString(R.string.server_path)
 				+ "api.php", mHandler, Paramname, Paramvalue,
@@ -147,24 +147,26 @@ public class PageEdit extends ActionBarActivity {
 		
 
 
+
 		String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+		 status = String.valueOf(resultmap.get("status"));
+		 write_status = String.valueOf(resultmap.get("write_status"));
 		String admin = String.valueOf(resultmap.get("admin"));
-		String name_1 = String.valueOf(resultmap.get("name_1"));
-		String name_2 = String.valueOf(resultmap.get("name_2"));
-		String gender = String.valueOf(resultmap.get("gender"));
-		String birthday = String.valueOf(resultmap.get("birthday"));
-		String country_code = String.valueOf(resultmap.get("country_code"));
+		 name_1 = String.valueOf(resultmap.get("name_1"));
+		 name_2 = String.valueOf(resultmap.get("name_2"));
+		 String gender = String.valueOf(resultmap.get("gender"));
+		 String birthday = String.valueOf(resultmap.get("birthday"));
+		 String country_code = String.valueOf(resultmap.get("country_code"));
 		String phone_number = String.valueOf(resultmap.get("phone_number"));
 		String join_day = String.valueOf(resultmap.get("join_day"));
 		String profile_pic = String.valueOf(resultmap.get("profile_pic"));
 		String profile_update = String.valueOf(resultmap.get("profile_update"));
-		String lang = String.valueOf(resultmap.get("lang"));
+		 lang = String.valueOf(resultmap.get("lang"));
 		String country = String.valueOf(resultmap.get("country"));
 		String like_me = String.valueOf(resultmap.get("like_me"));
 		String favorite = String.valueOf(resultmap.get("favorite"));
 		int your_status =  Integer.parseInt(String.valueOf(resultmap.get("rel_you_status")));
 		int me_status = Integer.parseInt(String.valueOf(resultmap.get("rel_me_status")));
-		
 		
 		if (tarks_account.matches("null"))
 			tarks_account = getString(R.string.add);
@@ -596,23 +598,25 @@ public class PageEdit extends ActionBarActivity {
 					resultmap = Global.getJSONArray(msg.obj.toString());
 					
 					String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+					 status = String.valueOf(resultmap.get("status"));
+					 write_status = String.valueOf(resultmap.get("write_status"));
 					String admin = String.valueOf(resultmap.get("admin"));
-					String name_1 = String.valueOf(resultmap.get("name_1"));
-					String name_2 = String.valueOf(resultmap.get("name_2"));
-					String gender = String.valueOf(resultmap.get("gender"));
-					String birthday = String.valueOf(resultmap.get("birthday"));
-					String country_code = String.valueOf(resultmap.get("country_code"));
+					 name_1 = String.valueOf(resultmap.get("name_1"));
+					 name_2 = String.valueOf(resultmap.get("name_2"));
+					 String gender = String.valueOf(resultmap.get("gender"));
+					 String birthday = String.valueOf(resultmap.get("birthday"));
+					 String country_code = String.valueOf(resultmap.get("country_code"));
 					String phone_number = String.valueOf(resultmap.get("phone_number"));
 					String join_day = String.valueOf(resultmap.get("join_day"));
 					String profile_pic = String.valueOf(resultmap.get("profile_pic"));
 					String profile_update = String.valueOf(resultmap.get("profile_update"));
-					String lang = String.valueOf(resultmap.get("lang"));
+					 lang = String.valueOf(resultmap.get("lang"));
 					String country = String.valueOf(resultmap.get("country"));
 					String like_me = String.valueOf(resultmap.get("like_me"));
 					String favorite = String.valueOf(resultmap.get("favorite"));
 					int your_status =  Integer.parseInt(String.valueOf(resultmap.get("rel_you_status")));
 					int me_status = Integer.parseInt(String.valueOf(resultmap.get("rel_me_status")));
-
+					
 					String[] name = Global.NameBuilder(name_1, name_2);
 					edittext_name_1.setText(name[0]);
 					edittext_name_2.setText(name[1]);
