@@ -163,7 +163,7 @@
             android:label="@string/add_favorite"
             android:theme="@style/Theme.Favorite.Light.Dialog" />
         <activity
-            android:name=".CropManager"
+            android:name=".ui.CropManager"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/cut_image" />
     </application>

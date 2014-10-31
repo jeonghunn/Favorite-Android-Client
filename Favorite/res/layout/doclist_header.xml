@@ -31,7 +31,7 @@
                 android:baselineAlignBottom="true"
                 android:contentDescription="Color Stripe"
                 android:scaleType="centerCrop"
-                android:src="@drawable/person" />
+                android:src="@drawable/ic_person_outline_grey" />
 
             <LinearLayout
                 android:id="@+id/contentLayout"

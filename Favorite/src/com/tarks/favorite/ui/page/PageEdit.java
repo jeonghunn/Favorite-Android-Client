@@ -642,7 +642,7 @@ public class PageEdit extends ActionBarActivity {
 								+ member_srl + ".jpg");
 						file_thum.delete();
 						// profile.setImageDrawable(R.drawable.people);
-						profile.setImageResource(R.drawable.person);
+						profile.setImageResource(R.drawable.ic_person_outline_grey);
 						// profile.setId(null);
 						// profile.setImageDrawable(res.getDrawable(R.drawable.person));
 					}

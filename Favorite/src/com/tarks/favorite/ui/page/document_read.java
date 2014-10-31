@@ -682,7 +682,7 @@ public class document_read extends ActionBarActivity {
 								.createFromPath(local_path + "thumbnail/"
 										+ p.getUserSrl() + ".jpg"));
 					} else {
-						image.setImageResource(R.drawable.person);
+						image.setImageResource(R.drawable.ic_person_outline_grey);
 					}
 					image.setOnClickListener(new OnClickListener() {
 
@@ -893,7 +893,7 @@ public class document_read extends ActionBarActivity {
 								.createFromPath(local_path + "thumbnail/"
 										+ user_srl + ".jpg"));
 					} else {
-						profile.setImageResource(R.drawable.person);
+						profile.setImageResource(R.drawable.ic_person_outline_grey);
 					}
 
 					profile_title.setText(name);

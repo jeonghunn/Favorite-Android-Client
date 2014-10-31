@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -197,11 +198,11 @@ public class CropManager extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// 메뉴 버튼 구현부분
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.cropper, menu);
+		
+		MenuItemCompat.setShowAsAction(	menu.add(0, 2, 0, getString(R.string.rotate)).setIcon(R.drawable.rotate), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		MenuItemCompat.setShowAsAction(	menu.add(0, 1, 0, getString(R.string.ok)).setIcon(R.drawable.accept), MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+		
 		return true;
-
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -210,7 +211,7 @@ public class CropManager extends ActionBarActivity {
 		case android.R.id.home:
 			onBackPressed();
 			return true;
-		case R.id.yes:
+		case 1:
 			//result
 			 croppedImage = cropImageView.getCroppedImage();
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -229,7 +230,7 @@ public class CropManager extends ActionBarActivity {
 			   // 본 Activity 종료
 			   finish();
 			return true;
-		case R.id.rotate:
+		case 2:
 			cropImageView.rotateImage(ROTATE_NINETY_DEGREES);
 			return true;
 

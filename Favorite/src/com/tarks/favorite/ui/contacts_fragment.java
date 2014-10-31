@@ -406,7 +406,7 @@ public class contacts_fragment extends Fragment implements
 								.createFromPath(local_path + "thumbnail/"
 										+ p.getUserSrl() + ".jpg"));
 					} else {
-						image.setImageResource(R.drawable.person);
+						image.setImageResource(R.drawable.ic_person_outline_grey);
 					}
 					image.setOnClickListener(new OnClickListener() {
 
