@@ -138,6 +138,7 @@
     <string name="doc_error_des">존재하지 않는 글입니다.</string>
     <string name="continu">계속</string>
     <string name="find_page">페이지 찾기</string>
+        <string name="email">이메</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">가장 다채로운 커뮤니티 어플리케이션</string>

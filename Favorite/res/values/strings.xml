@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.5058</string>
-    <string name="build">5058</string>
+    <string name="ver">1.9.0.5061</string>
+    <string name="build">5061</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -160,6 +160,7 @@
     <string name="continu">Continue</string>
     <string name="find_page">Find Page</string>
     <string name="page_code">Page Code</string>
+    <string name="email">Email</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">Most Colorful Community Application</string>
