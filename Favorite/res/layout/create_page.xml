@@ -64,12 +64,11 @@
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
-                android:layout_height="30sp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="5sp"
                 android:gravity="center"
                 android:hint="@string/page_name"
-                android:background="@null"
                 android:singleLine="true" />
 
             <RelativeLayout

@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.5031</string>
-    <string name="build">5031</string>
+    <string name="ver">1.9.0.5058</string>
+    <string name="build">5058</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -88,7 +88,7 @@
     <string name="female">Felmale</string>
     <string name="cut_image">Cut Image</string>
     <string name="rotate">Rotate</string>
-    <string name="find_account_info">Find Account Info</string>
+    <string name="find_account">Find Account</string>
     <string name="send_feedback">Send Feedback</string>
     <string name="send_feedback_des">Send feedback to Developers</string>
     <string name="delete">Delete</string>

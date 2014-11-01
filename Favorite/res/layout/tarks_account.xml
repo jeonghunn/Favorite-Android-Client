@@ -31,23 +31,23 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:background="@drawable/orange_button"
         android:ems="9"
-        android:textColor="#FFFFFF"
-        android:text="@string/find_account_info" />
+        android:text="@string/find_account"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/button1"
         android:background="@drawable/orange_button"
-          android:textColor="#FFFFFF"
-        android:text="@string/sign_up"/>
+        android:text="@string/sign_up"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

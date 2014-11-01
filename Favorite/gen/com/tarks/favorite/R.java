@@ -2364,9 +2364,8 @@ containing a value of this type.
         public static final int splash=0x7f030043;
         public static final int support_simple_spinner_dropdown_item=0x7f030044;
         public static final int tarks_account=0x7f030045;
-        public static final int tarks_sign_up=0x7f030046;
-        public static final int webview=0x7f030047;
-        public static final int welcome=0x7f030048;
+        public static final int webview=0x7f030046;
+        public static final int welcome=0x7f030047;
     }
     public static final class menu {
         public static final int cropper=0x7f0d0000;
@@ -2503,7 +2502,7 @@ containing a value of this type.
         public static final int female=0x7f0a0069;
         public static final int file=0x7f0a0096;
         public static final int find=0x7f0a0055;
-        public static final int find_account_info=0x7f0a006c;
+        public static final int find_account=0x7f0a006c;
         public static final int find_page=0x7f0a00b2;
         public static final int find_pages_by_contacts=0x7f0a00a2;
         public static final int gender=0x7f0a007e;
