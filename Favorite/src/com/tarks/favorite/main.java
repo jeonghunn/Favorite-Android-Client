@@ -122,8 +122,8 @@ public class main extends SherlockFragmentActivity {
 
 		// Set a custom shadow that overlays the main content when the drawer
 		// opens
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START);
+//		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
+//				GravityCompat.START);
 
 		// Pass string arrays to MenuListAdapter
 		mMenuAdapter = new MenuListAdapter(main.this, title, icon);
