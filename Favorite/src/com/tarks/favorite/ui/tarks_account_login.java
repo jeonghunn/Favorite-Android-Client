@@ -4,6 +4,7 @@ package com.tarks.favorite.ui;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +27,8 @@ import com.tarks.favorite.R;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.core.global.Globalvariable;
+import com.tarks.favorite.ui.start.join;
+import com.tarks.favorite.ui.start.welcome;
 
 public class tarks_account_login extends ActionBarActivity {
 	Button bt;
@@ -45,10 +49,19 @@ public class tarks_account_login extends ActionBarActivity {
 		// 액션바백버튼가져오기
 				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 				 getSupportActionBar().setDisplayShowHomeEnabled(false);
+				 
+					Intent intent = getIntent(); // 인텐트 받아오고
+					boolean auto_login = intent.getBooleanExtra("auto", false); // 인텐트로 부터 데이터 가져오고
+					 s1 = intent.getStringExtra("id"); // 인텐트로 부터 데이터 가져오고
+					 s2 = intent.getStringExtra("password"); // 인텐트로 부터 데이터 가져오고
+				
 
 		// define edittext
 		edit1 = (EditText) findViewById(R.id.editText1);
 		edit2 = (EditText) findViewById(R.id.editText2);
+		
+		if(s1 != null) edit1.setText(s1);
+		if(s2 != null) edit2.setText(s2);
 
 		bt = (Button) findViewById(R.id.button1);
 		bt.setOnClickListener(new OnClickListener() {
@@ -67,12 +80,19 @@ public class tarks_account_login extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Uri uri = Uri
-						.parse("https://tarks.net/index.php?mid=main&act=dispMemberSignUpForm");
-				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-				startActivity(intent);
+				Intent intent = new Intent(tarks_account_login.this, sign_up.class); 
+				 startActivityForResult(intent, 1);
 			}
 		});
+		
+		//Auto Login
+		if(auto_login)
+			try {
+				TarksAccountLogin();
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	public void ConnectionError() {
@@ -170,6 +190,33 @@ public class tarks_account_login extends ActionBarActivity {
 				+ "member/tarks_account_check.php", mHandler, Paramname,
 				Paramvalue, null, 1,0);
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			if (resultCode == Activity.RESULT_OK) {
+		     
+				String id = data.getStringExtra("id");
+				String password = data.getStringExtra("password");
+				
+				edit1.setText(id);
+				edit2.setText(password);
+				
+				try {
+					TarksAccountLogin();
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 
+					
+					
+			}
+		}
+		
+		
+	}
+	
 
 
 	@Override

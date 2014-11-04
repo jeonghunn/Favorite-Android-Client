@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.5061</string>
-    <string name="build">5061</string>
+    <string name="ver">1.9.0.5092</string>
+    <string name="build">5092</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -39,7 +39,7 @@
     <string name="home">Home</string>
     <string name="start">Start</string>
     <string name="tarks_account">Tarks Account</string>
-    <string name="id">Id</string>
+    <string name="id">User ID</string>
     <string name="password">Password</string>
     <string name="type_id">Enter your Id.</string>
     <string name="signing_in">Signing in...</string>
@@ -161,6 +161,14 @@
     <string name="find_page">Find Page</string>
     <string name="page_code">Page Code</string>
     <string name="email">Email</string>
+
+    <!-- Sign Up -->
+    <string name="email_type_des">Please enter your email correctly.</string>
+    <string name="id_type_des">Please enter your User ID correctly. (3~20)</string>
+    <string name="password_type_des">Please enter your password correctly. (6~20)</string>
+    <string name="id_password_special_char_error">You can not use special characters at user id</string>
+    <string name="sign_up_email_exist">This Email address already exists. Please try another one.</string>
+    <string name="sign_up_id_exist">This User ID already exists. Please try another one.</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">Most Colorful Community Application</string>

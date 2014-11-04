@@ -108,6 +108,11 @@
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/photo" />
         
+                <activity
+            android:name=".ui.sign_up"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/sign_up" />
+        
           <activity
             android:name=".ui.webview"
             android:icon="@drawable/ic_launcher_simple"

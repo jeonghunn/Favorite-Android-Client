@@ -4,7 +4,7 @@
     <string name="default_country">kr</string>
     <string name="menu_settings">설정</string>
     <string name="app_info">어플리케이션 정보..</string>
-    <string name="yes">승인</string>
+    <string name="yes">확인</string>
     <string name="no">아니오</string>
     <string name="app_setting">어플리케이션 설정</string>
     <string name="appinfo">어플리케이션 정보</string>
@@ -138,7 +138,15 @@
     <string name="doc_error_des">존재하지 않는 글입니다.</string>
     <string name="continu">계속</string>
     <string name="find_page">페이지 찾기</string>
-        <string name="email">이메</string>
+    <string name="email">이메일</string>
+
+    <!-- Sign Up -->
+    <string name="email_type_des">이메일을 올바르게 입력해 주세요.</string>
+    <string name="id_type_des">아이디를 올바르게 입력해 주세요. (3~20)</string>
+    <string name="password_type_des">비밀번호를 올바르게 입력해 주세요. (6~20)</string>
+    <string name="id_password_special_char_error">아이디에는 영어, 숫자를 제외한 특수문자는 사용할 수 없습니다.</string>
+    <string name="sign_up_email_exist">이미 사용중인 이메일입니다. 다른 이메일을 입력해주세요.</string>
+    <string name="sign_up_id_exist">이 아이디는 이미 사용중입니다. 다른 아이디를 입력해주세요.</string>
 
     <!-- Welcome -->
     <string name="welcome_subtitle">가장 다채로운 커뮤니티 어플리케이션</string>

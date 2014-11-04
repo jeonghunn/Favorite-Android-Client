@@ -2131,11 +2131,11 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f050032;
         public static final int always=0x7f05000d;
         public static final int beginning=0x7f050012;
-        public static final int beta_text=0x7f050097;
+        public static final int beta_text=0x7f050098;
         public static final int both=0x7f050026;
         public static final int bottom=0x7f050016;
         public static final int button1=0x7f050087;
-        public static final int button2=0x7f050093;
+        public static final int button2=0x7f050094;
         public static final int cardContent=0x7f050079;
         public static final int cardsview=0x7f050086;
         public static final int checkbox=0x7f05003a;
@@ -2159,6 +2159,7 @@ containing a value of this type.
         public static final int editText2=0x7f05007d;
         public static final int edit_info=0x7f05008c;
         public static final int edit_query=0x7f050044;
+        public static final int email_edittext=0x7f050093;
         public static final int end=0x7f050014;
         public static final int expand_activities_button=0x7f050033;
         public static final int expanded_menu=0x7f050039;
@@ -2189,7 +2190,7 @@ containing a value of this type.
         public static final int list_item=0x7f050036;
         public static final int listview_drawer=0x7f050085;
         public static final int manualOnly=0x7f050027;
-        public static final int menu_item_share_action_provider_action_bar=0x7f05009a;
+        public static final int menu_item_share_action_provider_action_bar=0x7f05009b;
         public static final int middle=0x7f050013;
         public static final int mylayout=0x7f050061;
         public static final int never=0x7f05000b;
@@ -2218,8 +2219,8 @@ containing a value of this type.
         public static final int radio0=0x7f05007f;
         public static final int radio1=0x7f050080;
         public static final int radioGroup1=0x7f05007e;
-        public static final int refresg=0x7f050099;
-        public static final int refresh=0x7f05009b;
+        public static final int refresg=0x7f05009a;
+        public static final int refresh=0x7f05009c;
         public static final int rotate=0x7f05002a;
         public static final int scrollview=0x7f05002e;
         public static final int search_badge=0x7f050046;
@@ -2249,7 +2250,7 @@ containing a value of this type.
         public static final int tableRow3=0x7f05005b;
         public static final int tableRow4=0x7f05005d;
         public static final int tableRow5=0x7f050081;
-        public static final int tarks_login=0x7f050095;
+        public static final int tarks_login=0x7f050096;
         public static final int textView1=0x7f05005a;
         public static final int textView2=0x7f050075;
         public static final int textView3=0x7f050076;
@@ -2261,12 +2262,12 @@ containing a value of this type.
         public static final int top=0x7f050015;
         public static final int up=0x7f050018;
         public static final int useLogo=0x7f050005;
-        public static final int webView1=0x7f050094;
+        public static final int webView1=0x7f050095;
         public static final int webview=0x7f05002d;
-        public static final int welcome_subtitle=0x7f050096;
+        public static final int welcome_subtitle=0x7f050097;
         public static final int withText=0x7f05000e;
         public static final int wrap_content=0x7f050000;
-        public static final int yes=0x7f050098;
+        public static final int yes=0x7f050099;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within
@@ -2361,11 +2362,12 @@ containing a value of this type.
         public static final int pull_to_refresh_header_horizontal=0x7f030040;
         public static final int pull_to_refresh_header_vertical=0x7f030041;
         public static final int setting=0x7f030042;
-        public static final int splash=0x7f030043;
-        public static final int support_simple_spinner_dropdown_item=0x7f030044;
-        public static final int tarks_account=0x7f030045;
-        public static final int webview=0x7f030046;
-        public static final int welcome=0x7f030047;
+        public static final int sign_up=0x7f030043;
+        public static final int splash=0x7f030044;
+        public static final int support_simple_spinner_dropdown_item=0x7f030045;
+        public static final int tarks_account=0x7f030046;
+        public static final int webview=0x7f030047;
+        public static final int welcome=0x7f030048;
     }
     public static final class menu {
         public static final int cropper=0x7f0d0000;
@@ -2449,8 +2451,8 @@ containing a value of this type.
         /**  Attach Menu 
  Attach MEnu 
          */
-        public static final int attach=0x7f0a00b9;
-        public static final int attach_file=0x7f0a00ba;
+        public static final int attach=0x7f0a00c0;
+        public static final int attach_file=0x7f0a00c1;
         public static final int birthday=0x7f0a0052;
         public static final int blank_error=0x7f0a0065;
         public static final int build=0x7f0a0017;
@@ -2470,7 +2472,7 @@ containing a value of this type.
         public static final int choose_picture=0x7f0a0076;
         public static final int community=0x7f0a002b;
         public static final int completed=0x7f0a00ad;
-        public static final int contact_pick_error=0x7f0a00d6;
+        public static final int contact_pick_error=0x7f0a00dd;
         public static final int contact_pick_error_=0x7f0a0064;
         public static final int contacts=0x7f0a002f;
         public static final int continu=0x7f0a00b1;
@@ -2491,8 +2493,13 @@ containing a value of this type.
         public static final int doc_error_des=0x7f0a00b0;
         public static final int drawer_close=0x7f0a005d;
         public static final int drawer_open=0x7f0a005c;
-        public static final int during_logout=0x7f0a00d5;
+        public static final int during_logout=0x7f0a00dc;
         public static final int edit_profile=0x7f0a0090;
+        public static final int email=0x7f0a00b4;
+        /**  Sign Up 
+ Sign Up 
+         */
+        public static final int email_type_des=0x7f0a00b5;
         public static final int enquire=0x7f0a0079;
         public static final int error=0x7f0a0041;
         public static final int error_des=0x7f0a0047;
@@ -2509,6 +2516,8 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0020;
         public static final int home=0x7f0a0038;
         public static final int id=0x7f0a003b;
+        public static final int id_password_special_char_error=0x7f0a00b8;
+        public static final int id_type_des=0x7f0a00b6;
         public static final int information=0x7f0a007c;
         public static final int invite=0x7f0a00a3;
         public static final int invite_message=0x7f0a00a4;
@@ -2518,8 +2527,8 @@ containing a value of this type.
         public static final int loading=0x7f0a00a1;
         public static final int location=0x7f0a0053;
         public static final int logout=0x7f0a0033;
-        public static final int logout_des=0x7f0a00d3;
-        public static final int logout_really=0x7f0a00d4;
+        public static final int logout_des=0x7f0a00da;
+        public static final int logout_really=0x7f0a00db;
         public static final int male=0x7f0a0068;
         public static final int menu_settings=0x7f0a0021;
         public static final int message=0x7f0a0056;
@@ -2534,7 +2543,7 @@ containing a value of this type.
         public static final int no=0x7f0a0024;
         public static final int no_contact_des=0x7f0a00aa;
         public static final int no_content=0x7f0a0082;
-        public static final int no_info=0x7f0a00d1;
+        public static final int no_info=0x7f0a00d8;
         public static final int no_storage_error=0x7f0a0078;
         public static final int noname=0x7f0a0046;
         public static final int not_support_feature=0x7f0a004a;
@@ -2550,33 +2559,34 @@ containing a value of this type.
         public static final int page_name=0x7f0a009f;
         public static final int pages=0x7f0a0097;
         public static final int password=0x7f0a003c;
+        public static final int password_type_des=0x7f0a00b7;
         public static final int people_that_like_me=0x7f0a005f;
         /**  Permission 
  Permission 
          */
-        public static final int permission=0x7f0a00b7;
+        public static final int permission=0x7f0a00be;
         public static final int permission_denied=0x7f0a0048;
         public static final int phone_number=0x7f0a0044;
         public static final int phone_number_content=0x7f0a0051;
         public static final int phone_number_des=0x7f0a0050;
         public static final int photo=0x7f0a0095;
         public static final int pic_size_devide=0x7f0a0019;
-        public static final int plan=0x7f0a00d0;
+        public static final int plan=0x7f0a00d7;
         public static final int popularity=0x7f0a00a9;
         /**  Privacy 
  Privacy 
          */
-        public static final int privacy_content=0x7f0a00bb;
-        public static final int privacy_favorites=0x7f0a00bf;
-        public static final int privacy_favorites_des=0x7f0a00c4;
-        public static final int privacy_justme=0x7f0a00c0;
-        public static final int privacy_justme_des=0x7f0a00c5;
-        public static final int privacy_public=0x7f0a00bc;
-        public static final int privacy_public_des=0x7f0a00c1;
-        public static final int privacy_relation=0x7f0a00be;
-        public static final int privacy_relation_des=0x7f0a00c3;
-        public static final int privacy_users=0x7f0a00bd;
-        public static final int privacy_users_des=0x7f0a00c2;
+        public static final int privacy_content=0x7f0a00c2;
+        public static final int privacy_favorites=0x7f0a00c6;
+        public static final int privacy_favorites_des=0x7f0a00cb;
+        public static final int privacy_justme=0x7f0a00c7;
+        public static final int privacy_justme_des=0x7f0a00cc;
+        public static final int privacy_public=0x7f0a00c3;
+        public static final int privacy_public_des=0x7f0a00c8;
+        public static final int privacy_relation=0x7f0a00c5;
+        public static final int privacy_relation_des=0x7f0a00ca;
+        public static final int privacy_users=0x7f0a00c4;
+        public static final int privacy_users_des=0x7f0a00c9;
         public static final int profile=0x7f0a0073;
         public static final int profile_settings_des=0x7f0a0074;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
@@ -2606,11 +2616,13 @@ containing a value of this type.
         public static final int share=0x7f0a0036;
         public static final int sign_in=0x7f0a008f;
         public static final int sign_up=0x7f0a0031;
-        public static final int sign_up_without_id=0x7f0a00b6;
-        public static final int sign_up_without_id_des=0x7f0a00b5;
+        public static final int sign_up_email_exist=0x7f0a00b9;
+        public static final int sign_up_id_exist=0x7f0a00ba;
+        public static final int sign_up_without_id=0x7f0a00bd;
+        public static final int sign_up_without_id_des=0x7f0a00bc;
         public static final int signing_in=0x7f0a003e;
         public static final int skip=0x7f0a004b;
-        public static final int special_user=0x7f0a00d2;
+        public static final int special_user=0x7f0a00d9;
         public static final int start=0x7f0a0039;
         public static final int start_downloading=0x7f0a00a0;
         public static final int tarks_account=0x7f0a003a;
@@ -2632,22 +2644,22 @@ containing a value of this type.
         /**  Welcome 
  Welcome 
          */
-        public static final int welcome_subtitle=0x7f0a00b4;
-        public static final int wr_permission_favorites=0x7f0a00c9;
-        public static final int wr_permission_favorites_des=0x7f0a00ce;
-        public static final int wr_permission_justme=0x7f0a00ca;
-        public static final int wr_permission_justme_des=0x7f0a00cf;
+        public static final int welcome_subtitle=0x7f0a00bb;
+        public static final int wr_permission_favorites=0x7f0a00d0;
+        public static final int wr_permission_favorites_des=0x7f0a00d5;
+        public static final int wr_permission_justme=0x7f0a00d1;
+        public static final int wr_permission_justme_des=0x7f0a00d6;
         /**  Write Permission 
  Write Permission 
          */
-        public static final int wr_permission_public=0x7f0a00c6;
-        public static final int wr_permission_public_des=0x7f0a00cb;
-        public static final int wr_permission_relation=0x7f0a00c8;
-        public static final int wr_permission_relation_des=0x7f0a00cd;
-        public static final int wr_permission_users=0x7f0a00c7;
-        public static final int wr_permission_users_des=0x7f0a00cc;
+        public static final int wr_permission_public=0x7f0a00cd;
+        public static final int wr_permission_public_des=0x7f0a00d2;
+        public static final int wr_permission_relation=0x7f0a00cf;
+        public static final int wr_permission_relation_des=0x7f0a00d4;
+        public static final int wr_permission_users=0x7f0a00ce;
+        public static final int wr_permission_users_des=0x7f0a00d3;
         public static final int write=0x7f0a007b;
-        public static final int write_permission=0x7f0a00b8;
+        public static final int write_permission=0x7f0a00bf;
         public static final int yes=0x7f0a0023;
     }
     public static final class style {

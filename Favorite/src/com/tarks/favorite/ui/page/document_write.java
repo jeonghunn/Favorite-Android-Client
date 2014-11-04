@@ -171,7 +171,7 @@ public class document_write extends ActionBarActivity {
 					Global.ConnectionError(document_write.this);
 				}
 				// Log.i("Result","로그 정상 작동");
-				Log.i("Result", msg.obj.toString());
+				Log.i("Result", msg.obj.toString() + "ds");
 
 			}
 
