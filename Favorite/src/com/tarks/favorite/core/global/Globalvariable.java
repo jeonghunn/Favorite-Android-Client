@@ -7,6 +7,9 @@ import android.net.Uri;
 
 public final class Globalvariable {
 	
+	
+	//DEBUG
+	public static boolean DEBUG_MODE = true;
 
 	//image byte
 	public static byte[] image;

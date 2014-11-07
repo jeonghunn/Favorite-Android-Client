@@ -637,6 +637,14 @@ public final class Global {
 		objCalendar.clear();
 		return result;
 	}
+	
+	public static void Log(String tag, String msg){
+	if(Globalvariable.DEBUG_MODE) Log.i(tag, msg);
+	}
+	
+	public static void Log(String msg){
+		Log("Favorite", msg);
+	}
 
 	// public static String getDate(String time){
 	// Date date = new Date(Long.parseLong(time));
