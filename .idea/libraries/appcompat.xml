@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="appcompat">
+    <CLASSES>
+      <root url="file://$USER_HOME$/sdk/extras/android/support/v7/appcompat" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/sdk/extras/android/support/v7/appcompat" recursive="false" />
+  </library>
+</component>

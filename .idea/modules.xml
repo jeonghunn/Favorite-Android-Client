@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Favorite/Favorite.iml" filepath="$PROJECT_DIR$/Favorite/Favorite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../appcompat_v7/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/../../appcompat_v7/android-support-v7-appcompat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../appcompat/appcompat.iml" filepath="$PROJECT_DIR$/../../appcompat/appcompat.iml" />
+    </modules>
+  </component>
+</project>

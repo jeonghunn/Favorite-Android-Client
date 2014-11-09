@@ -21,7 +21,6 @@
     <string name="contacts">연락처</string>
     <string name="request">신청</string>
     <string name="sign_up">등록</string>
-    <string name="user_info_des">사용자 정보를 입력하십시오.</string>
     <string name="saved">저장되었습니다.</string>
     <string name="special_user">특별한 사용자</string>
     <string name="logout">로그아웃</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="favorite_color">#FF8224</color>
+    <color name="favorite_color">#FD9800</color>
      <color name="favorite_dark_color">#985b00</color>
     <color name="status_secret_color">#EDEDED</color>
     <color name="stroke">#dddddd</color>

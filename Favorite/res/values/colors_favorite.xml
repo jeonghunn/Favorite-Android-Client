@@ -19,5 +19,5 @@
 
 <resources>
     <color name="pressed_favorite">#CC33B5E5</color>
-      <color name="favorite_color">#fd9800</color>
+      <color name="favorite_main_color">#fd9800</color>
 </resources>
