@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.0.5108</string>
-    <string name="build">5108</string>
+    <string name="ver">1.9.0.5111</string>
+    <string name="build">5111</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -70,8 +70,6 @@
     <string name="add_favorite">Add Favorite</string>
     <string name="register_favorite">Register Favorite</string>
     <string name="check_result">Check result</string>
-    <string name="test_result">%2$s people like %1$s.</string>
-    <string name="asky">ASKY</string>
     <string name="drawer_open">Open menu</string>
     <string name="drawer_close">Close menu</string>
     <string name="my_favorite_people">My Favorites</string>

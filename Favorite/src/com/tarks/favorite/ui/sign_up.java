@@ -1,32 +1,26 @@
 //This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
 package com.tarks.favorite.ui;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.text.TextWatcher;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.core.global.Globalvariable;
+
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class sign_up extends ActionBarActivity {
 	private Button bt;
@@ -92,8 +86,7 @@ public class sign_up extends ActionBarActivity {
 		} else {
 
 			// 로딩 화면은 종료하라.
-			Toast.makeText(sign_up.this, getString(R.string.networkerrord), 0)
-					.show();
+			Toast.makeText(sign_up.this, getString(R.string.networkerrord), Toast.LENGTH_SHORT).show();
 
 		}
 	}

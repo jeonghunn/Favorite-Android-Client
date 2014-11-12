@@ -103,7 +103,6 @@
     <string name="sign_in">로그인</string>
     <string name="edit_profile">프로필 수정</string>
     <string name="changed">변경되었습니다.</string>
-    <string name="user_explain">%1$s님이</string>
     <string name="ip_error_des">비정상적인 활동 내역으로 IP가 차단되었습니다.</string>
     <string name="my_favorites">즐겨찾기</string>
     <string name="favorites">즐겨찾기</string>
