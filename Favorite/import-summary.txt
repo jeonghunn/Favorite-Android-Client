@@ -1,0 +1,513 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea/
+* .idea/.name
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/encodings.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/scopes/
+* .idea/scopes/scope_settings.xml
+* .idea/vcs.xml
+* .idea/workspace.xml
+* Favorite.iml
+* app/
+* app/build.gradle
+* app/libs/
+* app/libs/nineoldandroids-2.4.0.jar
+* app/libs/thumbnailator-0.4.7.jar
+* app/lint.xml
+* app/src/
+* app/src/main/
+* app/src/main/AndroidManifest.xml
+* app/src/main/java/
+* app/src/main/java/.DS_Store
+* app/src/main/java/com/
+* app/src/main/java/com/.DS_Store
+* app/src/main/java/com/tarks/
+* app/src/main/java/com/tarks/.DS_Store
+* app/src/main/java/com/tarks/favorite/
+* app/src/main/java/com/tarks/favorite/.DS_Store
+* app/src/main/java/com/tarks/favorite/GCMIntentService.java
+* app/src/main/java/com/tarks/favorite/MainActivity.java
+* app/src/main/java/com/tarks/favorite/ModApplication.java
+* app/src/main/java/com/tarks/favorite/core/
+* app/src/main/java/com/tarks/favorite/core/connect/
+* app/src/main/java/com/tarks/favorite/core/connect/AsyncHttpTask.java
+* app/src/main/java/com/tarks/favorite/core/connect/ImageDownloader.java
+* app/src/main/java/com/tarks/favorite/core/contacts/
+* app/src/main/java/com/tarks/favorite/core/contacts/Contact.java
+* app/src/main/java/com/tarks/favorite/core/contacts/ContactsArray.java
+* app/src/main/java/com/tarks/favorite/core/global/
+* app/src/main/java/com/tarks/favorite/core/global/Filedw.java
+* app/src/main/java/com/tarks/favorite/core/global/Global.java
+* app/src/main/java/com/tarks/favorite/core/global/Globalvariable.java
+* app/src/main/java/com/tarks/favorite/core/user/
+* app/src/main/java/com/tarks/favorite/core/user/db/
+* app/src/main/java/com/tarks/favorite/core/user/db/Constants.java
+* app/src/main/java/com/tarks/favorite/core/user/db/DataBases.java
+* app/src/main/java/com/tarks/favorite/core/user/db/DbOpenHelper.java
+* app/src/main/java/com/tarks/favorite/core/user/db/InfoClass.java
+* app/src/main/java/com/tarks/favorite/main.java
+* app/src/main/java/com/tarks/favorite/mainfragment.java
+* app/src/main/java/com/tarks/favorite/ui/
+* app/src/main/java/com/tarks/favorite/ui/CropManager.java
+* app/src/main/java/com/tarks/favorite/ui/GalleryView.java
+* app/src/main/java/com/tarks/favorite/ui/MenuListAdapter.java
+* app/src/main/java/com/tarks/favorite/ui/SystemBarTintManager.java
+* app/src/main/java/com/tarks/favorite/ui/contacts_fragment.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/
+* app/src/main/java/com/tarks/favorite/ui/cropper/AspectRatioUtil.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/CenterHandleHelper.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/CornerHandleHelper.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/CropImageView.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/CropOverlayView.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/Edge.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/EdgePair.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/Handle.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/HandleHelper.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/HandleUtil.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/HorizontalHandleHelper.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/ImageViewUtil.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/PaintUtil.java
+* app/src/main/java/com/tarks/favorite/ui/cropper/VerticalHandleHelper.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/FadingActionBarHelper.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/FadingActionBarHelperBase.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/Utils.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/extras/
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/extras/actionbarcompat/
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/extras/actionbarcompat/FadingActionBarHelper.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/ObservableScrollView.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/ObservableScrollable.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/ObservableWebViewWithHeader.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/OnScrollChangedCallback.java
+* app/src/main/java/com/tarks/favorite/ui/fadingactionbar/view/RootLayout.java
+* app/src/main/java/com/tarks/favorite/ui/info.java
+* app/src/main/java/com/tarks/favorite/ui/mainfragment.java
+* app/src/main/java/com/tarks/favorite/ui/no_favorite_fragment.java
+* app/src/main/java/com/tarks/favorite/ui/page/
+* app/src/main/java/com/tarks/favorite/ui/page/PageActivity.java
+* app/src/main/java/com/tarks/favorite/ui/page/PageEdit.java
+* app/src/main/java/com/tarks/favorite/ui/page/PageInfo.java
+* app/src/main/java/com/tarks/favorite/ui/page/document_read.java
+* app/src/main/java/com/tarks/favorite/ui/page/document_write.java
+* app/src/main/java/com/tarks/favorite/ui/page/page_create.java
+* app/src/main/java/com/tarks/favorite/ui/page/privacy_category.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/
+* app/src/main/java/com/tarks/favorite/ui/photoview/Compat.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/IPhotoView.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/PhotoView.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/PhotoViewAttacher.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/CupcakeGestureDetector.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/EclairGestureDetector.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/FroyoGestureDetector.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/GestureDetector.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/OnGestureListener.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/gestures/VersionedGestureDetector.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/log/
+* app/src/main/java/com/tarks/favorite/ui/photoview/log/LogManager.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/log/Logger.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/log/LoggerDefault.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/scrollerproxy/
+* app/src/main/java/com/tarks/favorite/ui/photoview/scrollerproxy/GingerScroller.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/scrollerproxy/IcsScroller.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/scrollerproxy/PreGingerScroller.java
+* app/src/main/java/com/tarks/favorite/ui/photoview/scrollerproxy/ScrollerProxy.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/ILoadingLayout.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/IPullToRefresh.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/LoadingLayoutProxy.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/OverscrollHelper.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshAdapterViewBase.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshBase.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshExpandableListView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshGridView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshHorizontalScrollView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshListView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshScrollView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/PullToRefreshWebView.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/extras/
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/extras/PullToRefreshWebView2.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/extras/SoundPullEventListener.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/EmptyViewMethodAccessor.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/FlipLoadingLayout.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/IndicatorLayout.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/LoadingLayout.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/RotateLoadingLayout.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/Utils.java
+* app/src/main/java/com/tarks/favorite/ui/pulltorefresh/library/internal/ViewCompat.java
+* app/src/main/java/com/tarks/favorite/ui/setting.java
+* app/src/main/java/com/tarks/favorite/ui/setting_compat.java
+* app/src/main/java/com/tarks/favorite/ui/setting_fragment.java
+* app/src/main/java/com/tarks/favorite/ui/sign_up.java
+* app/src/main/java/com/tarks/favorite/ui/start/
+* app/src/main/java/com/tarks/favorite/ui/start/join.java
+* app/src/main/java/com/tarks/favorite/ui/start/welcome.java
+* app/src/main/java/com/tarks/favorite/ui/tarks_account_login.java
+* app/src/main/java/com/tarks/favorite/ui/webview.java
+* app/src/main/java/com/tarks/favorite/ui/widget/
+* app/src/main/java/com/tarks/favorite/ui/widget/Space.java
+* app/src/main/java/com/tarks/favorite/ui/widget/listviewutil.java
+* app/src/main/res/
+* app/src/main/res/.DS_Store
+* app/src/main/res/anim/
+* app/src/main/res/anim/slide_in_from_bottom.xml
+* app/src/main/res/anim/slide_in_from_top.xml
+* app/src/main/res/anim/slide_out_to_bottom.xml
+* app/src/main/res/anim/slide_out_to_top.xml
+* app/src/main/res/drawable-hdpi-v11/
+* app/src/main/res/drawable-hdpi-v11/ic_stat_favorite_white.png
+* app/src/main/res/drawable-hdpi/
+* app/src/main/res/drawable-hdpi/.DS_Store
+* app/src/main/res/drawable-hdpi/ab_bottom_solid_favorite.9.png
+* app/src/main/res/drawable-hdpi/ab_stacked_solid_favorite.9.png
+* app/src/main/res/drawable-hdpi/ab_texture_tile_favorite.png
+* app/src/main/res/drawable-hdpi/ab_transparent_favorite.9.png
+* app/src/main/res/drawable-hdpi/btn_cab_done_default_favorite.9.png
+* app/src/main/res/drawable-hdpi/btn_cab_done_focused_favorite.9.png
+* app/src/main/res/drawable-hdpi/btn_cab_done_pressed_favorite.9.png
+* app/src/main/res/drawable-hdpi/cab_background_bottom_favorite.9.png
+* app/src/main/res/drawable-hdpi/cab_background_top_favorite.9.png
+* app/src/main/res/drawable-hdpi/default_ptr_flip.png
+* app/src/main/res/drawable-hdpi/default_ptr_rotate.png
+* app/src/main/res/drawable-hdpi/ic_launcher.png
+* app/src/main/res/drawable-hdpi/ic_stat_favorite_white.png
+* app/src/main/res/drawable-hdpi/indicator_arrow.png
+* app/src/main/res/drawable-hdpi/list_focused_favorite.9.png
+* app/src/main/res/drawable-hdpi/menu_dropdown_panel_favorite.9.png
+* app/src/main/res/drawable-hdpi/progress_bg_favorite.9.png
+* app/src/main/res/drawable-hdpi/progress_primary_favorite.9.png
+* app/src/main/res/drawable-hdpi/progress_secondary_favorite.9.png
+* app/src/main/res/drawable-hdpi/spinner_ab_default_favorite.9.png
+* app/src/main/res/drawable-hdpi/spinner_ab_disabled_favorite.9.png
+* app/src/main/res/drawable-hdpi/spinner_ab_focused_favorite.9.png
+* app/src/main/res/drawable-hdpi/spinner_ab_pressed_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_selected_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_selected_focused_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_selected_pressed_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_unselected_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_unselected_focused_favorite.9.png
+* app/src/main/res/drawable-hdpi/tab_unselected_pressed_favorite.9.png
+* app/src/main/res/drawable-mdpi-v11/
+* app/src/main/res/drawable-mdpi-v11/ic_stat_favorite_white.png
+* app/src/main/res/drawable-mdpi/
+* app/src/main/res/drawable-mdpi/.DS_Store
+* app/src/main/res/drawable-mdpi/ab_bottom_solid_favorite.9.png
+* app/src/main/res/drawable-mdpi/ab_stacked_solid_favorite.9.png
+* app/src/main/res/drawable-mdpi/ab_texture_tile_favorite.png
+* app/src/main/res/drawable-mdpi/ab_transparent_favorite.9.png
+* app/src/main/res/drawable-mdpi/btn_cab_done_default_favorite.9.png
+* app/src/main/res/drawable-mdpi/btn_cab_done_focused_favorite.9.png
+* app/src/main/res/drawable-mdpi/btn_cab_done_pressed_favorite.9.png
+* app/src/main/res/drawable-mdpi/cab_background_bottom_favorite.9.png
+* app/src/main/res/drawable-mdpi/cab_background_top_favorite.9.png
+* app/src/main/res/drawable-mdpi/default_ptr_flip.png
+* app/src/main/res/drawable-mdpi/default_ptr_rotate.png
+* app/src/main/res/drawable-mdpi/ic_launcher.png
+* app/src/main/res/drawable-mdpi/ic_stat_favorite_white.png
+* app/src/main/res/drawable-mdpi/indicator_arrow.png
+* app/src/main/res/drawable-mdpi/list_focused_favorite.9.png
+* app/src/main/res/drawable-mdpi/menu_dropdown_panel_favorite.9.png
+* app/src/main/res/drawable-mdpi/progress_bg_favorite.9.png
+* app/src/main/res/drawable-mdpi/progress_primary_favorite.9.png
+* app/src/main/res/drawable-mdpi/progress_secondary_favorite.9.png
+* app/src/main/res/drawable-mdpi/spinner_ab_default_favorite.9.png
+* app/src/main/res/drawable-mdpi/spinner_ab_disabled_favorite.9.png
+* app/src/main/res/drawable-mdpi/spinner_ab_focused_favorite.9.png
+* app/src/main/res/drawable-mdpi/spinner_ab_pressed_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_selected_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_selected_focused_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_selected_pressed_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_unselected_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_unselected_focused_favorite.9.png
+* app/src/main/res/drawable-mdpi/tab_unselected_pressed_favorite.9.png
+* app/src/main/res/drawable-xhdpi-v11/
+* app/src/main/res/drawable-xhdpi-v11/ic_stat_favorite_white.png
+* app/src/main/res/drawable-xhdpi/
+* app/src/main/res/drawable-xhdpi/.DS_Store
+* app/src/main/res/drawable-xhdpi/ab_background.9.png
+* app/src/main/res/drawable-xhdpi/ab_bottom_solid_favorite.9.png
+* app/src/main/res/drawable-xhdpi/ab_solid_favorite.9.png
+* app/src/main/res/drawable-xhdpi/ab_stacked_solid_favorite.9.png
+* app/src/main/res/drawable-xhdpi/ab_texture_tile_favorite.png
+* app/src/main/res/drawable-xhdpi/ab_transparent_favorite.9.png
+* app/src/main/res/drawable-xhdpi/accept.png
+* app/src/main/res/drawable-xhdpi/actionbar_bottom.9.png
+* app/src/main/res/drawable-xhdpi/add.png
+* app/src/main/res/drawable-xhdpi/btn_cab_done_default_favorite.9.png
+* app/src/main/res/drawable-xhdpi/btn_cab_done_focused_favorite.9.png
+* app/src/main/res/drawable-xhdpi/btn_cab_done_pressed_favorite.9.png
+* app/src/main/res/drawable-xhdpi/cab_background_bottom_favorite.9.png
+* app/src/main/res/drawable-xhdpi/cab_background_top_favorite.9.png
+* app/src/main/res/drawable-xhdpi/calendar_dark.png
+* app/src/main/res/drawable-xhdpi/card_background.9.png
+* app/src/main/res/drawable-xhdpi/card_background_shadow.9.png
+* app/src/main/res/drawable-xhdpi/check.png
+* app/src/main/res/drawable-xhdpi/default_ptr_flip.png
+* app/src/main/res/drawable-xhdpi/default_ptr_rotate.png
+* app/src/main/res/drawable-xhdpi/dial_dark.png
+* app/src/main/res/drawable-xhdpi/drawer_profile.png
+* app/src/main/res/drawable-xhdpi/drawer_shadow.9.png
+* app/src/main/res/drawable-xhdpi/eye.png
+* app/src/main/res/drawable-xhdpi/facebook.png
+* app/src/main/res/drawable-xhdpi/favorite_simple.png
+* app/src/main/res/drawable-xhdpi/home.png
+* app/src/main/res/drawable-xhdpi/ic_action_refresh.png
+* app/src/main/res/drawable-xhdpi/ic_arrow_back_white.png
+* app/src/main/res/drawable-xhdpi/ic_attach_dark.png
+* app/src/main/res/drawable-xhdpi/ic_comment_dark.png
+* app/src/main/res/drawable-xhdpi/ic_comment_small_dark.png
+* app/src/main/res/drawable-xhdpi/ic_drawer.png
+* app/src/main/res/drawable-xhdpi/ic_file_light.png
+* app/src/main/res/drawable-xhdpi/ic_launcher.png
+* app/src/main/res/drawable-xhdpi/ic_launcher_simple.png
+* app/src/main/res/drawable-xhdpi/ic_list.png
+* app/src/main/res/drawable-xhdpi/ic_menu_light.png
+* app/src/main/res/drawable-xhdpi/ic_overflow_light.png
+* app/src/main/res/drawable-xhdpi/ic_share_light.png
+* app/src/main/res/drawable-xhdpi/ic_stat_favorite_white.png
+* app/src/main/res/drawable-xhdpi/indicator_arrow.png
+* app/src/main/res/drawable-xhdpi/kakaostory.png
+* app/src/main/res/drawable-xhdpi/kakaotalk.png
+* app/src/main/res/drawable-xhdpi/list_focused_favorite.9.png
+* app/src/main/res/drawable-xhdpi/map_dark.png
+* app/src/main/res/drawable-xhdpi/menu_dropdown_panel_favorite.9.png
+* app/src/main/res/drawable-xhdpi/message.png
+* app/src/main/res/drawable-xhdpi/people.png
+* app/src/main/res/drawable-xhdpi/people_white.png
+* app/src/main/res/drawable-xhdpi/photo_spinner_normal.9.png
+* app/src/main/res/drawable-xhdpi/photo_spinner_pressed.9.png
+* app/src/main/res/drawable-xhdpi/profile_camera.png
+* app/src/main/res/drawable-xhdpi/progress_bg_favorite.9.png
+* app/src/main/res/drawable-xhdpi/progress_primary_favorite.9.png
+* app/src/main/res/drawable-xhdpi/progress_secondary_favorite.9.png
+* app/src/main/res/drawable-xhdpi/rotate.png
+* app/src/main/res/drawable-xhdpi/send.png
+* app/src/main/res/drawable-xhdpi/settings.png
+* app/src/main/res/drawable-xhdpi/spinner_ab_default_favorite.9.png
+* app/src/main/res/drawable-xhdpi/spinner_ab_disabled_favorite.9.png
+* app/src/main/res/drawable-xhdpi/spinner_ab_focused_favorite.9.png
+* app/src/main/res/drawable-xhdpi/spinner_ab_pressed_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_selected_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_selected_focused_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_selected_pressed_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_unselected_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_unselected_focused_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tab_unselected_pressed_favorite.9.png
+* app/src/main/res/drawable-xhdpi/tabs_pattern.png
+* app/src/main/res/drawable-xhdpi/tarks_white.png
+* app/src/main/res/drawable-xhdpi/twitter.png
+* app/src/main/res/drawable-xhdpi/welcome_background.jpg
+* app/src/main/res/drawable-xhdpi/write.png
+* app/src/main/res/drawable-xxhdpi-v11/
+* app/src/main/res/drawable-xxhdpi-v11/ic_stat_favorite_white.png
+* app/src/main/res/drawable-xxhdpi/
+* app/src/main/res/drawable-xxhdpi/.DS_Store
+* app/src/main/res/drawable-xxhdpi/ic_create_grey.png
+* app/src/main/res/drawable-xxhdpi/ic_launcher.png
+* app/src/main/res/drawable-xxhdpi/ic_person_outline_grey.png
+* app/src/main/res/drawable-xxhdpi/ic_stat_favorite_white.png
+* app/src/main/res/drawable/
+* app/src/main/res/drawable/.DS_Store
+* app/src/main/res/drawable/ab_background_textured_favorite.xml
+* app/src/main/res/drawable/background_tabs.xml
+* app/src/main/res/drawable/black_button.xml
+* app/src/main/res/drawable/btn_cab_done_favorite.xml
+* app/src/main/res/drawable/card.xml
+* app/src/main/res/drawable/default_button.xml
+* app/src/main/res/drawable/fab__gradient.xml
+* app/src/main/res/drawable/fab__gradient_light.xml
+* app/src/main/res/drawable/green_button.xml
+* app/src/main/res/drawable/indicator_bg_bottom.xml
+* app/src/main/res/drawable/indicator_bg_top.xml
+* app/src/main/res/drawable/list_back.xml
+* app/src/main/res/drawable/list_selector.xml
+* app/src/main/res/drawable/orange_button.xml
+* app/src/main/res/drawable/photo_spinner.xml
+* app/src/main/res/drawable/pressed_background_favorite.xml
+* app/src/main/res/drawable/profile.xml
+* app/src/main/res/drawable/progress_horizontal_favorite.xml
+* app/src/main/res/drawable/purple_button.xml
+* app/src/main/res/drawable/red_button.xml
+* app/src/main/res/drawable/selectable_background_cardbank.xml
+* app/src/main/res/drawable/selectable_background_favorite.xml
+* app/src/main/res/drawable/spinner_background_ab_favorite.xml
+* app/src/main/res/drawable/square_black_button.xml
+* app/src/main/res/drawable/tab_indicator_ab_favorite.xml
+* app/src/main/res/drawable/transparent.xml
+* app/src/main/res/drawable/yellow_button.xml
+* app/src/main/res/layout/
+* app/src/main/res/layout/.DS_Store
+* app/src/main/res/layout/activity_listview.xml
+* app/src/main/res/layout/cards_view.xml
+* app/src/main/res/layout/cards_view_multicolumn.xml
+* app/src/main/res/layout/comment_list.xml
+* app/src/main/res/layout/create_page.xml
+* app/src/main/res/layout/crop_image_view.xml
+* app/src/main/res/layout/cropper.xml
+* app/src/main/res/layout/doc_header_list.xml
+* app/src/main/res/layout/doclist_header.xml
+* app/src/main/res/layout/doclistview.xml
+* app/src/main/res/layout/document_write.xml
+* app/src/main/res/layout/drawer_list_item.xml
+* app/src/main/res/layout/fab__header_container.xml
+* app/src/main/res/layout/fab__listview_container.xml
+* app/src/main/res/layout/fab__scrollview_container.xml
+* app/src/main/res/layout/fab__webview_container.xml
+* app/src/main/res/layout/header.xml
+* app/src/main/res/layout/header_alert.xml
+* app/src/main/res/layout/imageview.xml
+* app/src/main/res/layout/info.xml
+* app/src/main/res/layout/item_card.xml
+* app/src/main/res/layout/item_card_empty_first.xml
+* app/src/main/res/layout/item_card_empty_last.xml
+* app/src/main/res/layout/item_play_card_empty_first.xml
+* app/src/main/res/layout/item_stack.xml
+* app/src/main/res/layout/join.xml
+* app/src/main/res/layout/list.xml
+* app/src/main/res/layout/list2.xml
+* app/src/main/res/layout/list_info.xml
+* app/src/main/res/layout/listview.xml
+* app/src/main/res/layout/listview2.xml
+* app/src/main/res/layout/listview3.xml
+* app/src/main/res/layout/main.xml
+* app/src/main/res/layout/main_header.xml
+* app/src/main/res/layout/mainfragment.xml
+* app/src/main/res/layout/no_favorite.xml
+* app/src/main/res/layout/phone_number.xml
+* app/src/main/res/layout/profile.xml
+* app/src/main/res/layout/profile_avatar_layout.xml
+* app/src/main/res/layout/profile_edit_header.xml
+* app/src/main/res/layout/profile_list.xml
+* app/src/main/res/layout/pull_to_refresh_header_horizontal.xml
+* app/src/main/res/layout/pull_to_refresh_header_vertical.xml
+* app/src/main/res/layout/setting.xml
+* app/src/main/res/layout/sign_up.xml
+* app/src/main/res/layout/splash.xml
+* app/src/main/res/layout/tarks_account.xml
+* app/src/main/res/layout/webview.xml
+* app/src/main/res/layout/welcome.xml
+* app/src/main/res/menu/
+* app/src/main/res/menu/cropper.xml
+* app/src/main/res/menu/main.xml
+* app/src/main/res/menu/share_action_provider.xml
+* app/src/main/res/menu/webview.xml
+* app/src/main/res/values-hdpi/
+* app/src/main/res/values-hdpi/strings.xml
+* app/src/main/res/values-ko/
+* app/src/main/res/values-ko/.DS_Store
+* app/src/main/res/values-ko/plurals.xml
+* app/src/main/res/values-ko/pull_refresh_strings.xml
+* app/src/main/res/values-ko/strings.xml
+* app/src/main/res/values-mdpi/
+* app/src/main/res/values-mdpi/strings.xml
+* app/src/main/res/values-sw600dp/
+* app/src/main/res/values-sw600dp/dimens.xml
+* app/src/main/res/values-sw720dp-land/
+* app/src/main/res/values-sw720dp-land/dimens.xml
+* app/src/main/res/values-v11/
+* app/src/main/res/values-v11/styles.xml
+* app/src/main/res/values-v14/
+* app/src/main/res/values-v14/.DS_Store
+* app/src/main/res/values-v14/strings.xml
+* app/src/main/res/values-v14/styles.xml
+* app/src/main/res/values/
+* app/src/main/res/values/.DS_Store
+* app/src/main/res/values/attrs.xml
+* app/src/main/res/values/colors.xml
+* app/src/main/res/values/colors_favorite.xml
+* app/src/main/res/values/dimens.xml
+* app/src/main/res/values/ids.xml
+* app/src/main/res/values/plurals.xml
+* app/src/main/res/values/pull_refresh_strings.xml
+* app/src/main/res/values/strings.xml
+* app/src/main/res/values/styles.xml
+* app/src/main/res/values/themes.xml
+* build.gradle
+* gradle/
+* gradle/wrapper/
+* gradle/wrapper/gradle-wrapper.jar
+* gradle/wrapper/gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* ic_launcher-web.png
+* proguard-project.txt
+* settings.gradle
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+android-support-v7-appcompat.jar => com.android.support:appcompat-v7:21.0.3
+gcm.jar => com.google.android.gms:play-services:+
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+android-support-v7-appcompat => [com.android.support:appcompat-v7:21.0.3]
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets/
+* libs/nineoldandroids-2.4.0.jar => app/libs/nineoldandroids-2.4.0.jar
+* libs/thumbnailator-0.4.7.jar => app/libs/thumbnailator-0.4.7.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

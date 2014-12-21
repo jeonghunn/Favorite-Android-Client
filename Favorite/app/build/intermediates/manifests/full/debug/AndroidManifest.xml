@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tarks.favorite"
+    android:versionCode="44"
+    android:versionName="@string/ver" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="21" />
+
+    <uses-feature android:name="android.hardware.camera" >
+    </uses-feature>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- GCM 관련 퍼미션 -->
+    <permission
+        android:name="com.tarks.favorite.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.tarks.favorite.permission.C2D_MESSAGE" />
+    <!-- GCM 받기 -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!-- GCM을 받으려면 구글 계정 필요 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 메시지 받을 때 wake up 하기 위해 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" >
+    </uses-permission>
+
+    <application
+        android:name="com.tarks.favorite.ModApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:launchMode="singleTask"
+        android:theme="@style/AppTheme" >
+
+        <!-- 알림 서비스(시작) -->
+        <receiver
+            android:name="com.tarks.favorite.core.connect.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.tarks.favorite.connect" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.tarks.favorite.core.connect.GcmIntentService" />
+        <!-- 알림 서비스(끝) -->
+        <activity
+            android:name="com.tarks.favorite.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tarks.favorite.main"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/my_favorites"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.tarks.favorite.ui.info"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/app_info" />
+        <activity
+            android:name="com.tarks.favorite.ui.setting"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/setting" />
+        <activity
+            android:name="com.tarks.favorite.ui.setting_compat"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/setting" />
+        <activity
+            android:name="com.tarks.favorite.ui.GalleryView"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/photo" />
+        <activity
+            android:name="com.tarks.favorite.ui.sign_up"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/sign_up" />
+        <activity
+            android:name="com.tarks.favorite.ui.webview"
+            android:icon="@drawable/ic_launcher_simple"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.PageActivity"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.TranslucentActionBar" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.PageEdit"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/edit_profile" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.PageInfo"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/user_info" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.privacy_category"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/privacy_content"
+            android:theme="@style/Theme.Favorite.Light.Dialog" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.page_create"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/create_page" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.document_write"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/write" />
+        <activity
+            android:name="com.tarks.favorite.ui.page.document_read"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.tarks.favorite.document_read"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/app_info" />
+        <activity
+            android:name="com.tarks.favorite.ui.start.welcome"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.tarks.favorite.ui.tarks_account_login"
+            android:label="@string/sign_in" />
+        <activity
+            android:name="com.tarks.favorite.ui.start.join"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/sign_up" />
+        <activity
+            android:name="com.tarks.favorite.like.favorite_category"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/add_favorite"
+            android:theme="@style/Theme.Favorite.Light.Dialog" />
+        <activity
+            android:name="com.tarks.favorite.ui.CropManager"
+            android:icon="@drawable/ic_launcher_simple"
+            android:label="@string/cut_image" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>
