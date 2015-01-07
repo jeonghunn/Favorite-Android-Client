@@ -107,6 +107,8 @@ public class page_create extends ActionBarActivity {
 
 	}
 
+
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {

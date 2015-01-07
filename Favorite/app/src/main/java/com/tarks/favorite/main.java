@@ -73,7 +73,6 @@ public class main extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		// Get the view from drawer_main.xml
 		setContentView(R.layout.main);
-		
 
 		// Get the Title
 		mTitle = mDrawerTitle = getTitle();

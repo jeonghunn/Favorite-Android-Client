@@ -2,6 +2,7 @@
 <resources>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-v14/strings.xml -->
     <eat-comment/>
+    <string name="server_api_path">https://tarks.net/develop/favorite/api.php</string>
     <string name="server_path">https://tarks.net/develop/favorite/</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-v14/styles.xml -->
     <eat-comment/>

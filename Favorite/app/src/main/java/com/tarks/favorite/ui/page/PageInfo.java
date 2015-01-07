@@ -183,7 +183,7 @@ public class PageInfo extends ActionBarActivity {
 		Paramname.add("user_srl");
 		Paramname.add("user_srl_auth");
 		Paramname.add("page_srl");
-		Paramname.add("member_info");
+		Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("1");
@@ -441,7 +441,7 @@ public class PageInfo extends ActionBarActivity {
 				try {
 					resultmap = Global.getJSONArray(msg.obj.toString());
 					// Global.dumpArray(array);
-
+Global.log(resultmap.toString());
 //					String tarks_account = array[0];
 //					String admin = array[1];
 //					String name_1 = array[2];

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
         <string name="server_path">https://tarks.net/develop/favorite/</string>
+    <string name="server_api_path">https://tarks.net/develop/favorite/api.php</string>
 </resources>

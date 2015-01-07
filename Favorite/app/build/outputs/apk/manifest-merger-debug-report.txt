@@ -273,29 +273,29 @@ ADDED from AndroidManifest.xml:144:9
 		ADDED from AndroidManifest.xml:146:13
 	android:name
 		ADDED from AndroidManifest.xml:145:13
-activity#com.tarks.favorite.document_read
+activity#com.tarks.favorite.ui.start.welcome
 ADDED from AndroidManifest.xml:148:9
-	android:label
-		ADDED from AndroidManifest.xml:151:13
-	android:icon
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:150:13
+	android:theme
+		ADDED from AndroidManifest.xml:151:13
 	android:name
 		ADDED from AndroidManifest.xml:149:13
-activity#com.tarks.favorite.ui.start.welcome
+activity#com.tarks.favorite.ui.tarks_account_login
 ADDED from AndroidManifest.xml:152:9
-	android:screenOrientation
+	android:label
 		ADDED from AndroidManifest.xml:154:13
-	android:theme
-		ADDED from AndroidManifest.xml:155:13
 	android:name
 		ADDED from AndroidManifest.xml:153:13
-activity#com.tarks.favorite.ui.tarks_account_login
-ADDED from AndroidManifest.xml:156:9
+activity#com.tarks.favorite.ui.start.join
+ADDED from AndroidManifest.xml:155:9
 	android:label
 		ADDED from AndroidManifest.xml:158:13
-	android:name
+	android:icon
 		ADDED from AndroidManifest.xml:157:13
-activity#com.tarks.favorite.ui.start.join
+	android:name
+		ADDED from AndroidManifest.xml:156:13
+activity#com.tarks.favorite.ui.CropManager
 ADDED from AndroidManifest.xml:159:9
 	android:label
 		ADDED from AndroidManifest.xml:162:13
@@ -303,24 +303,6 @@ ADDED from AndroidManifest.xml:159:9
 		ADDED from AndroidManifest.xml:161:13
 	android:name
 		ADDED from AndroidManifest.xml:160:13
-activity#com.tarks.favorite.like.favorite_category
-ADDED from AndroidManifest.xml:163:9
-	android:label
-		ADDED from AndroidManifest.xml:166:13
-	android:icon
-		ADDED from AndroidManifest.xml:165:13
-	android:theme
-		ADDED from AndroidManifest.xml:167:13
-	android:name
-		ADDED from AndroidManifest.xml:164:13
-activity#com.tarks.favorite.ui.CropManager
-ADDED from AndroidManifest.xml:168:9
-	android:label
-		ADDED from AndroidManifest.xml:171:13
-	android:icon
-		ADDED from AndroidManifest.xml:170:13
-	android:name
-		ADDED from AndroidManifest.xml:169:13
 meta-data#com.google.android.gms.version
 ADDED from com.google.android.gms:play-services:6.5.87:21:9
 	android:value

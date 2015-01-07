@@ -463,7 +463,7 @@ public class document_read extends ActionBarActivity {
 			Paramname.add("user_srl");
 			Paramname.add("user_srl_auth");
 			Paramname.add("profile_user_srl");
-			Paramname.add("member_info");
+			Paramname.add("page_info");
 
 			ArrayList<String> Paramvalue = new ArrayList<String>();
 			Paramvalue.add("642979");

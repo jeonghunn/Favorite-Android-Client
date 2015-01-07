@@ -170,24 +170,23 @@ public class tarks_account_login extends ActionBarActivity {
 		String s1 = edit1.getText().toString();
 		String s2 = edit2.getText().toString();
 
-		// md5 password value
-		String src = s2;
-		String enc = Global.getMD5Hash(src);
 		
 	//	Log.i("password", enc);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("id");
+		Paramname.add("apiv");
+		Paramname.add("a");
+        Paramname.add("id");
 		Paramname.add("password");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add(s1);
-		Paramvalue.add(enc);
+		Paramvalue.add("1");
+		Paramvalue.add("tarks_auth");
+        Paramvalue.add(s1);
+		Paramvalue.add(s2);
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "member/tarks_account_check.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path)
+				, mHandler, Paramname,
 				Paramvalue, null, 1,0);
 	}
 	

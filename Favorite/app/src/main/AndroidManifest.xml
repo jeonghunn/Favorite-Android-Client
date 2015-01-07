@@ -146,10 +146,6 @@
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/app_name" />
         <activity
-            android:name=".document_read"
-            android:icon="@drawable/ic_launcher_simple"
-            android:label="@string/app_info" />
-        <activity
             android:name="com.tarks.favorite.ui.start.welcome"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -160,11 +156,6 @@
             android:name="com.tarks.favorite.ui.start.join"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/sign_up" />
-        <activity
-            android:name=".like.favorite_category"
-            android:icon="@drawable/ic_launcher_simple"
-            android:label="@string/add_favorite"
-            android:theme="@style/Theme.Favorite.Light.Dialog" />
         <activity
             android:name=".ui.CropManager"
             android:icon="@drawable/ic_launcher_simple"
