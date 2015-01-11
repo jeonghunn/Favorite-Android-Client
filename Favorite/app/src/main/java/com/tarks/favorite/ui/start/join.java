@@ -127,8 +127,7 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 			}
 
 		} catch (Exception e) {
-			Global.Infoalert(join.this, getString(R.string.error),
-					getString(R.string.error_des), getString(R.string.yes));
+			Global.ConnectionError(this, e.toString());
 		}
 	}
 
@@ -438,22 +437,18 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 			}
 
 		} catch (Exception e) {
-			Global.Infoalert(join.this, getString(R.string.error),
-					getString(R.string.error_des), getString(R.string.yes));
+			Global.ConnectionError(this, e.toString());
 		}
 	}
 
-	// Call connection Error
-	public void ConnectionError() {
-		Global.ConnectionError(this);
-	}
+
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			setSupportProgressBarIndeterminateVisibility(false);
 
 			if (msg.what == -1) {
-				ConnectionError();
+				Global.ConnectionError(join.this, msg.obj.toString());
 			}
 
 			// Join Activity

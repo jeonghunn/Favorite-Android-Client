@@ -196,8 +196,9 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			}
 
 			myResult = builder.toString(); // 전송결과를 전역 변수에 저장
-			// Log.e("Test", "result = " + myResult);
-        //   Log.i("Result value",  myResult + ".");
+
+CheckError(myResult);
+
 			dos.close();
 			out.close();
 			// onPostExecute(myResult);
@@ -215,5 +216,9 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 		return null;
 
 	}
+
+   public void CheckError(String myResult){
+       if(myResult.matches("api_error") || myResult.matches("ip_error")) handlernum = -1;
+   }
 
 }

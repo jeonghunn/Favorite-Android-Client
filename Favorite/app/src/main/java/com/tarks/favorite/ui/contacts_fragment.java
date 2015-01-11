@@ -272,7 +272,7 @@ public class contacts_fragment extends Fragment implements
 			// IF Sucessfull no timeout
 			// rootView.setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError(getActivity());
+				Global.ConnectionError(getActivity(),  msg.obj.toString());
 			}
 
 			if (msg.what == 1) {

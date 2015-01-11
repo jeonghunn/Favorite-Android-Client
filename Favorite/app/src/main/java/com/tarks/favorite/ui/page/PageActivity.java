@@ -467,7 +467,7 @@ public class PageActivity extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(PageActivity.this);
+				Global.ConnectionError(PageActivity.this,  msg.obj.toString());
 			}
 
 			if (msg.what == 1) {
@@ -618,7 +618,7 @@ public class PageActivity extends ActionBarActivity {
 					add_menu_state = false;
 					invalidateOptionsMenu();
 				} else {
-					Global.ConnectionError(PageActivity.this);
+					Global.ConnectionError(PageActivity.this,  msg.obj.toString());
 				}
 				// Log.i("Result","로그 정상 작동");
 				// Log.i("Result", msg.obj.toString());

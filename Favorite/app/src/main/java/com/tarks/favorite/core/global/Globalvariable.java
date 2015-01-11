@@ -11,6 +11,9 @@ public final class Globalvariable {
 	//DEBUG
 	public static boolean DEBUG_MODE = true;
 
+    //APIKEY
+    public static final String API_KEY = "a456dfwe456";
+
 	//image byte
 	public static byte[] image;
 	public static Bitmap imagebitmap;

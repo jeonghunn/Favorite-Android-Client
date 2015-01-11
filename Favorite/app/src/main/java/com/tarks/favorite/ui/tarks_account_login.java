@@ -95,32 +95,32 @@ public class tarks_account_login extends ActionBarActivity {
 			}
 	}
 	
-	public void ConnectionError() {
-		// If No Network Connection
-		// Check Internet Connection
-
-		// Check Network Connection
-		if (Global.InternetConnection(1) == true
-				|| Global.InternetConnection(0) == true) {
-			
-			 Intent intent = new Intent(tarks_account_login.this, webview.class);
-			  intent.putExtra("url", getString(R.string.server_path)); 
-	 	    	 startActivity(intent); 
-	 	    	 
-	 	    	 finish();
-		
-
-		} else {
-			
-			
-		    	// 로딩 화면은 종료하라.
-				Toast.makeText(tarks_account_login.this,
-						getString(R.string.networkerrord), 0).show();
-		
-		    
-		
-		}
-	}
+//	public void ConnectionError() {
+//		// If No Network Connection
+//		// Check Internet Connection
+//
+//		// Check Network Connection
+//		if (Global.InternetConnection(1) == true
+//				|| Global.InternetConnection(0) == true) {
+//
+//			 Intent intent = new Intent(tarks_account_login.this, webview.class);
+//			  intent.putExtra("url", getString(R.string.server_path));
+//	 	    	 startActivity(intent);
+//
+//	 	    	 finish();
+//
+//
+//		} else {
+//
+//
+//		    	// 로딩 화면은 종료하라.
+//				Toast.makeText(tarks_account_login.this,
+//						getString(R.string.networkerrord), 0).show();
+//
+//
+//
+//		}
+//	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -128,7 +128,7 @@ public class tarks_account_login extends ActionBarActivity {
 			setSupportProgressBarIndeterminateVisibility(false);
 			
 			if (msg.what == -1) {
-				ConnectionError();
+				Global.ConnectionError(tarks_account_login.this, msg.obj.toString());
 				
 			}
 
@@ -143,7 +143,7 @@ public class tarks_account_login extends ActionBarActivity {
 							.setTitle(getString(R.string.error));
 					builder1.show();
 				} else {
-					// Save auth key to temp
+
 
 					// Intent 생성
 					Intent intent = new Intent();
@@ -175,13 +175,16 @@ public class tarks_account_login extends ActionBarActivity {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("apiv");
+        Paramname.add("api_key");
 		Paramname.add("a");
         Paramname.add("id");
 		Paramname.add("password");
 
+
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("1");
-		Paramvalue.add("tarks_auth");
+        Paramvalue.add(Globalvariable.API_KEY);
+		Paramvalue.add("make_tarks_authcode");
         Paramvalue.add(s1);
 		Paramvalue.add(s2);
 
@@ -264,7 +267,7 @@ public class tarks_account_login extends ActionBarActivity {
 					// Log.i("ERROR", "App has been error");
 					// System.out.println();
 					// Not Connected To Internet
-					ConnectionError();
+					Global.ConnectionError(this, e.toString());
 
 				}
 			}
