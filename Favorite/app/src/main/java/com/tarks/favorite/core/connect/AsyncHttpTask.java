@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import com.tarks.favorite.ModApplication;
+import com.tarks.favorite.R;
 import com.tarks.favorite.core.global.Globalvariable;
 
 import android.content.Context;
@@ -117,8 +118,17 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 			OutputStreamWriter out = new OutputStreamWriter(
 					conn.getOutputStream(), "UTF-8");// EUC-KR");
 
+
+
 			// Check it is null
 			if (paramNames != null && paramValues != null) {
+                //Public value
+                paramNames.add("apiv");
+                paramNames.add("api_key");
+
+                paramValues.add(context.getString(R.string.api_version));
+                paramValues.add(Globalvariable.API_KEY);
+
 				for (int i = 0; i < paramNames.size(); i++) {
 				//	Log.i("value", paramNames.get(i).toString());
 					out.write(twoHyphens + boundary + lineEnd); // 필드 구분자
@@ -133,6 +143,8 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 				}
 
 			}
+
+
 
 			if (files != null) {
 				// Log.i("Access", "We can access to files");

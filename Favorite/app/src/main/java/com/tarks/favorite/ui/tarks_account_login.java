@@ -174,16 +174,12 @@ public class tarks_account_login extends ActionBarActivity {
 	//	Log.i("password", enc);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("apiv");
-        Paramname.add("api_key");
 		Paramname.add("a");
         Paramname.add("id");
 		Paramname.add("password");
 
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("1");
-        Paramvalue.add(Globalvariable.API_KEY);
 		Paramvalue.add("make_tarks_authcode");
         Paramvalue.add(s1);
 		Paramvalue.add(s2);

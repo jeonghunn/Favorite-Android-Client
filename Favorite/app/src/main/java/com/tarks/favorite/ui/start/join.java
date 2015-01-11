@@ -135,15 +135,14 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 		String id = Globalvariable.temp_id;
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
+		Paramname.add("a");
 		Paramname.add("tarks_account");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
+		Paramvalue.add("tarks_auth");
 		Paramvalue.add(id);
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "member/tarks_get_member_info.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 2,0);
 	}
 
