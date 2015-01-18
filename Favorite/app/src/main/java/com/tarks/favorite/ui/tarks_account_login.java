@@ -134,7 +134,7 @@ public class tarks_account_login extends ActionBarActivity {
 
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
-				if (myResult.matches("")) {
+				if (myResult.matches("null") || myResult.matches("")) {
 					// Error Login
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
 							tarks_account_login.this);
@@ -180,7 +180,7 @@ public class tarks_account_login extends ActionBarActivity {
 
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("make_tarks_authcode");
+		Paramvalue.add("tarks_auth");
         Paramvalue.add(s1);
 		Paramvalue.add(s2);
 

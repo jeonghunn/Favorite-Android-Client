@@ -3,6 +3,7 @@ package com.tarks.favorite.ui.start;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -94,15 +95,15 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 
 			// Check Tarks Account Exist
 			if (!infoResult.matches("null")) {
-				// Cut Result Value
-				String[] array = infoResult.split("/LINE/.");
+                Map<String, String> resultmap = null;
+                resultmap = Global.getJSONArray(infoResult);
 			//	Global.dumpArray(array);
-				String user_srl = array[0];
-				auth_key = array[1];
-				name_1 = array[2];
-				name_2 = array[3];
-				gender = Integer.parseInt(array[4]);
-				profile_pic = array[5];
+                String srl = String.valueOf(resultmap.get("srl"));
+				auth_key = Globalvariable.temp_id_auth;
+				name_1 = String.valueOf(resultmap.get("name_1"));
+				name_2 = String.valueOf(resultmap.get("name_2"));
+				gender = Integer.parseInt(String.valueOf(resultmap.get("gender")));
+				profile_pic = String.valueOf(resultmap.get("profile_pic"));
 				// Download Profile image
 				if (profile_pic.matches("Y")) {
 					profile_changed = true;
@@ -136,13 +137,16 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 
 		ArrayList<String> Paramname = new ArrayList<String>();
 		Paramname.add("a");
-		Paramname.add("tarks_account");
+		Paramname.add("auth");
+        Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("tarks_auth");
-		Paramvalue.add(id);
+		Paramvalue.add("my_page_info");
+		Paramvalue.add(Globalvariable.temp_id_auth);
+        Paramvalue.add("srl//name_1//name_2//gender//profile_pic");
 
-		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
+
+        new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 2,0);
 	}
 

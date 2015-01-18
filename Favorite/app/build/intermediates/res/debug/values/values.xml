@@ -480,7 +480,7 @@
     <string name="attach_file">File</string>
     <string name="birthday">Birthday</string>
     <string name="blank_error">No value on textfield.</string>
-    <string name="build">5121</string>
+    <string name="build">5122</string>
     <string name="camera">Camera</string>
     <string name="cancel_writing_des">You are writing now. Are you sure you want to cancel this post?</string>
     <string name="change_user">Change User</string>
@@ -696,7 +696,7 @@
     <string name="user_info">User Information</string>
     <string name="user_info_des">It is Almost Finished. Enter your name.\nIf you continue you agree Favorite terms of use.\n\nhttp://tarks.net/favorite/agreement.html</string>
     <string name="user_settings">User Settings</string>
-    <string name="ver">1.9.1.5121</string>
+    <string name="ver">1.9.2.0.5122</string>
     <string name="verkind">Beta</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>

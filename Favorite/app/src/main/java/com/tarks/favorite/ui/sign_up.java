@@ -69,27 +69,27 @@ public class sign_up extends ActionBarActivity {
 
 	}
 
-	public void ConnectionError() {
-		// If No Network Connection
-		// Check Internet Connection
-
-		// Check Network Connection
-		if (Global.InternetConnection(1) == true
-				|| Global.InternetConnection(0) == true) {
-
-			Intent intent = new Intent(sign_up.this, webview.class);
-			intent.putExtra("url", getString(R.string.server_path));
-			startActivity(intent);
-
-			finish();
-
-		} else {
-
-			// 로딩 화면은 종료하라.
-			Toast.makeText(sign_up.this, getString(R.string.networkerrord), Toast.LENGTH_SHORT).show();
-
-		}
-	}
+//	public void ConnectionError() {
+//		// If No Network Connection
+//		// Check Internet Connection
+//
+//		// Check Network Connection
+//		if (Global.InternetConnection(1) == true
+//				|| Global.InternetConnection(0) == true) {
+//
+//			Intent intent = new Intent(sign_up.this, webview.class);
+//			intent.putExtra("url", getString(R.string.server_path));
+//			startActivity(intent);
+//
+//			finish();
+//
+//		} else {
+//
+//			// 로딩 화면은 종료하라.
+//			Toast.makeText(sign_up.this, getString(R.string.networkerrord), Toast.LENGTH_SHORT).show();
+//
+//		}
+//	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -97,7 +97,7 @@ public class sign_up extends ActionBarActivity {
 			setSupportProgressBarIndeterminateVisibility(false);
 
 			if (msg.what == -1) {
-				ConnectionError();
+				Global.ConnectionError(sign_up.this, msg.obj.toString());
 
 			}
 
@@ -110,7 +110,7 @@ public class sign_up extends ActionBarActivity {
 if(myResult.matches("special_char_error")) 	Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.id_password_special_char_error),getString(R.string.yes));
 if(myResult.matches("email_exist_error")) 	Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.sign_up_email_exist),getString(R.string.yes));
 if(myResult.matches("id_exist_error")) Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.sign_up_id_exist),getString(R.string.yes));
-if(myResult.matches("error")) ConnectionError();
+if(myResult.matches("error")) Global.ConnectionError(sign_up.this, msg.obj.toString());
 
 				
 				} else {
@@ -142,14 +142,12 @@ if(myResult.matches("error")) ConnectionError();
 		// Log.i("password", enc);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("apiv");
 		Paramname.add("a");
 		Paramname.add("email");
 		Paramname.add("id");
 		Paramname.add("password");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("1");
 		Paramvalue.add("tarks_sign_up");
 		Paramvalue.add(email);
 		Paramvalue.add(id);
@@ -222,7 +220,7 @@ if(myResult.matches("error")) ConnectionError();
 					// Log.i("ERROR", "App has been error");
 					// System.out.println();
 					// Not Connected To Internet
-					ConnectionError();
+                    Global.ConnectionError(sign_up.this, e.toString());
 
 				}
 			}

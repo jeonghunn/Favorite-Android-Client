@@ -90,11 +90,11 @@ public class welcome extends ActionBarActivity {
 //		 			SharedPreferences edit = getSharedPreferences("temp",
 //		 					MODE_PRIVATE);
 //		 			SharedPreferences.Editor editor = edit.edit();
-//		 			editor.putString("temp_id",  data.getStringExtra("id"));			
-//		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));			
+//		 			editor.putString("temp_id",  data.getStringExtra("id"));
+//		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));
 //		 			editor.commit();
-		 			
-		 			Intent intent = new Intent(welcome.this, join.class); 
+
+		 			Intent intent = new Intent(welcome.this, join.class);
 					startActivity(intent);
 					finish();
 					

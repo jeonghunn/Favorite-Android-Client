@@ -123,7 +123,6 @@ public class MainActivity extends ActionBarActivity {
 		String user_srl_auth = Global.getSetting("user_srl_auth", "");
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("apiv");
 		Paramname.add("a");
 		Paramname.add("lang");
 		Paramname.add("user_srl");
@@ -131,7 +130,6 @@ public class MainActivity extends ActionBarActivity {
 		Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("1");
 		Paramvalue.add("load_app");
 		Paramvalue.add(getString(R.string.lang));
 		Paramvalue.add(user_srl);
