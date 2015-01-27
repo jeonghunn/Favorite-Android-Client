@@ -397,10 +397,10 @@ public final class Global {
 	}
 
 	// Default Connection Error
-	public static void ConnectionError(Context cx, String error) {
+	public static void ConnectionError(Context cx) {
 		if (InternetConnection(1) == true || InternetConnection(0) == true) {
 			Infoalert(cx, cx.getString(R.string.error),
-					cx.getString(R.string.error_des) + "\n\n" + error,
+					cx.getString(R.string.error_des) ,
 					cx.getString(R.string.yes));
 
 		} else {

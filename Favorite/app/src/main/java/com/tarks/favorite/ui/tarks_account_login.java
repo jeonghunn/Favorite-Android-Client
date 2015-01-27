@@ -14,6 +14,7 @@ import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -128,13 +129,16 @@ public class tarks_account_login extends ActionBarActivity {
 			setSupportProgressBarIndeterminateVisibility(false);
 			
 			if (msg.what == -1) {
-				Global.ConnectionError(tarks_account_login.this, msg.obj.toString());
+				Global.ConnectionError(tarks_account_login.this);
 				
 			}
 
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
-				if (myResult.matches("null") || myResult.matches("")) {
+              //  Log.i("adsfAsdf" , myResult);
+
+              Global.log("A : " + "null".length() + "B : " + myResult.length());
+                if (myResult.matches("null") || myResult.matches("") ) {
 					// Error Login
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
 							tarks_account_login.this);
@@ -143,7 +147,6 @@ public class tarks_account_login extends ActionBarActivity {
 							.setTitle(getString(R.string.error));
 					builder1.show();
 				} else {
-
 
 					// Intent 생성
 					Intent intent = new Intent();
@@ -263,7 +266,7 @@ public class tarks_account_login extends ActionBarActivity {
 					// Log.i("ERROR", "App has been error");
 					// System.out.println();
 					// Not Connected To Internet
-					Global.ConnectionError(this, e.toString());
+					Global.ConnectionError(this);
 
 				}
 			}

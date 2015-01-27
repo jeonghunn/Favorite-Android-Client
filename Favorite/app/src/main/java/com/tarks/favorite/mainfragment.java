@@ -277,7 +277,7 @@ public class mainfragment extends Fragment  {
 			// IF Sucessfull no timeout
 			// rootView.setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError(getActivity(),  msg.obj.toString());
+				Global.ConnectionError(getActivity());
 			}
 
 			if (msg.what == 1) {

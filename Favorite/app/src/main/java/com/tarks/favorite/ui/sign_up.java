@@ -97,7 +97,7 @@ public class sign_up extends ActionBarActivity {
 			setSupportProgressBarIndeterminateVisibility(false);
 
 			if (msg.what == -1) {
-				Global.ConnectionError(sign_up.this, msg.obj.toString());
+				Global.ConnectionError(sign_up.this);
 
 			}
 
@@ -110,7 +110,7 @@ public class sign_up extends ActionBarActivity {
 if(myResult.matches("special_char_error")) 	Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.id_password_special_char_error),getString(R.string.yes));
 if(myResult.matches("email_exist_error")) 	Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.sign_up_email_exist),getString(R.string.yes));
 if(myResult.matches("id_exist_error")) Global.Infoalert(sign_up.this ,getString(R.string.error),getString(R.string.sign_up_id_exist),getString(R.string.yes));
-if(myResult.matches("error")) Global.ConnectionError(sign_up.this, msg.obj.toString());
+if(myResult.matches("error")) Global.ConnectionError(sign_up.this);
 
 				
 				} else {
@@ -220,7 +220,7 @@ if(myResult.matches("error")) Global.ConnectionError(sign_up.this, msg.obj.toStr
 					// Log.i("ERROR", "App has been error");
 					// System.out.println();
 					// Not Connected To Internet
-                    Global.ConnectionError(sign_up.this, e.toString());
+                    Global.ConnectionError(sign_up.this);
 
 				}
 			}

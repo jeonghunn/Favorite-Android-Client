@@ -851,7 +851,7 @@ public class document_read extends ActionBarActivity {
 			setSupportProgressBarIndeterminateVisibility(false);
 
 			if (msg.what == -1) {
-				Global.ConnectionError(document_read.this,  msg.obj.toString());
+				Global.ConnectionError(document_read.this);
 			}
 
 			if (msg.what == 1) {
@@ -979,7 +979,7 @@ public class document_read extends ActionBarActivity {
 					getDoc();
 					listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 				} else {
-					Global.ConnectionError(document_read.this,  msg.obj.toString());
+					Global.ConnectionError(document_read.this);
 				}
 				// Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString());

@@ -5,12 +5,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.global.Globalvariable;
 import com.tarks.favorite.ui.tarks_account_login;
@@ -85,8 +88,8 @@ public class welcome extends ActionBarActivity {
 			if (resultCode == Activity.RESULT_OK) {
 		     	  //Save auth key to temp
 		           //Setting Editor
-				Globalvariable.temp_id = data.getStringExtra("id");
-				Globalvariable.temp_id_auth = data.getStringExtra("auth_code");
+			//	Globalvariable.temp_id = data.getStringExtra("id");
+			//	Globalvariable.temp_id_auth = data.getStringExtra("auth_code");
 //		 			SharedPreferences edit = getSharedPreferences("temp",
 //		 					MODE_PRIVATE);
 //		 			SharedPreferences.Editor editor = edit.edit();
@@ -94,9 +97,24 @@ public class welcome extends ActionBarActivity {
 //		 			editor.putString("temp_id_auth",  data.getStringExtra("auth_code"));
 //		 			editor.commit();
 
-		 			Intent intent = new Intent(welcome.this, join.class);
-					startActivity(intent);
-					finish();
+
+                // Setting Editor
+                SharedPreferences edit = getSharedPreferences("setting",
+                        MODE_PRIVATE);
+                SharedPreferences.Editor editor = edit.edit();
+                editor.putString("frist_use_app", "false"); // Ű��,
+               // editor.putString("user_srl", data.getStringExtra("id"));
+                editor.putString("user_srl_auth", data.getStringExtra("auth_code"));
+//                editor.putString("name_1", s1);
+//                editor.putString("name_2", s2);
+                editor.commit();
+
+                //deletetemp();
+                Intent intent = new Intent(welcome.this, MainActivity.class);
+                startActivity(intent);
+//		 			Intent intent = new Intent(welcome.this, join.class);
+//					startActivity(intent);
+//					finish();
 					
 					
 			}

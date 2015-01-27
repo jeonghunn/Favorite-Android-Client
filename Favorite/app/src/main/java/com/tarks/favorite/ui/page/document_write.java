@@ -159,7 +159,7 @@ public class document_write extends ActionBarActivity {
 			// IF Sucessfull no timeout
 			setSupportProgressBarIndeterminateVisibility(false);
 			if (msg.what == -1) {
-				Global.ConnectionError(document_write.this,  msg.obj.toString());
+				Global.ConnectionError(document_write.this);
 			}
 
 			if (msg.what == 1) {
@@ -168,7 +168,7 @@ public class document_write extends ActionBarActivity {
 					FinishAct();
 				} else {
 				//	Log.i("Error", "Error has been");
-					Global.ConnectionError(document_write.this,  msg.obj.toString());
+					Global.ConnectionError(document_write.this);
 				}
 				// Log.i("Result","로그 정상 작동");
 				Log.i("Result", msg.obj.toString() + "ds");

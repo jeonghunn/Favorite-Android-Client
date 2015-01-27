@@ -126,18 +126,18 @@ public class MainActivity extends ActionBarActivity {
 		Paramname.add("a");
 		Paramname.add("lang");
 		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
+		Paramname.add("auth");
 		Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("load_app");
+		Paramvalue.add("my_page_info");
 		Paramvalue.add(getString(R.string.lang));
 		Paramvalue.add(user_srl);
 		Paramvalue.add(user_srl_auth);
 		Paramvalue
-				.add("tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
+				.add("page_srl//tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
-		new AsyncHttpTask(this, getString(R.string.server_path) + "api.php",
+		new AsyncHttpTask(this, getString(R.string.server_api_path),
 				mHandler, Paramname, Paramvalue, null, 1,0);
 
 	}
@@ -350,7 +350,7 @@ public class MainActivity extends ActionBarActivity {
 
 //				Set<Entry<String, Integer>> set = resultmap.entrySet();
 //				Iterator<Entry<String, Integer>> it = set.iterator();
-	
+                 user_srl = String.valueOf(resultmap.get("page_srl"));
 				String tarks_account = String.valueOf(resultmap.get("tarks_account"));
 				String name_1 = String.valueOf(resultmap.get("name_1"));
 				String name_2 = String.valueOf(resultmap.get("name_2"));
@@ -385,12 +385,13 @@ public class MainActivity extends ActionBarActivity {
 				SharedPreferences edit = getSharedPreferences("setting",
 						MODE_PRIVATE);
 				SharedPreferences.Editor editor = edit.edit();
+                editor.putString("tarks_account", tarks_account);
+                editor.putString("user_srl", user_srl);
 				editor.putString("name_1", name_1);
 				editor.putString("name_2", name_2);
 				editor.putString("permission", permission);
 				editor.putString("profile_pic", profile_pic);
 				editor.putString("profile_update", profile_update);
-				editor.putString("key", key);
 				editor.putString("like_me", like_me);
 				editor.putString("favorite", favorite);
 				
@@ -485,6 +486,7 @@ public class MainActivity extends ActionBarActivity {
 
 			}
 		} catch (Exception e) {
+            e.printStackTrace();
 			BreakTimeout();
 		ConnectionError();
 		}

@@ -434,7 +434,7 @@ public class PageInfo extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(PageInfo.this,  msg.obj.toString());
+				Global.ConnectionError(PageInfo.this);
 			}
 
 			if (msg.what == 1) {
@@ -534,7 +534,7 @@ Global.log(resultmap.toString());
 					setProfileInfo();
 					profile_changed = true;
 				}else{
-					Global.ConnectionError(PageInfo.this,  msg.obj.toString());
+					Global.ConnectionError(PageInfo.this);
 				}
 
 			}

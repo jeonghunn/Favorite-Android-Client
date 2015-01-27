@@ -589,7 +589,7 @@ public class PageEdit extends ActionBarActivity {
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
-				Global.ConnectionError(PageEdit.this,  msg.obj.toString());
+				Global.ConnectionError(PageEdit.this);
 			}
 
 			if (msg.what == 1) {

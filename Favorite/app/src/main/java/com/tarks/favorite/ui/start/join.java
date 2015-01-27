@@ -98,7 +98,7 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
                 Map<String, String> resultmap = null;
                 resultmap = Global.getJSONArray(infoResult);
 			//	Global.dumpArray(array);
-                String srl = String.valueOf(resultmap.get("srl"));
+              user_srl = String.valueOf(resultmap.get("srl"));
 				auth_key = Globalvariable.temp_id_auth;
 				name_1 = String.valueOf(resultmap.get("name_1"));
 				name_2 = String.valueOf(resultmap.get("name_2"));
@@ -128,7 +128,7 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 			}
 
 		} catch (Exception e) {
-			Global.ConnectionError(this, e.toString());
+			Global.ConnectionError(this);
 		}
 	}
 
@@ -440,7 +440,7 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 			}
 
 		} catch (Exception e) {
-			Global.ConnectionError(this, e.toString());
+			Global.ConnectionError(this);
 		}
 	}
 
@@ -451,13 +451,14 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 			setSupportProgressBarIndeterminateVisibility(false);
 
 			if (msg.what == -1) {
-				Global.ConnectionError(join.this, msg.obj.toString());
+				Global.ConnectionError(join.this);
 			}
 
 			// Join Activity
 			if (msg.what == 1) {
 				myResult = msg.obj.toString();
 				// Stop progress bar
+                Global.log(myResult);
 				joinAct();
 
 			}
@@ -538,8 +539,8 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 
 
 						ArrayList<String> Paramname = new ArrayList<String>();
-						Paramname.add("authcode");
 					//	Paramname.add("admin");
+                        Paramname.add("a");
 						Paramname.add("tarks_account");
 						Paramname.add("name_1");
 						Paramname.add("name_2");
@@ -552,8 +553,8 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 						Paramname.add("country");
 
 						ArrayList<String> Paramvalue = new ArrayList<String>();
-						Paramvalue.add("642979");
 					//	Paramname.add("1");
+                        Paramvalue.add("page_join");
 						Paramvalue.add(id_auth.matches("") || id_auth == null ? "null" : id_auth );
 						Paramvalue.add(first_name);
 						Paramvalue.add(last_name);
@@ -573,8 +574,7 @@ public class join extends ActionBarActivity implements OnCheckedChangeListener {
 							files.add(getCacheDir().toString() + "/profile.jpg");
 						}
 
-						new AsyncHttpTask(this, getString(R.string.server_path)
-								+ "member/join_app.php", mHandler, Paramname,
+						new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 								Paramvalue, files, 1,0);
 
 					} catch (Exception e) {

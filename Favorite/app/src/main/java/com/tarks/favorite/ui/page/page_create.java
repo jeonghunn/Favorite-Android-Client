@@ -223,7 +223,7 @@ public class page_create extends ActionBarActivity {
 	
 	// Call connection Error
 	public void ConnectionError() {
-		Global.ConnectionError(this, null);
+		Global.ConnectionError(this);
 	}
 
 	protected Handler mHandler = new Handler() {
