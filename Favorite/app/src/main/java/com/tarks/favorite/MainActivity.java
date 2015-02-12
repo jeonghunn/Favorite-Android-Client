@@ -126,14 +126,12 @@ public class MainActivity extends ActionBarActivity {
 		Paramname.add("a");
 		Paramname.add("lang");
 		Paramname.add("user_srl");
-		Paramname.add("auth");
 		Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("my_page_info");
 		Paramvalue.add(getString(R.string.lang));
 		Paramvalue.add(user_srl);
-		Paramvalue.add(user_srl_auth);
 		Paramvalue
 				.add("page_srl//tarks_account//name_1//name_2//permission//profile_pic//profile_update//reg_id//key//like_me//favorite");
 
