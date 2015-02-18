@@ -44,7 +44,7 @@ public class sign_up extends ActionBarActivity {
 		getSupportActionBar().setDisplayShowHomeEnabled(false);
 
 		// define edittext
-		email_edittext = (EditText) findViewById(R.id.email_edittext);
+		email_edittext = (EditText) findViewById(R.id.email);
 		id_edittext = (EditText) findViewById(R.id.editText1);
 		password_edittext = (EditText) findViewById(R.id.editText2);
 

@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.3.0.5124</string>
-    <string name="build">5124</string>
+    <string name="ver">1.9.4.0.5125</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -162,6 +161,7 @@
     <string name="email">Email</string>
 
     <!-- Sign Up -->
+    <string name="agree_and_start_des">If Continue, you agreed <b>this</b>.</string>
     <string name="email_type_des">Please enter your email correctly.</string>
     <string name="id_type_des">Please enter your User ID correctly. (3~20)</string>
     <string name="password_type_des">Please enter your password correctly. (6~20)</string>

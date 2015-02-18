@@ -139,6 +139,7 @@
     <string name="email">이메일</string>
 
     <!-- Sign Up -->
+    <string name="agree_and_start_des">계속하시면 <b>약관</b>에 동의하신거로 간주됩니다.</string>
     <string name="email_type_des">이메일을 올바르게 입력해 주세요.</string>
     <string name="id_type_des">아이디를 올바르게 입력해 주세요. (3~20)</string>
     <string name="password_type_des">비밀번호를 올바르게 입력해 주세요. (6~20)</string>

@@ -5,4 +5,4 @@
     <item android:state_focused="true" android:drawable="@drawable/photo_spinner_pressed" />
     <item android:state_checked="true" android:drawable="@drawable/photo_spinner_pressed" />
     <item android:drawable="@drawable/photo_spinner_normal" />
-</selector><!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/photo_spinner.xml -->
+</selector><!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/photo_spinner.xml -->
