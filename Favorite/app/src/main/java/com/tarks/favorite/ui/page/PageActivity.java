@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.view.Window;
 import android.annotation.TargetApi;
@@ -183,24 +184,16 @@ public class PageActivity extends ActionBarActivity {
 		showProgressBar();
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
-		Paramname.add("profile_user_srl");
+		Paramname.add("a");
+        Paramname.add("page_srl");
 		Paramname.add("page_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
-		Paramvalue.add(String.valueOf(member_srl));
-		Paramvalue
-				.add("tarks_account//write_status//admin//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country");
+		Paramvalue.add("page_info");
+        Paramvalue.add(member_srl);
+		Paramvalue.add("tarks_account//write_status//admin//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country");
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "member/profile_info.php", mHandler, Paramname, Paramvalue,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname, Paramvalue,
 				null, 1, 0);
 	}
 
@@ -309,27 +302,18 @@ public class PageActivity extends ActionBarActivity {
 
 	}
 
-	public void getMemberInfo(String user_srl) {
+	public void getPageInfo(String user_srl) {
 		if (Global.getUpdatePossible(user_srl)) {
 			// Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
-			Paramname.add("authcode");
-			Paramname.add("user_srl");
-			Paramname.add("user_srl_auth");
 			Paramname.add("profile_user_srl");
-			Paramname.add("member_info");
+			Paramname.add("page_info");
 
 			ArrayList<String> Paramvalue = new ArrayList<String>();
-			Paramvalue.add("642979");
-			Paramvalue.add(Global.getSetting("user_srl",
-					Global.getSetting("user_srl", "0")));
-			Paramvalue.add(Global.getSetting("user_srl_auth",
-					Global.getSetting("user_srl_auth", "null")));
 			Paramvalue.add(String.valueOf(user_srl));
 			Paramvalue.add("profile_pic//profile_update");
 
-			new AsyncHttpTask(this, getString(R.string.server_path)
-					+ "member/profile_info.php", mHandler, Paramname,
+			new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 					Paramvalue, null, 4, Integer.parseInt(user_srl));
 
 		}
@@ -473,22 +457,27 @@ public class PageActivity extends ActionBarActivity {
 			if (msg.what == 1) {
 
 				try {
-					String[] array = msg.obj.toString().split("/LINE/.");
-				//	Global.dumpArray(array);
-					String tarks_account = array[0];
-					write_status = Integer.parseInt(array[1]);
-					page_admin = Integer.parseInt(array[2]);
-					String name_1 = array[3];
-					String name_2 = array[4];
-					String gender = array[5];
-					String birthday = array[6];
-					String join_day = array[7];
-					String profile_pic = array[8];
-					String profile_update = array[9];
-					String lang = array[10];
-					String country = array[11];
-					your_status = Integer.parseInt(array[12]);
-					me_status = Integer.parseInt(array[13]);
+                   Map resultmap = Global.getJSONArray(msg.obj.toString());
+                  //  Global.log(resultmap.toString());
+
+                    String tarks_account = String.valueOf(resultmap.get("tarks_account"));
+                    String admin = String.valueOf(resultmap.get("admin"));
+                    String name_1 = String.valueOf(resultmap.get("name_1"));
+                    String name_2 = String.valueOf(resultmap.get("name_2"));
+                    String gender = String.valueOf(resultmap.get("gender"));
+                    String birthday = String.valueOf(resultmap.get("birthday"));
+                    String country_code = String.valueOf(resultmap.get("country_code"));
+                    String phone_number = String.valueOf(resultmap.get("phone_number"));
+                    String join_day = String.valueOf(resultmap.get("join_day"));
+                    String profile_pic = String.valueOf(resultmap.get("profile_pic"));
+                    String profile_update = String.valueOf(resultmap.get("profile_update"));
+                    String lang = String.valueOf(resultmap.get("lang"));
+                    String country = String.valueOf(resultmap.get("country"));
+                    String like_me = String.valueOf(resultmap.get("like_me"));
+                    String favorite = String.valueOf(resultmap.get("favorite"));
+                    your_status =  Integer.parseInt(String.valueOf(resultmap.get("rel_you_status")));
+                    me_status = Integer.parseInt(String.valueOf(resultmap.get("rel_me_status")));
+
 
 					title = Global.NameMaker(lang, name_1, name_2);
 
@@ -547,7 +536,7 @@ public class PageActivity extends ActionBarActivity {
 						String status = array[4];
 
 						// Log.i("user", user_srl);
-						getMemberInfo(user_srl);
+						getPageInfo(user_srl);
 						setList(Integer.parseInt(srl), user_srl, name, content,
 								Integer.parseInt(status));
 						m_adapter.notifyDataSetChanged();

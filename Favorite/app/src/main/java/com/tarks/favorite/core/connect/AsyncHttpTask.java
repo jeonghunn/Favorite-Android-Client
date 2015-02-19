@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import com.tarks.favorite.ModApplication;
 import com.tarks.favorite.R;
+import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.core.global.Globalvariable;
 
 import android.content.Context;
@@ -125,9 +126,12 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
                 //Public value
                 paramNames.add("apiv");
                 paramNames.add("api_key");
+                paramNames.add("auth");
 
                 paramValues.add(context.getString(R.string.api_version));
                 paramValues.add(Globalvariable.API_KEY);
+                paramValues.add( Global.getSetting("user_srl_auth", ""));
+
 
 				for (int i = 0; i < paramNames.size(); i++) {
 				//	Log.i("value", paramNames.get(i).toString());
