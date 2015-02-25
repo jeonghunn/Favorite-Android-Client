@@ -1,0 +1,311 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		ADDED from AndroidManifest.xml:5:5
+	android:versionCode
+		ADDED from AndroidManifest.xml:4:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+uses-feature#android.hardware.camera
+ADDED from AndroidManifest.xml:7:5
+	android:name
+		ADDED from AndroidManifest.xml:7:19
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:10:5
+	android:name
+		ADDED from AndroidManifest.xml:10:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:11:5
+	android:name
+		ADDED from AndroidManifest.xml:11:22
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from AndroidManifest.xml:12:5
+	android:name
+		ADDED from AndroidManifest.xml:12:22
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:22
+uses-permission#android.permission.READ_CONTACTS
+ADDED from AndroidManifest.xml:14:5
+	android:name
+		ADDED from AndroidManifest.xml:14:22
+permission#com.tarks.favorite.permission.C2D_MESSAGE
+ADDED from AndroidManifest.xml:17:5
+	android:protectionLevel
+		ADDED from AndroidManifest.xml:19:9
+	android:name
+		ADDED from AndroidManifest.xml:18:9
+uses-permission#com.tarks.favorite.permission.C2D_MESSAGE
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from AndroidManifest.xml:23:5
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from AndroidManifest.xml:25:5
+	android:name
+		ADDED from AndroidManifest.xml:25:22
+uses-permission#android.permission.WAKE_LOCK
+ADDED from AndroidManifest.xml:27:5
+	android:name
+		ADDED from AndroidManifest.xml:27:22
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:28:5
+	android:name
+		ADDED from AndroidManifest.xml:28:22
+uses-sdk
+ADDED from AndroidManifest.xml:31:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.google.android.gms:play-services:6.5.87:18:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:appcompat-v7:21.0.3:15:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+	android:targetSdkVersion
+		ADDED from AndroidManifest.xml:33:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		ADDED from AndroidManifest.xml:32:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+application
+ADDED from AndroidManifest.xml:35:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.google.android.gms:play-services:6.5.87:20:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:appcompat-v7:21.0.3:16:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+	android:label
+		ADDED from AndroidManifest.xml:39:9
+	android:launchMode
+		ADDED from AndroidManifest.xml:40:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:37:9
+	android:icon
+		ADDED from AndroidManifest.xml:38:9
+	android:theme
+		ADDED from AndroidManifest.xml:41:10
+	android:name
+		ADDED from AndroidManifest.xml:36:9
+receiver#com.tarks.favorite.core.connect.GcmBroadcastReceiver
+ADDED from AndroidManifest.xml:45:9
+	android:permission
+		ADDED from AndroidManifest.xml:47:13
+	android:name
+		ADDED from AndroidManifest.xml:46:13
+intent-filter#com.google.android.c2dm.intent.RECEIVE+com.tarks.favorite.connect
+ADDED from AndroidManifest.xml:48:13
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from AndroidManifest.xml:50:17
+	android:name
+		ADDED from AndroidManifest.xml:50:25
+category#com.tarks.favorite.connect
+ADDED from AndroidManifest.xml:51:17
+	android:name
+		ADDED from AndroidManifest.xml:51:27
+service#com.tarks.favorite.core.connect.GcmIntentService
+ADDED from AndroidManifest.xml:54:9
+	android:name
+		ADDED from AndroidManifest.xml:54:18
+activity#com.tarks.favorite.MainActivity
+ADDED from AndroidManifest.xml:56:9
+	android:label
+		ADDED from AndroidManifest.xml:58:13
+	android:theme
+		ADDED from AndroidManifest.xml:59:13
+	android:name
+		ADDED from AndroidManifest.xml:57:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:60:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:61:17
+	android:name
+		ADDED from AndroidManifest.xml:61:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:63:17
+	android:name
+		ADDED from AndroidManifest.xml:63:27
+intent-filter#android.intent.action.SEND+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:65:24
+action#android.intent.action.SEND
+ADDED from AndroidManifest.xml:66:17
+	android:name
+		ADDED from AndroidManifest.xml:66:25
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:67:17
+	android:name
+		ADDED from AndroidManifest.xml:67:27
+data
+ADDED from AndroidManifest.xml:68:17
+	android:mimeType
+		ADDED from AndroidManifest.xml:68:23
+intent-filter#android.intent.action.SEND_MULTIPLE+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:80:13
+action#android.intent.action.SEND_MULTIPLE
+ADDED from AndroidManifest.xml:81:17
+	android:name
+		ADDED from AndroidManifest.xml:81:25
+activity#com.tarks.favorite.main
+ADDED from AndroidManifest.xml:86:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:90:13
+	android:label
+		ADDED from AndroidManifest.xml:89:13
+	android:icon
+		ADDED from AndroidManifest.xml:88:13
+	android:name
+		ADDED from AndroidManifest.xml:87:13
+activity#com.tarks.favorite.ui.info
+ADDED from AndroidManifest.xml:91:9
+	android:label
+		ADDED from AndroidManifest.xml:94:13
+	android:icon
+		ADDED from AndroidManifest.xml:93:13
+	android:name
+		ADDED from AndroidManifest.xml:92:13
+activity#com.tarks.favorite.ui.setting
+ADDED from AndroidManifest.xml:95:9
+	android:label
+		ADDED from AndroidManifest.xml:98:13
+	android:icon
+		ADDED from AndroidManifest.xml:97:13
+	android:name
+		ADDED from AndroidManifest.xml:96:13
+activity#com.tarks.favorite.ui.setting_compat
+ADDED from AndroidManifest.xml:100:10
+	android:label
+		ADDED from AndroidManifest.xml:103:13
+	android:icon
+		ADDED from AndroidManifest.xml:102:13
+	android:name
+		ADDED from AndroidManifest.xml:101:13
+activity#com.tarks.favorite.ui.GalleryView
+ADDED from AndroidManifest.xml:104:9
+	android:label
+		ADDED from AndroidManifest.xml:107:13
+	android:icon
+		ADDED from AndroidManifest.xml:106:13
+	android:name
+		ADDED from AndroidManifest.xml:105:13
+activity#com.tarks.favorite.ui.sign_up
+ADDED from AndroidManifest.xml:109:17
+	android:label
+		ADDED from AndroidManifest.xml:112:13
+	android:icon
+		ADDED from AndroidManifest.xml:111:13
+	android:name
+		ADDED from AndroidManifest.xml:110:13
+activity#com.tarks.favorite.ui.webview
+ADDED from AndroidManifest.xml:114:11
+	android:icon
+		ADDED from AndroidManifest.xml:116:13
+	android:theme
+		ADDED from AndroidManifest.xml:117:13
+	android:name
+		ADDED from AndroidManifest.xml:115:13
+activity#com.tarks.favorite.ui.page.PageActivity
+ADDED from AndroidManifest.xml:118:9
+	android:label
+		ADDED from AndroidManifest.xml:121:13
+	android:icon
+		ADDED from AndroidManifest.xml:120:13
+	android:theme
+		ADDED from AndroidManifest.xml:122:13
+	android:name
+		ADDED from AndroidManifest.xml:119:13
+activity#com.tarks.favorite.ui.page.PageEdit
+ADDED from AndroidManifest.xml:123:9
+	android:label
+		ADDED from AndroidManifest.xml:126:13
+	android:icon
+		ADDED from AndroidManifest.xml:125:13
+	android:name
+		ADDED from AndroidManifest.xml:124:13
+activity#com.tarks.favorite.ui.page.PageInfo
+ADDED from AndroidManifest.xml:127:9
+	android:label
+		ADDED from AndroidManifest.xml:130:13
+	android:icon
+		ADDED from AndroidManifest.xml:129:13
+	android:name
+		ADDED from AndroidManifest.xml:128:13
+activity#com.tarks.favorite.ui.page.privacy_category
+ADDED from AndroidManifest.xml:131:9
+	android:label
+		ADDED from AndroidManifest.xml:135:13
+	android:icon
+		ADDED from AndroidManifest.xml:133:13
+	android:theme
+		ADDED from AndroidManifest.xml:134:13
+	android:name
+		ADDED from AndroidManifest.xml:132:13
+activity#com.tarks.favorite.ui.page.page_create
+ADDED from AndroidManifest.xml:136:9
+	android:label
+		ADDED from AndroidManifest.xml:139:13
+	android:icon
+		ADDED from AndroidManifest.xml:138:13
+	android:name
+		ADDED from AndroidManifest.xml:137:13
+activity#com.tarks.favorite.ui.page.document_write
+ADDED from AndroidManifest.xml:140:9
+	android:label
+		ADDED from AndroidManifest.xml:143:13
+	android:icon
+		ADDED from AndroidManifest.xml:142:13
+	android:name
+		ADDED from AndroidManifest.xml:141:13
+activity#com.tarks.favorite.ui.page.document_read
+ADDED from AndroidManifest.xml:144:9
+	android:label
+		ADDED from AndroidManifest.xml:147:13
+	android:icon
+		ADDED from AndroidManifest.xml:146:13
+	android:name
+		ADDED from AndroidManifest.xml:145:13
+activity#com.tarks.favorite.ui.start.welcome
+ADDED from AndroidManifest.xml:148:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:150:13
+	android:theme
+		ADDED from AndroidManifest.xml:151:13
+	android:name
+		ADDED from AndroidManifest.xml:149:13
+activity#com.tarks.favorite.ui.tarks_account_login
+ADDED from AndroidManifest.xml:152:9
+	android:label
+		ADDED from AndroidManifest.xml:154:13
+	android:name
+		ADDED from AndroidManifest.xml:153:13
+activity#com.tarks.favorite.ui.start.join
+ADDED from AndroidManifest.xml:155:9
+	android:label
+		ADDED from AndroidManifest.xml:158:13
+	android:icon
+		ADDED from AndroidManifest.xml:157:13
+	android:name
+		ADDED from AndroidManifest.xml:156:13
+activity#com.tarks.favorite.ui.CropManager
+ADDED from AndroidManifest.xml:159:9
+	android:label
+		ADDED from AndroidManifest.xml:162:13
+	android:icon
+		ADDED from AndroidManifest.xml:161:13
+	android:name
+		ADDED from AndroidManifest.xml:160:13
+meta-data#com.google.android.gms.version
+ADDED from com.google.android.gms:play-services:6.5.87:21:9
+	android:value
+		ADDED from com.google.android.gms:play-services:6.5.87:23:13
+	android:name
+		ADDED from com.google.android.gms:play-services:6.5.87:22:13

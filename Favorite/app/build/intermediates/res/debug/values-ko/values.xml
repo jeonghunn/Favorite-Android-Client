@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/plurals.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/plurals.xml -->
     <eat-comment/>
     <plurals name="hour">
         <item quantity="one">한시간 전</item>
@@ -14,10 +14,10 @@
         <item quantity="one">일분 전</item>
         <item quantity="other">%s분 전</item>
         </plurals>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
     <eat-comment/>
     <string name="a_moment_ago">방금 전</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values-ko/values.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values-ko/values.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"홈 탐색"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -34,7 +34,7 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"음성 검색"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"공유 대상"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"%s와(과) 공유"</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
     <eat-comment/>
     <string name="account">로그인(계정)</string>
     <string name="add">추가</string>
@@ -58,7 +58,7 @@
     <string name="check_service_status">서비스 상태 확인</string>
     <string name="choose_email_app">이메일 어플리케이션을 선택해주세요.</string>
     <string name="choose_picture">사진 선택</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-ko/common_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-ko/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"Android Wear 앱에 대한 업데이트가 필요한 애플리케이션이 있습니다."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Android Wear 앱을 업데이트해야만 이 앱이 실행됩니다."</string>
@@ -88,7 +88,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"휴대전화에서 열기"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"로그인"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Google 계정으로 로그인"</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
     <eat-comment/>
     <string name="community">커뮤니티</string>
     <string name="completed">완료</string>
@@ -188,12 +188,12 @@
     <string name="privacy_users_des">Favorite의 회원만이 볼 수 있습니다.</string>
     <string name="profile">프로필</string>
     <string name="profile_settings_des">당신의 프로필 정보를 설정해보세요.</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/pull_refresh_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/pull_refresh_strings.xml -->
     <eat-comment/>
     <string name="pull_to_refresh_pull_label">당겨서 새로 고침…</string>
     <string name="pull_to_refresh_refreshing_label">로드 중…</string>
     <string name="pull_to_refresh_release_label">놓아서 새로 고침…</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
     <eat-comment/>
     <string name="refresh">새로고침</string>
     <string name="reg_id_error">다른 기기에 로그인해 로그아웃되었습니다. \n 계속 사용하려면 다시 로그인해야 합니다.\n Tarks 계정을 사용중이 아니었다면 기존 계정은 삭제됩니다.</string>

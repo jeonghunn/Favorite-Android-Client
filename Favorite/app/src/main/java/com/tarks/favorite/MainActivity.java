@@ -226,7 +226,7 @@ public class MainActivity extends ActionBarActivity {
 			
 		    	// 로딩 화면은 종료하라.
 				Toast.makeText(MainActivity.this,
-						getString(R.string.networkerrord), 0).show();
+						getString(R.string.networkerrord), Toast.LENGTH_LONG).show();
 				finish();
 				// 이동한다. 메인으로
 				Intent intent1 = new Intent(MainActivity.this, main.class);
@@ -291,7 +291,7 @@ public class MainActivity extends ActionBarActivity {
 				ConnectionError();
 			}
 		Map<String, String> resultmap = null;
-		resultmap = Global.getJSONArray(infoResult);
+		resultmap = Global.getJsonObject(infoResult);
 	
 		
 			if (resultmap == null) {
@@ -495,13 +495,12 @@ public class MainActivity extends ActionBarActivity {
 	 * Restart the application.
 	 */
 	public void restartApplication() {
-		Intent mStartActivity = new Intent(this, MainActivity.class);
-		PendingIntent intent = PendingIntent.getActivity(this.getBaseContext(),
-				0, mStartActivity, getIntent().getFlags());
-		AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 300, intent);
-		//System.exit(2);
-		android.os.Process.killProcess(android.os.Process.myPid());
+        Intent mStartActivity = new Intent(this, MainActivity.class);
+        int mPendingIntentId = 132436;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+        System.exit(0);
 	}
 
 	protected Handler mHandler = new Handler() {

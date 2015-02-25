@@ -43,10 +43,6 @@ ADDED from AndroidManifest.xml:17:5
 		ADDED from AndroidManifest.xml:19:9
 	android:name
 		ADDED from AndroidManifest.xml:18:9
-uses-permission#com.tarks.favorite.permission.C2D_MESSAGE
-ADDED from AndroidManifest.xml:21:5
-	android:name
-		ADDED from AndroidManifest.xml:21:22
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from AndroidManifest.xml:23:5
 	android:name

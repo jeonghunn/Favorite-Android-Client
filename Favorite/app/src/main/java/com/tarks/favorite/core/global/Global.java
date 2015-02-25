@@ -279,6 +279,24 @@ public final class Global {
 
 	}
 
+    public static Map getJsonObject(String content){
+        try {
+
+            Map<String, Object> mp = new HashMap<String, Object>();
+
+            JSONObject obj = new JSONObject(content);
+
+                mp.putAll(jsonToMap(obj, mp));
+                //map.put(mp.get(0).toString(), mp.get(1).toString());
+
+            return mp;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+       return null;
+    }
+
 	public static Map jsonToMap(JSONObject json, Map retMap) throws JSONException {
 //		Map<String, Object> retMap = new HashMap<String, Object>();
 

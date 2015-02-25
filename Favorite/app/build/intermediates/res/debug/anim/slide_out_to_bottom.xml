@@ -19,4 +19,4 @@
     android:duration="@android:integer/config_longAnimTime"
     android:fromYDelta="0"
     android:toYDelta="100%p" />
-<!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/anim/slide_out_to_bottom.xml -->
+<!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/anim/slide_out_to_bottom.xml -->
