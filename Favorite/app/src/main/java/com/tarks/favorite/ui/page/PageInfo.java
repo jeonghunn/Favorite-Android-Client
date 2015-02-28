@@ -439,7 +439,7 @@ public class PageInfo extends ActionBarActivity {
 
 			if (msg.what == 1) {
 				try {
-					resultmap = Global.getJSONArray(msg.obj.toString());
+					resultmap = Global.getJsonObject(msg.obj.toString());
 					// Global.dumpArray(array);
 Global.log(resultmap.toString());
 //					String tarks_account = array[0];
