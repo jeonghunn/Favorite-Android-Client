@@ -49,6 +49,7 @@ import com.tarks.favorite.MainActivity;
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
 import com.tarks.favorite.core.connect.ImageDownloader;
+import com.tarks.favorite.core.global.DocumentClass;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.ui.SystemBarTintManager;
 import com.tarks.favorite.ui.fadingactionbar.FadingActionBarHelperBase;
@@ -191,7 +192,7 @@ public class PageActivity extends ActionBarActivity {
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("page_info");
         Paramvalue.add(member_srl);
-		Paramvalue.add("tarks_account//write_status//admin//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country");
+		Paramvalue.add("tarks_account//write_status//admin//name_1//name_2//gender//birthday//join_day//profile_pic//profile_update//lang//country//rel_you_status//rel_me_status");
 
 		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname, Paramvalue,
 				null, 1, 0);
@@ -268,29 +269,20 @@ public class PageActivity extends ActionBarActivity {
 		showProgressBar();
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
-		Paramname.add("doc_user_srl");
+		Paramname.add("a");
+		Paramname.add("page_srl");
 		Paramname.add("start_doc");
 		Paramname.add("doc_number");
 		Paramname.add("doc_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("0");
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add("doc_list");
 		Paramvalue.add(member_srl);
 		Paramvalue.add(startdoc);
 		Paramvalue.add("15");
 		Paramvalue.add("srl//user_srl//name//content//status");
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_read.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 3, 0);
 	}
 
@@ -306,7 +298,7 @@ public class PageActivity extends ActionBarActivity {
 		if (Global.getUpdatePossible(user_srl)) {
 			// Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
-			Paramname.add("profile_user_srl");
+			Paramname.add("page_info");
 			Paramname.add("page_info");
 
 			ArrayList<String> Paramvalue = new ArrayList<String>();
@@ -457,8 +449,8 @@ public class PageActivity extends ActionBarActivity {
 			if (msg.what == 1) {
 
 				try {
-                   Map resultmap = Global.getJSONArray(msg.obj.toString());
-                  //  Global.log(resultmap.toString());
+                   Map resultmap = Global.getJsonObject(msg.obj.toString());
+                    Global.log(resultmap.toString());
 
                     String tarks_account = String.valueOf(resultmap.get("tarks_account"));
                     String admin = String.valueOf(resultmap.get("admin"));
@@ -502,12 +494,14 @@ public class PageActivity extends ActionBarActivity {
 					}
 					invalidateOptionsMenu();
 				} catch (Exception e) {
+                    e.printStackTrace();
 					PageInfoError();
 
 				}
 			}
 
 			if (msg.what == 2) {
+                Global.log("Profile image downloaded");
 				// Save File cache
 				try {
 					Global.SaveBitmapToFileCache((Bitmap) msg.obj, local_path,
@@ -522,32 +516,60 @@ public class PageActivity extends ActionBarActivity {
 			}
 
 			if (msg.what == 3) {
-				try {
-					// Log.i("Doc", msg.obj.toString());
-					String[] doc = msg.obj.toString().split("/DOC/.");
 
-					for (int i = 0; i < doc.length; i++) {
-						String[] array = doc[i].split("/LINE/.");
-						// Global.dumpArray(array);
-						String srl = array[0];
-						String user_srl = array[1];
-						String name = array[2];
-						String content = array[3];
-						String status = array[4];
+                try{
+                ArrayList<DocumentClass> docArraylist = new ArrayList<DocumentClass>();
+                docArraylist = Global.getJSONArrayListByDocumentClass(msg.obj.toString());
 
-						// Log.i("user", user_srl);
-						getPageInfo(user_srl);
-						setList(Integer.parseInt(srl), user_srl, name, content,
-								Integer.parseInt(status));
-						m_adapter.notifyDataSetChanged();
-			
 
-					}
-					//Unlock listview
-					FadingActionBarHelperBase.mLockListView = false;
-				} catch (Exception e) {
+                for (int i = 0; i < docArraylist.size(); i++) {
+                    DocumentClass get = docArraylist.get(i);
+                    getPageInfo(String.valueOf(get.user_srl));
+                    setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.status);
+                    m_adapter.notifyDataSetChanged();
+                }
+            } catch (Exception e) {
+e.printStackTrace();
+            }
+        //        Map resultmap = Global.getJSONArray(msg.obj.toString());
 
-				}
+//                for (int i = 0; i < resultmap.size(); i++) {
+//                    Map docmap = Global.getJsonObject(resultmap.get(i));
+//
+//                    String srl = String.valueOf(docmap.get("srl"));
+//                    String user_srl = String.valueOf(docmap.get("user_srl"));
+//                    String name = String.valueOf(docmap.get("name"));
+//                    String content = String.valueOf(docmap.get("content"));
+//                    String status = String.valueOf(docmap.get("status"));
+//
+//
+//                }
+//				try {
+//                    // Log.i("Doc", msg.obj.toString());
+//                    String[] doc = msg.obj.toString().split("/DOC/.");
+//
+//                    for (int i = 0; i < doc.length; i++) {
+//                        String[] array = doc[i].split("/LINE/.");
+//                        // Global.dumpArray(array);
+//                        String srl = array[0];
+//                        String user_srl = array[1];
+//                        String name = array[2];
+//                        String content = array[3];
+//                        String status = array[4];
+//
+//                        // Log.i("user", user_srl);
+//                        getPageInfo(user_srl);
+//                        setList(Integer.parseInt(srl), user_srl, name, content,
+//                                Integer.parseInt(status));
+//                        m_adapter.notifyDataSetChanged();
+//
+//
+//                    }
+//                    //Unlock listview
+//                    FadingActionBarHelperBase.mLockListView = false;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//				}
 			}
 
 			if (msg.what == 4) {
@@ -579,7 +601,7 @@ public class PageActivity extends ActionBarActivity {
 					}
 				} catch (Exception e) {
 					// PageInfoError();
-
+                    e.printStackTrace();
 				}
 			}
 
@@ -597,6 +619,7 @@ public class PageActivity extends ActionBarActivity {
 					// + member_srl + ".jpg"));
 					// Refresh();
 				} catch (Exception e) {
+                    e.printStackTrace();
 				}
 			}
 

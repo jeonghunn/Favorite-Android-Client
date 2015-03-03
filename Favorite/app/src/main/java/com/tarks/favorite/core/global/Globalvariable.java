@@ -12,7 +12,7 @@ public final class Globalvariable {
 	public static boolean DEBUG_MODE = true;
 
     //APIKEY
-    public static final String API_KEY = "a456dfwe456";
+    public static final String API_KEY = "asdf123456789";
 
 	//image byte
 	public static byte[] image;

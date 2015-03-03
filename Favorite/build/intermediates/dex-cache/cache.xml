@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/DATA/Users/jhrunning/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.5.2/ecf534dba3a8446ce84cbb797d314763be212a68/glide-3.5.2.jar"
+        jar="/Volumes/DATA/Users/jhrunning/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
-        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/glide-3.5.2-b3d5176c7f115a9f2c35b5587cd9360af7b56536.jar" />
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/gson-2.3-907fc20c140feaa6e0f19b790e2c28f09795c358.jar" />
     </item>
 
 </items>

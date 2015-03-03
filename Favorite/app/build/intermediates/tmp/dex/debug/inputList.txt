@@ -3,6 +3,7 @@
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/thumbnailator-0.4.7-31e7295858acd5955bd756e2cdf64fce3b7d1339.jar
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/nineoldandroids-2.4.0-7c6583da1fe9725b919d17ff5df45f465ec8e692.jar
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-85db6581a01b71b047d8dbb0d1b1f252bddb3dc9.jar
+/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/gson-2.3-907fc20c140feaa6e0f19b790e2c28f09795c358.jar
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/glide-3.5.1-f9fb78b6e52e031c6c4b2fcedebc07fb79233a35.jar
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-089dce62cc641193b22c6fd144c13760f2c38803.jar
 /Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-626f5bfd1df3e06acac1337b4778f8f021112adf.jar

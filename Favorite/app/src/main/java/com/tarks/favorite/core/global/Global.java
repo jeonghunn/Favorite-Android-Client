@@ -37,6 +37,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.tarks.favorite.core.user.db.DbOpenHelper;
 import com.tarks.favorite.ui.page.document_write;
 import java.io.*;
@@ -341,6 +343,19 @@ public final class Global {
 		}
 		return list;
 	}
+
+    public static ArrayList<DocumentClass> getJSONArrayListByDocumentClass(String content) {
+        ArrayList<DocumentClass> yourArray = null;
+        try {
+            JSONArray array = new JSONArray(content);
+            yourArray   = new Gson().fromJson(array.toString(), new TypeToken<List<DocumentClass>>(){}.getType());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return yourArray;
+    }
+
 
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");
