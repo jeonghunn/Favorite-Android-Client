@@ -356,6 +356,18 @@ public final class Global {
         return yourArray;
     }
 
+    public static ArrayList<CommentClass> getJSONArrayListByCommentClass(String content) {
+        ArrayList<CommentClass> yourArray = null;
+        try {
+            JSONArray array = new JSONArray(content);
+            yourArray   = new Gson().fromJson(array.toString(), new TypeToken<List<CommentClass>>(){}.getType());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return yourArray;
+    }
+
 
 	public static void toast(String str, boolean length) {
 		// Log.i("ACCESS", "I can access to toast");

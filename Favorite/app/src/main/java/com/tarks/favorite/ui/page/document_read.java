@@ -3,6 +3,7 @@ package com.tarks.favorite.ui.page;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,6 +44,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.tarks.favorite.core.global.CommentClass;
 import com.tarks.favorite.ui.GalleryView;
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.connect.AsyncHttpTask;
@@ -50,6 +52,8 @@ import com.tarks.favorite.core.connect.ImageDownloader;
 import com.tarks.favorite.core.global.Filedw;
 import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.core.global.Globalvariable;
+
+import org.w3c.dom.Comment;
 
 public class document_read extends ActionBarActivity {
 
@@ -305,26 +309,17 @@ public class document_read extends ActionBarActivity {
 		setSupportProgressBarIndeterminateVisibility(true);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
-		Paramname.add("doc_srl");
+		Paramname.add("a");
+        Paramname.add("doc_srl");
 		Paramname.add("doc_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("1");
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add("doc_read");
 		Paramvalue.add(doc_srl);
 		Paramvalue
-				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//attach//recommend//negative");
+				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//attach//recommend//negative//you_doc_status");
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_read.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 1, 0);
 	}
 
@@ -333,27 +328,20 @@ public class document_read extends ActionBarActivity {
 		setSupportProgressBarIndeterminateVisibility(true);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
+		Paramname.add("a");
 		Paramname.add("doc_srl");
 		Paramname.add("start_comment");
 		Paramname.add("comment_number");
 		Paramname.add("comment_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
+		Paramvalue.add("comment_list");
 		Paramvalue.add(doc_srl);
 		Paramvalue.add(String.valueOf(start_comment));
 		Paramvalue.add(String.valueOf(number));
-		Paramvalue.add("srl//user_srl//name//content//date//status//privacy");
+		Paramvalue.add("srl//user_srl//name//content//date//status//privacy//you_comment_status");
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/comment_app_read.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 5, 0);
 	}
 
@@ -456,30 +444,22 @@ public class document_read extends ActionBarActivity {
 		if(count != 0) comment_count.setVisibility(View.VISIBLE);
 	}
 
-	public void getMemberInfo(String user_srl) {
-		if (Global.getUpdatePossible(user_srl)) {
-			ArrayList<String> Paramname = new ArrayList<String>();
-			Paramname.add("authcode");
-			Paramname.add("user_srl");
-			Paramname.add("user_srl_auth");
-			Paramname.add("profile_user_srl");
-			Paramname.add("page_info");
+    public void getPageInfo(String user_srl) {
+        if (Global.getUpdatePossible(user_srl)) {
+            // Log.i("Update", "Updateing");
+            ArrayList<String> Paramname = new ArrayList<String>();
+            Paramname.add("page_info");
+            Paramname.add("page_info");
 
-			ArrayList<String> Paramvalue = new ArrayList<String>();
-			Paramvalue.add("642979");
-			Paramvalue.add(Global.getSetting("user_srl",
-					Global.getSetting("user_srl", "0")));
-			Paramvalue.add(Global.getSetting("user_srl_auth",
-					Global.getSetting("user_srl_auth", "null")));
-			Paramvalue.add(String.valueOf(user_srl));
-			Paramvalue.add("profile_pic//profile_update");
+            ArrayList<String> Paramvalue = new ArrayList<String>();
+            Paramvalue.add(String.valueOf(user_srl));
+            Paramvalue.add("profile_pic//profile_update");
 
-			new AsyncHttpTask(this, getString(R.string.server_path)
-					+ "member/profile_info.php", mHandler, Paramname,
-					Paramvalue, null, 2, Integer.parseInt(user_srl));
+            new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
+                    Paramvalue, null, 2, Integer.parseInt(user_srl));
 
-		}
-	}
+        }
+    }
 
 	public void GoPage(String user_srl) {
 		Intent intent = new Intent(document_read.this, PageActivity.class);
@@ -857,22 +837,26 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 1) {
 
 				try {
+
+                    Map resultmap = Global.getJsonObject(msg.obj.toString());
+                    Global.log(resultmap.toString());
+
 					// page_srl//user_srl//name//title//content//date//status//privacy//comments//recommend//negative
-					String[] array = msg.obj.toString().split("/LINE/.");
+				//	String[] array = msg.obj.toString().split("/LINE/.");
 					// Global.dumpArray(array);
-					String page_srl = array[0];
-					user_srl = array[1];
-					String name = array[2];
-					String title = array[3];
-					String content = array[4];
-					String date = array[5];
-					status = array[6];
-					String privacy = array[7];
-					comments = array[8];
-					String attach = array[9];
-					String recommend = array[10];
-					String negative = array[11];
-					you_doc_status = Integer.parseInt(array[12]);
+					String page_srl = String.valueOf(resultmap.get("page_srl"));
+					user_srl = String.valueOf(resultmap.get("user_srl"));
+					String name = String.valueOf(resultmap.get("name"));
+					String title = String.valueOf(resultmap.get("title"));
+					String content = String.valueOf(resultmap.get("content"));
+					String date = String.valueOf(resultmap.get("date"));
+					status = String.valueOf(resultmap.get("status"));
+					String privacy = String.valueOf(resultmap.get("privacy"));
+					comments = String.valueOf(resultmap.get("comments"));
+					String attach = String.valueOf(resultmap.get("attach"));
+					String recommend = String.valueOf(resultmap.get("recommend"));
+					String negative = String.valueOf(resultmap.get("negative"));
+					you_doc_status = Integer.parseInt(String.valueOf(resultmap.get("you_doc_status")));
 
 					// SetTitled
 					if (title.matches("null")) {
@@ -881,7 +865,7 @@ public class document_read extends ActionBarActivity {
 						getSupportActionBar().setTitle(title);
 					}
 
-					getMemberInfo(user_srl);
+					getPageInfo(user_srl);
 
 					// Profiile
 
@@ -913,7 +897,7 @@ public class document_read extends ActionBarActivity {
 //					Global.Infoalert(document_read.this, getString(R.string.error),
 //							getString(R.string.doc_error_des),
 //							getString(R.string.yes));
-					
+					e.printStackTrace();
 					Global.toast(getString(R.string.doc_error_des));
 					finish();
 				}
@@ -988,34 +972,47 @@ public class document_read extends ActionBarActivity {
 
 			if (msg.what == 5) {
 				try {
-					int moreload = -1;
-					Log.i("Cmt", msg.obj.toString());
-					String[] cmt = msg.obj.toString().split("/CMT/.");
 
-					for (int i = 0; i < cmt.length; i++) {
-						String[] array = cmt[i].split("/LINE/.");
-						// Global.dumpArray(array);
-						// srl//user_srl//name//content//date//status/privacy
-						String srl = array[0];
-						String user_srl = array[1];
-						String name = array[2];
-						String content = array[3];
-						String date = array[4];
-						String status = array[5];
-						String privacy = array[6];
-						String you_status = array[7];
-						// Log.i("user", user_srl);
+                    ArrayList<CommentClass> commentArraylist = new ArrayList<CommentClass>();
+                    commentArraylist = Global.getJSONArrayListByCommentClass(msg.obj.toString());
 
-						if (previous_count > 1)
-							moreload = i;
-						getMemberInfo(user_srl);
-						setList(moreload, Integer.parseInt(srl), user_srl,
-								name, content,
-								Global.formatTimeString(Long.parseLong(date)),
-								Integer.parseInt(status),
-								Integer.parseInt(you_status));
-						m_adapter.notifyDataSetChanged();
-					}
+                    int moreload = -1;
+
+                    for (int i = 0; i < commentArraylist.size(); i++) {
+                        CommentClass get = commentArraylist.get(i);
+                        if (previous_count > 1)
+                            moreload = i;
+                        getPageInfo(user_srl);
+                        setList(moreload, get.srl, user_srl,
+                                get.name, get.content,
+                                Global.formatTimeString(get.date),
+                                get.status,
+                                get.you_comment_status);
+                        m_adapter.notifyDataSetChanged();
+
+                        m_adapter.notifyDataSetChanged();
+                    }
+
+//					Log.i("Cmt", msg.obj.toString());
+//                    Map commap = Global.getJsonObject(msg.obj.toString());
+//                    Global.log(commap.toString());
+//
+//					for (int i = 0; i < cmt.length; i++) {
+//						String[] array = cmt[i].split("/LINE/.");
+//						// Global.dumpArray(array);
+//						// srl//user_srl//name//content//date//status/privacy
+//						String srl = array[0];
+//						String user_srl = array[1];
+//						String name = array[2];
+//						String content = array[3];
+//						String date = array[4];
+//						String status = array[5];
+//						String privacy = array[6];
+//						String you_status = array[7];
+//						// Log.i("user", user_srl);
+//
+//
+//					}
 					seePreviousComments(comments_count);
 				} catch (Exception e) {
 

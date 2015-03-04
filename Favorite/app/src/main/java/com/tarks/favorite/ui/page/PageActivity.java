@@ -289,6 +289,7 @@ public class PageActivity extends ActionBarActivity {
 	public void MoreLoad(String number) {
 		if (listView.getLastVisiblePosition() >= listView.getCount() - 1
 				&& listView.getChildAt(0).getTop() != 0) {
+            Global.log("MoreLOAD!!!!!!");
 			getDocList(number);
 		}
 
