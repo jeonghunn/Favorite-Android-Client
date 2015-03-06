@@ -83,13 +83,10 @@ public class document_write extends ActionBarActivity {
 
 	public void PostAct() {
 		// IF Sucessfull no timeout
-		setSupportProgressBarIndeterminateVisibility(true);
+		//setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
+		Paramname.add("a");
 		Paramname.add("page_srl");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
 		Paramname.add("title");
 		Paramname.add("content");
 		Paramname.add("permission");
@@ -97,13 +94,8 @@ public class document_write extends ActionBarActivity {
 		Paramname.add("privacy");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("1");
+		Paramvalue.add("doc_write");
 		Paramvalue.add(page_srl);
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add("null");
 		Paramvalue.add(Global.setValue(content));
 		Paramvalue.add("3");
@@ -126,8 +118,7 @@ public class document_write extends ActionBarActivity {
 		files = null;
 	}
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_write.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, files, 1, 0);
 	}
 
@@ -164,7 +155,7 @@ public class document_write extends ActionBarActivity {
 
 			if (msg.what == 1) {
 				String result = msg.obj.toString();
-				if (result.matches("document_write_succeed")) {
+				if (result.matches("success")) {
 					FinishAct();
 				} else {
 				//	Log.i("Error", "Error has been");
