@@ -696,7 +696,7 @@
     <string name="user_info">User Information</string>
     <string name="user_info_des">It is Almost Finished. Enter your name.\nIf you continue you agree Favorite terms of use.\n\nhttp://tarks.net/favorite/agreement.html</string>
     <string name="user_settings">User Settings</string>
-    <string name="ver">1.9.7.0.5131</string>
+    <string name="ver">1.9.8.0.5132</string>
     <string name="verkind">Beta</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>

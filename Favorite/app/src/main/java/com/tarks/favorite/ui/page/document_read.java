@@ -489,29 +489,20 @@ public class document_read extends ActionBarActivity {
 		comment_edittext.setEnabled(false);
 
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
+		Paramname.add("a");
 		Paramname.add("doc_srl");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
 		Paramname.add("content");
 		Paramname.add("permission");
 		Paramname.add("privacy");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("1");
+		Paramvalue.add("comment_write");
 		Paramvalue.add(doc_srl);
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(Global.setValue(comment_edittext.getText().toString()));
 		Paramvalue.add("3");
 		Paramvalue.add("0");
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/comment_app_write.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 4, 0);
 	}
 
@@ -519,25 +510,16 @@ public class document_read extends ActionBarActivity {
 		// IF Sucessfull no timeout
 		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
+		Paramname.add("a");
 		Paramname.add("doc_srl");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
 		Paramname.add("status");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("0");
+		Paramvalue.add("doc_status_update");
 		Paramvalue.add(doc_srl);
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(status);
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/documents_app_write.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, handler, 0);
 	}
 
@@ -545,25 +527,16 @@ public class document_read extends ActionBarActivity {
 		// IF Sucessfull no timeout
 		setSupportProgressBarIndeterminateVisibility(true);
 		ArrayList<String> Paramname = new ArrayList<String>();
-		Paramname.add("authcode");
-		Paramname.add("kind");
+		Paramname.add("a");
 		Paramname.add("comment_srl");
-		Paramname.add("user_srl");
-		Paramname.add("user_srl_auth");
 		Paramname.add("status");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
-		Paramvalue.add("642979");
-		Paramvalue.add("0");
+		Paramvalue.add("comment_status_update");
 		Paramvalue.add(srl);
-		Paramvalue.add(Global.getSetting("user_srl",
-				Global.getSetting("user_srl", "0")));
-		Paramvalue.add(Global.getSetting("user_srl_auth",
-				Global.getSetting("user_srl_auth", "null")));
 		Paramvalue.add(status);
 
-		new AsyncHttpTask(this, getString(R.string.server_path)
-				+ "board/comment_app_write.php", mHandler, Paramname,
+		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, handler, 0);
 	}
 
@@ -955,7 +928,7 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 4) {
 				String result = msg.obj.toString();
 				comment_edittext.setEnabled(true);
-				if (result.matches("comment_write_succeed")) {
+				if (result.matches("success")) {
 					// setCommentsCount(comments_count + 1);
 					previous_count = 1;
 					m_adapter.clear();
@@ -966,7 +939,7 @@ public class document_read extends ActionBarActivity {
 					Global.ConnectionError(document_read.this);
 				}
 				// Log.i("Result","로그 정상 작동");
-				Log.i("Result", msg.obj.toString());
+				Global.log(msg.obj.toString());
 
 			}
 
@@ -990,7 +963,7 @@ public class document_read extends ActionBarActivity {
                                 get.you_comment_status);
                         m_adapter.notifyDataSetChanged();
 
-                        m_adapter.notifyDataSetChanged();
+                       // m_adapter.notifyDataSetChanged();
                     }
 
 //					Log.i("Cmt", msg.obj.toString());
@@ -1023,7 +996,7 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 6) {
 				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
-				if (result.matches("document_update_succeed")) {
+				if (result.matches("success")) {
 					Global.toast(getString(R.string.deleted));
 					UpdateFinishAct();
 				} else {
@@ -1036,7 +1009,7 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 7) {
 				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
-				if (result.matches("comment_update_succeed")) {
+				if (result.matches("success")) {
 					Global.toast(getString(R.string.deleted));
 					previous_count = 1;
 					m_adapter.clear();
@@ -1052,7 +1025,7 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 8) {
 				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
-				if (result.matches("document_update_succeed")) {
+				if (result.matches("success")) {
 					Global.toast(getString(R.string.changed));
 					refreshAct();
 				} else {
@@ -1064,7 +1037,7 @@ public class document_read extends ActionBarActivity {
 			if (msg.what == 9) {
 				// Log.i("result", msg.obj.toString());
 				String result = msg.obj.toString();
-				if (result.matches("comment_update_succeed")) {
+				if (result.matches("success")) {
 					Global.toast(getString(R.string.changed));
 					refreshAct();
 				} else {
