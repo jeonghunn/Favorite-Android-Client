@@ -579,10 +579,13 @@ e.printStackTrace();
 
 				try {
 
-					String[] array = msg.obj.toString().split("/LINE/.");
-					// Global.dumpArray(array);
-					String profile_pic = array[0];
-					String profile_update = array[1];
+
+
+                    Map resultmap = Global.getJsonObject(msg.obj.toString());
+                    Global.log(resultmap.toString());
+                    String profile_pic = String.valueOf(resultmap.get("profile_pic"));
+                    String profile_update = String.valueOf(resultmap.get("profile_update"));
+
 
 					String user_srl = String.valueOf(msg.arg1);
 					Global.SaveUserSetting(user_srl, null,
