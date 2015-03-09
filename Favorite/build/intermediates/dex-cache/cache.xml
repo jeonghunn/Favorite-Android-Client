@@ -2,6 +2,20 @@
 <items version="2" >
 
     <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-96f496b02fd7c76e978d2c57c8d5bb9784b0376b.jar" />
+    </item>
+    <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-42962ef69170442aafbb085d6ae1cf696660322a.jar" />
+    </item>
+    <item
         jar="/Volumes/DATA/Users/jhrunning/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
         jumboMode="false"
         revision="21.1.1"

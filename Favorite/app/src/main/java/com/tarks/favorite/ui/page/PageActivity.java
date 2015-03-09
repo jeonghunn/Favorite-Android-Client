@@ -299,10 +299,12 @@ public class PageActivity extends ActionBarActivity {
 		if (Global.getUpdatePossible(user_srl)) {
 			// Log.i("Update", "Updateing");
 			ArrayList<String> Paramname = new ArrayList<String>();
-			Paramname.add("page_info");
+			Paramname.add("a");
+            Paramname.add("page_srl");
 			Paramname.add("page_info");
 
 			ArrayList<String> Paramvalue = new ArrayList<String>();
+            Paramvalue.add("page_info");
 			Paramvalue.add(String.valueOf(user_srl));
 			Paramvalue.add("profile_pic//profile_update");
 

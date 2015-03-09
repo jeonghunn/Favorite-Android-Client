@@ -9,9 +9,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/send"
         android:layout_centerHorizontal="true"
-         android:listSelector="@android:color/transparent"
-           android:background="#EAEAEA"
-               android:divider="@null"
         android:cacheColorHint="#00000000" >
 
     </ListView>

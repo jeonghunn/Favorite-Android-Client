@@ -25,10 +25,11 @@
 
             <ImageView
                 android:id="@+id/img"
-                android:layout_width="40sp"
-                android:layout_height="40sp"
+                android:layout_width="48sp"
+                android:layout_height="48sp"
                 android:adjustViewBounds="true"
                 android:baselineAlignBottom="true"
+                android:layout_marginLeft="4dp"
                 android:contentDescription="Color Stripe"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_person_outline_grey" />
@@ -45,7 +46,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
+                    android:layout_marginLeft="4dip"
                     android:text="@string/loading"
                     android:textColor="#000000"
                     android:textSize="16sp" />
@@ -55,11 +56,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dip"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginRight="48dip"
                     android:text="..."
                     android:textColor="#8C8C8C"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
