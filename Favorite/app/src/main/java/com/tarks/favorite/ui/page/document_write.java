@@ -96,7 +96,7 @@ public class document_write extends ActionBarActivity {
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("doc_write");
 		Paramvalue.add(page_srl);
-		Paramvalue.add("null");
+		Paramvalue.add("");
 		Paramvalue.add(Global.setValue(content));
 		Paramvalue.add("3");
 		Paramvalue.add(status);
