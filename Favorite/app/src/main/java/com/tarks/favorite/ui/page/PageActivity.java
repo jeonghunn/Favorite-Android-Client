@@ -287,6 +287,7 @@ public class PageActivity extends ActionBarActivity {
 	}
 
 	public void MoreLoad(String number) {
+     //   Global.log("MoreLOADTry!!!!!!");
 		if (listView.getLastVisiblePosition() >= listView.getCount() - 1
 				&& listView.getChildAt(0).getTop() != 0) {
             Global.log("MoreLOAD!!!!!!");
@@ -392,7 +393,7 @@ public class PageActivity extends ActionBarActivity {
 
 	public void ProfileUserImageDownload(String user_srl) {
 		// Start Progressbar
-		showProgressBar();
+	//	showProgressBar();
 		new ImageDownloader(this, getString(R.string.server_path)
 				+ "files/profile/thumbnail/" + user_srl + ".jpg", mHandler, 5,
 				Integer.parseInt(user_srl));
@@ -531,6 +532,8 @@ public class PageActivity extends ActionBarActivity {
                     setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.status);
                     m_adapter.notifyDataSetChanged();
                 }
+
+                    FadingActionBarHelperBase.mLockListView = false;
             } catch (Exception e) {
 e.printStackTrace();
             }
@@ -569,7 +572,7 @@ e.printStackTrace();
 //
 //                    }
 //                    //Unlock listview
-//                    FadingActionBarHelperBase.mLockListView = false;
+//
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //				}

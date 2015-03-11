@@ -37,6 +37,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.tarks.favorite.R;
+import com.tarks.favorite.core.global.Global;
 import com.tarks.favorite.ui.fadingactionbar.view.ObservableScrollView;
 import com.tarks.favorite.ui.fadingactionbar.view.ObservableWebViewWithHeader;
 import com.tarks.favorite.ui.fadingactionbar.view.OnScrollChangedCallback;
@@ -295,10 +296,11 @@ public abstract class FadingActionBarHelperBase {
     	      && mLockListView == false )
     	    {
     	      addItems(totalItemCount);
+
     	//       Log.i("ADDITEM", "Add Item called");
-    	    }  
-    	  
-    	    
+    	    }
+
+          //  Global.log("Scroll!!!!");
  
         
             View topChild = view.getChildAt(0);
@@ -330,7 +332,8 @@ public abstract class FadingActionBarHelperBase {
     				//((ProfileActivity) cx).setFadingActionBar();
     			//	((ProfileActivity) cx).getDocList(String.valueOf(size - 1));
     				((PageActivity) cx).MoreLoad(String.valueOf(size - 1));
-    			}
+
+                }
   	        // 모든 데이터를 로드하여 적용하였다면 어댑터에 알리고
   	        // 리스트뷰의 락을 해제합니다.
   	     //   m_adapter.notifyDataSetChanged();
