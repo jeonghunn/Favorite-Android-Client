@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-96f496b02fd7c76e978d2c57c8d5bb9784b0376b.jar" />
-    </item>
-    <item
         jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.1"
@@ -16,11 +9,46 @@
         <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-42962ef69170442aafbb085d6ae1cf696660322a.jar" />
     </item>
     <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-807ac3325d4d3fc182a8b9f834474562aea08ef1.jar" />
+    </item>
+    <item
+        jar="/Volumes/DATA/Users/jhrunning/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-9f9511a8c9c1561b387492566abc446da4059c8c.jar" />
+    </item>
+    <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-96f496b02fd7c76e978d2c57c8d5bb9784b0376b.jar" />
+    </item>
+    <item
         jar="/Volumes/DATA/Users/jhrunning/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
         <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/gson-2.3-907fc20c140feaa6e0f19b790e2c28f09795c358.jar" />
+    </item>
+    <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-81265a8d8214e651f1f73ddacffe8b1a33a946c3.jar" />
+    </item>
+    <item
+        jar="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-b275d403199c8e9fc0a3e561993018e4ddfcaccc.jar" />
     </item>
 
 </items>

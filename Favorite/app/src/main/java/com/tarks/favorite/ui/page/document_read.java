@@ -312,12 +312,15 @@ public class document_read extends ActionBarActivity {
 		Paramname.add("a");
         Paramname.add("doc_srl");
 		Paramname.add("doc_info");
+        Paramname.add("attach_info");
 
 		ArrayList<String> Paramvalue = new ArrayList<String>();
 		Paramvalue.add("doc_read");
 		Paramvalue.add(doc_srl);
 		Paramvalue
-				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//attach//recommend//negative//you_doc_status");
+				.add("page_srl//user_srl//name//title//content//date//status//privacy//comments//attach//attach_contents//recommend//negative//you_doc_status");
+        Paramvalue
+                .add("kind//filename//extension//filevalue//date//size");
 
 		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 1, 0);
@@ -477,11 +480,11 @@ public class document_read extends ActionBarActivity {
 				Integer.parseInt(user_srl));
 	}
 
-	public void ImageDownload(String url) {
+	public void ImageDownload(String url, String fileName) {
 		// Start Progressbar
-		setSupportProgressBarIndeterminateVisibility(true);
-		int index = url.lastIndexOf("/");
-		String fileName = url.substring(index + 1);
+//		setSupportProgressBarIndeterminateVisibility(true);
+//		int index = url.lastIndexOf("/");
+//		String fileName = url.substring(index + 1);
 		AttachFileName = fileName;
 		new ImageDownloader(this, url, mHandler, 11, Integer.parseInt(user_srl));
 	}
@@ -829,9 +832,13 @@ public class document_read extends ActionBarActivity {
 					String privacy = String.valueOf(resultmap.get("privacy"));
 					comments = String.valueOf(resultmap.get("comments"));
 					String attach = String.valueOf(resultmap.get("attach"));
+                    String attach_contents = String.valueOf(resultmap.get("attach_contents"));
 					String recommend = String.valueOf(resultmap.get("recommend"));
 					String negative = String.valueOf(resultmap.get("negative"));
 					you_doc_status = Integer.parseInt(String.valueOf(resultmap.get("you_doc_status")));
+
+
+
 
 					// SetTitled
 					if (title.matches("null")) {
@@ -865,8 +872,40 @@ public class document_read extends ActionBarActivity {
 					// Load menu again
 					invalidateOptionsMenu();
 
-					if (!attach.matches("0"))
-						AttachDownload();
+					if (!attach.matches("0")){
+
+                        Map attachmap = Global.getJsonObject(attach_contents);
+
+
+                        String filename = String.valueOf(attachmap.get("filename"));
+                        String extension = String.valueOf(attachmap.get("extension"));
+                        String filevalue = String.valueOf(attachmap.get("filevalue"));
+                        String filefullname = filevalue + "." + extension;
+
+                        Global.log(extension);
+
+
+                  //      for (int i = 0; i < attac; i++) {
+                            if (extension.endsWith("jpg") || extension.endsWith("jpeg")) {
+
+
+                                if (!Global.CheckFileState(externel_path + filefullname)) {
+                                    ImageDownload(getString(R.string.server_path) + getString(R.string.image_path) + filefullname, filefullname);
+                                } else {
+                                    setHeaderList(externel_path + filefullname, null, null);
+                                    header_m_adapter.notifyDataSetChanged();
+                                }
+                            } else {
+
+                                setHeaderList(getString(R.string.server_api_path) + "?a=download&filevalue=" + filevalue, filename, extension.toUpperCase() + " "
+                                        + getString(R.string.file));
+                                header_m_adapter.notifyDataSetChanged();
+                            }
+                     //   }
+
+
+                    }
+
 
 				} catch (Exception e) {
 //					Global.Infoalert(document_read.this, getString(R.string.error),
@@ -1059,7 +1098,7 @@ public class document_read extends ActionBarActivity {
 						String fileName = array[i].substring(index + 1);
 
 						if (!Global.CheckFileState(externel_path + fileName)) {
-							ImageDownload(array[i]);
+					//		ImageDownload(array[i]);
 						} else {
 							setHeaderList(externel_path + fileName, null, null);
 							header_m_adapter.notifyDataSetChanged();

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.10.4.5138</string>
+    <string name="ver">1.9.10.5.5139</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -11,6 +11,7 @@
     <string name="default_country">us</string>
     <string name="server_api_path">http://tarks.net/develop/favorite/api.php</string>
     <string name="server_path">http://tarks.net/develop/favorite/</string>
+    <string name="image_path">files/images/</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
