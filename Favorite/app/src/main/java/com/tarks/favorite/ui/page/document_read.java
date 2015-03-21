@@ -997,7 +997,7 @@ public class document_read extends ActionBarActivity {
                         if (previous_count > 1)
                             moreload = i;
                         getPageInfo(user_srl);
-                        setList(moreload, get.srl, user_srl,
+                        setList(moreload, get.srl, String.valueOf(get.user_srl),
                                 get.name, get.content,
                                 Global.formatTimeString(get.date),
                                 get.status,
@@ -1007,7 +1007,7 @@ public class document_read extends ActionBarActivity {
                        // m_adapter.notifyDataSetChanged();
                     }
 
-//					Log.i("Cmt", msg.obj.toString());
+                    Global.log( msg.obj.toString());
 //                    Map commap = Global.getJsonObject(msg.obj.toString());
 //                    Global.log(commap.toString());
 //

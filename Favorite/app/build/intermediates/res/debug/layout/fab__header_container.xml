@@ -4,11 +4,34 @@
     tools:ignore="MergeRootFrame"
     android:id="@+id/fab__header_container"
     android:layout_width="match_parent"
-    android:layout_height="280sp" >
+    android:layout_height="300sp" >
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/fab__gradient"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal|bottom">
+
+        <ImageView
+            android:id="@+id/profile_img"
+            android:scaleType="centerCrop"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
+
+        <ImageButton
+            android:id="@+id/edit_info"
+            android:background="@drawable/photo_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </FrameLayout>
 
     <View
         android:id="@+id/fab__gradient"
         android:layout_width="match_parent"
-        android:layout_height="280sp" />
+        android:layout_height="200sp"
+        android:layout_gravity="center_horizontal|top" />
 
 </FrameLayout><!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/layout/fab__header_container.xml -->
