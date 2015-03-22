@@ -40,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -240,7 +241,23 @@ public class PageActivity extends ActionBarActivity {
 
 			}
 		});
-		// listView.setOnScrollListener(this);
+
+        View header = getLayoutInflater().inflate(
+                R.layout.profile_layout, null, false);
+        profile = (ImageView) header.findViewById(R.id.profile_img);
+        ImageButton profile_button = (ImageButton) header
+                .findViewById(R.id.edit_info);
+       // profile_edit = (ImageButton) header.findViewById(R.id.edit);
+     TextView   profile_title = (TextView) header.findViewById(R.id.title);
+     TextView   profile_des = (TextView) header.findViewById(R.id.description);
+        profile.setImageDrawable(Drawable.createFromPath(local_path
+                + "thumbnail/" + member_srl + ".jpg"));
+
+        profile_title.setText( "이정훈");
+        listView.addHeaderView(header);
+
+
+        // listView.setOnScrollListener(this);
 		m_adapter = new ListAdapter(this, R.layout.profile_list, m_orders);
 
 		// Set Profile
