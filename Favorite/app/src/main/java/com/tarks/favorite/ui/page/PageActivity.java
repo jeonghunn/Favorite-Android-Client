@@ -494,7 +494,7 @@ public class PageActivity extends ActionBarActivity {
 
 					title = Global.NameMaker(lang, name_1, name_2);
 
-					getSupportActionBar().setTitle(title);
+					getSupportActionBar().setTitle("");
 
 					if (Global.UpdateMemberFileCache(member_srl,
 							profile_update, profile_pic)) {

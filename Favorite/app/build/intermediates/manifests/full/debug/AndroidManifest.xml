@@ -125,7 +125,7 @@
         <activity
             android:name="com.tarks.favorite.ui.page.PageActivity"
             android:icon="@drawable/ic_launcher_simple"
-            android:label="@string/app_name"
+            android:label=""
             android:theme="@style/AppTheme.TranslucentActionBar" />
         <activity
             android:name="com.tarks.favorite.ui.page.PageEdit"

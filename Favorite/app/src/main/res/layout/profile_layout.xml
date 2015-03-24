@@ -3,15 +3,27 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="19dp"
-        android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-    android:paddingBottom="18dp">
+    android:layout_height="fill_parent"
 
+
+
+   >
+
+    <LinearLayout
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+            android:background="#FFFFFF"
+        >
     <FrameLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp">
+        android:layout_width="84dp"
+        android:layout_height="84dp">
 
         <ImageView
             android:id="@+id/profile_img"
@@ -31,14 +43,14 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
+        android:layout_height="84dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="1dp"
         android:layout_weight="1">
 
         <TextView
-            android:textSize="21dp"
+            android:textSize="24sp"
             android:textColor="#333333"
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -61,9 +73,8 @@
 
     </LinearLayout>
 
-    <View
-        android:background="#e8e8e8"
-        android:layout_width="1dp"
-        android:layout_height="48dp"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>
