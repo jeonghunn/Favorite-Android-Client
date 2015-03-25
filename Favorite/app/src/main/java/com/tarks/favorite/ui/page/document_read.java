@@ -72,6 +72,7 @@ public class document_read extends ActionBarActivity {
 	private String comments = "0";
 	private String status = "0";
 	private String AttachFileName;
+    private String content;
 	private int comments_count = 0;
 	private int previous_count = 1;
 	private int contextmenu_number = 0;
@@ -115,6 +116,9 @@ public class document_read extends ActionBarActivity {
 		// Get Intent
 		Intent intent = getIntent();// 인텐트 받아오고
 		doc_srl = intent.getStringExtra("doc_srl");
+       content = intent.getStringExtra("doc_content");
+
+        if(doc_content != null)
 	
 		Log.i("Doc srl", doc_srl);
 		try {
@@ -174,6 +178,7 @@ public class document_read extends ActionBarActivity {
 		profile_des = (TextView) header.findViewById(R.id.description);
 		header_listView = (ListView) header.findViewById(R.id.header_listview);
 		doc_content = (TextView) header.findViewById(R.id.content);
+        doc_content.setText(Global.getValue(content));
 		comment_count = (TextView) header.findViewById(R.id.comment_count);
 		header_listView.setOnItemClickListener(new OnItemClickListener() {
 

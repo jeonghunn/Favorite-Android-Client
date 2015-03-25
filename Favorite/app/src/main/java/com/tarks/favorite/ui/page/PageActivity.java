@@ -238,6 +238,7 @@ public class PageActivity extends ActionBarActivity {
                                 document_read.class);
                         intent.putExtra("doc_srl",
                                 String.valueOf(ls.getDocSrl()));
+                      intent.putExtra("doc_content", ls.getDes());
                         startActivityForResult(intent, 1);
 
 
