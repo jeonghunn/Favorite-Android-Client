@@ -366,6 +366,7 @@ public abstract class FadingActionBarHelperBase {
         int newAlpha = (int) (ratio * 255);
         mActionBarBackgroundDrawable.setAlpha(newAlpha);
     	((PageActivity) cx).setStatusBarColor(newAlpha);
+            ((PageActivity) cx).setTitlebarbyScroll(ratio);
         addParallaxEffect(scrollPosition);
     }
 

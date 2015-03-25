@@ -62,7 +62,9 @@ public class PageActivity extends ActionBarActivity {
 	String local_path;
 	// User name
 	String title;
-	// Member srl
+    private TextView profile_title;
+    private TextView profile_des;
+    	// Member srl
 	String member_srl = "0";
 	int write_status;
 	int your_status;
@@ -222,40 +224,37 @@ public class PageActivity extends ActionBarActivity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
-					if (((HeaderViewListAdapter) arg0.getAdapter())
-							.getWrappedAdapter() instanceof ListAdapter) {
-						ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
-								.getAdapter()).getWrappedAdapter();
+                if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
+                    if (((HeaderViewListAdapter) arg0.getAdapter())
+                            .getWrappedAdapter() instanceof ListAdapter) {
+                        ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
+                                .getAdapter()).getWrappedAdapter();
 
-						List ls = (List) ca.getItem(arg2 - 1);
+                        List ls = (List) ca.getItem(arg2 - 2);
 
-						Intent intent = new Intent(PageActivity.this,
-								document_read.class);
-						intent.putExtra("doc_srl",
-								String.valueOf(ls.getDocSrl()));
-						startActivityForResult(intent, 1);
 
-					}
-				}
+
+                        Intent intent = new Intent(PageActivity.this,
+                                document_read.class);
+                        intent.putExtra("doc_srl",
+                                String.valueOf(ls.getDocSrl()));
+                        startActivityForResult(intent, 1);
+
+
+                    }
+                }
+//				if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
+//					if (((HeaderViewListAdapter) arg0.getAdapter())
+//							.getWrappedAdapter() instanceof ListAdapter) {
+//
+//					}
+//				}
 
 			}
 		});
 
-        View header = getLayoutInflater().inflate(
-                R.layout.profile_layout, null, false);
-        profile = (ImageView) header.findViewById(R.id.profile_img);
-        ImageButton profile_button = (ImageButton) header
-                .findViewById(R.id.edit_info);
-       // profile_edit = (ImageButton) header.findViewById(R.id.edit);
-     TextView   profile_title = (TextView) header.findViewById(R.id.title);
-     TextView   profile_des = (TextView) header.findViewById(R.id.description);
-        profile.setImageDrawable(Drawable.createFromPath(local_path
-                + "thumbnail/" + member_srl + ".jpg"));
 
-        profile_title.setText( "이정훈");
-        listView.addHeaderView(header);
-
+        setListViewHeader(listView);
 
         // listView.setOnScrollListener(this);
 		m_adapter = new ListAdapter(this, R.layout.profile_list, m_orders);
@@ -267,6 +266,22 @@ public class PageActivity extends ActionBarActivity {
 		listView.setAdapter(m_adapter);
 
 	}
+
+    private void setListViewHeader(ListView listView){
+        View header = getLayoutInflater().inflate(
+                R.layout.profile_layout, null, false);
+        profile = (ImageView) header.findViewById(R.id.profile_img);
+        ImageButton profile_button = (ImageButton) header
+                .findViewById(R.id.edit_info);
+        // profile_edit = (ImageButton) header.findViewById(R.id.edit);
+           profile_title = (TextView) header.findViewById(R.id.title);
+           profile_des = (TextView) header.findViewById(R.id.description);
+        profile.setImageDrawable(Drawable.createFromPath(local_path
+                + "thumbnail/" + member_srl + ".jpg"));
+
+        profile_title.setText(title);
+        listView.addHeaderView(header);
+    }
 
 	public void setList(int doc_srl, String user_srl, String name,
 			String contents, int status) {
@@ -331,6 +346,10 @@ public class PageActivity extends ActionBarActivity {
 
 		}
 	}
+
+    private void setTitle(String title){
+profile_title.setText(title);
+    }
 
 	public void addFavorite(String user_srl) {
 
@@ -422,6 +441,16 @@ public class PageActivity extends ActionBarActivity {
 				getString(R.string.yes));
 	}
 
+    public void setTitlebarbyScroll(float ratio){
+       // Global.log("Ratio : " + ratio);
+        if(ratio == 1){
+            getSupportActionBar().setTitle(title);
+
+        }else if(getSupportActionBar().getTitle() != ""){
+            getSupportActionBar().setTitle("");
+        }
+    }
+
 	public void ChangeUserAlert(final String user_srl) {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -494,7 +523,7 @@ public class PageActivity extends ActionBarActivity {
 
 					title = Global.NameMaker(lang, name_1, name_2);
 
-					getSupportActionBar().setTitle("");
+					setTitle(title);
 
 					if (Global.UpdateMemberFileCache(member_srl,
 							profile_update, profile_pic)) {
