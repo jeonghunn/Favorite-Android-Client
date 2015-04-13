@@ -18,7 +18,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"مشاركة مع"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"‏مشاركة مع %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"تصغير"</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-ar/common_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-ar/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"‏يتطلب أحد التطبيقات تحديثًا لتطبيق Android Wear."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"‏لن يتم تشغيل هذا التطبيق ما لم تحدِّث تطبيق Android Wear."</string>
@@ -39,6 +39,8 @@
     <string msgid="8120534356798772974" name="common_google_play_services_notification_needs_installation_title">"‏يتطلب أحد التطبيقات تثبيت خدمات Google Play."</string>
     <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"‏يتطلب أحد التطبيقات تحديث خدمات Google Play."</string>
     <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"‏خطأ في خدمات Google Play"</string>
+    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"حدث خطأ أثناء تسجيل الدخول إلى الحساب المحدد. الرجاء اختيار حساب مختلف."</string>
+    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"أخفق تسجيل الدخول"</string>
     <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"‏حدثت مشكلة غير معروفة في خدمات Google Play."</string>
     <string msgid="3542578567569488671" name="common_google_play_services_unsupported_text">"‏خدمات Google Play التي تستجيب لها بعض تطبيقاتك لا تعمل على جهازك. يُرجى الاتصال بجهة التصنيع للحصول على المساعدة."</string>
     <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"‏خدمات Google Play"</string>
@@ -48,4 +50,5 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"فتح على الهاتف"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"تسجيل الدخول"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"‏تسجيل الدخول باستخدام Google"</string>
+    <string msgid="5000919058582214855" name="commono_google_play_services_api_unavailable_text">"‏يتطلب هذا التطبيق خدمة أو أكثر من خدمات Google Play غير المتاحة حاليًا. الرجاء الاتصال بمطوّر البرامج للحصول على المساعدة."</string>
 </resources>

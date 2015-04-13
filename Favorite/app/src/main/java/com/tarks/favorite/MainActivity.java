@@ -367,7 +367,7 @@ public class MainActivity extends ActionBarActivity {
 				// getCacheDir().toString(), "/profile.jpg");
 				// }
 
-				if (Global.UpdateMemberFileCache(user_srl, profile_update, profile_pic)) {
+				if (Global.UpdateMemberFileCache(this, user_srl, profile_update, profile_pic)) {
 					Global.SaveUserSetting(user_srl, profile_update, null,  profile_pic);
 					//Download image
 					new ImageDownloader(this, getString(R.string.server_path)

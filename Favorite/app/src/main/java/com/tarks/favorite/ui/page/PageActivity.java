@@ -526,7 +526,7 @@ profile_title.setText(title);
 
 					setTitle(title);
 
-					if (Global.UpdateMemberFileCache(member_srl,
+					if (Global.UpdateMemberFileCache(PageActivity.this, member_srl,
 							profile_update, profile_pic)) {
 						Global.SaveUserSetting(member_srl, profile_update,
 								null, profile_pic);

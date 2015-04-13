@@ -679,9 +679,9 @@ public final class Global {
 		return Uri.parse(path);
 	}
 
-	public static boolean UpdateMemberFileCache(String user_srl,
+	public static boolean UpdateMemberFileCache(Context cx, String user_srl,
 			String new_update, String profile_pic) {
-		String local_path = mod.getCacheDir().toString() + "/member/";
+		String local_path = cx.getCacheDir().toString() + "/member/";
 		if (Global.UpdateFileCache(new_update,
 				Global.getUser(user_srl, "profile_update"),
 				mod.getString(R.string.server_path) + "files/profile/"

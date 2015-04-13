@@ -18,7 +18,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Del med"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Del med %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Skjul"</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-da/common_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-da/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"En applikation kræver en opdatering af appen Android Wear."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Denne app kan ikke køre, medmindre du opdaterer appen Android Wear."</string>
@@ -39,6 +39,8 @@
     <string msgid="8120534356798772974" name="common_google_play_services_notification_needs_installation_title">"En applikation kræver, at Google Play-tjenester installeres."</string>
     <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"En applikation kræver, at Google Play-tjenester opdateres."</string>
     <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"Fejl i Google Play-tjenester"</string>
+    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"Der opstod en fejl under login på angivne konto. Vælg en anden konto."</string>
+    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"Login mislykkedes"</string>
     <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"Ukendt problem med Google Play-tjenester."</string>
     <string msgid="3542578567569488671" name="common_google_play_services_unsupported_text">"Google Play-tjenester, som nogle af dine applikationer er afhængige af, understøttes ikke af din enhed. Kontakt producenten for at få hjælp."</string>
     <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"Google Play-tjenester"</string>
@@ -48,4 +50,5 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Åbn på telefonen"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Log ind"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Log ind med Google"</string>
+    <string msgid="5000919058582214855" name="commono_google_play_services_api_unavailable_text">"Denne app kræver en eller flere Google Play-tjenester, der ikke er tilgængelige i øjeblikket. Kontakt udvikleren for at få hjælp."</string>
 </resources>

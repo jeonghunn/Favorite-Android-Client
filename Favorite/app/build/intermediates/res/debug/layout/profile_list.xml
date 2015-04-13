@@ -55,6 +55,11 @@
                 android:textColor="#8C8C8C"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/info" />
     </LinearLayout>
 
 </LinearLayout><!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/layout/profile_list.xml -->
