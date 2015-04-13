@@ -537,8 +537,7 @@ profile_title.setText(title);
 					if (profile_pic.matches("N")) {
 						File file = new File(local_path + member_srl + ".jpg");
 						file.delete();
-						profile.setImageDrawable(null);
-                        profile.setVisibility(View.INVISIBLE);
+						profile.setImageDrawable(getDrawable(R.drawable.ic_person_outline_grey));
 					}
 
 					if (me_status < 3) {
