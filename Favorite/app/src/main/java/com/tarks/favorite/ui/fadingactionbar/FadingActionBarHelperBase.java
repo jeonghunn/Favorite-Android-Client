@@ -320,7 +320,7 @@ public abstract class FadingActionBarHelperBase {
         private void addItems(final int size)
   	  {
   	    // 아이템을 추가하는 동안 중복 요청을 방지하기 위해 락을 걸어둡니다.
-
+          mLockListView = true;
   	    Runnable run = new Runnable()
   	    {
   	      @Override
@@ -331,7 +331,7 @@ public abstract class FadingActionBarHelperBase {
     			if(cx != null) {
     				//((ProfileActivity) cx).setFadingActionBar();
     			//	((ProfileActivity) cx).getDocList(String.valueOf(size - 1));
-                    mLockListView = true;
+
     				((PageActivity) cx).MoreLoad(String.valueOf(size - 1));
 
                 }

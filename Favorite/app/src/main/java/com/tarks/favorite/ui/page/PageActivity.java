@@ -125,7 +125,18 @@ public class PageActivity extends ActionBarActivity {
 		load();
 
 	}
-	
+
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        setlocklistView(false);
+
+    }
+
+    public void setlocklistView(boolean a){
+        FadingActionBarHelperBase.mLockListView = a;
+    }
 	
 	private void setProgressBar(){
 		
@@ -580,7 +591,7 @@ profile_title.setText(title);
                     m_adapter.notifyDataSetChanged();
                 }
 
-                    FadingActionBarHelperBase.mLockListView = false;
+                    setlocklistView(false);
             } catch (Exception e) {
 e.printStackTrace();
             }
