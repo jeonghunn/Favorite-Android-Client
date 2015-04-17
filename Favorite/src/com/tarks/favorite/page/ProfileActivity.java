@@ -116,6 +116,16 @@ public class ProfileActivity extends SherlockActivity {
 
 		getDocList("0");
 	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		setLockListView(false);
+	}
+	
+	public void setLockListView(boolean a){
+		FadingActionBarHelperBase.mLockListView = a;
+	}
 
 	public void getProfileInfo() {
 		// Start Progressbar
@@ -492,7 +502,7 @@ public class ProfileActivity extends SherlockActivity {
 
 					}
 					//Unlock listview
-					FadingActionBarHelperBase.mLockListView = false;
+					setLockListView(false);
 				} catch (Exception e) {
 
 				}

@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.8.1.4667</string>
-    <string name="build">4667</string>
+    <string name="ver">1.8.2.4668</string>
+    <string name="build">4668</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
-    <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
+    <string name="copyright">Copyrightⓒ 2015 Tarks.</string>
     <string name="lang">en</string>
     <string name="default_country">us</string>
     <string name="server_path">http://tarks.net/favorite/</string>
