@@ -15,4 +15,4 @@
         android:topLeftRadius="@dimen/indicator_corner_radius"
         android:topRightRadius="@dimen/indicator_corner_radius" />
 
-</shape><!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/indicator_bg_bottom.xml -->
+</shape><!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/indicator_bg_bottom.xml -->

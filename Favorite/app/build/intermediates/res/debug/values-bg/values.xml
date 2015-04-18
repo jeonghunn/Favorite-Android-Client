@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-bg/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-bg/values.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Придвижване към „Начало“"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"„%1$s“ – %2$s"</string>
@@ -18,7 +18,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Споделяне със:"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Споделяне със: %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Свиване"</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-bg/common_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-bg/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"Приложение изисква актуализиране на Android Wear."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Това приложение няма да стартира, освен ако не актуализирате Android Wear."</string>
@@ -39,8 +39,6 @@
     <string msgid="8120534356798772974" name="common_google_play_services_notification_needs_installation_title">"Приложение изисква инсталирането на услугите за Google Play."</string>
     <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"Приложение изисква актуализирането на услугите за Google Play."</string>
     <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"Грешка в услугите за Google Play"</string>
-    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"При влизането в посочения профил възникна грешка. Моля, изберете друг."</string>
-    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"Влизането в профила не бе успешно"</string>
     <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"Неизвестен проблем с услугите за Google Play."</string>
     <string msgid="3542578567569488671" name="common_google_play_services_unsupported_text">"Услугите за Google Play, на които разчитат някои от приложенията ви, не се поддържат от устройството ви. Моля, свържете се с производителя за помощ."</string>
     <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"Услуги за Google Play"</string>
@@ -50,5 +48,4 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Отваряне в телефона"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Вход"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Вход с Google"</string>
-    <string msgid="5000919058582214855" name="commono_google_play_services_api_unavailable_text">"За това приложение се изисква една или повече услуги за Google Play, които понастоящем не са налице. Моля, свържете се с програмиста за съдействие."</string>
 </resources>
