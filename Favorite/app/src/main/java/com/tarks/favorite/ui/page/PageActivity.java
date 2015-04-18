@@ -138,18 +138,19 @@ public class PageActivity extends ActionBarActivity {
         FadingActionBarHelperBase.mLockListView = a;
     }
 	
-	private void setProgressBar(){
+	private void setProgressBar(View v){
 		
-		 pb = (ProgressBar) findViewById(R.id.progressBar1);
-		pb.setVisibility(View.INVISIBLE);
+		 pb = (ProgressBar) v.findViewById(R.id.progressBar);
+		//pb.setVisibility(View.INVISIBLE);
 	}
 	
 	private void showProgressBar(){
-		if(pb != null) pb.setVisibility(View.VISIBLE);
+		//if(pb != null) pb.setVisibility(View.VISIBLE);
 	}
 	
 	private void hideProgressBar(){
 		if(pb != null) pb.setVisibility(View.INVISIBLE);
+
 	}
 	
 	public void setStatusBarColor(int alpha){
@@ -171,7 +172,7 @@ public class PageActivity extends ActionBarActivity {
 	
 	public void load() {
 		setFadingActionBar();
-		setProgressBar();
+
 		// local_path = getCacheDir().toString()
 		// + "/member/";
 		try {
@@ -282,6 +283,7 @@ public class PageActivity extends ActionBarActivity {
     private void setListViewHeader(ListView listView){
         View header = getLayoutInflater().inflate(
                 R.layout.profile_layout, null, false);
+        View footer = getLayoutInflater().inflate(R.layout.listview_moreload, null, false);
         profile = (ImageView) header.findViewById(R.id.profile_img);
         ImageButton profile_button = (ImageButton) header
                 .findViewById(R.id.edit_info);
@@ -292,7 +294,10 @@ public class PageActivity extends ActionBarActivity {
                 + "thumbnail/" + member_srl + ".jpg"));
 
         profile_title.setText(title);
+
+        setProgressBar(footer);
         listView.addHeaderView(header);
+        listView.addFooterView(footer);
     }
 
 	public void setList(int doc_srl, String user_srl, String name,
@@ -501,7 +506,7 @@ profile_title.setText(title);
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			hideProgressBar();
+			//hideProgressBar();
 			// IF Sucessfull no timeout
 
 			if (msg.what == -1) {
@@ -592,8 +597,13 @@ profile_title.setText(title);
                 }
 
                     setlocklistView(false);
+
+
+
             } catch (Exception e) {
 e.printStackTrace();
+                    //No more loads
+                    hideProgressBar();
             }
         //        Map resultmap = Global.getJSONArray(msg.obj.toString());
 
