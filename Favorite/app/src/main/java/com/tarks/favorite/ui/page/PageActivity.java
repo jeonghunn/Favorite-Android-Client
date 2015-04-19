@@ -297,7 +297,7 @@ public class PageActivity extends ActionBarActivity {
 
         setProgressBar(footer);
         listView.addHeaderView(header);
-        listView.addFooterView(footer);
+        listView.addFooterView(footer,null,false);
     }
 
 	public void setList(int doc_srl, String user_srl, String name,

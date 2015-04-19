@@ -26,4 +26,4 @@
         android:drawable="@drawable/spinner_ab_focused_favorite" />
     <item android:drawable="@drawable/spinner_ab_default_favorite" />
 </selector>
-<!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/spinner_background_ab_favorite.xml -->
+<!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/drawable/spinner_background_ab_favorite.xml -->

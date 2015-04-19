@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-am/values.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-am/values.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"ወደ መነሻ ይዳስሱ"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s፣ %2$s"</string>
@@ -18,7 +18,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"ከሚከተለው ጋር ያጋሩ"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"ከ%s ጋር ያጋሩ"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"ሰብስብ"</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-am/common_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-am/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"አንድ መተግበሪያ የAndroid Wear መተግበሪያ ዝማኔ ያስፈልገዋል።"</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"የAndroid Wear መተግበሪያውን እስኪያዘምኑት ድረስ ይህ መተግበሪያ አያሄድም።"</string>
@@ -39,6 +39,8 @@
     <string msgid="8120534356798772974" name="common_google_play_services_notification_needs_installation_title">"አንድ መተግበሪያ የGoogle Play አገልግሎቶች እንዲጫኑ ይፈልጋል።"</string>
     <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"አንድ መተግበሪያ የGoogle Play አገልግሎቶች እንዲዘምኑ ይፈልጋል።"</string>
     <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"የGoogle Play አገልግሎቶች ስህተት"</string>
+    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"ወደተገለጸው መለያ መግባት ላይ ስህተት። እባክዎ የተለየ መለያ ይምረጡ።"</string>
+    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"በመለያ መግባት አልተሳካም"</string>
     <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"በGoogle Play አገልግሎቶች ላይ ያልታወቀ ችግር።"</string>
     <string msgid="3542578567569488671" name="common_google_play_services_unsupported_text">"የGoogle Play አገልግሎቶች፣ አንዳንድ መተግበሪያዎችዎ በእሱ ላይ ጥገኛ የሆኑት፣ በመሣሪያዎ አይደገፍም። እባክዎ ለእርዳታ አምራቹን ያግኙ።"</string>
     <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"Google Play አገልግሎቶች"</string>
@@ -48,4 +50,5 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"ስልክ ላይ ክፈት"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"ግባ"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"በGoogle ይግቡ"</string>
+    <string msgid="5000919058582214855" name="commono_google_play_services_api_unavailable_text">"ይህ መተግበሪያ አሁን ላይ የማይገኙ አንድ ወይም ከዛ በላይ የGoogle Play አገልግሎቶችን ይፈልጋል። እገዛ ለማግኘት እባክዎ ገንቢውን ያነጋግሩ።"</string>
 </resources>

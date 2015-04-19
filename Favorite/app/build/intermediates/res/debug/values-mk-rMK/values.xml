@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-mk-rMK/values.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-mk-rMK/values.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Движи се кон дома"</string>
     <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
@@ -16,7 +16,7 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Гласовно пребарување"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Сподели со"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Собери"</string>
-    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-mk-rMK/common_strings.xml -->
+    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-mk-rMK/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"Една апликација бара ажурирање на апликацијата Android Wear."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Апликацијата нема да работи ако не ја ажурирате апликацијата Android Wear."</string>
@@ -37,6 +37,8 @@
     <string msgid="8120534356798772974" name="common_google_play_services_notification_needs_installation_title">"Апликацијата бара да се инсталираат услугите на Google Play."</string>
     <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"Апликацијата бара да се ажурираат услугите на Google Play."</string>
     <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"Грешка на услугите на Google Play"</string>
+    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"Грешка при пријавување во наведената сметка. Изберете друга сметка."</string>
+    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"Пријавувањето не успеа"</string>
     <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"Непознат проблем со услугите на Google Play."</string>
     <string msgid="3542578567569488671" name="common_google_play_services_unsupported_text">"Уредот не ги поддржува услугите на Google Play на кои се потпираат некои од вашите апликации. Контактирајте со производителот за помош."</string>
     <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"Услуги на Google Play"</string>
@@ -46,4 +48,5 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Отвори на телефонот"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Најави се"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Најави се со Google"</string>
+    <string msgid="5000919058582214855" name="commono_google_play_services_api_unavailable_text">"Оваа апликација бара една или повеќе услуги на Google Play што во моментов не се достапни. Контактирајте со програмерот за помош."</string>
 </resources>
