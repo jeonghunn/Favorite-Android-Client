@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-9d26fd32a324e675bfe9433683faebc79a36266c.jar" />
+    </item>
+    <item
         jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
         <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-4a499398610830db1d806459efba6fe7d07b35b3.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-ce06b699268614fd545a259718869d7aee39ccc7.jar" />
     </item>
     <item
         jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
@@ -16,11 +30,32 @@
         <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-11f61fd7bfadfcb2e5073bbd9121a0a2c0c12ffe.jar" />
     </item>
     <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-7f4c89034208a65f83135ba8de7c381e9224a212.jar" />
+    </item>
+    <item
         jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-0bc4d806bf34cca958b714e353d188327601b741.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-06f7b481e09e485218949fe66268b4c73a8f4584.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-77cae204afe70607384a3c2109a160fa778f68e6.jar" />
     </item>
     <item
         jar="/Users/JHRunning/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
@@ -30,11 +65,32 @@
         <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/gson-2.3-669abe80d5f16b85f967dec8603f8e89f17e94d6.jar" />
     </item>
     <item
-        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-4ece45a976b26675fa29c135ac2122c117c9f26b.jar" />
+        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-146147469a835015f27ff62a93040417242b84ca.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="a96b762bde4139de855735f175ec4d17dca55a6d">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-e6b3a851e41c3cecaf25c0ee6d97ef7feb99f276.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-e73c6eda1c5297bd6cc73205db975e4acf9719f1.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-0cb6396ae36b4080da7ec93cd44357d3187ed4ec.jar" />
     </item>
     <item
         jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/classes.jar"
@@ -56,6 +112,76 @@
         revision="21.1.1"
         sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
         <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-8a3f846fb6133f7574e7805d15b4747b6e25296d.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-042642a86d30daf746349033566d85890ae0407b.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-438c7ca3e6739d031c7034c6fca355b1fdb912c2.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-702eed28e60277adca2d0cd00423c838172794a0.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-44de56948e2b4a69a5bebc44669c2f7f89d3a3c6.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-4f631f8f97f5ef50297bc1f9f56bec6f6e81b6b4.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-7397423c522e16fe91961bfe82deae999cc28857.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-a40963540bcac0fadc0531c75791ed64ead71f47.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-e9cac57a31fc930cd034a9174dc59fc5172e3138.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-7c7b48db1899b4f0c06eb1c60cb090efaa6c490a.jar" />
+    </item>
+    <item
+        jar="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/pre-dexed/debug/classes-fdb3aae115094c0a6b0e0fc32e13c01fdecb7877.jar" />
     </item>
 
 </items>

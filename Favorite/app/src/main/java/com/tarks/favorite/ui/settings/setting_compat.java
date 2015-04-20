@@ -1,12 +1,10 @@
-package com.tarks.favorite.ui;
+package com.tarks.favorite.ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
-import android.view.MenuItem;
 
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.global.Global;
@@ -82,7 +80,7 @@ public class setting_compat extends PreferenceActivity {
 		info.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				startActivity(new Intent(setting_compat.this, info.class));
+				startActivity(new Intent(setting_compat.this, com.tarks.favorite.ui.info.class));
 				return false;
 			}
 		});

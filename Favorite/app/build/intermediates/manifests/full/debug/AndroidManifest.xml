@@ -103,11 +103,11 @@
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/app_info" />
         <activity
-            android:name="com.tarks.favorite.ui.setting"
+            android:name="com.tarks.favorite.ui.settings.setting"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/setting" />
         <activity
-            android:name="com.tarks.favorite.ui.setting_compat"
+            android:name="com.tarks.favorite.ui.settings.setting_compat"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/setting" />
         <activity

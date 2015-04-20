@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-lt/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-lt/values.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Eiti į pagrindinį puslapį"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -18,7 +18,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Bendrinti naudojant"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Bendrinti naudojant „%s“"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Sutraukti"</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-lt/common_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values-lt/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"Programai reikalingas „Android Wear“ programos naujinys."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Ši programa veiks tik atnaujinus „Android Wear“ programą."</string>

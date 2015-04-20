@@ -1,4 +1,4 @@
-package com.tarks.favorite.ui;
+package com.tarks.favorite.ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.tarks.favorite.R;
 import com.tarks.favorite.core.global.Global;
+import com.tarks.favorite.ui.info;
 import com.tarks.favorite.ui.page.PageActivity;
 import com.tarks.favorite.ui.page.PageInfo;
 

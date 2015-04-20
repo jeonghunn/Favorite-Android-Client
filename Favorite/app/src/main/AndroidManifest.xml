@@ -93,12 +93,12 @@
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/app_info" />
         <activity
-            android:name=".ui.setting"
+            android:name=".ui.settings.setting"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/setting" />
         
          <activity
-            android:name=".ui.setting_compat"
+            android:name=".ui.settings.setting_compat"
             android:icon="@drawable/ic_launcher_simple"
             android:label="@string/setting" />
         <activity

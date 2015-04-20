@@ -1,8 +1,5 @@
 //This is source code of favorite. Copyrightⓒ. Tarks. All Rights Reserved.
-package com.tarks.favorite.ui;
-
-import com.tarks.favorite.R;
-import com.tarks.favorite.main;
+package com.tarks.favorite.ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;

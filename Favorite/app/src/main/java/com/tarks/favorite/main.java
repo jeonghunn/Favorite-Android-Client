@@ -10,12 +10,10 @@ import com.tarks.favorite.ui.page.page_create;
 import com.tarks.favorite.ui.MenuListAdapter;
 import com.tarks.favorite.ui.contacts_fragment;
 import com.tarks.favorite.ui.no_favorite_fragment;
-import com.tarks.favorite.ui.setting;
-import com.tarks.favorite.ui.setting_fragment;
+import com.tarks.favorite.ui.settings.setting;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.app.Activity;

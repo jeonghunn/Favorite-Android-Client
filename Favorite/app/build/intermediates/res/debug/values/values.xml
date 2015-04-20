@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -22,10 +22,10 @@
     <color name="background_floating_material_light">#ffeeeeee</color>
     <color name="background_material_dark">#ff303030</color>
     <color name="background_material_light">#ffeeeeee</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="black_translucent">#50000000</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
@@ -35,7 +35,7 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="card_border">#ffdedede</color>
     <color name="card_grid_text">#ff707070</color>
@@ -43,13 +43,13 @@
     <color name="card_separator">#ffe5e5e5</color>
     <color name="card_text">#ff8d8d8d</color>
     <color name="card_title_text">#ff707070</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="cardview_light_background">#FFFAFAFA</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/common_colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/common_colors.xml -->
     <eat-comment/>
     <color name="common_action_bar_splitter">#d2d2d2</color>
     <color name="common_signin_btn_dark_text_default">@android:color/white</color>
@@ -61,21 +61,21 @@
     <color name="common_signin_btn_light_text_disabled">#FFAAAAAA</color>
     <color name="common_signin_btn_light_text_focused">#FF737373</color>
     <color name="common_signin_btn_light_text_pressed">@android:color/white</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="drawer_profile_background">#FFA648</color>
     <color name="favorite_color">#FD9800</color>
     <color name="favorite_dark_color">#985b00</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors_favorite.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors_favorite.xml -->
     <eat-comment/>
     <color name="favorite_main_color">#fd9800</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
@@ -88,10 +88,10 @@
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors_favorite.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors_favorite.xml -->
     <eat-comment/>
     <color name="pressed_favorite">#CC33B5E5</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
@@ -107,18 +107,18 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="status_secret_color">#EDEDED</color>
     <color name="stroke">#dddddd</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="text_light">#66000000</color>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_colors.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_colors.xml -->
     <eat-comment/>
     <color name="wallet_bright_foreground_disabled_holo_light">#ffb2b2b2</color>
     <color name="wallet_bright_foreground_holo_dark">#fff3f3f3</color>
@@ -166,7 +166,7 @@
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
     <declare-styleable name="WalletFragmentOptions"><attr format="enum" name="appTheme"><enum name="holo_dark" value="0"/><enum name="holo_light" value="1"/></attr><attr format="enum" name="environment"><enum name="production" value="1"/><enum name="sandbox" value="0"/><enum name="strict_sandbox" value="2"/></attr><attr format="reference" name="fragmentStyle"/><attr format="enum" name="fragmentMode"><enum name="buyButton" value="1"/><enum name="selectionDetails" value="2"/></attr></declare-styleable>
     <declare-styleable name="WalletFragmentStyle"><attr format="dimension" name="buyButtonHeight"><enum name="match_parent" value="-1"/><enum name="wrap_content" value="-2"/></attr><attr format="dimension" name="buyButtonWidth"><enum name="match_parent" value="-1"/><enum name="wrap_content" value="-2"/></attr><attr format="enum" name="buyButtonText"><enum name="buy_with_google" value="1"/><enum name="buy_now" value="2"/><enum name="book_now" value="3"/><enum name="donate_with_google" value="4"/></attr><attr format="enum" name="buyButtonAppearance"><enum name="classic" value="1"/><enum name="grayscale" value="2"/><enum name="monochrome" value="3"/></attr><attr format="reference" name="maskedWalletDetailsTextAppearance"/><attr format="reference" name="maskedWalletDetailsHeaderTextAppearance"/><attr format="reference|color" name="maskedWalletDetailsBackground"/><attr format="reference" name="maskedWalletDetailsButtonTextAppearance"/><attr format="reference|color" name="maskedWalletDetailsButtonBackground"/><attr format="color" name="maskedWalletDetailsLogoTextColor"/><attr format="enum" name="maskedWalletDetailsLogoImageType"><enum name="classic" value="1"/><enum name="monochrome" value="2"/></attr></declare-styleable>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_material">4dp</dimen>
@@ -210,7 +210,7 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="action_bar_switch_padding">16.0dip</dimen>
     <dimen name="action_confirm_button_margin">16.0dip</dimen>
@@ -237,12 +237,12 @@
     <dimen name="cards_max_column_width">446.0dip</dimen>
     <dimen name="cards_padding_inbetween">10.0dip</dimen>
     <dimen name="cards_padding_inbetween_adjusted">9.0dip</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="contact_avatar_height">148.0dip</dimen>
     <dimen name="contact_avatar_width">148.0dip</dimen>
@@ -259,24 +259,24 @@
     <dimen name="correction_popup_width_2buttons">120.0dip</dimen>
     <dimen name="correction_popup_width_3buttons">160.0dip</dimen>
     <dimen name="dialog_corner_radius">8.0px</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="dialog_height">320.0dip</dimen>
     <dimen name="dialog_pos_left">0.0dip</dimen>
     <dimen name="dialog_pos_top">0.0dip</dimen>
     <dimen name="dialog_text_size">18.0sp</dimen>
     <dimen name="dialog_width">320.0dip</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="divider_height">1.0dip</dimen>
     <dimen name="extra_height_to_account_for_system_space_in_landscape">0.0dip</dimen>
@@ -412,42 +412,42 @@
     <dimen name="webview_margin_left">60.0dip</dimen>
     <dimen name="widget_margin_left_right">8.0dip</dimen>
     <dimen name="widget_margin_top_bottom">8.0dip</dimen>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <drawable name="ab_bg_black">#aa000000</drawable>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
     <eat-comment/>
     <item name="gridview" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
     <eat-comment/>
     <item name="scrollview" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/ids.xml -->
     <eat-comment/>
     <item name="webview" type="id"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/version.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/version.xml -->
     <eat-comment/>
     <integer name="google_play_services_version">7095000</integer>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/plurals.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/plurals.xml -->
     <eat-comment/>
     <plurals name="hour">
         <item quantity="one">One hour ago</item>
@@ -461,10 +461,10 @@
         <item quantity="one">One minute ago</item>
         <item quantity="other">%s minutes ago</item>
         </plurals>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="a_moment_ago">a moment ago</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
@@ -482,10 +482,10 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="accept">Accept</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="account">Account</string>
     <string name="action_settings">Settings</string>
@@ -518,7 +518,7 @@
     <string name="check_with_twitter">Check with Twitter</string>
     <string name="choose_email_app">Choose Email Application</string>
     <string name="choose_picture">Choose Picture</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/common_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/values/common_strings.xml -->
     <eat-comment/>
     <string name="common_android_wear_notification_needs_update_text">An application requires an update to the Android Wear app.</string>
     <string name="common_android_wear_update_text">This app won\'t run unless you update the Android Wear app.</string>
@@ -552,7 +552,7 @@
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="commono_google_play_services_api_unavailable_text">This app requires one or more Google Play services that are not currently
 available. Please contact the developer for assistance.</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="community">Community</string>
     <string name="completed">Completed</string>
@@ -561,21 +561,21 @@ available. Please contact the developer for assistance.</string>
     <string name="continu">Continue</string>
     <string name="copy">Copy</string>
     <string name="copyright">Copyrightⓒ 2015 Tarks.</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="create_page">Create page</string>
     <string name="create_page_des">Try Create a page.\n\nYou can make a community easily with your friends.</string>
     <string name="cut_image">Cut Image</string>
     <string name="date">"MM/dd/yyyy"</string>
     <string name="date_all">MM/dd/yyyy hh:mm aa</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="decline">Decline</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="default_country">us</string>
     <string name="delete">Delete</string>
@@ -670,7 +670,7 @@ available. Please contact the developer for assistance.</string>
     <string name="privacy_users_des">Favorite members can see.</string>
     <string name="profile">Profile</string>
     <string name="profile_settings_des">Set your profile.</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/pull_refresh_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/pull_refresh_strings.xml -->
     <eat-comment/>
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
@@ -678,7 +678,7 @@ available. Please contact the developer for assistance.</string>
     <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
     <string name="pull_to_refresh_refreshing_label">Loading…</string>
     <string name="pull_to_refresh_release_label">Release to refresh…</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="refresh">Refresh</string>
     <string name="reg_id_error">Authentication information has changed. Account information must be recertified.</string>
@@ -708,11 +708,11 @@ available. Please contact the developer for assistance.</string>
     <string name="skip">Skip</string>
     <string name="start">Start</string>
     <string name="start_downloading">Start downloading...</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="tarks_account">Tarks Account</string>
     <string name="tour_page">Tour Pages</string>
@@ -724,12 +724,12 @@ available. Please contact the developer for assistance.</string>
     <string name="user_info">User Information</string>
     <string name="user_info_des">It is Almost Finished. Enter your name.\nIf you continue you agree Favorite terms of use.\n\nhttp://tarks.net/favorite/agreement.html</string>
     <string name="user_settings">User Settings</string>
-    <string name="ver">1.9.15.1.5151</string>
+    <string name="ver">1.9.15.2.5152</string>
     <string name="verkind">Beta</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="warning">Warning</string>
     <string name="welcome">Welcome</string>
@@ -748,10 +748,10 @@ available. Please contact the developer for assistance.</string>
     <string name="write">Write</string>
     <string name="write_permission">Write Permission</string>
     <string name="yes">Yes</string>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
@@ -760,7 +760,7 @@ available. Please contact the developer for assistance.</string>
             backward-compatibility can go here.
         -->
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/themes.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/themes.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
 <item name="colorPrimary">@color/favorite_color</item>
@@ -785,7 +785,7 @@ available. Please contact the developer for assistance.</string>
         <item name="android:windowContentOverlay">@null</item>
        <!--  <item name="windowContentOverlay">@null</item> -->
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Base.Animation.AppCompat.DropDownUp" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/abc_grow_fade_in_from_bottom</item>
@@ -1640,7 +1640,7 @@ available. Please contact the developer for assistance.</string>
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ButtonSimple">
         <item name="android:layout_width">fill_parent</item>
@@ -1679,7 +1679,7 @@ available. Please contact the developer for assistance.</string>
         <item name="android:textColor">@color/card_title_text</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="CardView">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
@@ -1695,7 +1695,7 @@ available. Please contact the developer for assistance.</string>
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Item">
         <item name="android:layout_width">match_parent</item>
@@ -1713,7 +1713,7 @@ available. Please contact the developer for assistance.</string>
     <style name="Item.Top">
         <item name="android:background">#eeeeee</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -1893,7 +1893,7 @@ available. Please contact the developer for assistance.</string>
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="StackTitle" parent="@style/CardText">
         <item name="android:layout_width">wrap_content</item>
@@ -1903,7 +1903,7 @@ available. Please contact the developer for assistance.</string>
         <item name="android:textColor">@color/card_title_text</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
@@ -1985,7 +1985,7 @@ available. Please contact the developer for assistance.</string>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_iap_style.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/res/values/admob_iap_style.xml -->
     <eat-comment/>
     <style name="Theme.IAPTheme" parent="android:Theme">
     <item name="android:windowIsTranslucent">true</item>
@@ -1995,14 +1995,14 @@ available. Please contact the developer for assistance.</string>
     <item name="android:windowIsFloating">true</item>
     <item name="android:backgroundDimEnabled">false</item>
   </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
     <style name="ThemeOverlay.AppCompat.Dark.ActionBar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Light" parent="Base.ThemeOverlay.AppCompat.Light"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_styles.xml -->
     <eat-comment/>
     <style name="WalletFragmentDefaultButtonTextAppearance">
         <item name="android:textColor">@color/wallet_primary_text_holo_light</item>
@@ -2036,7 +2036,7 @@ available. Please contact the developer for assistance.</string>
         <item name="maskedWalletDetailsLogoTextColor">@color/wallet_bright_foreground_holo_dark</item>
         <item name="maskedWalletDetailsLogoImageType">classic</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Widget.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
     </style>
@@ -2044,7 +2044,7 @@ available. Please contact the developer for assistance.</string>
         <item name="android:background">@android:color/transparent</item>
         <item name="background">@android:color/transparent</item>
     </style>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>
@@ -2129,7 +2129,7 @@ available. Please contact the developer for assistance.</string>
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
-    <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/JHRunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Widget.Light.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
     </style>
