@@ -609,12 +609,12 @@ e.printStackTrace();
                     //No more loads
                     hideProgressBar();
             }
-                if (listView.getLastVisiblePosition() >= listView.getCount() -2
+                if (listView.getLastVisiblePosition() >= listView.getCount() -4
                         && listView.getChildAt(0).getTop() == 0) {
                     hideProgressBar();
                 }
 
-                Global.log(listView.getCount() + "gettop");
+                Global.log( "ListViewposition : " + listView.getLastVisiblePosition() + "ListViewCount : "+ listView.getCount() );
         //        Map resultmap = Global.getJSONArray(msg.obj.toString());
 
 //                for (int i = 0; i < resultmap.size(); i++) {
