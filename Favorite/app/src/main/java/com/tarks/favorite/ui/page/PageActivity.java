@@ -364,6 +364,8 @@ public class PageActivity extends ActionBarActivity {
 		}
 	}
 
+
+
     private void setTitle(String title){
 profile_title.setText(title);
     }
@@ -583,6 +585,8 @@ profile_title.setText(title);
 			}
 
 			if (msg.what == 3) {
+//Check it is scrollable to check moreload
+
 
                 try{
                 ArrayList<DocumentClass> docArraylist = new ArrayList<DocumentClass>();
@@ -605,6 +609,12 @@ e.printStackTrace();
                     //No more loads
                     hideProgressBar();
             }
+                if (listView.getLastVisiblePosition() >= listView.getCount() -2
+                        && listView.getChildAt(0).getTop() == 0) {
+                    hideProgressBar();
+                }
+
+                Global.log(listView.getCount() + "gettop");
         //        Map resultmap = Global.getJSONArray(msg.obj.toString());
 
 //                for (int i = 0; i < resultmap.size(); i++) {
