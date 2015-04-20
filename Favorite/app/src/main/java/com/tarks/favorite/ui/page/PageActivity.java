@@ -301,17 +301,25 @@ public class PageActivity extends ActionBarActivity {
     }
 
 	public void setList(int doc_srl, String user_srl, String name,
-			String contents, int status) {
+			String contents, int comments,  int status) {
 
 		// Get Profile
 		// getMemberInfo(user_srl);
 
-		List p1 = new List(user_srl, name, contents, 1, doc_srl, status);
+		List p1 = new List(user_srl, name, contents, getInfoString(comments), 1, doc_srl, status);
 		m_orders.add(p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
 	}
+
+    private String getInfoString(int comments){
+        String info = null;
+
+        if(comments > 0) info = comments + " "  + getString(R.string.PageActivity_Comments);
+
+        return info;
+    }
 
 	public void getDocList(String startdoc) {
 		// Start Progressbar
@@ -329,7 +337,7 @@ public class PageActivity extends ActionBarActivity {
 		Paramvalue.add(member_srl);
 		Paramvalue.add(startdoc);
 		Paramvalue.add("15");
-		Paramvalue.add("srl//user_srl//name//content//status");
+		Paramvalue.add("srl//user_srl//name//content//comments//status");
 
 		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 3, 0);
@@ -596,7 +604,7 @@ profile_title.setText(title);
                 for (int i = 0; i < docArraylist.size(); i++) {
                     DocumentClass get = docArraylist.get(i);
                     getPageInfo(String.valueOf(get.user_srl));
-                    setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.status);
+                    setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.comments, get.status);
                     m_adapter.notifyDataSetChanged();
                 }
 
@@ -758,6 +766,7 @@ e.printStackTrace();
 			if (p != null) {
 				TextView tt = (TextView) v.findViewById(R.id.titre);
 				TextView bt = (TextView) v.findViewById(R.id.description);
+                TextView info = (TextView) v.findViewById(R.id.info);
 				ImageView image = (ImageView) v.findViewById(R.id.img);
 
 				if (tt != null) {
@@ -774,6 +783,11 @@ e.printStackTrace();
 				if (bt != null) {
 					bt.setText(Global.getValue(p.getDes()));
 				}
+                if (info != null && p.getInfo() != null) {
+                    info.setVisibility(View.VISIBLE);
+                    info.setText(p.getInfo());
+                    info.setPadding(4, 16, 0, 0);
+                }
 				if (image != null) {
 
 					boolean state = Global.CheckFileState(local_path
@@ -807,15 +821,17 @@ e.printStackTrace();
 		private String user_srl;
 		private String Title;
 		private String Description;
+        private String Info;
 		private int Tag;
 		private int Doc_srl;
 		private int status;
 
-		public List(String _user_Srl, String _Title, String _Description,
+		public List(String _user_Srl, String _Title, String _Description, String _Info,
 				int _Tag, int _Doc_srl, int _status) {
 			this.user_srl = _user_Srl;
 			this.Title = _Title;
 			this.Description = _Description;
+            this.Info = _Info;
 			this.Tag = _Tag;
 			this.Doc_srl = _Doc_srl;
 			this.status = _status;
@@ -832,6 +848,8 @@ e.printStackTrace();
 		public String getDes() {
 			return Description;
 		}
+
+        public String getInfo(){ return  Info;}
 
 		public int getTag() {
 			return Tag;
@@ -870,7 +888,7 @@ e.printStackTrace();
 	/**
 	 * 임의의 방법으로 더미 아이템을 추가합니다.
 	 * 
-	 * @param size
+	 *
 	 */
 
 	@Override

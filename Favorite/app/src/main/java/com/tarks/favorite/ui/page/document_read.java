@@ -873,7 +873,7 @@ public class document_read extends ActionBarActivity {
 					setCommentsCount(Integer.parseInt(comments));
 					doc_content.setText(Global.getValue(content));
 					// Set comment
-					getCommentsList(getStartComment(comments_count), 10);
+					if(Integer.parseInt(comments) > 0)getCommentsList(getStartComment(comments_count), 10);
 					// Load menu again
 					invalidateOptionsMenu();
 

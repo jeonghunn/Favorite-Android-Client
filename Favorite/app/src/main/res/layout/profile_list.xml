@@ -54,12 +54,17 @@
                 android:text="No Info"
                 android:textColor="#8C8C8C"
                 android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/info" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/info" />
+
+
     </LinearLayout>
 
 </LinearLayout>
