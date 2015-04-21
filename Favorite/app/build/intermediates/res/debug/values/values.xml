@@ -463,7 +463,7 @@
         </plurals>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="PageActivity_Comments">Comments</string>
+    <string name="PageActivity_Comments">comments</string>
     <string name="a_moment_ago">a moment ago</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
@@ -725,7 +725,7 @@ available. Please contact the developer for assistance.</string>
     <string name="user_info">User Information</string>
     <string name="user_info_des">It is Almost Finished. Enter your name.\nIf you continue you agree Favorite terms of use.\n\nhttp://tarks.net/favorite/agreement.html</string>
     <string name="user_settings">User Settings</string>
-    <string name="ver">1.9.15.3.5152</string>
+    <string name="ver">1.9.16.0.5154</string>
     <string name="verkind">Beta</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/res/values/wallet_strings.xml -->
     <eat-comment/>

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.15.5.5153</string>
+    <string name="ver">1.9.16.0.5154</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
@@ -162,7 +162,7 @@
     <string name="email">Email</string>
 
     <!--PageActivity-->
-    <string name="PageActivity_Comments">Comments</string>
+    <string name="PageActivity_Comments">comments</string>
 
     <!-- Sign Up -->
     <string name="agree_and_start_des">If Continue, you agreed <b>this</b>.</string>

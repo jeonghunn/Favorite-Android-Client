@@ -60,6 +60,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
+                android:textSize="12sp"
                 android:id="@+id/info" />
         </LinearLayout>
 

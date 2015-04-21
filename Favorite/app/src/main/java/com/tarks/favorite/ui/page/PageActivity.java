@@ -303,21 +303,24 @@ public class PageActivity extends ActionBarActivity {
 	public void setList(int doc_srl, String user_srl, String name,
 			String contents, int comments,  int status) {
 
-		// Get Profile
-		// getMemberInfo(user_srl);
 
-		List p1 = new List(user_srl, name, contents, getInfoString(comments), 1, doc_srl, status);
+
+
+
+		List p1 = new List(user_srl, name, contents, getInfovalue(comments), 1, doc_srl, status);
 		m_orders.add(p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
 
 	}
 
-    private String getInfoString(int comments){
-        String info = null;
+    private String getInfovalue(int comments){
 
-        if(comments > 0) info = comments + " "  + getString(R.string.PageActivity_Comments);
 
+        String info = "";
+        if(comments > 0)  info = String.valueOf(comments) + " "  + getString(R.string.PageActivity_Comments);
+
+        
         return info;
     }
 
@@ -593,7 +596,7 @@ profile_title.setText(title);
 			}
 
 			if (msg.what == 3) {
-//Check it is scrollable to check moreload
+
 
 
                 try{
@@ -617,6 +620,8 @@ e.printStackTrace();
                     //No more loads
                     hideProgressBar();
             }
+                //Check it is scrollable to check moreload
+
                 if (listView.getLastVisiblePosition() >= listView.getCount() -4
                         && listView.getChildAt(0).getTop() == 0) {
                     hideProgressBar();
@@ -783,10 +788,11 @@ e.printStackTrace();
 				if (bt != null) {
 					bt.setText(Global.getValue(p.getDes()));
 				}
-                if (info != null && p.getInfo() != null) {
+                if (info != null) {
+                    Global.log(p.getInfo() + "comments");
                     info.setVisibility(View.VISIBLE);
                     info.setText(p.getInfo());
-                    info.setPadding(4, 16, 0, 0);
+                  if(p.getInfo() != "") info.setPadding(4, 16, 0, 0);
                 }
 				if (image != null) {
 
