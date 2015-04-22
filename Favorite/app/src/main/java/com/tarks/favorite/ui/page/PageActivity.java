@@ -301,13 +301,13 @@ public class PageActivity extends ActionBarActivity {
     }
 
 	public void setList(int doc_srl, String user_srl, String name,
-			String contents, int comments,  int status) {
+			String contents, long timestamp ,int comments,  int status) {
 
 
 
 
 
-		List p1 = new List(user_srl, name, contents, getInfovalue(comments), 1, doc_srl, status);
+		List p1 = new List(user_srl, name, contents, Global.formatTimeString(timestamp), getInfovalue(comments), 1, doc_srl, status);
 		m_orders.add(p1);
 
 		// ListView listview = (ListView) findViewById(R.id.listView1);
@@ -340,7 +340,7 @@ public class PageActivity extends ActionBarActivity {
 		Paramvalue.add(member_srl);
 		Paramvalue.add(startdoc);
 		Paramvalue.add("15");
-		Paramvalue.add("srl//user_srl//name//content//comments//status");
+		Paramvalue.add("srl//user_srl//name//content//date//comments//status");
 
 		new AsyncHttpTask(this, getString(R.string.server_api_path), mHandler, Paramname,
 				Paramvalue, null, 3, 0);
@@ -607,7 +607,7 @@ profile_title.setText(title);
                 for (int i = 0; i < docArraylist.size(); i++) {
                     DocumentClass get = docArraylist.get(i);
                     getPageInfo(String.valueOf(get.user_srl));
-                    setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.comments, get.status);
+                    setList(get.srl, String.valueOf(get.user_srl), get.name, get.content, get.date, get.comments, get.status);
                     m_adapter.notifyDataSetChanged();
                 }
 
@@ -771,6 +771,7 @@ e.printStackTrace();
 			if (p != null) {
 				TextView tt = (TextView) v.findViewById(R.id.titre);
 				TextView bt = (TextView) v.findViewById(R.id.description);
+                TextView date = (TextView) v.findViewById(R.id.date);
                 TextView info = (TextView) v.findViewById(R.id.info);
 				ImageView image = (ImageView) v.findViewById(R.id.img);
 
@@ -788,6 +789,11 @@ e.printStackTrace();
 				if (bt != null) {
 					bt.setText(Global.getValue(p.getDes()));
 				}
+
+                if(date != null){
+date.setText(p.getDate());
+            }
+
                 if (info != null) {
                     Global.log(p.getInfo() + "comments");
                     info.setVisibility(View.VISIBLE);
@@ -827,16 +833,18 @@ e.printStackTrace();
 		private String user_srl;
 		private String Title;
 		private String Description;
+        private String Date;
         private String Info;
 		private int Tag;
 		private int Doc_srl;
 		private int status;
 
-		public List(String _user_Srl, String _Title, String _Description, String _Info,
+		public List(String _user_Srl, String _Title, String _Description, String _Date, String _Info,
 				int _Tag, int _Doc_srl, int _status) {
 			this.user_srl = _user_Srl;
 			this.Title = _Title;
 			this.Description = _Description;
+            this.Date = _Date;
             this.Info = _Info;
 			this.Tag = _Tag;
 			this.Doc_srl = _Doc_srl;
@@ -854,6 +862,10 @@ e.printStackTrace();
 		public String getDes() {
 			return Description;
 		}
+
+        public String getDate() {
+            return Date;
+        }
 
         public String getInfo(){ return  Info;}
 
