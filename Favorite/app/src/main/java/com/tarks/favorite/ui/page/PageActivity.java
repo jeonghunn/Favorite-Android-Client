@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Window;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -77,6 +78,7 @@ public class PageActivity extends ActionBarActivity {
 
 	// ListView
 	ListView listView;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 	// FadingActionbar
 	FadingActionBarHelper helper;
 	// Menu state
@@ -229,6 +231,16 @@ public class PageActivity extends ActionBarActivity {
 
 	public void setListAdapter() {
 		// profile = (ImageView) findViewById(R.id.image_header);
+         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+                mSwipeRefreshLayout.setProgressViewOffset(false, -100, 250);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                                     @Override
+                                                     public void onRefresh() {
+
+refresh();
+                                                     }
+                                                 });
+
 		listView = (ListView) findViewById(android.R.id.list);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -942,11 +954,15 @@ date.setText(p.getDate());
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 			// setListAdapter();
-			m_adapter.clear();
-			load();
+		refresh();
 		}
 
 	}
+
+    private void refresh(){
+        m_adapter.clear();
+        load();
+    }
 
 	// 빽백키 상단액션바
 	@Override
