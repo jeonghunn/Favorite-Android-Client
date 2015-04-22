@@ -139,6 +139,7 @@
     <string name="email">이메일</string>
     <!--PageActivity-->
     <string name="PageActivity_Comments">댓글</string>
+    <string name="PageActivity_Comment">댓글</string>
 
     <!-- Sign Up -->
     <string name="agree_and_start_des">계속하시면 <b>약관</b>에 동의하신거로 간주됩니다.</string>

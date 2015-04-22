@@ -2,60 +2,13 @@
 <resources>
 
     <string name="app_name">Favorite</string>
-    <string name="ver">1.9.17.0.5155</string>
+    <string name="ver">1.9.17.1.5156</string>
     <string name="api_version">1</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2015 Tarks.</string>
     <string name="lang">en</string>
     <string name="default_country">us</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <string name="server_api_path">http://tarks.net/develop/favorite/api.php</string>
     <string name="server_path">http://tarks.net/develop/favorite/</string>
@@ -211,6 +164,7 @@
 
     <!--PageActivity-->
     <string name="PageActivity_Comments">comments</string>
+    <string name="PageActivity_Comment">comment</string>
 
     <!-- Sign Up -->
     <string name="agree_and_start_des">If Continue, you agreed <b>this</b>.</string>

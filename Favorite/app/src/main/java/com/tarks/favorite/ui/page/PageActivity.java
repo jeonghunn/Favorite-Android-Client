@@ -318,7 +318,13 @@ public class PageActivity extends ActionBarActivity {
 
 
         String info = "";
-        if(comments > 0)  info = String.valueOf(comments) + " "  + getString(R.string.PageActivity_Comments);
+        if(comments > 0){
+            if(comments > 1){
+                info = String.valueOf(comments) + " "  +  getString(R.string.PageActivity_Comments);
+            }else{
+                info = String.valueOf(comments) + " "  +  getString(R.string.PageActivity_Comment);
+            }
+        }
 
         
         return info;

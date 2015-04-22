@@ -16,6 +16,7 @@
         </plurals>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/src/main/res/values-ko/strings.xml -->
     <eat-comment/>
+    <string name="PageActivity_Comment">댓글</string>
     <string name="PageActivity_Comments">댓글</string>
     <string name="a_moment_ago">방금 전</string>
     <!-- From: file:/Volumes/DATA/Users/jhrunning/Documents/Project/git/Favorite/Favorite/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values-ko/values.xml -->
