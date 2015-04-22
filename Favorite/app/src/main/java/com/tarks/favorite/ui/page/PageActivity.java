@@ -232,6 +232,7 @@ public class PageActivity extends ActionBarActivity {
 	public void setListAdapter() {
 		// profile = (ImageView) findViewById(R.id.image_header);
          mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorScheme(R.color.favorite_main_color, R.color.favorite_dark_color);
                 mSwipeRefreshLayout.setProgressViewOffset(false, -100, 250);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                                      @Override
