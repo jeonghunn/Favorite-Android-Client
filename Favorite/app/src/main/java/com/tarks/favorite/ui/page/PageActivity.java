@@ -147,7 +147,7 @@ public class PageActivity extends ActionBarActivity {
 	}
 	
 	private void showProgressBar(){
-		//if(pb != null) pb.setVisibility(View.VISIBLE);
+        if(pb != null) pb.setVisibility(View.VISIBLE);
 	}
 	
 	private void hideProgressBar(){
@@ -238,7 +238,8 @@ public class PageActivity extends ActionBarActivity {
                                                      @Override
                                                      public void onRefresh() {
 
-refresh();
+RefreshLists();
+hideProgressBar();
                                                      }
                                                  });
 
@@ -249,25 +250,28 @@ refresh();
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-                if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
-                    if (((HeaderViewListAdapter) arg0.getAdapter())
-                            .getWrappedAdapter() instanceof ListAdapter) {
-                        ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
-                                .getAdapter()).getWrappedAdapter();
+                try {
+                    if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
+                        if (((HeaderViewListAdapter) arg0.getAdapter())
+                                .getWrappedAdapter() instanceof ListAdapter) {
+                            ListAdapter ca = (ListAdapter) ((HeaderViewListAdapter) arg0
+                                    .getAdapter()).getWrappedAdapter();
 
-                        List ls = (List) ca.getItem(arg2 - 2);
-
-
-
-                        Intent intent = new Intent(PageActivity.this,
-                                document_read.class);
-                        intent.putExtra("doc_srl",
-                                String.valueOf(ls.getDocSrl()));
-                      intent.putExtra("doc_content", ls.getDes());
-                        startActivityForResult(intent, 1);
+                            List ls = (List) ca.getItem(arg2 - 2);
 
 
+                            Intent intent = new Intent(PageActivity.this,
+                                    document_read.class);
+                            intent.putExtra("doc_srl",
+                                    String.valueOf(ls.getDocSrl()));
+                            intent.putExtra("doc_content", ls.getDes());
+                            startActivityForResult(intent, 1);
+
+
+                        }
                     }
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
 //				if (arg0.getAdapter() instanceof HeaderViewListAdapter) {
 //					if (((HeaderViewListAdapter) arg0.getAdapter())
@@ -631,7 +635,9 @@ profile_title.setText(title);
                 }
 
                     setlocklistView(false);
-
+//RefreshCompelete
+                    if(mSwipeRefreshLayout.isRefreshing()) showProgressBar();
+                    mSwipeRefreshLayout.setRefreshing(false);
 
 
             } catch (Exception e) {
@@ -963,6 +969,11 @@ date.setText(p.getDate());
     private void refresh(){
         m_adapter.clear();
         load();
+    }
+
+    private void RefreshLists(){
+        m_adapter.clear();
+        getDocList("0");
     }
 
 	// 빽백키 상단액션바
