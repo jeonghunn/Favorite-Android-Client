@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -88,7 +89,7 @@ public class document_read extends ActionBarActivity {
 
 	// ListView
 	private ListView listView;
-
+    SwipeRefreshLayout mSwipeRefreshLayout;
 	// List
 	ArrayList<HeaderList> header_m_orders = new ArrayList<HeaderList>();
 	ArrayList<List> m_orders = new ArrayList<List>();
@@ -132,6 +133,17 @@ public class document_read extends ActionBarActivity {
 	}
 
 	public void loadView() {
+        // Swipe to refresh
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.doc_listview_swipe);
+        mSwipeRefreshLayout.setColorScheme(R.color.favorite_main_color, R.color.favorite_dark_color);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                refreshAct();
+
+            }
+        });
 		// Set List Adapter
 		listView = (ListView) findViewById(R.id.listView1);
 
@@ -910,6 +922,9 @@ public class document_read extends ActionBarActivity {
 
 
                     }
+
+                    //Load Compelete
+                    mSwipeRefreshLayout.setRefreshing(false);
 
 
 				} catch (Exception e) {
